@@ -3,7 +3,8 @@ import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, RefreshCon
 import AsyncStorage from '@react-native-community/async-storage';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 import { DormitoryAPI } from '../../../../tool/jedaero';
-import { foodTabNavStyles, menuTopTabOptions } from '../../../styles/jedaeroCSS';
+import { foodTabNavStyles } from '../../../styles/jedaeroCSS';
+import { foodTopTabNavigationConfig } from '../../../navigations/navigationConfigs';
 import getWeek from '../../../../tool/getWeek';
 import d_time from '../../../../jsons/d_time.json';
 
@@ -115,7 +116,7 @@ let DormTap = createMaterialTopTabNavigator(
     //     title: "일"
     //   }
     // }
-  }, menuTopTabOptions
+  }, foodTopTabNavigationConfig
 );
 
 export default class DormitoryMain extends Component {

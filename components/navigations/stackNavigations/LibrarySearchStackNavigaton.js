@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
 import { createStackNavigator } from 'react-navigation';
 
 import LibrarySearch from '../../drawer/library/LibrarySearch';
 import LibrarySearchDetail from '../../drawer/library/LibrarySearchDetail';
 import BookDetail from '../../drawer/library/BookDetail';
-import {stackNavigationOptions} from '../navigationConfigs';
+import {stackNavigationConfig} from '../navigationConfigs';
 
-export default LibraryStackNavigator = createStackNavigator({
+const LibraryStackNavigator = createStackNavigator({
     LibrarySearchHome: {
         screen: LibrarySearch,
     },
@@ -16,19 +15,6 @@ export default LibraryStackNavigator = createStackNavigator({
     BookDetail: {
         screen: BookDetail,
     }
-}, stackNavigationOptions);
+}, stackNavigationConfig);
 
-// class LibrarySearchStackNavigator extends Component {
-//     static router = LibraryStackNavigator.router;
-//     static navigationOptions = {
-//         headerTitle: "도서검색"
-//     }
-
-//     constructor(props) {
-//         super(props);
-//     }
-
-//     render() {
-//         return <LibraryStackNavigator navigation={this.props.navigation} />
-//     }
-// }
+export default LibraryStackNavigator;

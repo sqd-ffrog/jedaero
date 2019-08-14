@@ -2,10 +2,10 @@ import { createStackNavigator } from 'react-navigation';
 import Bus from '../../drawer/bus/bus';
 import HakSikMain from '../../drawer/food/menu/haksik';
 import DormitoryMain from '../../drawer/food/menu/dormitory';
-import { stackNavigationOptions } from '../navigationConfigs';
+import { stackNavigationConfig } from '../navigationConfigs';
 
 
-export default createStackNavigator({
+const BusStackNavigation =  createStackNavigator({
     Bus: {
         screen: Bus,
     },
@@ -24,4 +24,6 @@ export default createStackNavigator({
     Dormitory: {
         screen: DormitoryMain, 
     },
-}, stackNavigationOptions );
+}, stackNavigationConfig );
+
+export default BusStackNavigation;

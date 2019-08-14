@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
 import { normalize } from 'react-native-elements';
+import colorPalette from './colorPalette';
 
 const mainScreen = StyleSheet.create({
     busView: {
         // flex:1, 
         minHeight: '100%',
-        backgroundColor:'#ffffff',
+        backgroundColor: colorPalette.backgroundColor,
         flexDirection: 'column', 
         justifyContent: 'flex-start',
     },
@@ -13,11 +14,11 @@ const mainScreen = StyleSheet.create({
     blockView: {
         height:"auto",
         borderRadius: 4,
-        borderColor: '#e7e7e7',
+        borderColor: colorPalette.cardBorderColor,
         marginLeft: 10,
         marginRight: 10,
         marginBottom: 10,
-        backgroundColor: '#ffffff',
+        backgroundColor: colorPalette.cardBackgroundColor,
         overflow: 'hidden',
     },
     blockViewTitle: {

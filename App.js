@@ -19,8 +19,8 @@ export default class App extends Component {
   componentDidMount = () => {
     StatusBar.setBarStyle('dark-content')
     if(Platform.OS === 'android') {
-      StatusBar.setBackgroundColor('#ffffff00');
-      StatusBar.setTranslucent(true);
+      StatusBar.setBackgroundColor('#f7f7f7ff');
+      StatusBar.setTranslucent(false);
     }
   }
 

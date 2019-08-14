@@ -6,44 +6,54 @@ import { ListItem, normalize } from 'react-native-elements';
 
 import menuList from './menuList';
 import { foodTabStyles } from '../../styles/jedaeroCSS';
+import colorPalette from '../../styles/colorPalette';
 
-export default class FoodList extends Component {
-    constructor(props) {
-        super(props);
-
-    }
-
-    foodmenu = menuList(this);
-
-    static navigationOptions = {
-        headerTitle: "뭐먹을까"
-    };
-    
-    render = () => {
-        return (
-            <SafeAreaView style={{flex:1, backgroundColor:'#ffffff'}}>
-                <ScrollView
-                >
-                    {
-                        this.foodmenu.map((item, key) => (
-                                <ListItem
-                                    key={key}
-                                    title={item.name}
-                                    subtitle={item.subtitle}
-                                    titleStyle={foodTabStyles.listTitleStyle}
-                                    subtitleStyle={foodTabStyles.listSubtitleStyle}
-                                    containerStyle={foodTabStyles.listContainerStyle}
-                                    onPress={item._clickFood}
-                                    underlayColor="rgba(0,0,0,0)"
-                                    hideChevron={true}
-                                />
-                          ))
-                    }
-                </ScrollView>
-            </SafeAreaView>
-        )
-    }
+const FoodList = ({navigation}) => {
+    const foodMenu = menuList(destination => navigation.navigate(destination));
+    return (
+        <SafeAreaView style={{flex:1, backgroundColor:colorPalette.backgroundColor}}>
+            <ScrollView>
+                {
+                    foodMenu.map((item, key) => (
+                            <ListItem
+                                key={key}
+                                title={item.name}
+                                subtitle={item.subtitle}
+                                titleStyle={foodTabStyles.listTitleStyle}
+                                subtitleStyle={foodTabStyles.listSubtitleStyle}
+                                containerStyle={foodTabStyles.listContainerStyle}
+                                onPress={item._clickFood}
+                                underlayColor="rgba(0,0,0,0)"
+                                hideChevron={true}
+                            />
+                        ))
+                }
+            </ScrollView>
+        </SafeAreaView>
+    )
 }
+FoodList.navigationOptions = {
+    headerTitle: "뭐먹을까"
+}
+export default FoodList;
+// export default class FoodList extends Component {
+//     constructor(props) {
+//         super(props);
+
+//     }
+
+//     foodmenu = menuList(this);
+
+//     static navigationOptions = {
+//         headerTitle: "뭐먹을까"
+//     };
+    
+//     render = () => {
+//         return (
+            
+//         )
+//     }
+// }
 
 
 

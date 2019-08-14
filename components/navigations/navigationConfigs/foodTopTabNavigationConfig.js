@@ -1,4 +1,5 @@
 import { normalize } from "react-native-elements";
+import colorPalette from "../../styles/colorPalette";
 
 const foodTopTabNavigationConfig = {
     backBehavior: 'none',
@@ -16,7 +17,7 @@ const foodTopTabNavigationConfig = {
             fontSize: normalize(20),
         },
         style: {
-          backgroundColor:'#ffffff',
+          backgroundColor:colorPalette.backgroundColor,
           borderBottomWidth:0.5,
           borderBottomColor:'#d7d7d7',
           elevation:0

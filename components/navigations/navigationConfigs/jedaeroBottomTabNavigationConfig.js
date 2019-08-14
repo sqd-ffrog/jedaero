@@ -1,7 +1,10 @@
+import colorPalette from "../../styles/colorPalette";
+
 const jedaeroBottomTabNavigationConfig = {
     labeled: false,
     barStyle: {
-      backgroundColor: '#ffffff',
+      backgroundColor: colorPalette.backgroundColor,
+      paddingBottom: 12,
     }
 }
 

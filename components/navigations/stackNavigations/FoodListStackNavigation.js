@@ -6,9 +6,9 @@ import DormitoryMain from '../../drawer/food/menu/dormitory';
 import FoodList from '../../drawer/food/foodlist';
 import Hansik from '../../drawer/food/menu/hansik';
 import DetailMenu from '../../drawer/food/menu/detailmenu';
-import {stackNavigationOptions} from '../navigationConfigs';
+import {stackNavigationConfig} from '../navigationConfigs';
 
-export default createStackNavigator(
+const FoodListStackNavigation =  createStackNavigator(
     {
         FoodList: {
             screen: FoodList,
@@ -44,5 +44,7 @@ export default createStackNavigator(
             screen: DetailMenu,
         }
 
-    }, stackNavigationOptions
+    }, stackNavigationConfig
 )
+
+export default FoodListStackNavigation;

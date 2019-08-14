@@ -3,6 +3,7 @@ import { Text, View, ScrollView, ActivityIndicator, TouchableOpacity } from 'rea
 import haksaStyles from '../../styles/haksaStyle'
 
 import { HaksaAPI }  from '../../../tool/jedaero';
+import colorPalette from '../../styles/colorPalette';
 
 // 헤더 활용 위해 부득이하게 내비게이션 사용
 export default class Schedule extends Component {
@@ -36,7 +37,7 @@ export default class Schedule extends Component {
             >
                 <Text style={haksaStyles.calendarMonth}>{month}</Text>
                 <Text>월</Text>
-                {(isNextYear) ? (<Text>{new Date().getFullYear() + 1}년</Text>) : null}
+                {(isNextYear) && (<Text>{new Date().getFullYear() + 1}년</Text>)}
             </TouchableOpacity>
             // <ListItem 
             //     key={item['month_title']}
@@ -52,10 +53,10 @@ export default class Schedule extends Component {
         return (!this.state.dataSource) 
         ? (
         <View style={haksaStyles.onLoading}>
-            <ActivityIndicator size='large' color='#344955'/>
+            <ActivityIndicator size='large' color={colorPalette.mainColor}/>
         </View>
         ) : (
-            <View style={{flex: 1, backgroundColor: '#ffffff'}}>
+            <View style={{flex: 1, backgroundColor: colorPalette.backgroundColor}}>
                 <ScrollView contentContainerStyle={haksaStyles.container}>
                     { this.state.dataSource.month.map(this._renderItem) }
                 </ScrollView>

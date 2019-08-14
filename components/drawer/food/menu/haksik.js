@@ -3,7 +3,8 @@ import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, RefreshCon
 import AsyncStorage from '@react-native-community/async-storage';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 import { HaksikAPI } from '../../../../tool/jedaero';
-import { foodTabNavStyles, menuTopTabOptions } from '../../../styles/jedaeroCSS';
+import { foodTabNavStyles } from '../../../styles/jedaeroCSS';
+import { foodTopTabNavigationConfig } from '../../../navigations/navigationConfigs'
 import getWeek from '../../../../tool/getWeek';
 import h_time from '../../../../jsons/h_time.json';
 
@@ -103,7 +104,7 @@ let HaksikTabNavigator = createMaterialTopTabNavigator({
             title:'금'
         }
     }, 
-}, menuTopTabOptions);
+}, foodTopTabNavigationConfig);
 
 export default class HakSikMain extends Component {
     static router = HaksikTabNavigator.router;

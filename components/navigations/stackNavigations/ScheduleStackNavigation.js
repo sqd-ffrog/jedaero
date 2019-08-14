@@ -1,4 +1,4 @@
-import { stackNavigationOptions } from "../navigationConfigs";
+import { stackNavigationConfig } from "../navigationConfigs";
 import { createStackNavigator } from "react-navigation";
 import Schedule from "../../drawer/schedule/Schedule";
 import ScheduleDetail from '../../drawer/schedule/ScheduleDetail';
@@ -11,6 +11,6 @@ const ScheduleStackNavigator = createStackNavigator({
     ScheduleDetail: {
         screen: ScheduleDetail,
     }
-}, stackNavigationOptions);
+}, stackNavigationConfig);
 
 export default ScheduleStackNavigator

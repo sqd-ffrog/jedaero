@@ -1,17 +1,21 @@
-const stackNavigationOptions = {
+import { normalize } from "react-native-elements";
+import { Easing, Animated } from 'react-native'
+import colorPalette from "../../styles/colorPalette";
+
+const stackNavigationConfig = {
     mode: 'modal',
     headerMode:'float',
     headerTransitionPreset: 'uikit',
-    navigationOptions : () => ({
-      headerTitle: "ㅇㄹㅇㄹ",
-      headerTintColor: '#ffffff',
+    defaultNavigationOptions : () => ({
+      headerTintColor: colorPalette.textColor,
       headerStyle: {
-          backgroundColor:'#ffffff',
-          borderWidth: 0,
+          backgroundColor: colorPalette.backgroundColor,
           elevation: 0,
+          borderBottomWidth: 0,
       },
       headerTitleStyle: {
           fontSize: normalize(20),
+          fontWeight: 'bold',
       },
       gestureEnabled: true,
     }),
@@ -41,4 +45,4 @@ const stackNavigationOptions = {
     }),
 }
 
-export default stackNavigationOptions;
+export default stackNavigationConfig;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, FlatList } from 'react-native'
 import { normalize } from 'react-native-elements';
+import colorPalette from '../../styles/colorPalette';
 
 export default class ScheduleDetail extends Component {
     static navigationOptions = ({navigation}) => {
@@ -27,7 +28,7 @@ export default class ScheduleDetail extends Component {
         let schedule = this.props.navigation.getParam('schedule');
         console.log(schedule);
         return (
-            <View style={{flex: 1, backgroundColor:'#ffffff'}}>
+            <View style={{flex: 1, backgroundColor:colorPalette.backgroundColor}}>
                 <FlatList 
                     keyExtractor={this._keyExtractor}
                     data={schedule}
