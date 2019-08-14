@@ -9,7 +9,7 @@ import { HaksaAPI }  from '../../../tool/jedaero';
 import ScheduleDetail from './ScheduleDetail';
 
 // 헤더 활용 위해 부득이하게 내비게이션 사용
-class Schedule extends Component {
+export default class Schedule extends Component {
     static navigationOptions = {
         title: '학사일정'
     }
@@ -61,42 +61,10 @@ class Schedule extends Component {
         ) : (
             <View style={{flex: 1, backgroundColor: '#ffffff'}}>
                 <ScrollView contentContainerStyle={haksaStyles.container}>
-                    {
-                        this.state.dataSource.month.map(this._renderItem)
-                        // this.state.dataSource.month.map(item => (
-                        //     <ListItem 
-                        //         key={item['month_title']}
-                        //         title={item['month_title']}
-                        //         containerStyle={haksaStyles.listContainer}
-                        //         titleStyle={{textAlign:'center', fontSize: normalize(20)}}
-                        //         chevron
-                        //         onPress={() => this.props.navigation.navigate('ScheduleDetail', item)}
-                        //     />
-                        // ))
-                    }
+                    { this.state.dataSource.month.map(this._renderItem) }
                 </ScrollView>
             </View>
         
         )
     }
 }
-
-// let haksaStyles = StyleSheet.create({
-//     container: {
-//         paddingBottom: 56,
-//     },
-//     listContainer: {
-//         backgroundColor:'#ffffff'
-//     },
-//     onLoading: {
-//         alignItems: 'center', paddingTop:20, flex:1, backgroundColor:'#ffffff'
-//     }
-// })
-export default ScheduleStackNavigator = createStackNavigator({
-    Schedule: {
-        screen: Schedule,
-    },
-    ScheduleDetail: {
-        screen: ScheduleDetail,
-    }
-}, stackNavigationOptions);

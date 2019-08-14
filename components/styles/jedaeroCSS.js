@@ -1,49 +1,10 @@
+/**
+ * Aerain
+ */
+
 import { StyleSheet, Animated, Easing } from 'react-native';
 import { normalize } from 'react-native-elements';
 import './css/busStyle'
-
-let stackNavigationOptions = {
-    mode: 'modal',
-    headerMode:'float',
-    headerTransitionPreset: 'uikit',
-    navigationOptions : () => ({
-      headerTitle: "ㅇㄹㅇㄹ",
-      headerTintColor: '#ffffff',
-      headerStyle: {
-          backgroundColor:'#ffffff',
-          borderWidth: 0,
-          elevation: 0,
-      },
-      headerTitleStyle: {
-          fontSize: normalize(20),
-      },
-      gestureEnabled: true,
-    }),
-    transitionConfig: () => ({
-        transitionSpec: {
-          duration: 500,
-          easing: Easing.out(Easing.poly(4)),
-          timing: Animated.timing,
-        },
-        screenInterpolator: sceneProps => {
-          const { layout, position, scene } = sceneProps;
-          const { index } = scene;
-          
-          const Width = layout.initWidth;
-          const translateX = position.interpolate({
-            inputRange: [index - 1, index, index + 1],
-            outputRange: [Width, 0, 0]
-          });
-
-          const opacity = position.interpolate({
-            inputRange: [index - 1, index - 0.99, index],
-            outputRange: [0, 1, 1],
-          });
-          
-          return { opacity, transform: [{ translateX }]}
-        },
-    }),
-}
 
 let jedaeroStyles = StyleSheet.create({
 
@@ -164,33 +125,5 @@ let libsearchStyles = StyleSheet.create({
     }
   })
 
-let menuTopTabOptions = {
-    backBehavior: 'none',
-    tabBarPosition: 'top',
-    lazy: false,
-    tabBarOptions: {
-        showIcon:false,
-        activeTintColor: "#000000",
-        inactiveTintColor:'#d7d7d7',
-        tabStyle:{
-            justifyContent:'center',
-            alignItems:'center',
-        },
-        labelStyle: {
-            fontSize: normalize(20),
-        },
-        style: {
-          backgroundColor:'#ffffff',
-          borderBottomWidth:0.5,
-          borderBottomColor:'#d7d7d7',
-          elevation:0
-        },
-        indicatorStyle: {
-          marginBottomWidth:0,
-          height:0
-        },
-        // safeAreaInset: {bottom:'never', top:'never'}
-    },
 
-  }
-export { stackNavigationOptions, jedaeroStyles, foodMenuListStyles, foodTabStyles, foodTabNavStyles, jedaeroBottomTabNavigatorConfig, libsearchStyles, menuTopTabOptions }
+export {jedaeroStyles, foodMenuListStyles, foodTabStyles, foodTabNavStyles, jedaeroBottomTabNavigatorConfig, libsearchStyles}

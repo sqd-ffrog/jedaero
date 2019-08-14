@@ -39,9 +39,7 @@ export default class Bus extends Component {
                     source={require('../../../images/Info.png')}/>
                 </TouchableOpacity>
                 </View>
-                
-                
-              ),
+            ),
         } 
     }
 

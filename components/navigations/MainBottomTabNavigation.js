@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import BusStack from './drawer/bus/BusStackNavigation';
-import FoodStack from './drawer/food/FoodListStackNavigation';
-import LibrarySearchStackNavigator from './drawer/library/LibrarySearchStackNavigator';
 import Schedule from './drawer/schedule/Schedule';
-import {jedaeroBottomTabNavigatorConfig} from './jedaeroCSS';
+import { jedaeroBottomTabNavigatorConfig } from './navigationConfigs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { BusStackNavigation, FoodListStackNavigation, LibrarySearchStackNavigation } from './stackNavigations';
 
 const TabNav = createMaterialBottomTabNavigator({
     Bus: {
-        screen: BusStack,
+        screen: BusStackNavigation,
         navigationOptions: {
             title: '순환버스',
             tabBarIcon: ({tintColor}) => (<Icon name="home-outline" color={tintColor} size={35} style={{width: 35, height: 35}}/>)
         }
     },
     Food: {
-        screen: FoodStack,
+        screen: FoodListStackNavigation,
         navigationOptions: {
             title: '뭐먹을까',
             tabBarIcon: ({tintColor}) => (<Icon name="food-fork-drink" color={tintColor} size={35} style={{width: 35, height: 35}}/>)
@@ -30,7 +28,7 @@ const TabNav = createMaterialBottomTabNavigator({
         }
     },    
     LibrarySearch: {
-        screen: LibrarySearchStackNavigator,
+        screen: LibrarySearchStackNavigation,
         navigationOptions: {
             title: '도서검색',
             tabBarIcon: ({tintColor}) => (<Icon name="book-open-variant" color={tintColor} size={35} style={{width: 35, height: 35}}/>)

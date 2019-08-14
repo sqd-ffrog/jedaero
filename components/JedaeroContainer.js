@@ -1,23 +1,14 @@
-import React, { Component } from 'react'
-import { Platform, StatusBar, View ,Alert,} from 'react-native'
-import { createAppContainer,createStackNavigator, SafeAreaView, } from 'react-navigation'
-import MainTabNavigation from './MainTabNavigation';
-import settingsStackNavigator from './drawer/settings/settingsStackNavigator';
+/**
+ * Aerain
+ */
 
-// const jedaero = ({navigation}) => (
-//     <SafeAreaView style={{flex: 1, 
-//             paddingTop: (Platform.OS === 'android' ? StatusBar.currentHeight : 0), backgroundColor: '#ffffff' }} forceInset={{top: 'never', bottom: 'never'}}>
-//         <MainTabNavigation navigation={navigation} />
-//     </SafeAreaView>
-// );
+import { createAppContainer,createStackNavigator, } from 'react-navigation'
+import MainBottomTabNavigation from './navigations/MainBottomTabNavigation';
 
 let MainStackNavigator = createStackNavigator({
     Jedaero: {
-        screen: MainTabNavigation
+        screen: MainBottomTabNavigation
     },
-    settings: {
-        screen: settingsStackNavigator
-    }
 }, {
     headerMode: 'none'
 })
