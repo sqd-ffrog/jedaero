@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { ScrollView, View, Text, StyleSheet, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { normalize } from 'react-native-elements';
 import { LibrarySeatAPI } from '../../../tool/jedaero';
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
+import colorPalette from '../../styles/colorPalette';
 
 export default class LibrarySeat extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ export default class LibrarySeat extends Component {
            
         } else {
             return (
-                <View>
+                <Fragment>
                     <Text style={styles.titleText}>도서관 잔여 좌석 수 </Text>
                     <TouchableOpacity
                     style={{
@@ -58,7 +59,7 @@ export default class LibrarySeat extends Component {
                         data={this.state.data.row}
                         renderItem={this._renderItem}
                     />
-                </View>
+                </Fragment>
             )
         }
     }
@@ -102,7 +103,8 @@ const styles = StyleSheet.create({
     rowUnit: {
         flexDirection:'row',
         borderBottomWidth:0.5,
-        borderColor:'#d7d7d7'
+        borderColor:'#d7d7d7',
+        backgroundColor: colorPalette.cardBackgroundColor,
     },
     rowUnitLeft: {
         flex:2.5,
@@ -115,7 +117,7 @@ const styles = StyleSheet.create({
         paddingVertical:4,
         justifyContent:'center',
         flex: 1,
-        backgroundColor:'#334955'
+        backgroundColor:colorPalette.mainColor,
     },
     rowUnitTextLeft: {
         fontSize:normalize(16),

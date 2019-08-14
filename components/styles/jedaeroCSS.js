@@ -4,6 +4,7 @@
 
 import { StyleSheet, Animated, Easing } from 'react-native';
 import { normalize } from 'react-native-elements';
+import colorPalette from './colorPalette';
 
 let jedaeroStyles = StyleSheet.create({
 
@@ -107,6 +108,7 @@ let libsearchStyles = StyleSheet.create({
     container: {
       paddingHorizontal: 16,
       paddingBottom:32,
+      backgroundColor: colorPalette.backgroundColor
     },
     textContainer: {
       fontSize:normalize(24),  

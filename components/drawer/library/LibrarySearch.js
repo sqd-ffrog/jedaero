@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-navigation';
 import { SearchBar, normalize, Button, } from 'react-native-elements';
 import { libsearchStyles } from '../../styles/jedaeroCSS';
 import LibrarySeat from './LibrarySeat';
+import colorPalette from '../../styles/colorPalette';
 
 export default class LibrarySearch extends Component {
   static navigationOptions= {
@@ -18,7 +19,7 @@ export default class LibrarySearch extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor:'#ffffff'}} forceInset={{bottom: "never"}}>
+      <View style={{flex: 1, backgroundColor:colorPalette.backgroundColor}}>
         <ScrollView contentContainerStyle={libsearchStyles.container}>
           <View style={{padding: 8, borderRadius: 8}}>
             <TextInput 
@@ -39,7 +40,7 @@ export default class LibrarySearch extends Component {
           </View>
           <LibrarySeat />
         </ScrollView>
-      </SafeAreaView>
+      </View>
     )
   }
 }
