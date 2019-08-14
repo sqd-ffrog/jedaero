@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-navigation';
 import { ListItem, normalize } from 'react-native-elements';
 
 import menuList from './menuList';
-import { foodTabStyles } from '../../jedaeroCSS';
+import { foodTabStyles } from '../../styles/jedaeroCSS';
 
 export default class FoodList extends Component {
     constructor(props) {

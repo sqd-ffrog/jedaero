@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { ScrollView, Text, View, TextInput } from 'react-native'
 import { SafeAreaView } from 'react-navigation';
 import { SearchBar, normalize, Button, } from 'react-native-elements';
-import { libsearchStyles } from '../../jedaeroCSS';
+import { libsearchStyles } from '../../styles/jedaeroCSS';
 import LibrarySeat from './LibrarySeat';
 
 export default class LibrarySearch extends Component {

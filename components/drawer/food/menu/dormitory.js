@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, ScrollView, RefreshControl } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, RefreshControl } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { createMaterialTopTabNavigator, SafeAreaView } from 'react-navigation';
+import { createMaterialTopTabNavigator } from 'react-navigation';
 import { DormitoryAPI } from '../../../../tool/jedaero';
-import { foodTabNavStyles, menuTopTabOptions } from '../../../jedaeroCSS';
+import { foodTabNavStyles, menuTopTabOptions } from '../../../styles/jedaeroCSS';
 import getWeek from '../../../../tool/getWeek';
 import d_time from '../../../../jsons/d_time.json';
 
@@ -17,7 +17,7 @@ class Dorm extends Component {
     }
   }
 
-  static getDerivedStateFromProps = ({meal = null}, prevState) => ({meal})
+  static getDerivedStateFromProps = ({meal = null}) => ({meal})
   
   render = () => {
     if (this.state.meal === null) {

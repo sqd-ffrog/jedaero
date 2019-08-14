@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { createStackNavigator } from 'react-navigation';
-import { stackNavigationOptions } from '../../jedaeroCSS';
 
-import LibrarySearch from './LibrarySearch';
-import LibrarySearchDetail from './LibrarySearchDetail';
-import BookDetail from './BookDetail';
+import LibrarySearch from '../../drawer/library/LibrarySearch';
+import LibrarySearchDetail from '../../drawer/library/LibrarySearchDetail';
+import BookDetail from '../../drawer/library/BookDetail';
+import {stackNavigationOptions} from '../navigationConfigs';
 
 export default LibraryStackNavigator = createStackNavigator({
     LibrarySearchHome: {

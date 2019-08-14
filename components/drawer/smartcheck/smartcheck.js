@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
 import { normalize, Button } from 'react-native-elements';
-import { libsearchStyles } from '../../jedaeroCSS';
+import { libsearchStyles } from '../../styles/jedaeroCSS';
 import SmartCheckAPI from '../../JedaeroAPI/SmartCheckAPI';
 
 export default class SmartCheck extends Component {

@@ -1,9 +1,8 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import Schedule from './drawer/schedule/Schedule';
-import { jedaeroBottomTabNavigatorConfig } from './navigationConfigs';
+import { jedaeroBottomTabNavigationConfig } from './navigationConfigs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { BusStackNavigation, FoodListStackNavigation, LibrarySearchStackNavigation } from './stackNavigations';
+import { BusStackNavigation, FoodListStackNavigation, LibrarySearchStackNavigation, ScheduleStackNavigation } from './stackNavigations';
 
 const TabNav = createMaterialBottomTabNavigator({
     Bus: {
@@ -21,7 +20,7 @@ const TabNav = createMaterialBottomTabNavigator({
         }
     },
     ScheduleMain: {
-        screen: Schedule,
+        screen: ScheduleStackNavigation,
         navigationOptions: {
             title: '학사일정',
             tabBarIcon: ({tintColor}) => (<Icon name="clipboard-outline" color={tintColor} size={35} style={{width: 35, height: 35}}/>)
@@ -34,6 +33,6 @@ const TabNav = createMaterialBottomTabNavigator({
             tabBarIcon: ({tintColor}) => (<Icon name="book-open-variant" color={tintColor} size={35} style={{width: 35, height: 35}}/>)
         }
     },
-}, jedaeroBottomTabNavigatorConfig)
+}, jedaeroBottomTabNavigationConfig)
 
 export default TabNav;

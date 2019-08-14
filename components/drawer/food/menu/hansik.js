@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { TouchableOpacity,  View, Text, FlatList } from 'react-native';
 
-import hansik from '../../../../jsons/hansik.json';
-import etcera from '../../../../jsons/etc.json';
-import chicken from '../../../../jsons/chicken.json';
-import { foodMenuListStyles } from '../../../jedaeroCSS';
+// import hansik from '../../../../jsons/hansik.json';
+// import etcera from '../../../../jsons/etc.json';
+// import chicken from '../../../../jsons/chicken.json';
+import { foodMenuListStyles } from '../../../styles/jedaeroCSS';
 
 export default class Hansik extends Component {
     

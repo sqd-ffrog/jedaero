@@ -5,4 +5,4 @@ const colorPalette = {
     backgroundColor: '#f7f7f7',
 }
 
-export default colorPallette
+export default colorPalette

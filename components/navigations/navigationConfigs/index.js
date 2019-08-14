@@ -1,4 +1,4 @@
 import foodTopTabNavigationConfig from './foodTopTabNavigationConfig';
 import stackNavigationConfig from './stackNavigationConfig';
-
-export { foodTopTabNavigationConfig, stackNavigationConfig }
+import jedaeroBottomTabNavigationConfig from './jedaeroBottomTabNavigationConfig';
+export { foodTopTabNavigationConfig, stackNavigationConfig, jedaeroBottomTabNavigationConfig}

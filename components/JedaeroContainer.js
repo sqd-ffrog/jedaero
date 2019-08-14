@@ -5,7 +5,7 @@
 import { createAppContainer,createStackNavigator, } from 'react-navigation'
 import MainBottomTabNavigation from './navigations/MainBottomTabNavigation';
 
-let MainStackNavigator = createStackNavigator({
+const MainStackNavigator = createStackNavigator({
     Jedaero: {
         screen: MainBottomTabNavigation
     },

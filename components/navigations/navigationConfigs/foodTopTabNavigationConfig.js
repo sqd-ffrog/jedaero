@@ -1,3 +1,5 @@
+import { normalize } from "react-native-elements";
+
 const foodTopTabNavigationConfig = {
     backBehavior: 'none',
     tabBarPosition: 'top',

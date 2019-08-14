@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, StyleSheet, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
-import { ListItem, normalize } from 'react-native-elements';
-import haksaStyles from '../../css/haksaStyle'
-import { stackNavigationOptions } from '../../jedaeroCSS';
+import { Text, View, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
+import haksaStyles from '../../styles/haksaStyle'
 
 import { HaksaAPI }  from '../../../tool/jedaero';
-import ScheduleDetail from './ScheduleDetail';
 
 // 헤더 활용 위해 부득이하게 내비게이션 사용
 export default class Schedule extends Component {

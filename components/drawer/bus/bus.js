@@ -9,7 +9,9 @@ import BusTb from '../../../jsons/busschedule.json';
 import BusA from '../../../tool/busA';
 import BusB from '../../../tool/busB';
 import BusRoute from '../../../jsons/bus_stop.json';
-import { mainScreen } from '../../css/busStyle';
+import { mainScreen } from '../../styles/busStyle';
+import busCardStyle from '../../styles/busCardStyle';
+import DormCard from './card/DormCard';
 
 export default class Bus extends Component {
     constructor(props) {
@@ -81,7 +83,7 @@ export default class Bus extends Component {
             <Bustime name="버스 시간" />
                 {/* <Swiper style={mainScreen.swiperStyle} containerStyle={mainScreen.swiperContainerStyle} showsPagination={false}> */}
                     <FoodBlock name="오늘의 학식" navigation={this.props.navigation} food={this.state.haksik} onRefresh={() => this.getHaksik(true)}/>
-                    <DormBlock name="오늘의 숙사밥" navigation={this.props.navigation} food={this.state.dormitory} onRefresh={() => this.getDormitory(true)}/>
+                    <DormCard name="오늘의 숙사밥" navigation={this.props.navigation} meal={this.state.dormitory} onRefresh={() => this.getDormitory(true)}/>
                 {/* </Swiper> */}
             </ScrollView>
         )
@@ -138,7 +140,7 @@ class Bustime extends Component {
                         }
                     }/> */}
                   <TouchableOpacity onPress={() => this.dropDownPicker.setModalVisible(true)}>
-                     <Text style={styles.busStopViewer}>정류장별 보기</Text>
+                     <Text style={busCardStyle.busStopViewer}>정류장별 보기</Text>
                   </TouchableOpacity>
                 </View>
                 <View style={{...mainScreen.blockViewContainer, flexDirection: 'row',}}>
@@ -191,92 +193,6 @@ render() {
           </View>
         </View>
         </TouchableOpacity>
-        )
-    }
-}
-
-class DormBlock extends Component {
-    constructor(props) {
-        super(props);
-        this.state={};
-    }
-
-    static getDerivedStateFromProps = (nextProps, prevState) => {
-        return DormBlock.buildData(nextProps.food);
-    }
-
-    static buildData(meal) {
-        if(meal) {
-            let currentDate = new Date();
-            currentDate = currentDate.getDay();
-            let food;
-            switch(currentDate) {
-                case 1:
-                    food = meal.mealMon;
-                    break;
-                case 2:
-                    food = meal.mealTue;
-                    break;
-                case 3:
-                    food = meal.mealWed;
-                    break;
-                case 4:
-                    food = meal.mealThu;
-                    break;
-                case 5:
-                    food = meal.mealFri;
-                    break;
-                case 6:
-                    food = meal.mealSat ? meal.mealSat : meal.mealMon;
-                    break;
-                case 0:
-                    food = meal.mealSun ? meal.mealSun : meal.mealMon;
-                default:
-                    food = meal.mealMon;
-                    break;
-            }
-            let dawn = food.dawn.split('\n');
-            let breakfast = food.breakfast.split('\n');
-            let lunch = food.lunch.split('\n');
-            let dinner = food.dinner.split('\n');
-            return {food: {
-                dawn: dawn.join(' '),
-                breakfast: breakfast.join(' '),
-                lunch: lunch.join(' '),
-                dinner: dinner.join(' ')
-            }};
-        }
-        return {};
-    }
-    componentDidMount = () => {
-        this.setState(DormBlock.buildData(this.props.food));
-    }
-
-    render() {
-        const week = new Array('dormMon', 'dormMon', 'dormTue', 'dormWed', 'dormThu', 'dormFri', 'dormSat');
-        let today = new Date().getDay();
-        let day = week[today];
-        
-        const { navigation } = this.props;
-        return (
-            <View style={mainScreen.blockView}>
-                <View style={{...mainScreen.blockViewTitle, backgroundColor: '#334955'}}>
-                    <Text style={mainScreen.blockViewTitleText}>{this.props.name}</Text>
-                    <TouchableOpacity
-                        onPress={this.props.onRefresh}
-                    >
-                        <Icon name="refresh" color="#ffffff" size={normalize(16)} />
-                    </TouchableOpacity>
-                </View>
-                <TouchableOpacity onPress={() => {(navigation.navigate(day))}}>
-                <View style={{...mainScreen.foodViewBlockContainer, flexDirection: 'column'}}>
-                    <Text style={mainScreen.foodBlockContainerTitle}>조기 </Text><Text numberOfLines={1} style={styles.foodBlockContainerText}>{this.state.food? this.state.food.dawn : '없어요\n'}</Text>
-                    <Text style={mainScreen.foodBlockContainerTitle}>아침 </Text><Text numberOfLines={1} style={styles.foodBlockContainerText}>{this.state.food? this.state.food.breakfast : '없어요\n'}</Text>
-                    <Text style={mainScreen.foodBlockContainerTitle}>점심 </Text><Text numberOfLines={1} style={styles.foodBlockContainerText}>{this.state.food? this.state.food.lunch : '없어요\n'}</Text>
-                    <Text style={mainScreen.foodBlockContainerTitle}>저녁 </Text><Text numberOfLines={1} style={styles.foodBlockContainerText}>{this.state.food? this.state.food.dinner : '없어요\n'}</Text>
-                </View>
-                </TouchableOpacity>
-            </View>
         )
     }
 }
@@ -359,76 +275,13 @@ class FoodBlock extends Component {
                 </View>
                 <TouchableOpacity onPress = {() => {navigation.navigate(day)}}>
                 <View style={{...mainScreen.foodViewBlockContainer, flexDirection: 'column',}}>
-                    <Text style={mainScreen.foodBlockContainerTitle}>정식 </Text><Text numberOfLines={1} style={styles.foodBlockContainerText}>{this.state.food? this.state.food.combo+'\n' : '없어요\n'}</Text>
-                    <Text style={mainScreen.foodBlockContainerTitle}>특식 </Text><Text numberOfLines={1} style={styles.foodBlockContainerText}>{this.state.food? this.state.food.special+'\n' : '없어요\n'}</Text>
-                    <Text style={mainScreen.foodBlockContainerTitle}>양식 </Text><Text numberOfLines={1} style={styles.foodBlockContainerText}>{this.state.food? this.state.food.western+'\n' : '없어요\n'}</Text>
-                    <Text style={mainScreen.foodBlockContainerTitle}>저녁 </Text><Text numberOfLines={1} style={styles.foodBlockContainerText}>{this.state.food? this.state.food.dinner+'\n' : '없어요\n'}</Text>
+                    <Text style={mainScreen.foodBlockContainerTitle}>정식 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{this.state.food? this.state.food.combo+'\n' : '없어요\n'}</Text>
+                    <Text style={mainScreen.foodBlockContainerTitle}>특식 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{this.state.food? this.state.food.special+'\n' : '없어요\n'}</Text>
+                    <Text style={mainScreen.foodBlockContainerTitle}>양식 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{this.state.food? this.state.food.western+'\n' : '없어요\n'}</Text>
+                    <Text style={mainScreen.foodBlockContainerTitle}>저녁 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{this.state.food? this.state.food.dinner+'\n' : '없어요\n'}</Text>
                 </View>
                 </TouchableOpacity>
             </View>
         )
     }
 }
-
-const styles = StyleSheet.create({
-
-    foodBlock: {
-        borderWidth:0.5,
-        borderColor:'#d7d7d7',
-        // marginBottom:16,
-        // marginHorizontal:8,
-        borderRadius:8,
-        overflow:'hidden',
-        elevation: 1,
-    },
-    foodBlockTitle: {
-        backgroundColor:'#ffffff',
-        paddingHorizontal:16,
-        paddingVertical:8,
-        justifyContent:'space-between',
-        flexDirection:'row',
-    },
-    foodBlockTitleText: {
-        color:'#252c41',
-        fontSize:normalize(16),
-    },
-    foodBlockContainer: {
-        backgroundColor:'#ffffff',
-        paddingHorizontal: 14,
-        paddingVertical: 16,
-        paddingTop:9
-        // flexDirection: "row",
-    },
-    foodBlockContainerText: {
-        lineHeight:normalize(13),
-        color:'#000000',
-        fontSize:normalize(12)
-    },
-    foodBlockContainerLeft: {
-        fontSize:normalize(10),
-        lineHeight:normalize(15),
-        color:'#334955',
-        fontWeight:'bold',
-        // width: "10%",
-        // flexWrap: "wrap",
-        // position: "absolute",
-        // marginHorizontal: 14,
-        // marginVertical: 12,
-
-    },
-    busStopViewer: {
-        paddingHorizontal:6,
-        fontSize: normalize(11),
-        color: '#f4f7f7',
-    },
-    // foodBlockContainerRight: {
-    //     lineHeight:normalize(12),
-    //     color:'#000000',
-    //     height: "auto",
-    //     flexWrap: "wrap",
-    //     width: 'auto',
-    //     // position: "relative",
-    //     // marginTop: 3,
-    //     // marginLeft: 34
-    // }
-})

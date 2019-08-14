@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, ScrollView, StyleSheet } from 'react-native'
-import { lightText } from '../../jedaeroCSS';
+import { lightText } from '../../styles/jedaeroCSS';
 import { normalize } from 'react-native-elements';
 
 export default class BookDetail extends Component {

@@ -4,7 +4,6 @@
 
 import { StyleSheet, Animated, Easing } from 'react-native';
 import { normalize } from 'react-native-elements';
-import './css/busStyle'
 
 let jedaeroStyles = StyleSheet.create({
 
@@ -104,13 +103,6 @@ let foodTabNavStyles = StyleSheet.create({
     }
 });
 
-let jedaeroBottomTabNavigatorConfig = {
-  labeled: false,
-  barStyle: {
-    backgroundColor: '#ffffff',
-  }
-}
-
 let libsearchStyles = StyleSheet.create({
     container: {
       paddingHorizontal: 16,
@@ -126,4 +118,4 @@ let libsearchStyles = StyleSheet.create({
   })
 
 
-export {jedaeroStyles, foodMenuListStyles, foodTabStyles, foodTabNavStyles, jedaeroBottomTabNavigatorConfig, libsearchStyles}
+export {jedaeroStyles, foodMenuListStyles, foodTabStyles, foodTabNavStyles, libsearchStyles}

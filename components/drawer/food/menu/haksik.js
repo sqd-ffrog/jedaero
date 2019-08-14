@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, RefreshControl } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { createMaterialTopTabNavigator, SafeAreaView } from 'react-navigation';
+import { createMaterialTopTabNavigator } from 'react-navigation';
 import { HaksikAPI } from '../../../../tool/jedaero';
-import { foodTabNavStyles, menuTopTabOptions } from '../../../jedaeroCSS';
+import { foodTabNavStyles, menuTopTabOptions } from '../../../styles/jedaeroCSS';
 import getWeek from '../../../../tool/getWeek';
 import h_time from '../../../../jsons/h_time.json';
 

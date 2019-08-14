@@ -1,12 +1,12 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
-import { stackNavigationOptions } from '../../jedaeroCSS';
-import FoodList from './foodlist';
-import Haksik from './menu/haksik';
-import Dormitory from './menu/dormitory';
-import Hansik from './menu/hansik';
-import DetailMenu from './menu/detailmenu';
+import HakSikMain from '../../drawer/food/menu/haksik';
+import DormitoryMain from '../../drawer/food/menu/dormitory';
+import FoodList from '../../drawer/food/foodlist';
+import Hansik from '../../drawer/food/menu/hansik';
+import DetailMenu from '../../drawer/food/menu/detailmenu';
+import {stackNavigationOptions} from '../navigationConfigs';
 
 export default createStackNavigator(
     {
@@ -14,10 +14,10 @@ export default createStackNavigator(
             screen: FoodList,
         },
         Haksik: {
-            screen: Haksik,
+            screen: HakSikMain,
         },
         Dormitory: {
-            screen: Dormitory,
+            screen: DormitoryMain,
             navigationOptions : {
                 headerTitle:'기숙사 식당'
             }
