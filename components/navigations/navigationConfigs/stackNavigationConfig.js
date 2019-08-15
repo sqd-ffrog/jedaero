@@ -14,7 +14,7 @@ const stackNavigationConfig = {
           borderBottomWidth: 0,
       },
       headerTitleStyle: {
-          fontSize: normalize(20),
+          fontSize: normalize(18),
           fontWeight: 'bold',
       },
       gestureEnabled: true,

@@ -98,10 +98,12 @@ const mainScreen = StyleSheet.create({
     
     foodBlockContainerTitle: {
         fontWeight: 'bold',
-        fontSize: normalize(12)
+        fontSize: normalize(12),
+        lineHeight: normalize(16),
     },
     foodBlockContainerText: {
-        fontSize: normalize(12)
+        fontSize: normalize(12),
+        lineHeight: normalize(16)
     },
     foodViewBlockContainer: {
         borderLeftWidth: 0.5,
@@ -114,7 +116,7 @@ const mainScreen = StyleSheet.create({
         paddingRight: 10,
         paddingTop: 15,
         paddingBottom: 15,
-        overflow: 'hidden'
+        overflow: 'hidden',
     }
 })
 

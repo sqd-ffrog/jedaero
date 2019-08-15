@@ -30,9 +30,8 @@ const busCardStyle = StyleSheet.create({
         // flexDirection: "row",
     },
     foodBlockContainerText: {
-        lineHeight:normalize(13),
         color:'#000000',
-        fontSize:normalize(12)
+        // fontSize:normalize(12),
     },
     foodBlockContainerLeft: {
         fontSize:normalize(10),

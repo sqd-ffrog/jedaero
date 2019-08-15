@@ -17,7 +17,7 @@ export default class ScheduleDetail extends Component {
         };
     }
 
-    _keyExtractor = (item, index) => item.key;
+    _keyExtractor = (item, index) => item.haksa;
     _renderItem = ({item, index}) => (
         <View style={{paddingVertical: 16, paddingHorizontal: 8, borderBottomColor:'#d7d7d7', borderBottomWidth: 0.5}}>
             <Text style={{textAlign:'center', fontSize:(index % 2 == 0 ? normalize(18) : normalize(14))}}>{item.haksa}</Text>

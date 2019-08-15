@@ -46,10 +46,10 @@ const DormCard = ({name, navigation, meal, onRefresh}) => {
     
     return (
         <TodayCard name={name} onPressContainer={onPressContainer} onPressRefreshButton={onRefresh}>
-            <Text style={mainScreen.foodBlockContainerTitle}>조기 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{food? food.dawn : '없어요\n'}</Text>
-            <Text style={mainScreen.foodBlockContainerTitle}>아침 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{food? food.breakfast : '없어요\n'}</Text>
-            <Text style={mainScreen.foodBlockContainerTitle}>점심 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{food? food.lunch : '없어요\n'}</Text>
-            <Text style={mainScreen.foodBlockContainerTitle}>저녁 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{food? food.dinner : '없어요\n'}</Text>
+            <Text style={mainScreen.foodBlockContainerTitle}>조기 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{food? food.dawn : '없어요'}</Text>
+            <Text style={mainScreen.foodBlockContainerTitle}>아침 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{food? food.breakfast : '없어요'}</Text>
+            <Text style={mainScreen.foodBlockContainerTitle}>점심 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{food? food.lunch : '없어요'}</Text>
+            <Text style={mainScreen.foodBlockContainerTitle}>저녁 </Text><Text numberOfLines={1} style={busCardStyle.foodBlockContainerText}>{food? food.dinner : '없어요'}</Text>
         </TodayCard>
     )
 }
