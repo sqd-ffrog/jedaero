@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { ScrollView, View, Text, TouchableOpacity, StyleSheet, Image, Linking} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import React, {  } from 'react';
+import { ScrollView, View, Text, TouchableOpacity, Image, Linking} from 'react-native';
 import { normalize } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
-import { HaksikAPI, DormitoryAPI } from '../../../tool/jedaero';
-import getWeek from '../../../tool/getWeek';
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { mainScreen } from '../../styles/busStyle';
-import busCardStyle from '../../styles/busCardStyle';
 import DormCard from './card/DormCard';
 import HaksikCard from './card/HaksikCard';
 import Bustime from './card/BusTime';
@@ -26,22 +21,16 @@ const Bus = ({navigation}) => (
 
 Bus.navigationOptions = ({ navigation }) => ({
     headerTitle: '홈',
-    //TODO 개발자정보& 띄우기
     headerRight: (
-        <View style={{flexDirection:"row"}}>
-        {/* <TouchableOpacity>
-            <Image style={{width:30, height:30, marginRight:15, marginTop:5}}
-                source={require('../../../images/share.png')}      
-            />
-        </TouchableOpacity>  */}
-        <TouchableOpacity  onPress={() => {
-            navigation.navigate(`Info`);
-        }}> 
-            <Image 
-            style={{width:30, height:32, marginRight:15, marginTop:5}}
-            source={require('../../../images/Info.png')}/>
-        </TouchableOpacity>
-        </View>
+        <Icon.Button 
+            name="information-outline"
+            onPress={() => navigation.navigate("Info")}
+            color="#000000"
+            backgroundColor="transparent"
+            size={24}
+            underlayColor="#00000022"
+            iconStyle={{marginRight: 0}}
+        />
     ),
 })
 
