@@ -10,8 +10,8 @@ const haksa = {
 export default function () {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const res = await RNFetchBlob.fetch('GET', uri);
-			const $ = cheerio.load(res.data);
+			const res = await (await fetch(uri)).text();
+			const $ = cheerio.load(res);
 			$('.table.border_left.border_top_blue.font09').each(function () {
 				const eachMonth = {
 					month_title: $(this).find('caption').text(),
