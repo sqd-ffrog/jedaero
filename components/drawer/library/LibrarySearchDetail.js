@@ -1,44 +1,31 @@
-import React, { Component } from 'react'
-import { ScrollView, Text, View, StyleSheet, FlatList } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { Text, View, StyleSheet, FlatList } from 'react-native'
 import { normalize, ListItem } from 'react-native-elements';
+import LibraryBookListAPI from '../../../tool/jedaero/lib/LibraryBookListAPI';
+import colorPalette from '../../styles/colorPalette';
 
-export default class LibrarySearchDetail extends Component {
-    static navigationOptions = ({navigation}) => ({
-        title: navigation.getParam('search', 'none'),
-    });
+const LibrarySearchDetail = ({navigation}) => {
+    const [list, setList] = useState([]);
+    const [offset, setOffset] = useState(0);
+    const [totalCount, setTotalCount] = useState(null);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            offset: 0,
-            list: [],
-        }
-    }
-
-    componentDidMount = () => this._getData();
-
-    _getData = async () => {
-        if(!this.state.totalCount || this.state.totalCount > this.state.offset) {
+    const getData = async () => {
+        if(!totalCount || totalCount > offset) {
             try {
-                let uri = `http://lib.jejunu.ac.kr/pyxis-api/1/collections/1/search?all=1|k|a|${this.props.navigation.getParam('search')}&facet=false&max=20&offset=${this.state.offset}`;
-                let res = await fetch(uri);
-                let data = await res.json();
-                this.setState({ totalCount: data.data.totalCount});
-                this.setState((previousState) => { 
-                    let list = previousState.list;
-                    Array.prototype.push.apply(list, data.data.list);    
-                    return {
-                        list,
-                        offset : previousState.offset + 20
-                    }
+                const { data } = await LibraryBookListAPI(navigation.getParam('search'), offset);
+                setTotalCount(data.totalCount)
+                setList(list => {
+                    Array.prototype.push.apply(list, data.list);
+                    return list;
                 })
+                setOffset(prevOffset => prevOffset + 20)
             } catch( err) {
-
+                throw err;
             }
         }
     }
 
-    _renderItem = ({item}) => {
+    const _renderItem = ({item}) => {
         let status = (item.branchVolumes[0]) ? `${item.branchVolumes[0].name} [${item.branchVolumes[0].volume}]` : '';
         let cState = item.branchVolumes[0] ? item.branchVolumes[0].cState : '';
         return (
@@ -53,46 +40,40 @@ export default class LibrarySearchDetail extends Component {
                     </View>    
                 }
                 titleStyle={{fontSize:normalize(16), fontWeight:'bold'}}
-                containerStyle={{borderWidth: 0.5, borderColor:'#e7e7e7', marginHorizontal: 10, marginBottom: 8, borderRadius: 4}}
-                onPress={() => this.props.navigation.navigate('BookDetail', item)}
+                containerStyle={{borderWidth: 0.5, borderColor:colorPalette.cardBorderColor, marginHorizontal: 10, marginBottom: 8, borderRadius: 4}}
+                onPress={() => navigation.navigate('BookDetail', item)}
                 chevron
             />
         )
     }
 
-    render() {
-        // return (this.state.list!) ? (
-        // <View style={libdetailStyles.container}>
-        //     <Text style={{fontSize:normalize(20), fontWeight:'100'}}> <Text style={{fontSize:normalize(32), fontWeight:'bold'}}>{this.props.navigation.getParam('search', 'none')}</Text> 에 대한 검색결과
-        //     </Text>
-        // </View>
-        // ) : 
-        return (
+    useEffect(() => { getData(); }, [])
+    
+    return (
         <View style={libdetailStyles.container} nestedScrollEnabled={true}>
-            {/* <Text style={libdetailStyles.textStyle}> 
-                <Text style={{fontSize:normalize(32)}}>{this.props.navigation.getParam('search', 'none')}</Text> 에 대한 검색결과
-            </Text> */}
             {
-                (this.state.list.length !== 0) ? (
+                (list.length !== 0) && (
                     <Text style={libdetailStyles.textStyle}>
-                        <Text style={{fontSize:normalize(14)}}>{this.state.totalCount}</Text> 건
+                        <Text style={{fontSize:normalize(14)}}>{totalCount}</Text> 건
                     </Text>
-                ) : undefined
+                )
             }
-            
-
             <FlatList 
-                data={this.state.list}
-                renderItem={this._renderItem}
-                onEndReached={this._getData}
+                data={list}
+                renderItem={_renderItem}
+                onEndReached={getData}
                 // style={{borderTopWidth:0.5, borderTopColor:'#d7d7d7'}}
             />
         </View>
         )
-    }
+
 }
 
-let libdetailStyles = StyleSheet.create({
+LibrarySearchDetail.navigationOptions = ({navigation}) => ({
+    title: navigation.getParam('search', 'none'),
+});
+
+const libdetailStyles = StyleSheet.create({
     container: {
         backgroundColor:'#f7f7f7',
         flex: 1,
@@ -102,3 +83,5 @@ let libdetailStyles = StyleSheet.create({
     textStyle: {marginHorizontal: 8, marginBottom: 4, fontSize:normalize(12), textAlign:'right',color: '#000000'},
     subtitleStyle: {fontSize:normalize(12),}
 })
+
+export default LibrarySearchDetail

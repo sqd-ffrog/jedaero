@@ -11,7 +11,7 @@ import colorPalette from '../../styles/colorPalette';
 const FoodList = ({navigation}) => {
     const foodMenu = menuList(destination => navigation.navigate(destination));
     return (
-        <SafeAreaView style={{flex:1, backgroundColor:colorPalette.backgroundColor}}>
+        <View style={{flex:1, backgroundColor:colorPalette.backgroundColor}}>
             <ScrollView>
                 {
                     foodMenu.map((item, key) => (
@@ -29,31 +29,13 @@ const FoodList = ({navigation}) => {
                         ))
                 }
             </ScrollView>
-        </SafeAreaView>
+        </View>
     )
 }
 FoodList.navigationOptions = {
     headerTitle: "뭐먹을까"
 }
 export default FoodList;
-// export default class FoodList extends Component {
-//     constructor(props) {
-//         super(props);
-
-//     }
-
-//     foodmenu = menuList(this);
-
-//     static navigationOptions = {
-//         headerTitle: "뭐먹을까"
-//     };
-    
-//     render = () => {
-//         return (
-            
-//         )
-//     }
-// }
 
 
 

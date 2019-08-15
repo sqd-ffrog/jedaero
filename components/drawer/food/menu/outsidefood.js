@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import { TouchableOpacity,  View, Text, FlatList } from 'react-native';
 import { foodMenuListStyles } from '../../../styles/jedaeroCSS';
+import colorPalette from '../../../styles/colorPalette';
 
 const baseURI = 'https://raw.githubusercontent.com/aerain/jedaeroReactNative/master/jsons/';
 
@@ -26,7 +27,7 @@ const OutSideFood = ({list, navigation}) => {
     )
     useEffect(() => { getFoodList(); }, []);
     return (
-        <View style={{flexGrow: 1, backgroundColor: '#ffffff', paddingHorizontal:10}}>
+        <View style={{flex: 1, backgroundColor: colorPalette.backgroundColor, paddingHorizontal:10}}>
             <FlatList
                 contentContainerStyle={{flexDirection: 'column', justifyContent: 'space-between'}}
                 data={foodMenu}
