@@ -7,27 +7,25 @@ const haksa = {
 	month: []
 };
 
-export default function () {
-	return new Promise(async (resolve, reject) => {
-		try {
-			const res = await (await fetch(uri)).text();
-			const $ = cheerio.load(res);
-			$('.table.border_left.border_top_blue.font09').each(function () {
-				const eachMonth = {
-					month_title: $(this).find('caption').text(),
-					schedule: $(this).find('tr > td').map(function (index) {
-						return {
-							key: toString(index),
-							haksa: $(this).text().replace(/(\s*~\s*)/gi, ' ~ ').replace(/(^\s*)|(\s*$)/g, '')
-						}
-					})
-				};
-				haksa.month.push(eachMonth);
-			});
-		} catch (err) {
-			reject(err);
-		} finally {
-			resolve(haksa);
-		}
-	});
+export default async function () {
+	try {
+		const res = await (await fetch(uri)).text();
+		const $ = cheerio.load(res);
+		$('.table.border_left.border_top_blue.font09').each(function () {
+			const eachMonth = {
+				month_title: $(this).find('caption').text(),
+				schedule: $(this).find('tr > td').map(function (index) {
+					return {
+						key: toString(index),
+						haksa: $(this).text().replace(/(\s*~\s*)/gi, ' ~ ').replace(/(^\s*)|(\s*$)/g, '')
+					}
+				})
+			};
+			haksa.month.push(eachMonth);
+		});
+	} catch (err) {
+		throw err;
+	} finally {
+		return haksa;
+	}
 }
