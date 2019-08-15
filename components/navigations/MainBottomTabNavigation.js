@@ -37,4 +37,7 @@ const TabNav = createMaterialBottomTabNavigator({
     },
 }, jedaeroBottomTabNavigationConfig)
 
+TabNav.navigationOptions = () => ({
+    title: '홈'
+})
 export default TabNav;

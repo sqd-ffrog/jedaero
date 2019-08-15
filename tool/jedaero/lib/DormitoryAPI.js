@@ -74,6 +74,6 @@ export default async function DormitoryAPI () {
 
         return meal;
     } catch (err) {
-        console.error(err);
+        throw err;
     }
 }
