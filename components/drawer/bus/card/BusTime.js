@@ -1,46 +1,37 @@
-import React, { useState, Fragment, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import Picker, {defaultStyles} from 'react-native-picker-select';
+import Picker from 'react-native-picker-select';
 import BusTb from '../../../../jsons/busschedule.json';
 import BusA from '../../../../tool/busA';
 import BusB from '../../../../tool/busB';
 import BusRoute from '../../../../jsons/bus_stop.json';
 import { mainScreen } from '../../../styles/busStyle.js';
-import busCardStyle from '../../../styles/busCardStyle.js';
 import TodayCard from '../component/TodayCard.js';
 import Icon from 'react-native-vector-icons/Ionicons'
-import colorPalette from '../../../styles/colorPalette.js';
 
 const BusTime = () => {
     const data = BusRoute.routeName.A;
-
     const [ selectedIndex, setSelectedIndex ] = useState(0);
     const [ A, setA ] = useState(BusA(BusTb.timeTable.A, 0));
     const [ B, setB ] = useState(BusB(BusTb.timeTable.B, 0));
-
-    
-
     const onChangeBusRoute = (item) => {
         setSelectedIndex(item);
     }
-
     useEffect(() => {
         setA(BusA(BusTb.timeTable.A, selectedIndex));
         setB(BusB(BusTb.timeTable.B, selectedIndex));
     }, [selectedIndex]);
     const BusPicker = () => (
-        <Fragment>
-                <Picker
-                    placeholder={{}}
-                    items={data}
-                    value={selectedIndex}
-                    onValueChange={onChangeBusRoute}
-                    style={pickerSelectStyles}
-                    // style={{width: 50, height: 50, backgroundColor: colorPalette.backgroundColor}}
-                    useNativeAndroidPickerStyle={false}
-                    Icon={() => (<Icon name="md-arrow-dropdown" size={24} color="#ffffff" />)}
-                />
-        </Fragment>
+        <Picker
+            placeholder={{}}
+            items={data}
+            value={selectedIndex}
+            onValueChange={onChangeBusRoute}
+            style={pickerSelectStyles}
+            // style={{width: 50, height: 50, backgroundColor: colorPalette.backgroundColor}}
+            useNativeAndroidPickerStyle={false}
+            Icon={() => (<Icon name="md-arrow-dropdown" size={24} color="#ffffff" />)}
+        />
     )
 
     return (
