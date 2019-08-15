@@ -8,12 +8,12 @@ import getWeek from '../../../../tool/getWeek';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import { normalize } from 'react-native-elements';
 import colorPalette from '../../../styles/colorPalette';
+import { HaksikAPI } from '../../../../tool/jedaero';
 
 const HaksikCard = ({navigation}) => {
     const [food, setFood] = useState(null);
 
     const getHaksik = async (isRefresh = false) => {
-        console.log(await food);
         let haksikItem = await AsyncStorage.getItem('storedHaksik');
         const week = getWeek(new Date());
         if(isRefresh || haksikItem === null) {

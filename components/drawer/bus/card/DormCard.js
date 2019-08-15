@@ -9,6 +9,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import { normalize } from 'react-native-elements';
 import colorPalette from '../../../styles/colorPalette';
+import { DormitoryAPI } from '../../../../tool/jedaero';
 
 const DormCard = ({navigation}) => {
     const [food, setFood] = useState(null);

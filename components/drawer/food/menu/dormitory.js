@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, RefreshControl } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { createMaterialTopTabNavigator } from 'react-navigation';
@@ -7,72 +7,53 @@ import { foodTabNavStyles } from '../../../styles/jedaeroCSS';
 import { foodTopTabNavigationConfig } from '../../../navigations/navigationConfigs';
 import getWeek from '../../../../tool/getWeek';
 import d_time from '../../../../jsons/d_time.json';
+import colorPalette from '../../../styles/colorPalette';
 
-class Dorm extends Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = {
-      meal: null,
-      refreshing: false,
-    }
-  }
+const Dorm = ({meal, onRefresh}) => {
+  const [isRefresh, setRefresh] = useState(false);
 
-  static getDerivedStateFromProps = ({meal = null}) => ({meal})
-  
-  render = () => {
-    if (this.state.meal === null) {
-      return (
-        <View style={{ flex: 1, alignItems: 'center', paddingTop: 20, backgroundColor:'#f7f7f7' }}>
-          <ActivityIndicator size='large' color='#344955' />
-        </View>
-      )
-    } else {
-      return (
-        <View style={{flex: 1, backgroundColor: '#f7f7f7'}}>
-          <ScrollView contentContainerStyle={foodTabNavStyles.scrollContainer}
-            refreshControl= {
-              <RefreshControl 
-                refreshing={this.state.refreshing}
-                onRefresh={async () => {
-                  this.setState({refreshing: true});
-                  await this.props.onRefresh();
-                  this.setState({refreshing: false});
-                }}
-              />
-            }
-          >
-            <DormList title="조기" food={this.state.meal.dawn} time={d_time.dawn} color="#334955"/>
-            <DormList title="아침" food={this.state.meal.breakfast} time={d_time.breakfast} color="#334955"/>
-            <DormList title="점심" food={this.state.meal.lunch} time={d_time.lunch} color="#334955" />
-            <DormList title="저녁" food={this.state.meal.dinner} time={d_time.dinner} color="#334955"/>
-          </ScrollView>
-        </View>
-        
-      )
-    }
-  }
+  return !meal ? (
+    <View style={{ flex: 1, alignItems: 'center', paddingTop: 20, backgroundColor:colorPalette.backgroundColor }}>
+      <ActivityIndicator size='large' color='#344955' />
+    </View>
+  ) : (
+    <View style={{flex: 1, backgroundColor: colorPalette.backgroundColor}}>
+      <ScrollView contentContainerStyle={foodTabNavStyles.scrollContainer}
+        refreshControl= {
+          <RefreshControl 
+            refreshing={isRefresh}
+            onRefresh={async () => {
+              await setRefresh(true);
+              await onRefresh();
+              await setRefresh(false);
+            }}
+          />
+        }
+      >
+        <DormList title="조기" food={meal.dawn} time={d_time.dawn} color={colorPalette.mainColor}/>
+        <DormList title="아침" food={meal.breakfast} time={d_time.breakfast} color={colorPalette.mainColor}/>
+        <DormList title="점심" food={meal.lunch} time={d_time.lunch} color={colorPalette.mainColor} />
+        <DormList title="저녁" food={meal.dinner} time={d_time.dinner} color={colorPalette.mainColor}/>
+      </ScrollView>
+    </View>
+  )
 }
 
-class DormList extends Component {
-  render() {
-    return (
-      <View style={foodTabNavStyles.container}>
-        <TouchableOpacity style={foodTabNavStyles.list} activeOpacity={0.8}>
-          <View style={{...foodTabNavStyles.foodlistContainer, backgroundColor: this.props.color}}>
-            <Text style={foodTabNavStyles.foodlistTitle}>{this.props.title}</Text>
-          </View>
-          <View style={foodTabNavStyles.subContainer}>
-            <Text style={foodTabNavStyles.foodlist}>{this.props.food}</Text>
-            <Text style={foodTabNavStyles.foodtime}>*Time{'\n'}{this.props.time.times}</Text>
-          </View>
-        </TouchableOpacity>
+const DormList = ({title, food, time, color}) => (
+  <View style={foodTabNavStyles.container}>
+    <TouchableOpacity style={foodTabNavStyles.list} activeOpacity={0.8}>
+      <View style={{...foodTabNavStyles.foodlistContainer, backgroundColor: color}}>
+        <Text style={foodTabNavStyles.foodlistTitle}>{title}</Text>
       </View>
-    )
-  }
-}
+      <View style={foodTabNavStyles.subContainer}>
+        <Text style={foodTabNavStyles.foodlist}>{food}</Text>
+        <Text style={foodTabNavStyles.foodtime}>*Time{'\n'}{time.times}</Text>
+      </View>
+    </TouchableOpacity>
+  </View>
+)
 
-let DormTap = createMaterialTopTabNavigator(
+const DormTap = createMaterialTopTabNavigator(
   {
     dormMon: {
       screen: (props) => <Dorm DoW="mon" navigation={props.navigation} meal={props.screenProps.meal.mealMon} onRefresh={props.screenProps.onRefresh}/>,
@@ -110,55 +91,39 @@ let DormTap = createMaterialTopTabNavigator(
         title: "토"
       }
     },
-    // dormSun: {
-    //   screen: (props) => <Dorm DoW="sun" navigation={props.navigation} meal={props.screenProps.meal.mealSun} onRefresh={props.screenProps.onRefresh}/>,
-    //   navigationOptions: {
-    //     title: "일"
-    //   }
-    // }
   }, foodTopTabNavigationConfig
 );
 
-export default class DormitoryMain extends Component {
-  static navigationOptions = {
-    title:"기숙사 식당"
-  }
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: {}
-    }
-  }
-  static router = DormTap.router;
-
-  componentDidMount = () => {
-    var currentWeek = getWeek(new Date()).toString();
-    this.getData.bind(this)(currentWeek);
-  };
-
-  onRefresh = async (currentWeekToString) => {
-    var crawl = await DormitoryAPI();
-    await AsyncStorage.setItem('storedDormitoryWeek', currentWeekToString);
+const DormitoryMain = ({navigation}) => {
+  const [data, setData] = useState({});
+  const onRefresh = async (currentWeek) => {
+    const crawl = await DormitoryAPI();
+    await AsyncStorage.setItem('storedDormitoryWeek', currentWeek);
     await AsyncStorage.setItem('storedDormitory', JSON.stringify(crawl));
-    var data = await AsyncStorage.getItem('storedDormitory');
-    this.setState({data: JSON.parse(data)});
-    console.log(this.state.data);
+    const data = await AsyncStorage.getItem('storedDormitory');
+    setData(JSON.parse(data));
   }
 
-  getData = async (currentWeek = -1) => {
-    var currentWeekToString = currentWeek.toString();
-    var storedWeek = await AsyncStorage.getItem('storedDormitoryWeek');
-    if(currentWeek === -1 || storedWeek == null || storedWeek != currentWeekToString) {
-      await this.onRefresh(currentWeekToString);
+  const getDormitoryFood = async (currentWeek = "-1") => {
+    const storedWeek = await AsyncStorage.getItem('storedDormitoryWeek');
+    if(currentWeek === "-1" || storedWeek == null || storedWeek !== currentWeek) {
+      await onRefresh(currentWeek);
     } else {
-      let data = await AsyncStorage.getItem('storedDormitory');
-      this.setState({data: JSON.parse(data)})
+      const data = await AsyncStorage.getItem('storedDormitory');
+      setData(JSON.parse(data))
     }
   }
 
-  render = () => {
-    return (
-      <DormTap navigation={this.props.navigation} screenProps={{meal: this.state.data, onRefresh: () => {this.onRefresh(getWeek(new Date()).toString())}}}/>
-    )
-  }
+  useEffect(() => {
+    getDormitoryFood(getWeek(new Date()).toString());
+  }, [])
+
+  return <DormTap navigation={navigation} screenProps={{meal: data, onRefresh: () => {onRefresh(getWeek(new Date()).toString())}}}/>
 }
+
+DormitoryMain.navigationOptions = {
+  title:"기숙사 식당"
+}
+DormitoryMain.router = DormTap.router;
+
+export default DormitoryMain;
