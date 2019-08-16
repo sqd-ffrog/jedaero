@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Text, View, StyleSheet, FlatList } from 'react-native'
 import { normalize, ListItem } from 'react-native-elements';
-import LibraryBookListAPI from '../../../tool/jedaero/lib/LibraryBookListAPI';
+import {LibraryBookListAPI} from '../../../tool/jedaero';
 import colorPalette from '../../styles/colorPalette';
 
 const LibrarySearchDetail = ({navigation}) => {
