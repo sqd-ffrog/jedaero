@@ -100,7 +100,7 @@ const HakSikMain = ({navigation}) => {
     const getHaksikData = async (currentWeek = "-1") => {
         const storedWeek = await AsyncStorage.getItem('storedHaksikWeek');
         if(currentWeek === "-1" || storedWeek == null || storedWeek !== currentWeek) {
-            await onRefresh(currentWeekToString);
+            await onRefresh(currentWeek);
         } else {
             const data = await AsyncStorage.getItem('storedHaksik');
             setData(JSON.parse(data));

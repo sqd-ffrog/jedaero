@@ -1,6 +1,11 @@
 let json ={
     "license": [
         {
+            "name": "@babel/core",
+            "license": "MIT License",
+            "agreement":`https://github.com/babel/babel/tree/master/packages/babel-core`
+        },
+        {
             "name": "@babel/runtime",
             "license": "MIT License",
             "agreement":`https://github.com/babel/babel/tree/master/packages/babel-runtime`
@@ -11,14 +16,9 @@ let json ={
             "agreement":`https://github.com/feross/buffer/blob/master/LICENSE`
         },
         {
-            "name": "cheerio-without-node-native",
+            "name": "react-native-cheerio",
             "license": "MIT License",
-            "agreement":`https://github.com/oyyd/cheerio-without-node-native/blob/master/LICENSE`
-        },
-        {
-            "name": "chromeless",
-            "license": "MIT",
-            "agreement":`https://github.com/prisma-archive/chromeless/blob/master/LICENSE`
+            "agreement":`https://github.com/leon-4A6C/react-native-cheerio`
         },
         {
             "name": "iconv-lite",
@@ -56,11 +56,6 @@ let json ={
             "agreement":`https://github.com/react-native-training/react-native-elements/blob/master/LICENSE`
         },
         {
-            "name": "react-native-navigation-bar-color",
-            "license": "MIT License",
-            "agreement":`https://github.com/oblador/react-native-vector-icons/blob/master/LICENSE`
-        },
-        {
             "name": "react-native-paper",
             "license": "MIT License",
             "agreement":`https://github.com/callstack/react-native-paper/blob/master/LICENSE.md`
@@ -86,11 +81,6 @@ let json ={
             "agreement":`https://github.com/oblador/react-native-vector-icons/blob/master/LICENSE`
         },
         {
-            "name": "react-native-video",
-            "license": "MIT License",
-            "agreement":`https://github.com/react-native-community/react-native-video/blob/master/LICENSE`
-        },
-        {
             "name": "react-navigation",
             "license": "BSD License",
             "agreement":`https://github.com/react-navigation/react-navigation/blob/master/LICENSE`
@@ -104,11 +94,6 @@ let json ={
             "name": "rn-fetch-blob",
             "license": "MIT License",
             "agreement":`https://github.com/joltup/rn-fetch-blob/blob/master/LICENSE`
-        },
-        {
-            "name":"node-util",
-            "license":"MIT License",
-            "agreement":`https://github.com/defunctzombie/node-util/blob/master/LICENSE`
         },
         {
             "name": "babel-jest",
@@ -130,11 +115,6 @@ let json ={
             "license": "MIT License",
             "agreement":`https://github.com/localz/react-native-pinch#readme`
         },
-        {
-            "name": "react-test-renderer",
-            "license": "MIT License",
-            "agreement":`https://github.com/facebook/react/blob/master/LICENSE`
-        }
     ]
 }
 

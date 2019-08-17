@@ -19,6 +19,7 @@ const stackNavigationConfig = {
             color: colorPalette.textColor
         },
         gestureEnabled: true,
+        gestureDirection: "default"
     }),
     transitionConfig: () => ({
         transitionSpec: {

@@ -3,7 +3,7 @@ import { TouchableOpacity,  View, Text, FlatList } from 'react-native';
 import { foodMenuListStyles } from '../../../styles/jedaeroCSS';
 import colorPalette from '../../../styles/colorPalette';
 
-const baseURI = 'https://raw.githubusercontent.com/aerain/jedaeroReactNative/master/jsons/';
+const baseURI = 'https://github.com/jnuro/database/raw/master/'
 
 const OutSideFood = ({list, navigation}) => {
     const [foodMenu, setFoodMenu] = useState(null);
