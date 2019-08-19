@@ -21,13 +21,14 @@ LocaleConfig.defaultLocale = 'kr'
 
 const DreamyHome = ({navigation}) => {
     const [ timeTable, setTimeTable ] = useState(null);
-    const date = new Date("2018-11-01");
+    const date = new Date();
     const [ day, setDay ] = useState({
         year: date.getFullYear(),
         month: date.getMonth()+1,
         day: date.getDate(),
     });
     const [ isOverlayVisible, setOverlayVisible ] = useState(false);
+    const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
     const hasAccount = async () => {
         const id = await AsyncStorage.getItem("account", err => null);
@@ -58,11 +59,31 @@ const DreamyHome = ({navigation}) => {
         console.log(timeTable);
     }, [timeTable]);
 
+    const scheduleHeader = () => (
+        <View style={styles.scheduleHeader}>
+            <Text style={styles.rowHead} />
+            { week.map(date => {
+                let dow;
+                switch(date) {
+                    case "mon": dow = "월"; break;
+                    case "tue": dow = "화"; break;
+                    case "wed": dow = "수"; break;
+                    case "thu": dow = "목"; break;
+                    case "fri": dow = "금"; break;
+                    case "sat": dow = "토"; break;
+                }
+            return (
+            <View key={date} style={styles.scheduleHeaderView}>
+                <Text style={styles.scheduleHeaderText}>{timeTable.day[date]} ({dow})</Text>
+            </View>)
+            })}
+        </View>
+    )
     const scheduleRow = ({item, index}) => {
-        const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+        
         return (
             <View style={styles.scheduleRow}>
-                <Text style={styles.rowHead}>{item.period}</Text>
+                <Text style={{...styles.rowHead, borderTopWidth: 0.5, borderTopColor: colorPalette.cardBorderColor}}>{item.period}</Text>
                 { week.map(date => {
                     const prevLectureName = index > 0 ? timeTable.schedule[index === 10 ? index - 2 : index - 1][date].name : " ";
                     const currLectureName = item[date].name;
@@ -109,6 +130,7 @@ const DreamyHome = ({navigation}) => {
             </TouchableOpacity>
             <FlatList 
                 data={timeTable.schedule}
+                ListHeaderComponent={scheduleHeader}
                 renderItem={scheduleRow}
                 keyExtractor={keyExtractor}
                 contentContainerStyle={styles.scheduleContainer}
@@ -140,7 +162,7 @@ const DreamyHome = ({navigation}) => {
     ))
 }
 DreamyHome.navigationOptions = {
-    title: '금주 시간표'
+    title: '시간표'
 }
 
 const styles = StyleSheet.create({
@@ -155,6 +177,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         alignItems: 'center',
         marginLeft: 10,
+        marginBottom: 8,
         paddingHorizontal: 16,
         paddingVertical: 8,
         flexDirection: 'row',
@@ -171,6 +194,19 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         // marginBottom: 56,
     },
+    scheduleHeader: {
+        flexDirection: 'row'
+    },
+    scheduleHeaderView: {
+        flex: 1,
+        borderLeftColor: colorPalette.cardBorderColor,
+        borderLeftWidth: 0.5
+    },
+    scheduleHeaderText: {
+        flex: 1,
+        fontSize: 9,
+        textAlign: 'center'
+    },
     scheduleRow: {
         flexDirection: 'row',
         // borderBottomWidth: 0.5,
@@ -181,12 +217,12 @@ const styles = StyleSheet.create({
         paddingRight: 8,
         flexWrap: 'wrap',
         fontSize: 9,
-        flexBasis: 24
+        flexBasis: 24,
     },
     scheduleItem: {
         flex: 1,
         padding: 4,
-        minHeight: 70,
+        minHeight: 60,
         borderLeftColor: colorPalette.cardBorderColor,
         borderLeftWidth: 0.5
     },
