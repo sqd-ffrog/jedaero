@@ -21,13 +21,13 @@ const TabNav = createMaterialBottomTabNavigator({
             tabBarIcon: ({tintColor}) => (<Icon name="food-fork-drink" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
         }
     },
-    ScheduleMain: {
-        screen: ScheduleStackNavigation,
+    Dreamy: {
+        screen: DreamyStackNavigation,
         navigationOptions: {
-            title: '학사일정',
-            tabBarIcon: ({tintColor}) => (<Icon name="clipboard-outline" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
+            title: '하영드리미',
+            tabBarIcon: ({tintColor}) => (<Icon name="card-bulleted" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
         }
-    },    
+    },
     LibrarySearch: {
         screen: LibrarySearchStackNavigation,
         navigationOptions: {
@@ -35,13 +35,13 @@ const TabNav = createMaterialBottomTabNavigator({
             tabBarIcon: ({tintColor}) => (<Icon name="book-open-variant" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
         }
     },
-    Dreamy: {
-        screen: DreamyStackNavigation,
+    ScheduleMain: {
+        screen: ScheduleStackNavigation,
         navigationOptions: {
-            title: '하영드리미',
-            tabBarIcon: ({tintColor}) => (<Icon name="card-bulleted" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
+            title: '학사일정',
+            tabBarIcon: ({tintColor}) => (<Icon name="clipboard-outline" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
         }
-    }
+    },    
 }, {
     ...jedaeroBottomTabNavigationConfig, 
     initialRouteName: "Dreamy"
