@@ -1,8 +1,10 @@
 import React, {useEffect, useState, createRef} from 'react';
 import { View, Text, TextInput, StyleSheet, Button, Animated, Alert } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage'
 import { normalize } from 'react-native-elements';
 import colorPalette from '../styles/colorPalette';
 import { Dreamy } from '../../tool/jedaero';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 const Border = ({width = '50%'}) => (
     <Animated.View style={{...styles.border, width}} />
@@ -12,7 +14,7 @@ const interpolate = {
     inputRange: [0, 0.5, 1],
     outputRange: ['10%', '70%', '100%']
 }
-const Login = ({navigation: {state: {params: {redirectRoute}}}}) => {
+const Login = ({navigation}) => {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
     const [isSubmitting, toggleSubmit] = useState(false);
@@ -28,10 +30,28 @@ const Login = ({navigation: {state: {params: {redirectRoute}}}}) => {
         const isValidate = await Dreamy.isValidAccount(account, password);
         if(!isValidate) {
             Alert.alert("아이디나 비밀번호를 확인해주세요.");
+            await toggleSubmit(false);
         } else {
-            navigation.navigate(redirectRoute);
+            await AsyncStorage.setItem('account', account);
+            await AsyncStorage.setItem('password', password);
+            Alert.alert("로그인되었습니다.");
+            await toggleSubmit(false);
+
+            if(navigation.state.params && navigation.state.params.redirectRouteName) {
+                const {redirectRouteName} = navigation.state.params;
+
+                console.log(redirectRouteName);
+                const redirectAction = StackActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: redirectRouteName})]
+                })
+                navigation.dispatch(redirectAction);
+            } else {
+                navigation.goBack();
+            }
+            
         }
-        await toggleSubmit(false);
+        
     }
 
     const focusAccount = () => {

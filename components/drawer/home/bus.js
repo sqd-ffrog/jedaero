@@ -20,7 +20,7 @@ Bus.navigationOptions = ({ navigation }) => ({
     headerTitle: '홈',
     headerRight: (
         <Icon.Button 
-            name="information-outline"
+            name="settings"
             onPress={() => navigation.navigate("Info")}
             color="#000000"
             backgroundColor="transparent"

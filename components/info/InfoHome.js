@@ -11,6 +11,10 @@ const list = [
     {
         name: "오픈소스 라이선스",
         routeName: "License"
+    },
+    {
+        name: '드리미 로그인',
+        routeName: "Login"
     }
 ]
 
@@ -18,7 +22,7 @@ const Info = ({navigation}) => {
 
     const keyExtractor = item => item.routeName;
     const renderDeveloperItem = ({item, index}) => (
-        <TouchableOpacity key={index} style={styles.item} onPress={() => navigation.navigate(item.routeName)}>
+        <TouchableOpacity key={index} style={styles.item} onPress={() => navigation.navigate({routeName: item.routeName})}>
             <Text style={styles.itemText}>{item.name}</Text>
         </TouchableOpacity>
     )

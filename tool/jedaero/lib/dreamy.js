@@ -18,20 +18,26 @@ const Dreamy = {
         });
     },
 
-    getTimeTable: async function (account = null, password = null, month = null, date = null) {
-        if(!account || !password) throw "학번이나 비밀번호를 올바르게 입력해주세요.";
+    getTimeTable: async function (account, year, month, day) {
+        let semester;
 
-        // TODO 세션인증 부분 최적화 필요.
-        try {
-            await this._openSession(account, password);
-        } catch(err) {
-            throw err;
-        }
-        
-        
+        if(month >= 2 && month <= 6) semester = 10;
+        else if(month === 7) semester = 11;
+        else if(month >= 8 && month <= 12) semester = 20;
+        else if(month === 1) semester = 21;
+        else semester = 0;
+
+        /**
+         * term_gb: 학기를 의미함.
+         * 10 : 1학기
+         * 11 : 하기계절
+         * 20 : 2학기
+         * 21 : 동기계절
+         * 0 : 구분없음.
+         */
         const uri = 'https://dreamy.jejunu.ac.kr/susj/su/sta_su_6170q.jejunu';
-        const body = `mode=doListTimetable&curri_year=2018&term_gb=20&su_dt=20180901&student_no=2014108205&_=`;
-
+        const body = `mode=doListTimetable&curri_year=${year}&term_gb=${semester}&su_dt=${year}${month}${day}&student_no=${account}&_=`;
+        
         return await (await fetch(uri, {
             method: 'POST',
             headers: {
