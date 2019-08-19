@@ -2,7 +2,7 @@ import React from 'react';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { jedaeroBottomTabNavigationConfig } from './navigationConfigs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { BusStackNavigation, FoodListStackNavigation, LibrarySearchStackNavigation, ScheduleStackNavigation } from './stackNavigations';
+import { BusStackNavigation, FoodListStackNavigation, LibrarySearchStackNavigation, ScheduleStackNavigation, DreamyStackNavigation } from './stackNavigations';
 
 const iconSize = 24
 
@@ -35,6 +35,13 @@ const TabNav = createMaterialBottomTabNavigator({
             tabBarIcon: ({tintColor}) => (<Icon name="book-open-variant" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
         }
     },
+    Dreamy: {
+        screen: DreamyStackNavigation,
+        navigationOptions: {
+            title: '하영드리미',
+            tabBarIcon: ({tintColor}) => (<Icon name="card-bulleted" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
+        }
+    }
 }, jedaeroBottomTabNavigationConfig)
 
 TabNav.navigationOptions = () => ({

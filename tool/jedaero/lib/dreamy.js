@@ -3,7 +3,7 @@ import encode64 from "./encode64";
  * Dreamy Connection with fetch API.
  */
 const Dreamy = {
-    _openSession: (account, password) => {
+    _openSession: function (account, password) {
         const uri = 'https://dreamy.jejunu.ac.kr/frame/sysUser.do?next=';
         const body = `tmpu=${encode64(account)}&tmpw=${encode64(password)}&mobile=&app=&z=N&userid=&password=`
         // 세션 확보
@@ -18,11 +18,7 @@ const Dreamy = {
         });
     },
 
-    _isValidate: () => {
-
-    },
-
-    getTimeTable: async (account = null, password = null, month = null, date = null) => {
+    getTimeTable: async function (account = null, password = null, month = null, date = null) {
         if(!account || !password) throw "학번이나 비밀번호를 올바르게 입력해주세요.";
 
         // TODO 세션인증 부분 최적화 필요.
@@ -46,6 +42,12 @@ const Dreamy = {
             credentials: 'include',
         })).json();
     },
+
+    isValidAccount: async function(account = '', password = '') {
+        const res = await this._openSession(account, password);
+        const match = /loginerror=([0-9])*/g.exec(res.url);
+        return !match;
+    }
 }
 
 export default Dreamy;
