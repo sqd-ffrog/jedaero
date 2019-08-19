@@ -12,31 +12,29 @@ import colorPalette from '../../../styles/colorPalette';
 const Haksik = ({meal, onRefresh}) => {
     const [isRefresh, setRefresh] = useState(false);
     return !meal ? (
-        <View style={{alignItems: 'center', paddingTop:20, flex:1, backgroundColor:colorPalette.backgroundColor}}>
+        <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
             <ActivityIndicator size='large' color={colorPalette.mainColor}/>
         </View>
     ) : (
-        <View style={{flex: 1, backgroundColor: colorPalette.backgroundColor}}>
-            <ScrollView 
-                contentContainerStyle={foodTabNavStyles.scrollContainer}
-                refreshControl= {
-                    <RefreshControl 
-                        refreshing={isRefresh}
-                        onRefresh={async () => {
-                            await setRefresh(true);
-                            await onRefresh();
-                            await setRefresh(false);
-                        }}
-                    />
-                }
-            >
-                <HaksikList title="정식" food={meal.combo} time={h_time.combo} color={colorPalette.mainColor} />
-                <HaksikList title="특식" food={meal.special} time={h_time.special} color={colorPalette.mainColor} />
-                <HaksikList title="양식" food={meal.western} time={h_time.chinese} color={colorPalette.mainColor} />
-                <HaksikList title="중식" food={meal.chinese} time={h_time.chinese} color={colorPalette.mainColor} />
-                <HaksikList title="정식 저녁" food={meal.dinner} time={h_time.dinner} color={colorPalette.mainColor}/>
-            </ScrollView>
-        </View>
+        <ScrollView 
+            contentContainerStyle={foodTabNavStyles.scrollContainer}
+            refreshControl= {
+                <RefreshControl 
+                    refreshing={isRefresh}
+                    onRefresh={async () => {
+                        await setRefresh(true);
+                        await onRefresh();
+                        await setRefresh(false);
+                    }}
+                />
+            }
+        >
+            <HaksikList title="정식" food={meal.combo} time={h_time.combo} color={colorPalette.mainColor} />
+            <HaksikList title="특식" food={meal.special} time={h_time.special} color={colorPalette.mainColor} />
+            <HaksikList title="양식" food={meal.western} time={h_time.chinese} color={colorPalette.mainColor} />
+            <HaksikList title="중식" food={meal.chinese} time={h_time.chinese} color={colorPalette.mainColor} />
+            <HaksikList title="정식 저녁" food={meal.dinner} time={h_time.dinner} color={colorPalette.mainColor}/>
+        </ScrollView>
     )
 }
 

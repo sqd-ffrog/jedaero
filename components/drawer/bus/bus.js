@@ -9,14 +9,12 @@ import Bustime from './card/BusTime';
 import colorPalette from '../../styles/colorPalette';
 
 const Bus = ({navigation}) => (
-    <View style={{flex: 1, backgroundColor: colorPalette.backgroundColor}}>
-        <ScrollView contentContainerStyle={mainScreen.busView} >
-            <SmartBlock name="스마트 출첵" />
-            <Bustime name="버스 시간" />
-            <HaksikCard navigation={navigation}/>
-            <DormCard navigation={navigation}/>
-        </ScrollView>
-    </View>
+    <ScrollView contentContainerStyle={mainScreen.busView} >
+        <SmartBlock name="스마트 출첵" />
+        <Bustime name="버스 시간" />
+        <HaksikCard navigation={navigation}/>
+        <DormCard navigation={navigation}/>
+    </ScrollView>
 )
 
 Bus.navigationOptions = ({ navigation }) => ({

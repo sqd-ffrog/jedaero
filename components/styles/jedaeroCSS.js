@@ -56,7 +56,6 @@ let foodTabStyles = StyleSheet.create({
 let foodTabNavStyles = StyleSheet.create({
     scrollContainer: {
       paddingTop:8,
-      backgroundColor: '#f7f7f7',
     },
     container: {
       flex:1,
@@ -108,7 +107,6 @@ let libsearchStyles = StyleSheet.create({
     container: {
       paddingHorizontal: 16,
       paddingBottom:32,
-      backgroundColor: colorPalette.backgroundColor
     },
     textContainer: {
       fontSize:normalize(24),  

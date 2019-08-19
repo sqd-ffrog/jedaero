@@ -45,6 +45,9 @@ const stackNavigationConfig = {
             return { opacity, transform: [{ translateX }]}
         },
     }),
+    cardStyle: {
+        backgroundColor: colorPalette.backgroundColor
+    }
 }
 
 export default stackNavigationConfig;

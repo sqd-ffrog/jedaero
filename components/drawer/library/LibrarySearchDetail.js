@@ -50,7 +50,7 @@ const LibrarySearchDetail = ({navigation}) => {
     useEffect(() => { getData(); }, [])
     
     return (
-        <View style={libdetailStyles.container} nestedScrollEnabled={true}>
+        <React.Fragment>
             {
                 (list.length !== 0) && (
                     <Text style={libdetailStyles.textStyle}>
@@ -64,7 +64,7 @@ const LibrarySearchDetail = ({navigation}) => {
                 onEndReached={getData}
                 // style={{borderTopWidth:0.5, borderTopColor:'#d7d7d7'}}
             />
-        </View>
+        </React.Fragment>
         )
 
 }
@@ -75,12 +75,11 @@ LibrarySearchDetail.navigationOptions = ({navigation}) => ({
 
 const libdetailStyles = StyleSheet.create({
     container: {
-        backgroundColor:'#f7f7f7',
         flex: 1,
         paddingTop: 8
     },
 
-    textStyle: {marginHorizontal: 8, marginBottom: 4, fontSize:normalize(12), textAlign:'right',color: '#000000'},
+    textStyle: {marginHorizontal: 8, marginBottom: 4, fontSize:normalize(12), textAlign:'right',color: colorPalette.textColor},
     subtitleStyle: {fontSize:normalize(12),}
 })
 

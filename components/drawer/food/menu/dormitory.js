@@ -13,29 +13,27 @@ const Dorm = ({meal, onRefresh}) => {
   const [isRefresh, setRefresh] = useState(false);
 
   return !meal ? (
-    <View style={{ flex: 1, alignItems: 'center', paddingTop: 20, backgroundColor:colorPalette.backgroundColor }}>
+    <View style={{ flex: 1, alignItems: 'center', paddingTop: 20 }}>
       <ActivityIndicator size='large' color='#344955' />
     </View>
   ) : (
-    <View style={{flex: 1, backgroundColor: colorPalette.backgroundColor}}>
-      <ScrollView contentContainerStyle={foodTabNavStyles.scrollContainer}
-        refreshControl= {
-          <RefreshControl 
-            refreshing={isRefresh}
-            onRefresh={async () => {
-              await setRefresh(true);
-              await onRefresh();
-              await setRefresh(false);
-            }}
-          />
-        }
-      >
-        <DormList title="조기" food={meal.dawn} time={d_time.dawn} color={colorPalette.mainColor}/>
-        <DormList title="아침" food={meal.breakfast} time={d_time.breakfast} color={colorPalette.mainColor}/>
-        <DormList title="점심" food={meal.lunch} time={d_time.lunch} color={colorPalette.mainColor} />
-        <DormList title="저녁" food={meal.dinner} time={d_time.dinner} color={colorPalette.mainColor}/>
-      </ScrollView>
-    </View>
+    <ScrollView contentContainerStyle={foodTabNavStyles.scrollContainer}
+      refreshControl= {
+        <RefreshControl 
+          refreshing={isRefresh}
+          onRefresh={async () => {
+            await setRefresh(true);
+            await onRefresh();
+            await setRefresh(false);
+          }}
+        />
+      }
+    >
+      <DormList title="조기" food={meal.dawn} time={d_time.dawn} color={colorPalette.mainColor}/>
+      <DormList title="아침" food={meal.breakfast} time={d_time.breakfast} color={colorPalette.mainColor}/>
+      <DormList title="점심" food={meal.lunch} time={d_time.lunch} color={colorPalette.mainColor} />
+      <DormList title="저녁" food={meal.dinner} time={d_time.dinner} color={colorPalette.mainColor}/>
+    </ScrollView>
   )
 }
 
