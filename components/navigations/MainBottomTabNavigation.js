@@ -7,7 +7,7 @@ import { BusStackNavigation, FoodListStackNavigation, LibrarySearchStackNavigati
 const iconSize = 24
 
 const TabNav = createMaterialBottomTabNavigator({
-    Bus: {
+    Home: {
         screen: BusStackNavigation,
         navigationOptions: {
             title: '홈',

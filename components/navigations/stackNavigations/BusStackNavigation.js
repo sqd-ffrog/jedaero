@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import Bus from '../../drawer/bus/bus';
+import Bus from '../../drawer/home/bus';
 import HakSikMain from '../../drawer/food/menu/haksik';
 import DormitoryMain from '../../drawer/food/menu/dormitory';
 import { stackNavigationConfig } from '../navigationConfigs';
