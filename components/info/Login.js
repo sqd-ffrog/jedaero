@@ -40,7 +40,7 @@ const Login = ({navigation}) => {
             if(navigation.state.params && navigation.state.params.redirectRouteName) {
                 const redirectAction = StackActions.reset({
                     index: 0,
-                    actions: [NavigationActions.navigate({ routeName: 'Dreamy'})]
+                    actions: [NavigationActions.navigate({ routeName: 'Jedaero'})]
                 })
                 navigation.dispatch(redirectAction);
             } else {

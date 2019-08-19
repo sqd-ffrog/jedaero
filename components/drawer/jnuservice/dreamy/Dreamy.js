@@ -68,18 +68,19 @@ const DreamyHome = ({navigation}) => {
                     const currLectureName = item[date].name;
                     const isFirstLecture = prevLectureName === " " && currLectureName !== " " || currLectureName !== " " && prevLectureName !== currLectureName;
                     const isLectures = !isFirstLecture && currLectureName !== " " && currLectureName === prevLectureName;
-                    const displayName = isFirstLecture ? currLectureName : "";
+                    const displayName = isFirstLecture || index === 10 ? currLectureName : "";
                     // const displayName = currLectureName;
                     const isClass = isFirstLecture || isLectures;
                     return (
                         <TouchableOpacity key={date} style={{
                             ...styles.scheduleItem, 
                             backgroundColor: isClass ? colorPalette.mainColor: colorPalette.cardBackgroundColor ,
-                            borderTopWidth: isFirstLecture? 5: 0,
+                            borderTopWidth: isLectures ? 0 : 0.5,
                             borderTopColor: colorPalette.cardBorderColor, 
                         }}>
                             <Text style={{
-                                color: colorPalette.cardBackgroundColor
+                                color: colorPalette.cardBackgroundColor,
+                                ...styles.scheduleItemText
                             }} key={date}>
                                 {displayName}
                             </Text>
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
         borderColor: colorPalette.cardBorderColor,
         alignSelf: 'flex-start',
         alignItems: 'center',
-        marginRight: 0,
+        marginLeft: 10,
         paddingHorizontal: 16,
         paddingVertical: 8,
         flexDirection: 'row',
@@ -167,29 +168,31 @@ const styles = StyleSheet.create({
         backgroundColor: colorPalette.cardBackgroundColor,
         borderWidth: 0.5,
         borderColor: colorPalette.cardBorderColor,
-        marginHorizontal: 8,
-        marginTop: 8,
+        marginHorizontal: 10,
+        // marginBottom: 56,
     },
     scheduleRow: {
         flexDirection: 'row',
-        borderBottomWidth: 0.5,
-        borderBottomColor: colorPalette.cardBorderColor,
+        // borderBottomWidth: 0.5,
+        // borderBottomColor: colorPalette.cardBorderColor,
     },
     rowHead: {
         textAlign:'right',
         paddingRight: 8,
         flexWrap: 'wrap',
-        fontSize: normalize(9),
+        fontSize: 9,
         flexBasis: 24
     },
     scheduleItem: {
         flex: 1,
         padding: 4,
         minHeight: 70,
+        borderLeftColor: colorPalette.cardBorderColor,
+        borderLeftWidth: 0.5
     },
     scheduleItemText: {
         flexWrap: "wrap",
-        fontSize: normalize(10),
+        fontSize: 10,
         fontWeight: 'bold',
     }
 })
