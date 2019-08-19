@@ -1,11 +1,15 @@
 import { createStackNavigator } from 'react-navigation';
-import Dreamy from '../../drawer/jnuservice/dreamy/Dreamy'
+import TimeTable from '../../drawer/jnuservice/dreamy/TimeTable'
+import DreamyHome from '../../drawer/jnuservice/dreamy/DreamyHome';
 import { stackNavigationConfig } from '../navigationConfigs';
 
 const DreamyStackNavigation = createStackNavigator({
     DreamyHome: {
-        screen: Dreamy
+        screen: DreamyHome
+    },
+    TimeTable: {
+        screen: TimeTable
     }
-}, stackNavigationConfig)
+}, {...stackNavigationConfig, initialRouteName: "TimeTable"})
 
 export default DreamyStackNavigation

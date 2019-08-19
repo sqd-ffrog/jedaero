@@ -1,4 +1,4 @@
-package com.jedaero;
+package com.jedaeroreactnative;
 
 import com.facebook.react.ReactActivity;
 
