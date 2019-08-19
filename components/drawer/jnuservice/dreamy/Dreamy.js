@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { FlatList, Text, StyleSheet, TouchableOpacity, ActivityIndicator, View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { StackActions, NavigationActions } from 'react-navigation';
 import { getTimeTable } from '../../../../service/jedaeroService';
@@ -56,14 +56,62 @@ const DreamyHome = ({navigation}) => {
 
     useEffect(() => {
         console.log(timeTable);
-    }, [timeTable])
-    return (
-        <View>
+    }, [timeTable]);
+
+    const scheduleRow = ({item, index}) => {
+        const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+        return (
+            <View style={styles.scheduleRow}>
+                <Text style={styles.rowHead}>{item.period}</Text>
+                { week.map(date => {
+                    const prevLectureName = index > 0 ? timeTable.schedule[index === 10 ? index - 2 : index - 1][date].name : " ";
+                    const currLectureName = item[date].name;
+                    const isFirstLecture = prevLectureName === " " && currLectureName !== " ";
+                    const isLectures = !isFirstLecture && currLectureName !== " " && currLectureName === prevLectureName;
+                    const displayName = isFirstLecture || isLectures ? currLectureName : "";
+                    const isClass = isFirstLecture || isLectures;
+                    return (
+                        <TouchableOpacity style={{
+                            ...styles.scheduleItem, 
+                            backgroundColor: isClass ? colorPalette.mainColor: colorPalette.cardBackgroundColor ,
+                            borderTopWidth: isFirstLecture? 5: 0,
+                            borderTopColor: colorPalette.cardBorderColor, 
+                        }}>
+                            <Text style={{
+                                // color: isClass ? colorPalette.cardBackgroundColor : colorPalette.textColor, 
+                                color: '#000000'
+                            }} key={date}>
+                                {displayName}
+                            </Text>
+                        </TouchableOpacity>
+                    )
+                })}
+            </View>
+        )
+    }
+
+    const keyExtractor = (item, index) => item.time;
+
+    return !timeTable ? (
+        <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
+            <ActivityIndicator size='large' color={colorPalette.mainColor}/>
+        </View>
+    ) : (
+        timeTable === {} ? (
+            <View><Text>시간표가 없어유.</Text></View>
+        ) : 
+        (
+        <React.Fragment>
             <TouchableOpacity  style={styles.selectCalendar} onPress={() => setOverlayVisible(true)}>
                 <Icon style={{marginRight: 10}}name="calendar-month" size={24} color={colorPalette.mainColor} />
                 <Text style={styles.selectCalendarText}>{day.year}년 {day.month}월 {day.day}일</Text>
             </TouchableOpacity>
-            
+            <FlatList 
+                data={timeTable.schedule}
+                renderItem={scheduleRow}
+                keyExtractor={keyExtractor}
+                contentContainerStyle={styles.scheduleContainer}
+            />
             <Overlay isVisible={isOverlayVisible} 
                 onBackdropPress={() => setOverlayVisible(false)}
                 width="auto"
@@ -87,11 +135,11 @@ const DreamyHome = ({navigation}) => {
                     markingType={'period'}
                 />
             </Overlay>
-        </View>
-    )
+        </React.Fragment>
+    ))
 }
 DreamyHome.navigationOptions = {
-    title: '하영드리미'
+    title: '금주 시간표'
 }
 
 const styles = StyleSheet.create({
@@ -104,13 +152,44 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderColor: colorPalette.cardBorderColor,
         alignSelf: 'flex-start',
+        alignItems: 'center',
         marginRight: 0,
-        padding: 16,
+        paddingHorizontal: 16,
+        paddingVertical: 8,
         flexDirection: 'row',
         backgroundColor: colorPalette.cardBackgroundColor,
     },
     selectCalendarText: {
-        fontSize: normalize(16)
+        fontSize: normalize(12),
+        fontWeight: 'bold',
+    },
+    scheduleContainer: {
+        backgroundColor: colorPalette.cardBackgroundColor,
+        borderWidth: 0.5,
+        borderColor: colorPalette.cardBorderColor,
+        marginHorizontal: 8,
+        marginTop: 8,
+    },
+    scheduleRow: {
+        flexDirection: 'row',
+        borderBottomWidth: 0.5,
+        borderBottomColor: colorPalette.cardBorderColor,
+    },
+    rowHead: {
+        textAlign:'right',
+        paddingRight: 8,
+        flexWrap: 'wrap',
+        fontSize: normalize(9),
+        flexBasis: 24
+    },
+    scheduleItem: {
+        flex: 1,
+        padding: 4,
+        minHeight: 70,
+    },
+    scheduleItemText: {
+        flexWrap: "wrap",
+        fontSize: normalize(11),
     }
 })
 export default DreamyHome;
