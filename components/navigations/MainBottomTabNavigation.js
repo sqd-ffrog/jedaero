@@ -42,7 +42,10 @@ const TabNav = createMaterialBottomTabNavigator({
             tabBarIcon: ({tintColor}) => (<Icon name="card-bulleted" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
         }
     }
-}, {...jedaeroBottomTabNavigationConfig, initialRouteName: "Dreamy"})
+}, {
+    ...jedaeroBottomTabNavigationConfig, 
+    initialRouteName: "Dreamy"
+})
 
 TabNav.navigationOptions = () => ({
     title: '홈'

@@ -66,20 +66,20 @@ const DreamyHome = ({navigation}) => {
                 { week.map(date => {
                     const prevLectureName = index > 0 ? timeTable.schedule[index === 10 ? index - 2 : index - 1][date].name : " ";
                     const currLectureName = item[date].name;
-                    const isFirstLecture = prevLectureName === " " && currLectureName !== " ";
+                    const isFirstLecture = prevLectureName === " " && currLectureName !== " " || currLectureName !== " " && prevLectureName !== currLectureName;
                     const isLectures = !isFirstLecture && currLectureName !== " " && currLectureName === prevLectureName;
-                    const displayName = isFirstLecture || isLectures ? currLectureName : "";
+                    const displayName = isFirstLecture ? currLectureName : "";
+                    // const displayName = currLectureName;
                     const isClass = isFirstLecture || isLectures;
                     return (
-                        <TouchableOpacity style={{
+                        <TouchableOpacity key={date} style={{
                             ...styles.scheduleItem, 
                             backgroundColor: isClass ? colorPalette.mainColor: colorPalette.cardBackgroundColor ,
                             borderTopWidth: isFirstLecture? 5: 0,
                             borderTopColor: colorPalette.cardBorderColor, 
                         }}>
                             <Text style={{
-                                // color: isClass ? colorPalette.cardBackgroundColor : colorPalette.textColor, 
-                                color: '#000000'
+                                color: colorPalette.cardBackgroundColor
                             }} key={date}>
                                 {displayName}
                             </Text>
@@ -189,7 +189,8 @@ const styles = StyleSheet.create({
     },
     scheduleItemText: {
         flexWrap: "wrap",
-        fontSize: normalize(11),
+        fontSize: normalize(10),
+        fontWeight: 'bold',
     }
 })
 export default DreamyHome;

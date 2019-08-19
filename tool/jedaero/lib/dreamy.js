@@ -1,21 +1,19 @@
 import encode64 from "./encode64";
+import RNFetchBlob from "rn-fetch-blob";
 /**
  * Dreamy Connection with fetch API.
  */
 const Dreamy = {
-    _openSession: function (account, password) {
+    _openSession: async function (account, password) {
         const uri = 'https://dreamy.jejunu.ac.kr/frame/sysUser.do?next=';
         const body = `tmpu=${encode64(account)}&tmpw=${encode64(password)}&mobile=&app=&z=N&userid=&password=`
         // 세션 확보
-        return fetch(uri, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            keepalive: true,
-            body,
-            credentials: 'include',
-        });
+        return await RNFetchBlob.config({
+            trusty: true
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body);
+
     },
 
     getTimeTable: async function (account, year, month, day) {
@@ -37,21 +35,24 @@ const Dreamy = {
          */
         const uri = 'https://dreamy.jejunu.ac.kr/susj/su/sta_su_6170q.jejunu';
         const body = `mode=doListTimetable&curri_year=${year}&term_gb=${semester}&su_dt=${year}${month}${day}&student_no=${account}&_=`;
-        
-        return await (await fetch(uri, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            keepalive: true,
-            body,
-            credentials: 'include',
-        })).json();
+
+        return (await RNFetchBlob.config({
+            trusty: true
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body)).json()
     },
 
     isValidAccount: async function(account = '', password = '') {
-        const res = await this._openSession(account, password);
-        const match = /loginerror=([0-9])*/g.exec(res.url);
+        let res;
+        try {
+            res = await this._openSession(account, password);
+        } catch (err) {
+            console.error(err);
+            return false;
+        }
+        const url = res.respInfo.redirects.pop();
+        const match = /loginerror=([0-9])*/g.exec(url);
         return !match;
     }
 }

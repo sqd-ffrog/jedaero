@@ -38,12 +38,9 @@ const Login = ({navigation}) => {
             await toggleSubmit(false);
 
             if(navigation.state.params && navigation.state.params.redirectRouteName) {
-                const {redirectRouteName} = navigation.state.params;
-
-                console.log(redirectRouteName);
                 const redirectAction = StackActions.reset({
                     index: 0,
-                    actions: [NavigationActions.navigate({ routeName: redirectRouteName})]
+                    actions: [NavigationActions.navigate({ routeName: 'Dreamy'})]
                 })
                 navigation.dispatch(redirectAction);
             } else {
