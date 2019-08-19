@@ -12,7 +12,6 @@ const BookDetail = ({navigation}) => {
     getBookData = async () => {
         try {
             const { data } = await LibraryBookDetailAPI(getParam('id'));
-            console.log(data);
             setData(data);
         } catch(err) {
             throw err;
@@ -72,7 +71,6 @@ const BookRow = ({left, right, style}) => (
 
 const bookdetailStyles = StyleSheet.create({
     container: {
-        backgroundColor:'#f7f7f7',
         paddingTop:16,
         paddingHorizontal:8,
         paddingBottom: 56,

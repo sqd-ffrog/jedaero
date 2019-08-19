@@ -2,12 +2,12 @@ import React from 'react';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { jedaeroBottomTabNavigationConfig } from './navigationConfigs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { BusStackNavigation, FoodListStackNavigation, LibrarySearchStackNavigation, ScheduleStackNavigation } from './stackNavigations';
+import { BusStackNavigation, FoodListStackNavigation, LibrarySearchStackNavigation, ScheduleStackNavigation, DreamyStackNavigation } from './stackNavigations';
 
 const iconSize = 24
 
 const TabNav = createMaterialBottomTabNavigator({
-    Bus: {
+    Home: {
         screen: BusStackNavigation,
         navigationOptions: {
             title: '홈',
@@ -21,13 +21,13 @@ const TabNav = createMaterialBottomTabNavigator({
             tabBarIcon: ({tintColor}) => (<Icon name="food-fork-drink" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
         }
     },
-    ScheduleMain: {
-        screen: ScheduleStackNavigation,
+    Dreamy: {
+        screen: DreamyStackNavigation,
         navigationOptions: {
-            title: '학사일정',
-            tabBarIcon: ({tintColor}) => (<Icon name="clipboard-outline" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
+            title: '하영드리미',
+            tabBarIcon: ({tintColor}) => (<Icon name="card-bulleted" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
         }
-    },    
+    },
     LibrarySearch: {
         screen: LibrarySearchStackNavigation,
         navigationOptions: {
@@ -35,7 +35,17 @@ const TabNav = createMaterialBottomTabNavigator({
             tabBarIcon: ({tintColor}) => (<Icon name="book-open-variant" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
         }
     },
-}, jedaeroBottomTabNavigationConfig)
+    ScheduleMain: {
+        screen: ScheduleStackNavigation,
+        navigationOptions: {
+            title: '학사일정',
+            tabBarIcon: ({tintColor}) => (<Icon name="clipboard-outline" color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
+        }
+    },    
+}, {
+    ...jedaeroBottomTabNavigationConfig, 
+    initialRouteName: "Dreamy"
+})
 
 TabNav.navigationOptions = () => ({
     title: '홈'

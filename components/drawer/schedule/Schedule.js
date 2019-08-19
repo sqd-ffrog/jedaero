@@ -40,11 +40,9 @@ const Schedule = ({navigation}) => {
             <ActivityIndicator size='large' color={colorPalette.mainColor}/>
         </View>
         ) : (
-            <View style={{flex: 1, backgroundColor: colorPalette.backgroundColor}}>
-                <ScrollView contentContainerStyle={haksaStyles.container}>
-                    { dataSource.month.map(_renderItem) }
-                </ScrollView>
-            </View>
+        <ScrollView contentContainerStyle={haksaStyles.container}>
+            { dataSource.month.map(_renderItem) }
+        </ScrollView>
         
         )
 }

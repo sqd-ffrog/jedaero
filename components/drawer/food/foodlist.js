@@ -11,25 +11,23 @@ import colorPalette from '../../styles/colorPalette';
 const FoodList = ({navigation}) => {
     const foodMenu = menuList(destination => navigation.navigate(destination));
     return (
-        <View style={{flex:1, backgroundColor:colorPalette.backgroundColor}}>
-            <ScrollView>
-                {
-                    foodMenu.map((item, key) => (
-                            <ListItem
-                                key={key}
-                                title={item.name}
-                                subtitle={item.subtitle}
-                                titleStyle={foodTabStyles.listTitleStyle}
-                                subtitleStyle={foodTabStyles.listSubtitleStyle}
-                                containerStyle={foodTabStyles.listContainerStyle}
-                                onPress={item._clickFood}
-                                underlayColor="rgba(0,0,0,0)"
-                                hideChevron={true}
-                            />
-                        ))
-                }
-            </ScrollView>
-        </View>
+        <ScrollView>
+            {
+                foodMenu.map((item, key) => (
+                        <ListItem
+                            key={key}
+                            title={item.name}
+                            subtitle={item.subtitle}
+                            titleStyle={foodTabStyles.listTitleStyle}
+                            subtitleStyle={foodTabStyles.listSubtitleStyle}
+                            containerStyle={foodTabStyles.listContainerStyle}
+                            onPress={item._clickFood}
+                            underlayColor="rgba(0,0,0,0)"
+                            hideChevron={true}
+                        />
+                    ))
+            }
+        </ScrollView>
     )
 }
 FoodList.navigationOptions = {

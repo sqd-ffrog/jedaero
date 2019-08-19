@@ -1,51 +1,58 @@
 import encode64 from "./encode64";
+import RNFetchBlob from "rn-fetch-blob";
 /**
  * Dreamy Connection with fetch API.
  */
 const Dreamy = {
-    _openSession: (account, password) => {
+    _openSession: async function (account, password) {
         const uri = 'https://dreamy.jejunu.ac.kr/frame/sysUser.do?next=';
         const body = `tmpu=${encode64(account)}&tmpw=${encode64(password)}&mobile=&app=&z=N&userid=&password=`
         // 세션 확보
-        return fetch(uri, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            keepalive: true,
-            body,
-            credentials: 'include',
-        });
-    },
-
-    _isValidate: () => {
+        return await RNFetchBlob.config({
+            trusty: true
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body);
 
     },
 
-    getTimeTable: async (account = null, password = null, month = null, date = null) => {
-        if(!account || !password) throw "학번이나 비밀번호를 올바르게 입력해주세요.";
+    getTimeTable: async function (account, year, month, day) {
+        let semester;
 
-        // TODO 세션인증 부분 최적화 필요.
-        try {
-            await this._openSession(account, password);
-        } catch(err) {
-            throw err;
-        }
-        
-        
+        if(month >= 2 && month <= 6) semester = 10; // 1학기
+        else if(month === 7) semester = 11; // 하기계절
+        else if(month >= 8 && month <= 12) semester = 20; // 2학기
+        else if(month === 1) semester = 21; // 동기계절
+        else semester = 0; // 아무것도 아님.
+        /**
+         * term_gb: 학기를 의미함.
+         * 10 : 1학기
+         * 11 : 하기계절
+         * 20 : 2학기
+         * 21 : 동기계절
+         * 0 : 구분없음.
+         */
         const uri = 'https://dreamy.jejunu.ac.kr/susj/su/sta_su_6170q.jejunu';
-        const body = `mode=doListTimetable&curri_year=2018&term_gb=20&su_dt=20180901&student_no=2014108205&_=`;
-
-        return await (await fetch(uri, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            keepalive: true,
-            body,
-            credentials: 'include',
-        })).json();
+        const body = `mode=doListTimetable&curri_year=${year}&term_gb=${semester}&su_dt=${year}${month <= 9 ? `0${month}` : month}${day <= 9 ? `0${day}` : day}&student_no=${account}&_=`;
+        return (await RNFetchBlob.config({
+            trusty: true
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body)).json()
     },
+
+    isValidAccount: async function(account = '', password = '') {
+        let res;
+        try {
+            res = await this._openSession(account, password);
+        } catch (err) {
+            console.error(err);
+            return false;
+        }
+        const url = res.respInfo.redirects.pop();
+        const match = /loginerror=([0-9])*/g.exec(url);
+        return !match;
+    }
 }
 
 export default Dreamy;

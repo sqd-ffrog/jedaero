@@ -6,7 +6,6 @@ const mainScreen = StyleSheet.create({
     busView: {
         // flex:1, 
         minHeight: '100%',
-        backgroundColor: colorPalette.backgroundColor,
         flexDirection: 'column', 
         justifyContent: 'flex-start',
     },

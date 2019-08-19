@@ -12,13 +12,11 @@ const ScheduleDetail = ({navigation}) => {
     )
     const schedule = navigation.getParam('schedule');
     return (
-        <View style={{flex: 1, backgroundColor:colorPalette.backgroundColor}}>
-            <FlatList 
-                keyExtractor={_keyExtractor}
-                data={schedule}
-                renderItem={_renderItem}
-            />
-        </View>
+        <FlatList 
+            keyExtractor={_keyExtractor}
+            data={schedule}
+            renderItem={_renderItem}
+        />
     )
 }
 

@@ -8,6 +8,7 @@ import InfoHome from './info/InfoHome';
 import { stackNavigationConfig } from './navigations/navigationConfigs';
 import Developer from './info/Developer';
 import License from './info/License';
+import Login from './info/Login';
 
 const MainStackNavigator = createStackNavigator({
     Jedaero: {
@@ -24,6 +25,9 @@ const MainStackNavigator = createStackNavigator({
     },
     License: {
         screen: License
+    },
+    Login: {
+        screen: Login
     }
 }, stackNavigationConfig)
 
