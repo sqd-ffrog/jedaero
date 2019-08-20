@@ -230,4 +230,5 @@ const getLecturePostData = async (year, semester, classCode, num, root) => {
         }
     }
 }
+
 export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData }
