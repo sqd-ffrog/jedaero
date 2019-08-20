@@ -40,6 +40,26 @@ const getTimeTable = async (year,month,day) => {
     }
 }
 
+const getBaseInfo = async (account) => {
+    // 학적 조회. 여기서부터 단과대학코드, 제적코드 등만 파싱해서 저장. 기타 개인정보는 전부 배제.
+    let res;
+    try {
+        res = await Dreamy._getBaseInfo(account);
+    } catch(err) {
+        const password = await AsyncStorage.getItem("password");
+        await Dreamy._openSession(account, password);
+        res = await Dreamy._getBaseInfo(account);
+    } finally {
+        if(!res) return {};
+        return {
+            name: res["HJ_MST"]["nm"],
+            majorCode: res["HJ_MST"]["maj_cd"],
+            departCode: res["HJ_MST"]["dept_cd"],
+            userGb: res["HJ_MST"]["chkUserGb"],
+        }
+    }
+}
+
 const getCreditData = async () => {
     const account = await AsyncStorage.getItem('account');
     let res;
@@ -118,4 +138,96 @@ const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
         };
     }
 }
-export { getTimeTable, getCreditData, getCreditDetailData }
+
+const getLectureBoardData = async (year, semester) => {
+    const account = await AsyncStorage.getItem("account");
+    const name = await AsyncStorage.getItem("name");
+    const userGb = await AsyncStorage.getItem("userGb");
+    let res;
+    try {
+        res = await Dreamy.getLectureBoard(account, name, userGb, year, semester);
+    } catch (err) {
+        const password = await AsyncStorage.getItem("password");
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.getLectureBoard(account, encodeURIComponent(name), userGb, year, semester);
+    } finally {
+        if(!res) return {};
+        return {
+            lectureBoardInfo: {
+                year: res["MST_ROW"]['common_curri_year'],
+                semester: res["MST_ROW"]['common_term_gb'],
+            },
+            lectures: res["MST_LIST"].map(row => ({
+                classCode: row['common_ban_no'],
+                lectureName: row['common_subject_nm'],
+            }))
+        };
+    }
+}
+
+const getLectureItemBoardData = async (year, semester, classCode) => {
+    let res;
+    try {
+        res = await Dreamy.getLectureItemBoard(year, semester, classCode);
+    } catch(err) {
+        const account = await AsyncStorage.getItem("account");
+        const password = await AsyncStorage.getItem("password");
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.getLectureItemBoard(year, semester, classCode);
+    } finally {
+        if(!res) return {};
+        return res['BORAD_LIST'].map(row => ({
+            root: row['root'],
+            num: row['num'],
+            uploadDate: row['create_dt'],
+            count: row['count'],
+            title: row['title'],
+            author: row['name'],
+            reply: row['reply'] !== "0",
+        }));
+    }
+}
+
+const getLecturePostData = async (year, semester, classCode, num, root) => {
+    let res;
+    try {
+        res = await Dreamy.getLecturePost(year, semester, classCode, num, root);
+    } catch (err) {
+        const account = await AsyncStorage.getItem("account");
+        const password = await AsyncStorage.getItem("password");
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.getLecturePost(year, semester, classCode, num, root);
+    } finally {
+        if(!res) return {};
+        return {
+            title: res["BORAD_CONTENT"]['title'],
+            author: res["BORAD_CONTENT"]['name'],
+            count: res["BORAD_CONTENT"]['count'],
+            date: res["BORAD_CONTENT"]['create_dt'],
+            email: res["BORAD_CONTENT"]['email'],
+            content: res["BORAD_CONTENT"]['content'],
+            file: [
+                {
+                    name: res["BORAD_CONTENT"]['filename'],
+                    path: res["BORAD_CONTENT"]['file_path'],
+                    size: res["BORAD_CONTENT"]['file_size'],
+                    encoded: res["BORAD_CONTENT"]['temp_file_nm'],
+                },
+                {
+                    name: res["BORAD_CONTENT"]['filename1'],
+                    path: res["BORAD_CONTENT"]['file_path1'],
+                    size: res["BORAD_CONTENT"]['file_size1'],
+                    encoded: res["BORAD_CONTENT"]['temp_file_nm1'],
+                },
+                {
+                    name: res["BORAD_CONTENT"]['filename2'],
+                    path: res["BORAD_CONTENT"]['file_path2'],
+                    size: res["BORAD_CONTENT"]['file_size2'],
+                    encoded: res["BORAD_CONTENT"]['temp_file_nm2'],
+                }
+            ].filter(item => item.name !== 'N'),
+
+        }
+    }
+}
+export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData }

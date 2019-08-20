@@ -11,7 +11,6 @@ const Credit = ({navigation}) => {
         setCredit(await getCreditData());
     }
     useEffect(() => {getCredit()}, []);
-    useEffect(() => console.log(credit), [credit]);
     const accumulatedCredit = () => {
         const { personalData: {name}, summary: {average, convertedAverage, applyCredit, getCredit, markCredit, totalMark}} = credit;
         return (

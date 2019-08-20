@@ -5,6 +5,7 @@ import { normalize } from 'react-native-elements';
 import colorPalette from '../styles/colorPalette';
 import { Dreamy } from '../../tool/jedaero';
 import { StackActions, NavigationActions } from 'react-navigation';
+import { getBaseInfo } from '../../service/jedaeroService';
 
 const Border = ({width = '50%'}) => (
     <Animated.View style={{...styles.border, width}} />
@@ -34,6 +35,10 @@ const Login = ({navigation}) => {
         } else {
             await AsyncStorage.setItem('account', account);
             await AsyncStorage.setItem('password', password);
+            const baseInfo = await getBaseInfo(account);
+            for(key in baseInfo) {
+                await AsyncStorage.setItem(key, baseInfo[key]);
+            }
             Alert.alert("로그인되었습니다.");
             await toggleSubmit(false);
 
