@@ -37,15 +37,16 @@ const Login = ({navigation}) => {
             Alert.alert("로그인되었습니다.");
             await toggleSubmit(false);
 
-            if(navigation.state.params && navigation.state.params.redirectRouteName) {
-                const redirectAction = StackActions.reset({
-                    index: 0,
-                    actions: [NavigationActions.navigate({ routeName: 'Jedaero'})]
-                })
-                navigation.dispatch(redirectAction);
-            } else {
-                navigation.goBack();
-            }
+            navigation.state.params && navigation.state.params.callback && navigation.state.params.callback();
+            navigation.goBack();
+                // const redirectAction = StackActions.reset({
+                //     index: 0,
+                //     actions: [NavigationActions.navigate({ routeName: 'Jedaero'})]
+                // })
+                // navigation.dispatch(redirectAction);
+            // } else {
+                // navigation.goBack();
+            // }
             
         }
         

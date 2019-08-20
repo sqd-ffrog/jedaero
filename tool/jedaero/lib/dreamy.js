@@ -52,6 +52,25 @@ const Dreamy = {
         const url = res.respInfo.redirects.pop();
         const match = /loginerror=([0-9])*/g.exec(url);
         return !match;
+    },
+
+    getCredit: async function (account) {
+        const uri = 'https://dreamy.jejunu.ac.kr/susj/sj/sta_sj_3230q.jejunu';
+        const body = `mode=doSearch&student_no=${account}&del_gb=&_=`;
+        return (await RNFetchBlob.config({
+            trusty: true
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body)).json();
+    },
+    getCreditDetail: async function (account, year, semester, outsideSeq) {
+        const uri = 'https://dreamy.jejunu.ac.kr/susj/sj/sta_sj_3230q.jejunu';
+        const body = `mode=doList&year=${year}&term_gb=${semester}&group_gb=20&student_no=${account}&outside_seq=${outsideSeq}&del_gb=AND%20SJ_DEL_GB%20IS%20NULL&_=`
+        return (await RNFetchBlob.config({
+            trusty: true
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body)).json();
     }
 }
 
