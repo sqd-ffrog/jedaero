@@ -30,7 +30,7 @@ const DreamyHome = ({navigation}) => {
             <DreamyCard title="지금 내 시간표는?" onPress={() => afterLogin(() => navigation.navigate("TimeTable"))}>
                 <Text>사간표를 확인하실 수 있습니다.</Text>
             </DreamyCard>
-            <DreamyCard title="내 평점 확인" onPress={() => afterLogin(() => navigation.navigate("TimeTable"))}>
+            <DreamyCard title="내 평점 확인" onPress={() => afterLogin(() => navigation.navigate("Credit"))}>
                 <Text>전체 성적을 조회하실 수 있습니다.</Text>
             </DreamyCard>
         </ScrollView>

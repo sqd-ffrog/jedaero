@@ -9,7 +9,6 @@ const mainScreen = StyleSheet.create({
         flexDirection: 'column', 
         justifyContent: 'flex-start',
     },
-   
     blockView: {
         height:"auto",
         borderRadius: 4,
