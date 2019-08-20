@@ -49,7 +49,7 @@ const CreditDetail = ({navigation: { state: { params: {name, data: { year, semes
 
     const listHeader = () => (
         <View style={styles.lectureHeader}>
-            <Text style={{...styles.lectureHeaderText, flex: 3}}>이수구분</Text>
+            <Text style={{...styles.lectureHeaderText, flex: 2}}>이수구분</Text>
             <Text style={{...styles.lectureHeaderText, flex: 1}}>학점</Text>
             <Text style={{...styles.lectureHeaderText, flex: 3}}>과목명</Text>
             <Text style={{...styles.lectureHeaderText, flex: 1}}>평점</Text>
@@ -58,7 +58,7 @@ const CreditDetail = ({navigation: { state: { params: {name, data: { year, semes
     )
     const renderCreditDetailRow = ({item: { takeName, grade, credit, mark, subjectName}}) => (
         <View style={styles.lectureRow}>
-            <Text style={{...styles.lectureRowText, flex: 3,}}>{takeName}</Text>
+            <Text style={{...styles.lectureRowText, flex: 2,}}>{takeName}</Text>
             <Text style={{...styles.lectureRowText, flex: 1,}}>{credit}</Text>
             <Text style={{...styles.lectureRowText, flex: 3}}>{subjectName}</Text>
             <Text style={{...styles.lectureRowText, flex: 1}}>{mark}</Text>
