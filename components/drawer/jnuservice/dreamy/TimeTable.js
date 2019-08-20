@@ -96,7 +96,7 @@ const TimeTable = ({navigation}) => {
                     return (
                         <TouchableOpacity key={date} style={{
                             ...styles.scheduleItem, 
-                            backgroundColor: isClass ? colorPalette.mainColor: colorPalette.cardBackgroundColor ,
+                            backgroundColor: isClass ? /^\(휴\)/.exec(currLectureName) ? colorPalette.subTextColor : colorPalette.mainColor: colorPalette.cardBackgroundColor ,
                             borderTopWidth: isLectures ? 0 : 0.5,
                             borderTopColor: colorPalette.cardBorderColor, 
                         }}>
