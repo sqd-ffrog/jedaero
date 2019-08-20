@@ -9,14 +9,12 @@ const mainScreen = StyleSheet.create({
         flexDirection: 'column', 
         justifyContent: 'flex-start',
     },
-   
     blockView: {
         height:"auto",
         borderRadius: 4,
         borderColor: colorPalette.cardBorderColor,
-        marginLeft: 10,
-        marginRight: 10,
-        marginBottom: 10,
+        marginHorizontal: 16,
+        marginVertical: 12,
         backgroundColor: colorPalette.cardBackgroundColor,
         overflow: 'hidden',
     },

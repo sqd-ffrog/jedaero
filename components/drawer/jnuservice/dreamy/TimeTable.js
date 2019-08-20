@@ -19,7 +19,7 @@ LocaleConfig.locales['kr'] = {
 
 LocaleConfig.defaultLocale = 'kr'
 
-const DreamyHome = ({navigation}) => {
+const TimeTable = ({navigation}) => {
     const [ timeTable, setTimeTable ] = useState(null);
     const date = new Date();
     const [ day, setDay ] = useState({
@@ -36,7 +36,7 @@ const DreamyHome = ({navigation}) => {
         if(!id || !pwd) {
             const loginAction = StackActions.reset({
                 index: 0,
-                actions: [NavigationActions.navigate({ routeName: 'Login', params: { redirectRouteName: 'DreamyHome'}})]
+                actions: [NavigationActions.navigate({ routeName: 'Login', params: { redirectRouteName: 'TimeTable'}})]
             });
             navigation.dispatch(loginAction);
         }
@@ -74,7 +74,8 @@ const DreamyHome = ({navigation}) => {
                 }
             return (
             <View key={date} style={styles.scheduleHeaderView}>
-                <Text style={styles.scheduleHeaderText}>{timeTable.day[date]} ({dow})</Text>
+                <Text style={styles.scheduleHeaderText}>{timeTable.day[date]}</Text>
+                <Text style={styles.scheduleHeaderText}>({dow})</Text>
             </View>)
             })}
         </View>
@@ -95,7 +96,7 @@ const DreamyHome = ({navigation}) => {
                     return (
                         <TouchableOpacity key={date} style={{
                             ...styles.scheduleItem, 
-                            backgroundColor: isClass ? colorPalette.mainColor: colorPalette.cardBackgroundColor ,
+                            backgroundColor: isClass ? /^\(휴\)/.exec(currLectureName) ? colorPalette.subTextColor : colorPalette.mainColor: colorPalette.cardBackgroundColor ,
                             borderTopWidth: isLectures ? 0 : 0.5,
                             borderTopColor: colorPalette.cardBorderColor, 
                         }}>
@@ -161,7 +162,7 @@ const DreamyHome = ({navigation}) => {
         </React.Fragment>
     ))
 }
-DreamyHome.navigationOptions = {
+TimeTable.navigationOptions = {
     title: '시간표'
 }
 
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     selectCalendar: {
-        borderRadius: 4,
+        borderRadius: 8,
         borderWidth: 0.5,
         borderColor: colorPalette.cardBorderColor,
         alignSelf: 'flex-start',
@@ -191,14 +192,17 @@ const styles = StyleSheet.create({
         backgroundColor: colorPalette.cardBackgroundColor,
         borderWidth: 0.5,
         borderColor: colorPalette.cardBorderColor,
+        overflow: 'hidden',
         marginHorizontal: 10,
+        borderRadius: 8,
         // marginBottom: 56,
     },
     scheduleHeader: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     scheduleHeaderView: {
         flex: 1,
+        paddingVertical: 4,
         borderLeftColor: colorPalette.cardBorderColor,
         borderLeftWidth: 0.5
     },
@@ -232,4 +236,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     }
 })
-export default DreamyHome;
+export default TimeTable;
