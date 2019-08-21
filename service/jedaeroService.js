@@ -237,8 +237,9 @@ const downloadLecturePostFile = async (classCode, professorCode, year, semester,
     } catch (err) {
         await Dreamy._openSession(account, password);
         res = await Dreamy.downloadLecurePostFile(account, userGb, departCode, classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
-    } finally {
-        return res.respInfo;
+    } finally { 
+        console.log(res);
+        return res;
     }
 }
 export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile }

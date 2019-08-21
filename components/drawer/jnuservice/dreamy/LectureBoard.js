@@ -98,7 +98,7 @@ const LectureBoard = ({navigation}) => {
                     onValueChange={item => setSemester(item)}
                     style={pickerSelectStyles}
                     useNativeAndroidPickerStyle={false}
-                    Icon={() => (<Icon name="md-arrow-dropdown" size={24} color={colorPalette.mainColor} />)}
+                    Icon={() => (<Icon name="md-arrow-dropdown" size={24} color={colorPalette.mainColor} style={{marginRight: 5}} />)}
                 />
                 <Icon.Button name="ios-search" backgroundColor={colorPalette.mainColor} size={24} style={styles.submitButton}onPress={() => getLectureBoard()}>조회</Icon.Button>
             </View>
