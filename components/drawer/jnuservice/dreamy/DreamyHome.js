@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, Alert, FlatList, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, ScrollView, Alert, FlatList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import LoginBar from './card/LoginBar';
 import AsyncStorage from '@react-native-community/async-storage';
 import DreamyCard from './components/DreamyCard';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import colorPalette from '../../../styles/colorPalette';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { normalize } from 'react-native-elements';
@@ -12,17 +11,17 @@ const totalMenu = [
     {
         icon: 'attachment',
         name: '수강 게시판',
-        routeName: 'Jedaero'
+        routeName: 'LectureBoard'
     },
     {
         icon: 'office-building',
-        name: '생활관 입주 확인',
-        routeName: 'Jedaero'
+        name: '생활관 입주',
+        routeName: 'TimeTable'
     },
     {
         icon: 'book-open-outline',
         name: '공결 승인',
-        routeName: 'Jedaero'
+        routeName: 'TimeTable'
     },
 ]
 
@@ -35,7 +34,7 @@ const totalMenuHeader = () => (
 )
 const DreamyHome = ({navigation}) => {
     const [isLogin, setLogin] = useState(true);
-    const [numColumns, setNumColumns] = useState(1);
+    const [numColumns, setNumColumns] = useState(3);
     const checkLogin = async () => {
         const account = await AsyncStorage.getItem('account');
         const password = await AsyncStorage.getItem('password');
