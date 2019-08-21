@@ -42,10 +42,12 @@ const DreamyHome = ({navigation}) => {
     }
 
     const login = async () => {
-        checkLogin();
+        await checkLogin();
+        console.log(isLogin);
     }
     
-    const afterLogin = (success) => {
+    const afterLogin = async (success) => {
+        await login();
         if(isLogin) success();
         else Alert.alert("로그인을 먼저 해주세요.");
     }
@@ -59,8 +61,8 @@ const DreamyHome = ({navigation}) => {
         setNumColumns(numColumns);
     }
 
-    const renderTotalMenu = ({item: {icon, name, routeName}, index}) => (
-        <TouchableOpacity style={{...styles.totalMenuItem}} onPress={() => routeName ? navigation.navigate(routeName) : Alert.alert("현재 준비중입니다.")}>
+    const renderTotalMenu = ({item: {icon, name, routeName}}) => (
+        <TouchableOpacity style={{...styles.totalMenuItem}} onPress={() => afterLogin(() => {routeName ? navigation.navigate(routeName) : Alert.alert("현재 준비중입니다.")})}>
             <Icon name={icon} size={48} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} />
             <Text style={styles.itemText}>{name}</Text>
         </TouchableOpacity>
@@ -68,7 +70,7 @@ const DreamyHome = ({navigation}) => {
 
     return (
         <ScrollView onLayout={onLayout}>
-            {!isLogin && <LoginBar onPress={() => {navigation.navigate("NestedLogin", { callback: login });}}/>}
+            {isLogin !== null && !isLogin && <LoginBar onPress={() => {navigation.navigate("NestedLogin", { callback: login });}}/>}
             <DreamyCard title="지금 내 시간표는?" onPress={() => afterLogin(() => navigation.navigate("TimeTable"))}>
                 <Text>사간표를 확인하실 수 있습니다.</Text>
             </DreamyCard>
@@ -80,7 +82,7 @@ const DreamyHome = ({navigation}) => {
                 numColumns={numColumns}
                 data={totalMenu}
                 key={numColumns}
-                keyExtractor={(item, index) => item.name}
+                keyExtractor={item => item.name}
                 renderItem={renderTotalMenu}
                 contentContainerStyle={styles.totalMenuContainer}
             />

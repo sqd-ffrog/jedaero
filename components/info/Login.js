@@ -1,10 +1,8 @@
 import React, {useEffect, useState, createRef} from 'react';
 import { View, Text, TextInput, StyleSheet, Button, Animated, Alert } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage'
 import { normalize } from 'react-native-elements';
 import colorPalette from '../styles/colorPalette';
 import { Dreamy } from '../../tool/jedaero';
-import { StackActions, NavigationActions } from 'react-navigation';
 import { getBaseInfo } from '../../service/jedaeroService';
 import * as Keychain from 'react-native-keychain';
 
@@ -34,18 +32,10 @@ const Login = ({navigation}) => {
             Alert.alert("아이디나 비밀번호를 확인해주세요.");
             await toggleSubmit(false);
         } else {
-            // await AsyncStorage.setItem('account', account);
-            // await AsyncStorage.setItem('password', password);
-            await Keychain.setGenericPassword(account, password);
             const baseInfo = await getBaseInfo(account);
-
-            // 나머자 단과대학 종류들은 보류.
-            for(key in baseInfo) {
-                await AsyncStorage.setItem(key, baseInfo[key]);
-            }
+            await Keychain.setGenericPassword(account, JSON.stringify({password, ...baseInfo}));
             Alert.alert("로그인되었습니다.");
             await toggleSubmit(false);
-
             navigation.state.params && navigation.state.params.callback && navigation.state.params.callback();
             navigation.goBack();
         }
@@ -128,13 +118,13 @@ const styles = StyleSheet.create({
         padding: 32
     },
     text: {
-        fontSize: normalize(20),
+        fontSize: normalize(16),
         fontWeight: 'bold',
         marginTop: 16,
         marginBottom: 8
     }, 
     textinput: {
-        fontSize: normalize(24),
+        fontSize: normalize(20),
         paddingVertical: 8,
     },
     button: {
@@ -143,7 +133,8 @@ const styles = StyleSheet.create({
     },
     border: {
         borderWidth: 1,
-        borderColor: colorPalette.mainColor
+        borderColor: colorPalette.mainColor,
+        marginBottom: 16,
     }
 })
 
