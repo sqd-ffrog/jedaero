@@ -16,7 +16,7 @@ const totalMenu = [
     },
     {
         icon: 'office-building',
-        name: '생활관 입주',
+        name: '생활관 입주 확인',
         routeName: 'Jedaero'
     },
     {
@@ -25,6 +25,8 @@ const totalMenu = [
         routeName: 'Jedaero'
     },
 ]
+
+const itemMaxSize = Dimensions.get('window').width / 3;
 
 const totalMenuHeader = () => (
     <View style={styles.totalMenuHeader}>
@@ -60,7 +62,7 @@ const DreamyHome = ({navigation}) => {
 
     const renderTotalMenu = ({item: {icon, name, routeName}, index}) => (
         <TouchableOpacity style={{...styles.totalMenuItem}} onPress={() => Alert.alert("아직 준비중입니다.")}>
-            <Icon name={icon} size={48} />
+            <Icon name={icon} size={48} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} />
             <Text style={styles.itemText}>{name}</Text>
         </TouchableOpacity>
     )
@@ -107,16 +109,18 @@ const styles = StyleSheet.create({
     },
     totalMenuItem: {
         backgroundColor: colorPalette.cardBackgroundColor,
-        width: 109,
+        minWidth: 109,
         height: 109,
         borderWidth:0.5,
         borderColor:colorPalette.cardBorderColor,
         padding: 16,
-        justifyContent: 'space-between',
+        // justifyContent: 'space-between',
         alignItems: 'center',
     },
     itemText: {
         fontSize: normalize(12),
+        fontWeight: 'bold',
+        textAlign: 'center'
     }
 })
 
