@@ -30,11 +30,8 @@ const PostFooter = ({count, email}) => (
 const PostFile = ({post: {author, count, date, email, title, file}, lectureDetail: {classCode, year, semester, root, num, reply, lectureCode, lectureName, professorCode, professorName }}) => {
     const downloadFile = async ({fileName, encoded}) => {
         console.log({author, count, date, email, title, classCode, year, semester, root, num, reply, lectureCode, lectureName, professorCode, professorName });
-        await downloadLecturePostFile(classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
-        // const { classCode, professorCode, year, }
-        // await downloadLecturePostFile()
-        // if(Platform.OS == 'ios') Alert.alert("현재 iOS에서는 다운로드 기능을 지원하지 않아요 ㅠㅠ")
-        // else Alert.alert("다운로드 준비")
+        const res = await downloadLecturePostFile(classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
+        if(res.status === 200) Alert.alert("다운로드가 완료되었습니다.");
     }
 
     const fileHeader = () => (

@@ -30,34 +30,11 @@ const TimeTable = ({navigation}) => {
     const [ isOverlayVisible, setOverlayVisible ] = useState(false);
     const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
-    const hasAccount = async () => {
-        const id = await AsyncStorage.getItem("account", err => null);
-        const pwd = await AsyncStorage.getItem("password", err => null);
-        if(!id || !pwd) {
-            const loginAction = StackActions.reset({
-                index: 0,
-                actions: [NavigationActions.navigate({ routeName: 'Login', params: { redirectRouteName: 'TimeTable'}})]
-            });
-            navigation.dispatch(loginAction);
-        }
-    }
-
-    useEffect(() => {
-        (async function() {
-            await hasAccount();
-        })();
-        
-    }, [])
-
     useEffect(() => {
         (async function() {
             await setTimeTable(await getTimeTable(day.year,day.month,day.day));
         })();
     }, [day])
-
-    useEffect(() => {
-        console.log(timeTable);
-    }, [timeTable]);
 
     const scheduleHeader = () => (
         <View style={styles.scheduleHeader}>
@@ -73,7 +50,7 @@ const TimeTable = ({navigation}) => {
                     case "sat": dow = "토"; break;
                 }
             return (
-            <View key={timeTable.day[date]} style={styles.scheduleHeaderView}>
+            <View key={dow} style={styles.scheduleHeaderView}>
                 <Text style={styles.scheduleHeaderText}>{timeTable.day[date]}</Text>
                 <Text style={styles.scheduleHeaderText}>({dow})</Text>
             </View>)
@@ -95,7 +72,7 @@ const TimeTable = ({navigation}) => {
                     // const displayName = currLectureName;
                     const isClass = isFirstLecture || isLectures;
                     return (
-                        <TouchableOpacity key={date+index} style={{
+                        <TouchableOpacity key={`${timeTable.day[date]}`} style={{
                             ...styles.scheduleItem, 
                             backgroundColor: isClass ? /^\(휴\)/.exec(currLectureName) ? colorPalette.subTextColor : colorPalette.mainColor: colorPalette.cardBackgroundColor ,
                             borderTopWidth: isLectures ? 0 : 0.5,

@@ -1,17 +1,15 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import * as Keychain from 'react-native-keychain';
 import { Dreamy } from '../tool/jedaero';
 
 const getTimeTable = async (year,month,day) => {
-    const account = await AsyncStorage.getItem("account");
+    const {username: account, password} = await Keychain.getGenericPassword();
     let res;
     try {
         res = await Dreamy.getTimeTable(account, year, month, day);
     } catch(err) {
         // json형태에서 오류가 발생했으면 undefined이거나 <script> alert("세션이 종료되었습니다.") </script>. 그러므로 재 로그인 시도.
-        const account = await AsyncStorage.getItem("account");
-        const password = await AsyncStorage.getItem("password");
         await Dreamy._openSession(account, password);
-
         res = await Dreamy.getTimeTable(account, year, month, day);
     } finally {
         // undefined라면? 그 밖의 문제를 의미하므로 빈 오브젝트 반환.
@@ -46,7 +44,7 @@ const getBaseInfo = async (account) => {
     try {
         res = await Dreamy._getBaseInfo(account);
     } catch(err) {
-        const password = await AsyncStorage.getItem("password");
+        const { password } = await Keychain.getGenericPassword();
         await Dreamy._openSession(account, password);
         res = await Dreamy._getBaseInfo(account);
     } finally {
@@ -61,12 +59,11 @@ const getBaseInfo = async (account) => {
 }
 
 const getCreditData = async () => {
-    const account = await AsyncStorage.getItem('account');
+    const {username: account, password} = await Keychain.getGenericPassword();
     let res;
     try {
         res = await Dreamy.getCredit(account);
     } catch(err) {
-        const password = await AsyncStorage.getItem("password");
         await Dreamy._openSession(account, password);
         res = await Dreamy.getCredit(account);
     } finally {
@@ -104,12 +101,11 @@ const getCreditData = async () => {
 }
 
 const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
-    const account = await AsyncStorage.getItem('account');
+    const {username: account, password} = await Keychain.getGenericPassword();
     let res;
     try {
         res = await Dreamy.getCreditDetail(account, year, semester, outsideSeq, groupGb);
     } catch(err) {
-        const password = await AsyncStorage.getItem("password");
         await Dreamy._openSession(account, password);
         res = await Dreamy.getCreditDetail(account, year, semester, outsideSeq, groupGb)
     } finally {
@@ -140,14 +136,13 @@ const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
 }
 
 const getLectureBoardData = async (year, semester) => {
-    const account = await AsyncStorage.getItem("account");
+    const {username: account, password} = await Keychain.getGenericPassword();
     const name = await AsyncStorage.getItem("name");
     const userGb = await AsyncStorage.getItem("userGb");
     let res;
     try {
         res = await Dreamy.getLectureBoard(account, name, userGb, year, semester);
     } catch (err) {
-        const password = await AsyncStorage.getItem("password");
         await Dreamy._openSession(account, password);
         res = await Dreamy.getLectureBoard(account, encodeURIComponent(name), userGb, year, semester);
     } finally {
@@ -173,8 +168,7 @@ const getLectureItemBoardData = async (year, semester, classCode) => {
     try {
         res = await Dreamy.getLectureItemBoard(year, semester, classCode);
     } catch(err) {
-        const account = await AsyncStorage.getItem("account");
-        const password = await AsyncStorage.getItem("password");
+        const {username: account, password} = await Keychain.getGenericPassword();
         await Dreamy._openSession(account, password);
         res = await Dreamy.getLectureItemBoard(year, semester, classCode);
     } finally {
@@ -196,8 +190,7 @@ const getLecturePostData = async (year, semester, classCode, num, root) => {
     try {
         res = await Dreamy.getLecturePost(year, semester, classCode, num, root);
     } catch (err) {
-        const account = await AsyncStorage.getItem("account");
-        const password = await AsyncStorage.getItem("password");
+        const {username: account, password} = await Keychain.getGenericPassword();
         await Dreamy._openSession(account, password);
         res = await Dreamy.getLecturePost(year, semester, classCode, num, root);
     } finally {
@@ -235,18 +228,17 @@ const getLecturePostData = async (year, semester, classCode, num, root) => {
 }
 
 const downloadLecturePostFile = async (classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count) => {
-    const account = await AsyncStorage.getItem('account');
+    const {username: account, password} = await Keychain.getGenericPassword();
     const userGb = await AsyncStorage.getItem('userGb');
     const departCode = await AsyncStorage.getItem('departCode');
     let res;
     try {
         res = await Dreamy.downloadLecurePostFile(account, userGb, departCode, classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
     } catch (err) {
-        const password = await AsyncStorage.getItem('password');
         await Dreamy._openSession(account, password);
         res = await Dreamy.downloadLecurePostFile(account, userGb, departCode, classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
     } finally {
-        console.log(res);
+        return res.respInfo;
     }
 }
 export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile }

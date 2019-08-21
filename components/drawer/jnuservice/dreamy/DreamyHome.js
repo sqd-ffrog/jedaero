@@ -6,6 +6,7 @@ import DreamyCard from './components/DreamyCard';
 import colorPalette from '../../../styles/colorPalette';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { normalize } from 'react-native-elements';
+import * as Keychain from 'react-native-keychain';
 
 const totalMenu = [
     {
@@ -36,9 +37,8 @@ const DreamyHome = ({navigation}) => {
     const [isLogin, setLogin] = useState(true);
     const [numColumns, setNumColumns] = useState(3);
     const checkLogin = async () => {
-        const account = await AsyncStorage.getItem('account');
-        const password = await AsyncStorage.getItem('password');
-        setLogin(!!account && !!password);
+        const credentials = await Keychain.getGenericPassword();
+        setLogin(!!credentials);
     }
 
     const login = async () => {
