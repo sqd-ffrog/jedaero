@@ -60,7 +60,7 @@ const DreamyHome = ({navigation}) => {
     }
 
     const renderTotalMenu = ({item: {icon, name, routeName}, index}) => (
-        <TouchableOpacity style={{...styles.totalMenuItem}} onPress={() => Alert.alert("아직 준비중입니다.")}>
+        <TouchableOpacity style={{...styles.totalMenuItem}} onPress={() => navigation.navigate(routeName)}>
             <Icon name={icon} size={48} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} />
             <Text style={styles.itemText}>{name}</Text>
         </TouchableOpacity>
