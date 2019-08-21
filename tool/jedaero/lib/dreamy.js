@@ -143,7 +143,16 @@ const Dreamy = {
         }).fetch('POST', uri, {
             "Content-Type": "application/x-www-form-urlencoded"
         }, body);
+    },
+    isPassDormitory: async function (account) {
+        const uri = 'https://dreamy.jejunu.ac.kr/stsv/ht/sts_ht_0509e.jejunu';
+        const body = `mode=doValue&campus_gb=A&student_no=${account}&_=`;
+        return (await RNFetchBlob.config({
+            trusty: true
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body)).json();
     }
-}
+};
 
 export default Dreamy;

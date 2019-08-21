@@ -253,4 +253,29 @@ const logoutDreamy = async () => {
         return false;
     }
 }
-export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy }
+
+const isPassDormitory = async () => {
+    const { username: account, password: baseInfo } = Keychain.getGenericPassword();
+    const { password } = JSON.parse(baseInfo);
+    let res;
+    try {
+        res = await Dreamy.isPassDormitory(account);
+    } catch (err) {
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.isPassDormitory(account);
+    } finally {
+        if(!res) return {};
+        return {
+            resultCode: parseInt(res['result_flag'], 10),
+            collectTitle: res['collect_title'],
+            appliedPlace: res['app_build_cd_nm'],
+            allocatedPlace: res['alloc_build'],
+            allocatedRoomNo: res['alloc_room_no'],
+            name: res['dorm_nm'],
+            id: res['dorm_no'],
+            rank: res['rank'],
+            competitor: res['student_gb_nm']
+        }
+    }
+}
+export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory }
