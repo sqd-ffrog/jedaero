@@ -16,6 +16,17 @@ const Dreamy = {
 
     },
 
+    _getBaseInfo: async function (account) {
+        const uri = 'https://dreamy.jejunu.ac.kr/hjju/hj/sta_hj_1010q.jejunu';
+        const body = `mode=doValue&student_no=${account}&_=`
+
+        return (await RNFetchBlob.config({
+            trusty: true
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body)).json();
+    },
+
     getTimeTable: async function (account, year, month, day) {
         let semester;
 
@@ -71,6 +82,66 @@ const Dreamy = {
         }).fetch('POST', uri, {
             "Content-Type": "application/x-www-form-urlencoded"
         }, body)).json();
+    },
+    getLectureBoard: async function(account, name, userGb, year, semester) {
+        const uri = 'https://dreamy.jejunu.ac.kr/frame/doumi_1020e.jejunu';
+        const body = `mode=doListSugangBanNo&common_curri_year=${year}&common_term_gb=${semester}&common_student_no=${account}&common_subject_nm=${name}&common_prof_no=${account}&common_prof_nm=${name}&common_user_gb=${userGb}&mng_dept_cd=&_=`;
+        return (await RNFetchBlob.config({
+            trusty: true
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body)).json();
+    },
+    getLectureItemBoard: async function(year, semester, classCode) {
+        const uri = 'https://dreamy.jejunu.ac.kr/frame/doumi_1020e.jejunu';
+        const body = `mode=doList&curri_year=${year}&term_gb=${semester}&ban_no=${classCode}&title&content&name&_=`;
+        return (await RNFetchBlob.config({
+            trusty: true
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body)).json();
+    },
+    getLecturePost: async function(year, semester, classCode, num, root) {
+        const uri = 'https://dreamy.jejunu.ac.kr/frame/doumi_1020e.jejunu';
+        const body = `mode=doGetBoardDetail&curri_year=${year}&term_gb=${semester}&ban_no=${classCode}&num=${num}&root=${root}&prevnextyn=0&_=`
+        return (await RNFetchBlob.config({
+            trusty: true
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body)).json();
+    },
+    downloadLecurePostFile: async function (
+        account, 
+        userGb, 
+        departCode, 
+        classCode, 
+        professorCode, 
+        year, 
+        semester, 
+        lectureCode, 
+        lectureName, 
+        professorName, 
+        encoded, 
+        fileName, 
+        num,
+        root,
+        reply,
+        email,
+        title,
+        author,
+        date,
+        count
+    ) {
+        const uri = 'https://dreamy.jejunu.ac.kr/frame/doumi_1020e.jejunu';
+        const realPath = `/jnujeus/was/source/doumi/board/`;
+        const body = `member_no=${account}&user_gb=${userGb}&init_dept_cd=${departCode}&mode=doDownLoadFile&common_ban_no=${classCode}&habgang_yn=&common_prof_no=${professorCode}&std_info=&search_student_no=&search_nm=&search_student_popup=&common_curri_year=${year}&common_term_gb=${semester}&cb_pagingMst=1&common_subject_cd=${lectureCode}&common_subject_nm=${encodeURIComponent(lectureName)}&common_prof_nm=${encodeURIComponent(professorName)}&smethod=1&sstring=&cb_pagingDtl=1&tempfilename=${encoded}&filename=${encodeURIComponent(fileName)}&file_path=${encodeURIComponent(realPath)}&curri_year=${year}&term_gb=${semester}&ban_no=${classCode}&num=${num}&root=${root}&reply=${reply}&email=${encodeURIComponent(email)}&file_root=${encodeURIComponent(`${realPath}${year}`)}&v_title=${encodeURIComponent(title)}&v_name=${encodeURIComponent(author)}&v_create_dt=${date}&v_count=${count}`;
+        return RNFetchBlob.config({
+            path: `${RNFetchBlob.fs.dirs.DocumentDir}/${fileName}`,
+            trusty: true, 
+            fileCache: true,
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body);
     }
 }
 

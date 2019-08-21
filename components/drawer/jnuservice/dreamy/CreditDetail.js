@@ -42,11 +42,7 @@ const CreditDetail = ({navigation: { state: { params: {name, data: { year, semes
     useEffect(() => {
         getCreditDetail();
     }, [])
-
-    useEffect(() => {
-        console.log(creditDetail);
-    }, [creditDetail])
-
+    
     const listHeader = () => (
         <View style={styles.lectureHeader}>
             <Text style={{...styles.lectureHeaderText, flex: 2}}>이수구분</Text>
@@ -112,7 +108,7 @@ const styles = StyleSheet.create({
     },
     summaryText: {
         fontSize: normalize(12),
-        color: colorPalette.textColor
+        color: colorPalette.textColor,
     },
     summaryCreditValue: {
         // fontWeight: 'bold',

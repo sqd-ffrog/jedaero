@@ -42,6 +42,7 @@ const LibrarySeat = () => {
                 keyExtractor={_keyExtractor}
                 contentContainerStyle={styles.listContainer}
                 data={data.row}
+                nestedScrollEnabled={true}
                 renderItem={_renderItem}
             />
         </Fragment>

@@ -5,6 +5,8 @@ import { normalize } from 'react-native-elements';
 import colorPalette from '../styles/colorPalette';
 import { Dreamy } from '../../tool/jedaero';
 import { StackActions, NavigationActions } from 'react-navigation';
+import { getBaseInfo } from '../../service/jedaeroService';
+import * as Keychain from 'react-native-keychain';
 
 const Border = ({width = '50%'}) => (
     <Animated.View style={{...styles.border, width}} />
@@ -32,22 +34,20 @@ const Login = ({navigation}) => {
             Alert.alert("아이디나 비밀번호를 확인해주세요.");
             await toggleSubmit(false);
         } else {
-            await AsyncStorage.setItem('account', account);
-            await AsyncStorage.setItem('password', password);
+            // await AsyncStorage.setItem('account', account);
+            // await AsyncStorage.setItem('password', password);
+            await Keychain.setGenericPassword(account, password);
+            const baseInfo = await getBaseInfo(account);
+
+            // 나머자 단과대학 종류들은 보류.
+            for(key in baseInfo) {
+                await AsyncStorage.setItem(key, baseInfo[key]);
+            }
             Alert.alert("로그인되었습니다.");
             await toggleSubmit(false);
 
             navigation.state.params && navigation.state.params.callback && navigation.state.params.callback();
             navigation.goBack();
-                // const redirectAction = StackActions.reset({
-                //     index: 0,
-                //     actions: [NavigationActions.navigate({ routeName: 'Jedaero'})]
-                // })
-                // navigation.dispatch(redirectAction);
-            // } else {
-                // navigation.goBack();
-            // }
-            
         }
         
     }

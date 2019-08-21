@@ -1,17 +1,15 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import * as Keychain from 'react-native-keychain';
 import { Dreamy } from '../tool/jedaero';
 
 const getTimeTable = async (year,month,day) => {
-    const account = await AsyncStorage.getItem("account");
+    const {username: account, password} = await Keychain.getGenericPassword();
     let res;
     try {
         res = await Dreamy.getTimeTable(account, year, month, day);
     } catch(err) {
         // json형태에서 오류가 발생했으면 undefined이거나 <script> alert("세션이 종료되었습니다.") </script>. 그러므로 재 로그인 시도.
-        const account = await AsyncStorage.getItem("account");
-        const password = await AsyncStorage.getItem("password");
         await Dreamy._openSession(account, password);
-
         res = await Dreamy.getTimeTable(account, year, month, day);
     } finally {
         // undefined라면? 그 밖의 문제를 의미하므로 빈 오브젝트 반환.
@@ -40,13 +38,32 @@ const getTimeTable = async (year,month,day) => {
     }
 }
 
+const getBaseInfo = async (account) => {
+    // 학적 조회. 여기서부터 단과대학코드, 제적코드 등만 파싱해서 저장. 기타 개인정보는 전부 배제.
+    let res;
+    try {
+        res = await Dreamy._getBaseInfo(account);
+    } catch(err) {
+        const { password } = await Keychain.getGenericPassword();
+        await Dreamy._openSession(account, password);
+        res = await Dreamy._getBaseInfo(account);
+    } finally {
+        if(!res) return {};
+        return {
+            name: res["HJ_MST"]["nm"],
+            majorCode: res["HJ_MST"]["maj_cd"],
+            departCode: res["HJ_MST"]["dept_cd"],
+            userGb: res["HJ_MST"]["chkUserGb"],
+        }
+    }
+}
+
 const getCreditData = async () => {
-    const account = await AsyncStorage.getItem('account');
+    const {username: account, password} = await Keychain.getGenericPassword();
     let res;
     try {
         res = await Dreamy.getCredit(account);
     } catch(err) {
-        const password = await AsyncStorage.getItem("password");
         await Dreamy._openSession(account, password);
         res = await Dreamy.getCredit(account);
     } finally {
@@ -84,12 +101,11 @@ const getCreditData = async () => {
 }
 
 const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
-    const account = await AsyncStorage.getItem('account');
+    const {username: account, password} = await Keychain.getGenericPassword();
     let res;
     try {
         res = await Dreamy.getCreditDetail(account, year, semester, outsideSeq, groupGb);
     } catch(err) {
-        const password = await AsyncStorage.getItem("password");
         await Dreamy._openSession(account, password);
         res = await Dreamy.getCreditDetail(account, year, semester, outsideSeq, groupGb)
     } finally {
@@ -118,4 +134,111 @@ const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
         };
     }
 }
-export { getTimeTable, getCreditData, getCreditDetailData }
+
+const getLectureBoardData = async (year, semester) => {
+    const {username: account, password} = await Keychain.getGenericPassword();
+    const name = await AsyncStorage.getItem("name");
+    const userGb = await AsyncStorage.getItem("userGb");
+    let res;
+    try {
+        res = await Dreamy.getLectureBoard(account, name, userGb, year, semester);
+    } catch (err) {
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.getLectureBoard(account, encodeURIComponent(name), userGb, year, semester);
+    } finally {
+        if(!res) return {};
+        return {
+            lectureBoardInfo: {
+                year: res["MST_ROW"]['common_curri_year'],
+                semester: res["MST_ROW"]['common_term_gb'],
+            },
+            lectures: res["MST_LIST"].map(row => ({
+                classCode: row['common_ban_no'],
+                professorName: row['common_prof_nm'],
+                professorCode: row['common_prof_no'],
+                lectureCode: row['common_subject_cd'],
+                lectureName: row['common_subject_nm'],
+            }))
+        };
+    }
+}
+
+const getLectureItemBoardData = async (year, semester, classCode) => {
+    let res;
+    try {
+        res = await Dreamy.getLectureItemBoard(year, semester, classCode);
+    } catch(err) {
+        const {username: account, password} = await Keychain.getGenericPassword();
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.getLectureItemBoard(year, semester, classCode);
+    } finally {
+        if(!res) return {};
+        return res['BORAD_LIST'].map(row => ({
+            root: row['root'],
+            num: row['num'],
+            uploadDate: row['create_dt'],
+            count: row['count'],
+            title: row['title'],
+            author: row['name'],
+            reply: row['reply'],
+        }));
+    }
+}
+
+const getLecturePostData = async (year, semester, classCode, num, root) => {
+    let res;
+    try {
+        res = await Dreamy.getLecturePost(year, semester, classCode, num, root);
+    } catch (err) {
+        const {username: account, password} = await Keychain.getGenericPassword();
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.getLecturePost(year, semester, classCode, num, root);
+    } finally {
+        if(!res) return {};
+        return {
+            title: res["BORAD_CONTENT"]['title'],
+            author: res["BORAD_CONTENT"]['name'],
+            count: res["BORAD_CONTENT"]['count'],
+            date: res["BORAD_CONTENT"]['create_dt'],
+            email: res["BORAD_CONTENT"]['email'],
+            content: res["BORAD_CONTENT"]['content'],
+            file: [
+                {
+                    fileName: res["BORAD_CONTENT"]['filename'],
+                    path: res["BORAD_CONTENT"]['file_path'],
+                    size: res["BORAD_CONTENT"]['file_size'],
+                    encoded: res["BORAD_CONTENT"]['temp_file_nm'],
+                },
+                {
+                    fileName: res["BORAD_CONTENT"]['filename1'],
+                    path: res["BORAD_CONTENT"]['file_path1'],
+                    size: res["BORAD_CONTENT"]['file_size1'],
+                    encoded: res["BORAD_CONTENT"]['temp_file_nm1'],
+                },
+                {
+                    fileName: res["BORAD_CONTENT"]['filename2'],
+                    path: res["BORAD_CONTENT"]['file_path2'],
+                    size: res["BORAD_CONTENT"]['file_size2'],
+                    encoded: res["BORAD_CONTENT"]['temp_file_nm2'],
+                }
+            ].filter(item => item.fileName !== 'N'),
+
+        }
+    }
+}
+
+const downloadLecturePostFile = async (classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count) => {
+    const {username: account, password} = await Keychain.getGenericPassword();
+    const userGb = await AsyncStorage.getItem('userGb');
+    const departCode = await AsyncStorage.getItem('departCode');
+    let res;
+    try {
+        res = await Dreamy.downloadLecurePostFile(account, userGb, departCode, classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
+    } catch (err) {
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.downloadLecurePostFile(account, userGb, departCode, classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
+    } finally {
+        return res.respInfo;
+    }
+}
+export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile }

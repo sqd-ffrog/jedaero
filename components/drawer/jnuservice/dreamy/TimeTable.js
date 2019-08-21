@@ -30,34 +30,11 @@ const TimeTable = ({navigation}) => {
     const [ isOverlayVisible, setOverlayVisible ] = useState(false);
     const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
-    const hasAccount = async () => {
-        const id = await AsyncStorage.getItem("account", err => null);
-        const pwd = await AsyncStorage.getItem("password", err => null);
-        if(!id || !pwd) {
-            const loginAction = StackActions.reset({
-                index: 0,
-                actions: [NavigationActions.navigate({ routeName: 'Login', params: { redirectRouteName: 'TimeTable'}})]
-            });
-            navigation.dispatch(loginAction);
-        }
-    }
-
-    useEffect(() => {
-        (async function() {
-            await hasAccount();
-        })();
-        
-    }, [])
-
     useEffect(() => {
         (async function() {
             await setTimeTable(await getTimeTable(day.year,day.month,day.day));
         })();
     }, [day])
-
-    useEffect(() => {
-        console.log(timeTable);
-    }, [timeTable]);
 
     const scheduleHeader = () => (
         <View style={styles.scheduleHeader}>
@@ -73,7 +50,7 @@ const TimeTable = ({navigation}) => {
                     case "sat": dow = "토"; break;
                 }
             return (
-            <View key={date} style={styles.scheduleHeaderView}>
+            <View key={dow} style={styles.scheduleHeaderView}>
                 <Text style={styles.scheduleHeaderText}>{timeTable.day[date]}</Text>
                 <Text style={styles.scheduleHeaderText}>({dow})</Text>
             </View>)
@@ -85,26 +62,33 @@ const TimeTable = ({navigation}) => {
         return (
             <View style={styles.scheduleRow}>
                 <Text style={{...styles.rowHead, borderTopWidth: 0.5, borderTopColor: colorPalette.cardBorderColor}}>{item.period}</Text>
-                { week.map(date => {
+                { week.map((date) => {
                     const prevLectureName = index > 0 ? timeTable.schedule[index === 10 ? index - 2 : index - 1][date].name : " ";
                     const currLectureName = item[date].name;
                     const isFirstLecture = prevLectureName === " " && currLectureName !== " " || currLectureName !== " " && prevLectureName !== currLectureName;
                     const isLectures = !isFirstLecture && currLectureName !== " " && currLectureName === prevLectureName;
                     const displayName = isFirstLecture || index === 10 ? currLectureName : "";
+                    const displayPlace = isFirstLecture || index === 10? item[date].room.replace(/[\[\]\s]/g, "") : "";
                     // const displayName = currLectureName;
                     const isClass = isFirstLecture || isLectures;
                     return (
-                        <TouchableOpacity key={date} style={{
+                        <TouchableOpacity key={`${timeTable.day[date]}`} style={{
                             ...styles.scheduleItem, 
                             backgroundColor: isClass ? /^\(휴\)/.exec(currLectureName) ? colorPalette.subTextColor : colorPalette.mainColor: colorPalette.cardBackgroundColor ,
                             borderTopWidth: isLectures ? 0 : 0.5,
                             borderTopColor: colorPalette.cardBorderColor, 
                         }}>
-                            <Text style={{
+                            <Text numberOfLines={2} style={{
                                 color: colorPalette.cardBackgroundColor,
                                 ...styles.scheduleItemText
                             }} key={date}>
                                 {displayName}
+                            </Text>
+                            <Text numberOfLines={2} style={{
+                                color: colorPalette.cardBackgroundColor,
+                                ...styles.scheduleRoomText
+                            }} key={date}>
+                                {displayPlace}
                             </Text>
                         </TouchableOpacity>
                     )
@@ -113,7 +97,7 @@ const TimeTable = ({navigation}) => {
         )
     }
 
-    const keyExtractor = (item, index) => item.time;
+    const keyExtractor = (item, index) => item.time + item.room;
 
     return !timeTable ? (
         <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
@@ -226,14 +210,18 @@ const styles = StyleSheet.create({
     scheduleItem: {
         flex: 1,
         padding: 4,
-        minHeight: 60,
+        height: 54,
         borderLeftColor: colorPalette.cardBorderColor,
         borderLeftWidth: 0.5
     },
     scheduleItemText: {
-        flexWrap: "wrap",
+        // flexWrap: "wrap",
         fontSize: 10,
         fontWeight: 'bold',
+    },
+    scheduleRoomText: {
+        // flexWrap: "wrap",
+        fontSize: 8,
     }
 })
 export default TimeTable;

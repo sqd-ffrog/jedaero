@@ -24,12 +24,11 @@ const styles = StyleSheet.create({
         marginVertical: 12,
         borderColor: colorPalette.cardBorderColor,
         backgroundColor: colorPalette.cardBackgroundColor,
-        borderRadius: 16
+        borderRadius: 4
     },
     header: {
-        paddingTop: 16,
+        paddingVertical: 8,
         paddingHorizontal: 16,
-        paddingBottom: 16,
         backgroundColor: colorPalette.mainColor,
         justifyContent: 'center',
         alignItems: 'center'
