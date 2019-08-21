@@ -19,6 +19,8 @@ LocaleConfig.locales['kr'] = {
 
 LocaleConfig.defaultLocale = 'kr'
 
+const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+
 const TimeTable = ({navigation}) => {
     const [ timeTable, setTimeTable ] = useState(null);
     const date = new Date();
@@ -28,13 +30,16 @@ const TimeTable = ({navigation}) => {
         day: date.getDate(),
     });
     const [ isOverlayVisible, setOverlayVisible ] = useState(false);
-    const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
     useEffect(() => {
         (async function() {
-            await setTimeTable(await getTimeTable(day.year,day.month,day.day));
+            setTimeTable(await getTimeTable(day.year,day.month,day.day));
         })();
     }, [day])
+
+    useEffect(() => {
+        console.log(timeTable, '입니다.')
+    }, [timeTable])
 
     const scheduleHeader = () => (
         <View style={styles.scheduleHeader}>
@@ -62,17 +67,16 @@ const TimeTable = ({navigation}) => {
         return (
             <View style={styles.scheduleRow}>
                 <Text style={{...styles.rowHead, borderTopWidth: 0.5, borderTopColor: colorPalette.cardBorderColor}}>{item.period}</Text>
-                { week.map((date) => {
-                    const prevLectureName = index > 0 ? timeTable.schedule[index === 10 ? index - 2 : index - 1][date].name : " ";
-                    const currLectureName = item[date].name;
-                    const isFirstLecture = prevLectureName === " " && currLectureName !== " " || currLectureName !== " " && prevLectureName !== currLectureName;
-                    const isLectures = !isFirstLecture && currLectureName !== " " && currLectureName === prevLectureName;
-                    const displayName = isFirstLecture || index === 10 ? currLectureName : "";
-                    const displayPlace = isFirstLecture || index === 10? item[date].room.replace(/[\[\]\s]/g, "") : "";
-                    // const displayName = currLectureName;
-                    const isClass = isFirstLecture || isLectures;
+                { week.map((date, idx) => {
+                    let prevLectureName = index > 0 ? timeTable.schedule[index === 10 ? index - 2 : index - 1][date].name : " ";
+                    let currLectureName = item[date].name;
+                    let isFirstLecture = prevLectureName === " " && currLectureName !== " " || currLectureName !== " " && prevLectureName !== currLectureName;
+                    let isLectures = !isFirstLecture && currLectureName !== " " && currLectureName === prevLectureName;
+                    let displayName = isFirstLecture || index === 10 ? currLectureName : "";
+                    let displayPlace = isFirstLecture || index === 10 ? item[date].room.replace(/[\[\]\s]/g, "") : "";
+                    let isClass = isFirstLecture || isLectures;
                     return (
-                        <TouchableOpacity key={`${timeTable.day[date]}`} style={{
+                        <TouchableOpacity key={idx} style={{
                             ...styles.scheduleItem, 
                             backgroundColor: isClass ? /^\(휴\)/.exec(currLectureName) ? colorPalette.subTextColor : colorPalette.mainColor: colorPalette.cardBackgroundColor ,
                             borderTopWidth: isLectures ? 0 : 0.5,
@@ -81,13 +85,13 @@ const TimeTable = ({navigation}) => {
                             <Text numberOfLines={2} style={{
                                 color: colorPalette.cardBackgroundColor,
                                 ...styles.scheduleItemText
-                            }} key={date}>
+                            }}>
                                 {displayName}
                             </Text>
                             <Text numberOfLines={2} style={{
                                 color: colorPalette.cardBackgroundColor,
                                 ...styles.scheduleRoomText
-                            }} key={date}>
+                            }}>
                                 {displayPlace}
                             </Text>
                         </TouchableOpacity>

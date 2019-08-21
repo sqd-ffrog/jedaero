@@ -44,11 +44,7 @@ const LectureBoard = ({navigation}) => {
     const getLectureBoard = async () => {
         setLectureBoard(await getLectureBoardData(year, semester));
     }
-    useEffect(() => {
-        console.log(year,semester);
-        getLectureBoard();
-    }, []);
-    
+    useEffect(() => { getLectureBoard(); }, []); 
     const renderLectureHeader = () => (
         <View style={styles.lectureItemContainer}>
            <View style={styles.itemLeftContainer}>

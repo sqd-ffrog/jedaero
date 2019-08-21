@@ -1,9 +1,9 @@
-import AsyncStorage from '@react-native-community/async-storage';
 import * as Keychain from 'react-native-keychain';
 import { Dreamy } from '../tool/jedaero';
 
 const getTimeTable = async (year,month,day) => {
-    const {username: account, password} = await Keychain.getGenericPassword();
+    const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+    const { password } = JSON.parse(baseInfo);
     let res;
     try {
         res = await Dreamy.getTimeTable(account, year, month, day);
@@ -59,7 +59,8 @@ const getBaseInfo = async (account) => {
 }
 
 const getCreditData = async () => {
-    const {username: account, password} = await Keychain.getGenericPassword();
+    const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+    const { password } = JSON.parse(baseInfo);
     let res;
     try {
         res = await Dreamy.getCredit(account);
@@ -101,7 +102,8 @@ const getCreditData = async () => {
 }
 
 const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
-    const {username: account, password} = await Keychain.getGenericPassword();
+    const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+    const { password } = JSON.parse(baseInfo);
     let res;
     try {
         res = await Dreamy.getCreditDetail(account, year, semester, outsideSeq, groupGb);
@@ -136,9 +138,8 @@ const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
 }
 
 const getLectureBoardData = async (year, semester) => {
-    const {username: account, password} = await Keychain.getGenericPassword();
-    const name = await AsyncStorage.getItem("name");
-    const userGb = await AsyncStorage.getItem("userGb");
+    const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+    const { password, name, userGb } = JSON.parse(baseInfo);
     let res;
     try {
         res = await Dreamy.getLectureBoard(account, name, userGb, year, semester);
@@ -168,7 +169,8 @@ const getLectureItemBoardData = async (year, semester, classCode) => {
     try {
         res = await Dreamy.getLectureItemBoard(year, semester, classCode);
     } catch(err) {
-        const {username: account, password} = await Keychain.getGenericPassword();
+        const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+        const { password } = JSON.parse(baseInfo);
         await Dreamy._openSession(account, password);
         res = await Dreamy.getLectureItemBoard(year, semester, classCode);
     } finally {
@@ -190,7 +192,8 @@ const getLecturePostData = async (year, semester, classCode, num, root) => {
     try {
         res = await Dreamy.getLecturePost(year, semester, classCode, num, root);
     } catch (err) {
-        const {username: account, password} = await Keychain.getGenericPassword();
+        const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+        const { password } = JSON.parse(baseInfo);
         await Dreamy._openSession(account, password);
         res = await Dreamy.getLecturePost(year, semester, classCode, num, root);
     } finally {
@@ -228,9 +231,8 @@ const getLecturePostData = async (year, semester, classCode, num, root) => {
 }
 
 const downloadLecturePostFile = async (classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count) => {
-    const {username: account, password} = await Keychain.getGenericPassword();
-    const userGb = await AsyncStorage.getItem('userGb');
-    const departCode = await AsyncStorage.getItem('departCode');
+    const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+    const { password, userGb, departCode } = JSON.parse(baseInfo);
     let res;
     try {
         res = await Dreamy.downloadLecurePostFile(account, userGb, departCode, classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
@@ -242,4 +244,13 @@ const downloadLecturePostFile = async (classCode, professorCode, year, semester,
         return res;
     }
 }
-export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile }
+
+const logoutDreamy = async () => {
+    try {
+        await Keychain.resetGenericPassword();
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
+export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy }
