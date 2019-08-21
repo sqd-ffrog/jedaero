@@ -4,6 +4,8 @@ import { getLecturePostData, downloadLecturePostFile } from '../../../../service
 import colorPalette from '../../../styles/colorPalette';
 import { normalize } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { requestDownloadPermission } from '../../../../tool/requestPermission';
+import RNFetchBlob from 'rn-fetch-blob';
 
 const PostHeader = ({title, author, date}) => (
     <View style={{...styles.card, ...styles.postHeader}}>
@@ -30,8 +32,17 @@ const PostFooter = ({count, email}) => (
 const PostFile = ({post: {author, count, date, email, title, file}, lectureDetail: {classCode, year, semester, root, num, reply, lectureCode, lectureName, professorCode, professorName }}) => {
     const downloadFile = async ({fileName, encoded}) => {
         console.log({author, count, date, email, title, classCode, year, semester, root, num, reply, lectureCode, lectureName, professorCode, professorName });
-        const res = await downloadLecturePostFile(classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
-        if(res.status === 200) Alert.alert("다운로드가 완료되었습니다.");
+        if(Platform.OS === 'android' && !(await requestDownloadPermission())) {
+            Alert.alert("권한이 없어 다운로드가 불가능합니다.");
+            return;
+        }
+        try {
+            const res = await downloadLecturePostFile(classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
+            console.log(res);
+            if(res) Alert.alert("다운로드가 완료되었습니다.");
+        } catch (err) {
+            Alert.alert("다운로드에 실패하였습니다. 다시 시도해 주세요.");
+        }
     }
 
     const fileHeader = () => (
