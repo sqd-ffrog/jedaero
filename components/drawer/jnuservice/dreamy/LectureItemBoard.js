@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native
 import { getLectureItemBoardData } from '../../../../service/jedaeroService';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colorPalette from '../../../styles/colorPalette';
+import { normalize } from 'react-native-elements';
 
 const LectureItemBoard = ({navigation}) => {
     const [board, setBoard] = useState(null);
@@ -35,13 +36,13 @@ const LectureItemBoard = ({navigation}) => {
     const renderItem = ({item: {num, root, uploadDate, count, title, author, reply}}) => (
         <TouchableOpacity style={styles.itemContainer} onPress={() => {
             const { year, semester, classCode } = navigation.state.params;
-            navigation.navigate("LecturePost", {year, semester, root, num, classCode});
+            navigation.navigate("LecturePost", {year, semester, root, num, reply, classCode, lectureDetail: navigation.state.params.lectureDetail});
         }}>
             <View style={styles.itemNumContainer}>
-                {!reply && <Text style={styles.itemText}>{num}</Text>}
+                {reply === "0" && <Text style={styles.itemText}>{num}</Text>}
             </View>
             <View style={styles.itemTitleContainer}>
-                {reply && <Icon name="subdirectory-arrow-right" size={16} />}
+                {reply !== "0" && <Icon name="subdirectory-arrow-right" size={16} />}
                 <Text numberOfLines={1} style={styles.itemTitleText}>{title}</Text>
             </View>
             <View style={styles.itemDateContainer}>
@@ -55,6 +56,10 @@ const LectureItemBoard = ({navigation}) => {
             </View>
         </TouchableOpacity>
     )
+
+    const renderEmpty = () => (
+        <Text style={styles.renderEmpty}>글이 없어요</Text>
+    )
     return (
         <FlatList 
             data={board}
@@ -62,6 +67,7 @@ const LectureItemBoard = ({navigation}) => {
             renderItem={renderItem}
             keyExtractor={item => item.num}
             contentContainerStyle={styles.listContainer}
+            ListEmptyComponent={renderEmpty}
         />
     )
 }
@@ -134,6 +140,11 @@ const styles = StyleSheet.create({
         paddingVertical: 8,
         borderLeftWidth: 0.5,
         borderLeftColor: colorPalette.cardBorderColor
+    },
+    renderEmpty: {
+        fontSize: normalize(14),
+        textAlign: 'center',
+        paddingVertical: 32,
     }
 })
 export default LectureItemBoard;

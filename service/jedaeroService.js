@@ -159,6 +159,9 @@ const getLectureBoardData = async (year, semester) => {
             },
             lectures: res["MST_LIST"].map(row => ({
                 classCode: row['common_ban_no'],
+                professorName: row['common_prof_nm'],
+                professorCode: row['common_prof_no'],
+                lectureCode: row['common_subject_cd'],
                 lectureName: row['common_subject_nm'],
             }))
         };
@@ -183,7 +186,7 @@ const getLectureItemBoardData = async (year, semester, classCode) => {
             count: row['count'],
             title: row['title'],
             author: row['name'],
-            reply: row['reply'] !== "0",
+            reply: row['reply'],
         }));
     }
 }
@@ -208,27 +211,42 @@ const getLecturePostData = async (year, semester, classCode, num, root) => {
             content: res["BORAD_CONTENT"]['content'],
             file: [
                 {
-                    name: res["BORAD_CONTENT"]['filename'],
+                    fileName: res["BORAD_CONTENT"]['filename'],
                     path: res["BORAD_CONTENT"]['file_path'],
                     size: res["BORAD_CONTENT"]['file_size'],
                     encoded: res["BORAD_CONTENT"]['temp_file_nm'],
                 },
                 {
-                    name: res["BORAD_CONTENT"]['filename1'],
+                    fileName: res["BORAD_CONTENT"]['filename1'],
                     path: res["BORAD_CONTENT"]['file_path1'],
                     size: res["BORAD_CONTENT"]['file_size1'],
                     encoded: res["BORAD_CONTENT"]['temp_file_nm1'],
                 },
                 {
-                    name: res["BORAD_CONTENT"]['filename2'],
+                    fileName: res["BORAD_CONTENT"]['filename2'],
                     path: res["BORAD_CONTENT"]['file_path2'],
                     size: res["BORAD_CONTENT"]['file_size2'],
                     encoded: res["BORAD_CONTENT"]['temp_file_nm2'],
                 }
-            ].filter(item => item.name !== 'N'),
+            ].filter(item => item.fileName !== 'N'),
 
         }
     }
 }
 
-export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData }
+const downloadLecturePostFile = async (classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count) => {
+    const account = await AsyncStorage.getItem('account');
+    const userGb = await AsyncStorage.getItem('userGb');
+    const departCode = await AsyncStorage.getItem('departCode');
+    let res;
+    try {
+        res = await Dreamy.downloadLecurePostFile(account, userGb, departCode, classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
+    } catch (err) {
+        const password = await AsyncStorage.getItem('password');
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.downloadLecurePostFile(account, userGb, departCode, classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
+    } finally {
+        console.log(res);
+    }
+}
+export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile }

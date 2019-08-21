@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, ScrollView, ActivityIndicator, StyleSheet, TouchableOpacity, Platform, Alert, FlatList } from 'react-native';
-import { getLecturePostData } from '../../../../service/jedaeroService';
+import { getLecturePostData, downloadLecturePostFile } from '../../../../service/jedaeroService';
 import colorPalette from '../../../styles/colorPalette';
 import { normalize } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -27,10 +27,14 @@ const PostFooter = ({count, email}) => (
     </View>
 )
 
-const PostFile = ({file}) => {
-    const downloadFile = () => {
-        if(Platform.OS == 'ios') Alert.alert("현재 iOS에서는 다운로드 기능을 지원하지 않아요 ㅠㅠ")
-        else Alert.alert("다운로드 준비")
+const PostFile = ({post: {author, count, date, email, title, file}, lectureDetail: {classCode, year, semester, root, num, reply, lectureCode, lectureName, professorCode, professorName }}) => {
+    const downloadFile = async ({fileName, encoded}) => {
+        console.log({author, count, date, email, title, classCode, year, semester, root, num, reply, lectureCode, lectureName, professorCode, professorName });
+        await downloadLecturePostFile(classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
+        // const { classCode, professorCode, year, }
+        // await downloadLecturePostFile()
+        // if(Platform.OS == 'ios') Alert.alert("현재 iOS에서는 다운로드 기능을 지원하지 않아요 ㅠㅠ")
+        // else Alert.alert("다운로드 준비")
     }
 
     const fileHeader = () => (
@@ -38,8 +42,8 @@ const PostFile = ({file}) => {
     )
 
     const renderItem = ({item}) => (
-        <TouchableOpacity style={styles.fileItem} onPress={downloadFile}>
-            <Text style={styles.file}>{item.name}</Text>
+        <TouchableOpacity style={styles.fileItem} onPress={() => downloadFile(item)}>
+            <Text style={styles.file}>{item.fileName}</Text>
             <Icon name="download" size={normalize(12)} color={colorPalette.mainColor} />
         </TouchableOpacity>
     )
@@ -55,7 +59,7 @@ const PostFile = ({file}) => {
 }
 
 
-const LecturePost = ({navigation: {state: {params: {year, semester, root, num, classCode}}}}) => {
+const LecturePost = ({navigation: {state: {params: {year, semester, root, num, reply, classCode, lectureDetail}}}}) => {
     const [post, setPost] = useState(null);
     const getPost = async () => {
         setPost(await getLecturePostData(year, semester, classCode, num, root));
@@ -80,7 +84,7 @@ const LecturePost = ({navigation: {state: {params: {year, semester, root, num, c
             <PostHeader title={post.title} author={post.author} date={post.date}/>
             {post.content.trim() !== "" && <PostContent content={post.content} />}
             <PostFooter count={post.count} email={post.email} />
-            {post.file && Array.isArray(post.file) && post.file.length > 0 && <PostFile file={post.file} />}
+            {post.file && Array.isArray(post.file) && post.file.length > 0 && <PostFile lectureDetail={{...lectureDetail, classCode, year, semester, root, num, reply}} post={post}/>}
         </ScrollView>
     ))
 }
