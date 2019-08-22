@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import { View, Text, ActivityIndicator, ScrollView, StyleSheet, FlatList } from 'react-native'
+import { View, Text, ActivityIndicator, StyleSheet, FlatList } from 'react-native'
 import colorPalette from '../../../styles/colorPalette';
 import { isPassDormitory } from '../../../../service/jedaeroService';
 import { normalize } from 'react-native-elements';
 
-const PassCard = ({item: {title, content}}) => content.trim() && (
+const PassCard = ({item: {title, content}}) => !!content.trim() && (
     <View style={styles.cardContainer}>
         <Text style={styles.cardTitle}>{title}</Text>
         <Text style={styles.cardContent}>{content}</Text>
