@@ -35,7 +35,17 @@
 		C2E9CD812303A3A900B22690 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD712303A3A900B22690 /* MaterialIcons.ttf */; };
 		C5F9623345F2CB2520CE944A /* libPods-jedaero-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF854C5246B6EF2648084CB /* libPods-jedaero-tvOS.a */; };
 		EA8DF155DB735F8B3EA82FCD /* libPods-jedaeroTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FC4A918DB3032A953445EC /* libPods-jedaeroTests.a */; };
-		0FB07E5A391149D3944EDBE4 /* jedaero_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E107D34EC97040AD89ECE0EB /* jedaero_icon.png */; };
+		ABBF3C96F21D4101A5A77802 /* jedaero-60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F9ADB9CBDB4B27A47DB781 /* jedaero-60x60.png */; };
+		CCA6A2A568004E2EB1A08E1D /* jedaero-58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B156210F38477CABA9A7E1 /* jedaero-58x58.png */; };
+		CB84D3766C204BEEA156813F /* jedaero-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B8285CBEDC14273839668A2 /* jedaero-80x80.png */; };
+		7909EBDF767740A982AEFB8E /* jedaero-87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = 129C409993274E2C8CE948CC /* jedaero-87x87.png */; };
+		C19FCC52406D4E128ED6F805 /* jedaero-120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = FE298A39169442B9BEFB7D03 /* jedaero-120x120.png */; };
+		16CC1BF2899A4F3C8A33E03D /* jedaero-180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = 35AEDE1AC0B84B4D914F5356 /* jedaero-180x180.png */; };
+		01084B259A714EEB85542EFC /* jedaero-splash-200x200.png in Resources */ = {isa = PBXBuildFile; fileRef = C09B0B723556427E8C175169 /* jedaero-splash-200x200.png */; };
+		EB0250A2BFB04807B46A7DC3 /* jedaero-splash-400x400.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E43118BB1BC40C6888D8DB3 /* jedaero-splash-400x400.png */; };
+		AC09A61A9F1C47C4B84368CC /* jedaero-splash-600x600.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C15D34D0D84A288CC36D28 /* jedaero-splash-600x600.png */; };
+		2ADBEC3716EC486AA40F0CAD /* jedaero.png in Resources */ = {isa = PBXBuildFile; fileRef = A9915086F1FA4B248E059E4B /* jedaero.png */; };
+		8C7832EED95A4CABA878DA09 /* jedaero-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = D217C1F37251482A953AB48F /* jedaero-40x40.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,7 +110,17 @@
 		C2E9CD712303A3A900B22690 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		E107D34EC97040AD89ECE0EB /* jedaero_icon.png */ = {isa = PBXFileReference; name = "jedaero_icon.png"; path = "../images/jedaero_icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		37F9ADB9CBDB4B27A47DB781 /* jedaero-60x60.png */ = {isa = PBXFileReference; name = "jedaero-60x60.png"; path = "../images/jedaero-60x60.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E9B156210F38477CABA9A7E1 /* jedaero-58x58.png */ = {isa = PBXFileReference; name = "jedaero-58x58.png"; path = "../images/jedaero-58x58.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2B8285CBEDC14273839668A2 /* jedaero-80x80.png */ = {isa = PBXFileReference; name = "jedaero-80x80.png"; path = "../images/jedaero-80x80.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		129C409993274E2C8CE948CC /* jedaero-87x87.png */ = {isa = PBXFileReference; name = "jedaero-87x87.png"; path = "../images/jedaero-87x87.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FE298A39169442B9BEFB7D03 /* jedaero-120x120.png */ = {isa = PBXFileReference; name = "jedaero-120x120.png"; path = "../images/jedaero-120x120.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		35AEDE1AC0B84B4D914F5356 /* jedaero-180x180.png */ = {isa = PBXFileReference; name = "jedaero-180x180.png"; path = "../images/jedaero-180x180.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C09B0B723556427E8C175169 /* jedaero-splash-200x200.png */ = {isa = PBXFileReference; name = "jedaero-splash-200x200.png"; path = "../images/jedaero-splash-200x200.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3E43118BB1BC40C6888D8DB3 /* jedaero-splash-400x400.png */ = {isa = PBXFileReference; name = "jedaero-splash-400x400.png"; path = "../images/jedaero-splash-400x400.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		35C15D34D0D84A288CC36D28 /* jedaero-splash-600x600.png */ = {isa = PBXFileReference; name = "jedaero-splash-600x600.png"; path = "../images/jedaero-splash-600x600.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A9915086F1FA4B248E059E4B /* jedaero.png */ = {isa = PBXFileReference; name = "jedaero.png"; path = "../images/jedaero.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D217C1F37251482A953AB48F /* jedaero-40x40.png */ = {isa = PBXFileReference; name = "jedaero-40x40.png"; path = "../images/jedaero-40x40.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,7 +281,17 @@
 		F5D9B0B2B83B4ADBBE27EFF4 /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				E107D34EC97040AD89ECE0EB /* jedaero_icon.png */,
+				37F9ADB9CBDB4B27A47DB781 /* jedaero-60x60.png */,
+				E9B156210F38477CABA9A7E1 /* jedaero-58x58.png */,
+				2B8285CBEDC14273839668A2 /* jedaero-80x80.png */,
+				129C409993274E2C8CE948CC /* jedaero-87x87.png */,
+				FE298A39169442B9BEFB7D03 /* jedaero-120x120.png */,
+				35AEDE1AC0B84B4D914F5356 /* jedaero-180x180.png */,
+				C09B0B723556427E8C175169 /* jedaero-splash-200x200.png */,
+				3E43118BB1BC40C6888D8DB3 /* jedaero-splash-400x400.png */,
+				35C15D34D0D84A288CC36D28 /* jedaero-splash-600x600.png */,
+				A9915086F1FA4B248E059E4B /* jedaero.png */,
+				D217C1F37251482A953AB48F /* jedaero-40x40.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -433,7 +463,17 @@
 				C2E9CD7B2303A3A900B22690 /* FontAwesome5_Solid.ttf in Resources */,
 				C2E9CD772303A3A900B22690 /* MaterialCommunityIcons.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				0FB07E5A391149D3944EDBE4 /* jedaero_icon.png in Resources */,
+				ABBF3C96F21D4101A5A77802 /* jedaero-60x60.png in Resources */,
+				CCA6A2A568004E2EB1A08E1D /* jedaero-58x58.png in Resources */,
+				CB84D3766C204BEEA156813F /* jedaero-80x80.png in Resources */,
+				7909EBDF767740A982AEFB8E /* jedaero-87x87.png in Resources */,
+				C19FCC52406D4E128ED6F805 /* jedaero-120x120.png in Resources */,
+				16CC1BF2899A4F3C8A33E03D /* jedaero-180x180.png in Resources */,
+				01084B259A714EEB85542EFC /* jedaero-splash-200x200.png in Resources */,
+				EB0250A2BFB04807B46A7DC3 /* jedaero-splash-400x400.png in Resources */,
+				AC09A61A9F1C47C4B84368CC /* jedaero-splash-600x600.png in Resources */,
+				2ADBEC3716EC486AA40F0CAD /* jedaero.png in Resources */,
+				8C7832EED95A4CABA878DA09 /* jedaero-40x40.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

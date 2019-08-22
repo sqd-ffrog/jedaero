@@ -2,8 +2,48 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "images/jedaero_icon.png",
+      "path": "images/jedaero-splash-200x200.png",
+      "sha1": "d3e23e332a0835cd3a7b58a8b1c67069fb966524"
+    },
+    {
+      "path": "images/jedaero-splash-400x400.png",
+      "sha1": "e72c61aa5fc75a24f938bcea00581c934e0e603c"
+    },
+    {
+      "path": "images/jedaero-splash-600x600.png",
+      "sha1": "e79f37dcb37b57791fd9215b489f8d06474652a1"
+    },
+    {
+      "path": "images/jedaero.png",
       "sha1": "b2fa4abfd375859c38afa29eb66ed8dfc1666de4"
+    },
+    {
+      "path": "images/jedaero-40x40.png",
+      "sha1": "706fe2d132f4ead48bb7a73f61c4f1b148d7692f"
+    },
+    {
+      "path": "images/jedaero-58x58.png",
+      "sha1": "bddb4698dcc5720348dc2d9e2bb9a34207c91116"
+    },
+    {
+      "path": "images/jedaero-60x60.png",
+      "sha1": "adced4682b81552f09f6ec76e76865a18d25e016"
+    },
+    {
+      "path": "images/jedaero-80x80.png",
+      "sha1": "7a1df6799ffbfdd1bf1dc0b54170bdc9db2a3133"
+    },
+    {
+      "path": "images/jedaero-87x87.png",
+      "sha1": "3f05a727d68646d29664855ce426cd574148af20"
+    },
+    {
+      "path": "images/jedaero-120x120.png",
+      "sha1": "ab8cb0abcc378ec1736639e475031e7f7f6ecee9"
+    },
+    {
+      "path": "images/jedaero-180x180.png",
+      "sha1": "f6c9529cbfba7eb088028c015ab71e08243581b7"
     }
   ]
 }
