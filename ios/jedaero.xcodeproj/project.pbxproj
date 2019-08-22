@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* jedaeroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* jedaeroTests.m */; };
 		0A58524AC88DDAAC082EE3A1 /* libPods-jedaero.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF8AF8C515A5A230DFAFFAB /* libPods-jedaero.a */; };
@@ -36,6 +35,7 @@
 		C2E9CD812303A3A900B22690 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD712303A3A900B22690 /* MaterialIcons.ttf */; };
 		C5F9623345F2CB2520CE944A /* libPods-jedaero-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF854C5246B6EF2648084CB /* libPods-jedaero-tvOS.a */; };
 		EA8DF155DB735F8B3EA82FCD /* libPods-jedaeroTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FC4A918DB3032A953445EC /* libPods-jedaeroTests.a */; };
+		0FB07E5A391149D3944EDBE4 /* jedaero_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E107D34EC97040AD89ECE0EB /* jedaero_icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +100,7 @@
 		C2E9CD712303A3A900B22690 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		E107D34EC97040AD89ECE0EB /* jedaero_icon.png */ = {isa = PBXFileReference; name = "jedaero_icon.png"; path = "../images/jedaero_icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +201,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				DFDF7E289AEA14674C5FF919 /* Pods */,
+				F5D9B0B2B83B4ADBBE27EFF4 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -255,6 +257,15 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		F5D9B0B2B83B4ADBBE27EFF4 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				E107D34EC97040AD89ECE0EB /* jedaero_icon.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -344,7 +355,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -422,6 +433,7 @@
 				C2E9CD7B2303A3A900B22690 /* FontAwesome5_Solid.ttf in Resources */,
 				C2E9CD772303A3A900B22690 /* MaterialCommunityIcons.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				0FB07E5A391149D3944EDBE4 /* jedaero_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
