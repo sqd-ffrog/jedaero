@@ -268,24 +268,23 @@ const isPassDormitory = async () => {
         return {
             resultCode: parseInt(res['result_flag']) || 0,
             get description() {
-                console.log(this.resultCode);
                 switch(this.resultCode) {
                     case 1:
-                        return `축하합니다! ${this.appliedPlace}에 합격하셨습니다!${'\n'}${'\n'}생활관비 납부기간 확인하는거 잊지 마세요🙌🏼`;
+                        return `축하합니다! ${this.appliedPlace}에 합격하셨습니다!🙌🏼${'\n'}${'\n'}생활관비 납부기간 확인하는거 잊지 마세요‼️`;
                     case 2:
-                        return `축하합니다! ${this.appliedPlace}에 합격하셨습니다!🙌🏼${'\n'}${'\n'}${this.allocatedPlace} ${this.allocatedRoomNo}에 배정받으셨습니다`;
+                        return `축하합니다! ${this.appliedPlace}에 합격하셨습니다!🙌🏼${'\n'}${'\n'}${this.allocatedPlace} ${this.allocatedRoomNo}에 배정받으셨습니다👍🏻`;
                     case 3:
                         return `현재 ${this.appliedPlace} ${this.competitor} 대기 순번 ${this.rank}번입니다!`;
                     case 4:
-                        return `죄송합니다. 서류미제출로 불합격하셨습니다.`;
+                        return `죄송합니다. 서류미제출로 불합격하셨습니다. 😥`;
                     case 5: 
-                        return `불합격하셨습니다.`;
+                        return `불합격하셨습니다. 😥`;
                     case 6:
-                        return `현재 합격자 발표 기간이 아닙니다.`;
+                        return `현재 합격자 발표 기간이 아닙니다..`;
                     case 7:
-                        return `현재 합격자 발표 기간이 아닙ㄴ다.`;
+                        return `현재 합격자 발표 기간이 아닙니다..`;
                     case 0:
-                        return `대상자가 아니세요...`
+                        return `생활관 대상자가 아니신데요? 🤫`
                 }
             },
             collectTitle: res['collect_title'],
