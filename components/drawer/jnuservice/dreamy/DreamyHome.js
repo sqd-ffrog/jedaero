@@ -1,34 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView, Alert, FlatList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import LoginBar from './card/LoginBar';
-import AsyncStorage from '@react-native-community/async-storage';
 import DreamyCard from './components/DreamyCard';
 import colorPalette from '../../../styles/colorPalette';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { normalize } from 'react-native-elements';
-import * as Keychain from 'react-native-keychain';
 import { checkLogin } from '../../../../service/jedaeroService';
 import { withNavigationFocus } from 'react-navigation';
 
 const totalMenu = [
     {
         icon: 'attachment',
-        name: '수강 게시판',
+        name: `강의${'\n'}게시판`,
         routeName: 'LectureBoard'
     },
     {
         icon: 'office-building',
-        name: '생활관 입주',
+        name: `생활관 ${'\n'}합격조회`,
         routeName: 'PassDormitory'
     },
     {
         icon: 'book-open-outline',
-        name: '공결 승인',
+        name: `공결요청${'\n'}승인확인`,
         routeName: null,
     },
 ]
 
-const itemMaxSize = Dimensions.get('window').width / 3;
 
 const MenuHeader = () => (
     <View style={styles.totalMenuHeader}>
@@ -57,7 +54,7 @@ const DreamyHome = ({navigation, isFocused}) => {
     const MenuItem = ({item: {icon, name, routeName}}) => (
         <TouchableOpacity style={{...styles.totalMenuItem}} onPress={() => afterLogin(() => navigation.navigate(routeName))}>
             <Icon name={icon} size={48} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} />
-            <Text style={styles.itemText}>{name}</Text>
+            <Text numberOfLines={2} style={styles.itemText}>{name}</Text>
         </TouchableOpacity>
     )
 
@@ -109,16 +106,15 @@ const styles = StyleSheet.create({
     },
     totalMenuItem: {
         backgroundColor: colorPalette.cardBackgroundColor,
-        minWidth: 109,
-        height: 109,
+        width: 109,
         borderWidth:0.5,
         borderColor:colorPalette.cardBorderColor,
         padding: 16,
-        // justifyContent: 'space-between',
+        justifyContent: 'flex-end',
         alignItems: 'center',
     },
     itemText: {
-        fontSize: normalize(12),
+        fontSize: 12,
         fontWeight: 'bold',
         textAlign: 'center'
     }

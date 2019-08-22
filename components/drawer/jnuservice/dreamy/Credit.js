@@ -77,7 +77,10 @@ Credit.navigationOptions = {
 
 const styles = StyleSheet.create({
     summary: {
-        padding: 16
+        padding: 16,
+        marginHorizontal: 16,
+        borderRadius: 8,
+        backgroundColor: colorPalette.cardBackgroundColor,
     },  
     summaryName: {
         fontSize: normalize(16),

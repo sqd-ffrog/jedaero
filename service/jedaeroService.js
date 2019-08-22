@@ -240,7 +240,6 @@ const downloadLecturePostFile = async (classCode, professorCode, year, semester,
         await Dreamy._openSession(account, password);
         res = await Dreamy.downloadLecurePostFile(account, userGb, departCode, classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
     } finally { 
-        console.log(res);
         return res;
     }
 }
@@ -255,7 +254,7 @@ const logoutDreamy = async () => {
 }
 
 const isPassDormitory = async () => {
-    const { username: account, password: baseInfo } = Keychain.getGenericPassword();
+    const { username: account, password: baseInfo } = await Keychain.getGenericPassword();
     const { password } = JSON.parse(baseInfo);
     let res;
     try {
@@ -265,8 +264,30 @@ const isPassDormitory = async () => {
         res = await Dreamy.isPassDormitory(account);
     } finally {
         if(!res) return {};
+        res = res['VALUE'];
         return {
-            resultCode: parseInt(res['result_flag'], 10) || 0,
+            resultCode: parseInt(res['result_flag']) || 0,
+            get description() {
+                console.log(this.resultCode);
+                switch(this.resultCode) {
+                    case 1:
+                        return `축하합니다! ${this.appliedPlace}에 합격하셨습니다!${'\n'}${'\n'}생활관비 납부기간 확인하는거 잊지 마세요🙌🏼`;
+                    case 2:
+                        return `축하합니다! ${this.appliedPlace}에 합격하셨습니다!🙌🏼${'\n'}${'\n'}${this.allocatedPlace} ${this.allocatedRoomNo}에 배정받으셨습니다`;
+                    case 3:
+                        return `현재 ${this.appliedPlace} ${this.competitor} 대기 순번 ${this.rank}번입니다!`;
+                    case 4:
+                        return `죄송합니다. 서류미제출로 불합격하셨습니다.`;
+                    case 5: 
+                        return `불합격하셨습니다.`;
+                    case 6:
+                        return `현재 합격자 발표 기간이 아닙니다.`;
+                    case 7:
+                        return `현재 합격자 발표 기간이 아닙ㄴ다.`;
+                    case 0:
+                        return `대상자가 아니세요...`
+                }
+            },
             collectTitle: res['collect_title'],
             appliedPlace: res['app_build_cd_nm'],
             allocatedPlace: res['alloc_build'],
