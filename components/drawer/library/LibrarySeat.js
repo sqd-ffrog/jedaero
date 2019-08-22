@@ -1,67 +1,52 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment, useState, useEffect } from 'react'
 import { ScrollView, View, Text, StyleSheet, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { normalize } from 'react-native-elements';
 import { LibrarySeatAPI } from '../../../tool/jedaero';
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
+import colorPalette from '../../styles/colorPalette';
 
-export default class LibrarySeat extends Component {
-    constructor(props) {
-        super(props);
-        this.state={};
+const LibrarySeat = () => {
+    const [data, setData] = useState(null);
+    const getLibrarySeatData = async () => {
+        setData(await LibrarySeatAPI())
     }
-
-    componentDidMount = () => this.getData();
-    
-    getData = async () => {
-        let data = await LibrarySeatAPI();
-        this.setState({data});
-
-    }
-
-    _renderItem = ({item, key}) => (
+    const _renderItem = ({item, key}) => (
         <TableRow key={key} left={item['table1']} right={`${item['table3']} / ${item['table2']}`} />
     )
-
-    _keyExtractor = (item, index) => item['table0'];
-
-    render() {
-        if (!this.state.data) {
-            return (
-                <View style={{justifyContent:'center', alignItems:'center'}}>
-                    <ActivityIndicator size="large" />
-                </View>
-            )
-           
-        } else {
-            return (
-                <View>
-                    <Text style={styles.titleText}>도서관 잔여 좌석 수 </Text>
-                    <TouchableOpacity
-                    style={{
-                        flexDirection:'row',
-                        justifyContent:'flex-end',
-                        borderRadius:8,
-                        paddingHorizontal:8,
-                        paddingVertical:4,
-                        borderWidth:0.5,
-                        borderColor:'#d7d7d7',
-                        backgroundColor:'#d7d7d7'
-                    }}
-                    onPress={this.getData}
-                    >
-                    <Icon name="refresh" size={normalize(14)} color='#000000'/>
-                    <Text style={{fontSize:normalize(14), color:'#000000'}}> 새로고침</Text>
-                    </TouchableOpacity>
-                    <FlatList 
-                        keyExtractor={this._keyExtractor}
-                        contentContainerStyle={styles.listContainer}
-                        data={this.state.data.row}
-                        renderItem={this._renderItem}
-                    />
-                </View>
-            )
-        }
-    }
+    const _keyExtractor = (item, index) => item['table0'];
+    useEffect(() => { getLibrarySeatData(); }, [])
+    return !data ? (
+        <View style={{justifyContent:'center', alignItems:'center'}}>
+            <ActivityIndicator size="large" />
+        </View>
+    ) : (
+        <Fragment>
+            <Text style={styles.titleText}>도서관 잔여 좌석 수 </Text>
+            <TouchableOpacity
+            style={{
+                flexDirection:'row',
+                justifyContent:'flex-end',
+                borderRadius:8,
+                paddingHorizontal:8,
+                paddingVertical:4,
+                borderWidth:0.5,
+                borderColor:colorPalette.cardBorderColor,
+                backgroundColor:colorPalette.cardBackgroundColor
+            }}
+            onPress={getLibrarySeatData}
+            >
+            <Icon name="refresh" size={normalize(14)} color={colorPalette.textColor}/>
+            <Text style={{fontSize:normalize(14), color:colorPalette.textColor}}> 새로고침</Text>
+            </TouchableOpacity>
+            <FlatList 
+                keyExtractor={_keyExtractor}
+                contentContainerStyle={styles.listContainer}
+                data={data.row}
+                nestedScrollEnabled={true}
+                renderItem={_renderItem}
+            />
+        </Fragment>
+    )
 }
 
 class TableRow extends Component {
@@ -102,7 +87,8 @@ const styles = StyleSheet.create({
     rowUnit: {
         flexDirection:'row',
         borderBottomWidth:0.5,
-        borderColor:'#d7d7d7'
+        borderColor:'#d7d7d7',
+        backgroundColor: colorPalette.cardBackgroundColor,
     },
     rowUnitLeft: {
         flex:2.5,
@@ -115,7 +101,7 @@ const styles = StyleSheet.create({
         paddingVertical:4,
         justifyContent:'center',
         flex: 1,
-        backgroundColor:'#334955'
+        backgroundColor:colorPalette.mainColor,
     },
     rowUnitTextLeft: {
         fontSize:normalize(16),
@@ -127,3 +113,66 @@ const styles = StyleSheet.create({
         textAlign:'center'
     }
 })
+
+
+export default LibrarySeat;
+// export default class LibrarySeat extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state={};
+//     }
+
+//     componentDidMount = () => this.getData();
+    
+//     getData = async () => {
+//         let data = await LibrarySeatAPI();
+//         this.setState({data});
+
+//     }
+
+//     _renderItem = ({item, key}) => (
+//         <TableRow key={key} left={item['table1']} right={`${item['table3']} / ${item['table2']}`} />
+//     )
+
+//     _keyExtractor = (item, index) => item['table0'];
+
+//     render() {
+//         if (!this.state.data) {
+//             return (
+//                 <View style={{justifyContent:'center', alignItems:'center'}}>
+//                     <ActivityIndicator size="large" />
+//                 </View>
+//             )
+           
+//         } else {
+//             return (
+//                 <Fragment>
+//                     <Text style={styles.titleText}>도서관 잔여 좌석 수 </Text>
+//                     <TouchableOpacity
+//                     style={{
+//                         flexDirection:'row',
+//                         justifyContent:'flex-end',
+//                         borderRadius:8,
+//                         paddingHorizontal:8,
+//                         paddingVertical:4,
+//                         borderWidth:0.5,
+//                         borderColor:'#d7d7d7',
+//                         backgroundColor:'#d7d7d7'
+//                     }}
+//                     onPress={this.getData}
+//                     >
+//                     <Icon name="refresh" size={normalize(14)} color='#000000'/>
+//                     <Text style={{fontSize:normalize(14), color:'#000000'}}> 새로고침</Text>
+//                     </TouchableOpacity>
+//                     <FlatList 
+//                         keyExtractor={this._keyExtractor}
+//                         contentContainerStyle={styles.listContainer}
+//                         data={this.state.data.row}
+//                         renderItem={this._renderItem}
+//                     />
+//                 </Fragment>
+//             )
+//         }
+//     }
+// }
+

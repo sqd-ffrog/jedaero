@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- For React Native Hot-reloading system -->
+        <!-- If you are running on a device insert your computer IP -->
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">117.17.102.226</domain>
+
+        <domain includeSubdomains="true">dreamy.jejunu.ac.kr</domain>
+        <domain includeSubdomains="true">www.jejunu.ac.kr</domain>
+        <domain includeSubdomains="true">203.253.194.135</domain>
+        <domain includeSubdomains="true">elearning.jejunu.ac.kr</domain>
+        <domain includeSubdomains="true">lib.jejunu.ac.kr</domain>
+        <domain includeSubdomains="true">dormitory.neo-internet.co.kr</domain>
+        
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </domain-config>
+
+    <base-config cleartextTrafficPermitted="false" />
+</network-security-config>

@@ -1,25 +1,34 @@
-import React, { Component } from 'react'
-import { Platform, StatusBar, View ,Alert,} from 'react-native'
-import { createAppContainer,createStackNavigator, SafeAreaView, } from 'react-navigation'
-import MainTabNavigation from './MainTabNavigation';
-import settingsStackNavigator from './drawer/settings/settingsStackNavigator';
+/**
+ * Aerain
+ */
 
-// const jedaero = ({navigation}) => (
-//     <SafeAreaView style={{flex: 1, 
-//             paddingTop: (Platform.OS === 'android' ? StatusBar.currentHeight : 0), backgroundColor: '#ffffff' }} forceInset={{top: 'never', bottom: 'never'}}>
-//         <MainTabNavigation navigation={navigation} />
-//     </SafeAreaView>
-// );
+import { createAppContainer,createStackNavigator, } from 'react-navigation'
+import MainBottomTabNavigation from './navigations/MainBottomTabNavigation';
+import InfoHome from './info/InfoHome';
+import { stackNavigationConfig } from './navigations/navigationConfigs';
+import Developer from './info/Developer';
+import License from './info/License';
+import Login from './info/Login';
 
-let MainStackNavigator = createStackNavigator({
+const MainStackNavigator = createStackNavigator({
     Jedaero: {
-        screen: MainTabNavigation
+        screen: MainBottomTabNavigation,
+        navigationOptions: () => ({
+            header: null,
+        })
     },
-    settings: {
-        screen: settingsStackNavigator
+    Info: {
+        screen: InfoHome,
+    },
+    Developer : {
+        screen: Developer
+    },
+    License: {
+        screen: License
+    },
+    Login: {
+        screen: Login
     }
-}, {
-    headerMode: 'none'
-})
+}, stackNavigationConfig)
 
 export default createAppContainer(MainStackNavigator);
