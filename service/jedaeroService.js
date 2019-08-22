@@ -284,7 +284,7 @@ const isPassDormitory = async () => {
                     case 7:
                         return `현재 합격자 발표 기간이 아닙니다..`;
                     case 0:
-                        return `생활관 대상자가 아니신데요? 🤫`
+                        return `생활관 대상자가 아니신데요? 🤔`
                 }
             },
             collectTitle: res['collect_title'],
