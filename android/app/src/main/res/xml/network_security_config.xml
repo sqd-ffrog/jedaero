@@ -12,7 +12,7 @@
         <domain includeSubdomains="true">elearning.jejunu.ac.kr</domain>
         <domain includeSubdomains="true">lib.jejunu.ac.kr</domain>
         <domain includeSubdomains="true">dormitory.neo-internet.co.kr</domain>
-        
+        <domain includeSubdomains="true">172.27.71.142</domain>
         <trust-anchors>
             <certificates src="system" />
             <certificates src="user" />
