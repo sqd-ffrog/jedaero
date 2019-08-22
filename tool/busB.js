@@ -4,16 +4,9 @@ import {AsyncStorage} from 'react-native';
 /* 버스 도착시간 계산 알고리즘  */
 
 export default function daycheck(timeTable, route) {
-    var a = moment();
-    var day = a.day();
+    const day = new Date().getDay();
     // 0:일요일 ~ 6:토요일 즉,주말일때 운행없음
-    if(day === 0 || day === 6) { 
-       return "운행없어요.."
-    //    return busB(timeTable, route);
-    }
-    else { 
-       return busB(timeTable, route);
-    }
+    return (day === 0 || day === 6) ? "운행없어요.." : busB(timeTable, route);
 }
 
 function busB(timeTable, route ,i){
