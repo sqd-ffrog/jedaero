@@ -41,7 +41,7 @@ const TabNav = createMaterialBottomTabNavigator({
             title: '학사일정',
             tabBarIcon: ({tintColor, focused}) => (<Icon name={focused ? "clipboard" : "clipboard-outline"} color={tintColor} size={iconSize} style={{width: iconSize, height: iconSize}}/>)
         }
-    },    
+    },
 }, {
     ...jedaeroBottomTabNavigationConfig, 
     initialRouteName: "Dreamy"

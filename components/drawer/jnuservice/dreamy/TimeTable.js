@@ -37,10 +37,6 @@ const TimeTable = ({navigation}) => {
         })();
     }, [day])
 
-    useEffect(() => {
-        console.log(timeTable, '입니다.')
-    }, [timeTable])
-
     const scheduleHeader = () => (
         <View style={styles.scheduleHeader}>
             <Text style={styles.rowHead} />
