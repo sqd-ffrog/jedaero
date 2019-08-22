@@ -8,7 +8,8 @@ const PassDormitory = () => {
     const [resultDetail, setResultDetail] = useState('');
     const getResult = async () => setResult(await isPassDormitory());
     useEffect(() => { getResult() }, []);
-    useEffect(() => { if(!result) {
+    useEffect(() => { if(result) {
+        console.log(result);
         const { resultCode, collectTitle, appliedPlace, allocatedPlace, allocatedRoomNo, name, id, rank, competitor } = result;
         let resultDetail;
         switch(resultCode) {
@@ -19,7 +20,7 @@ const PassDormitory = () => {
                 resultDetail = `축하합니다! ${appliedPlace}에 합격하셨습니다! ${allocatedPlace} ${allocatedRoomNo}에 배정받으셨습니다`;
                 break;
             case 3:
-                resultDetail = `현재 ${appliedPlace} ${competitor} 대기 순번 ${rank} 입니다!`;
+                resultDetail = `현재 ${appliedPlace} ${competitor} 대기 순번 ${rank}번입니다!`;
                 break;
             case 4:
                 resultDetail = `서류미제출로 불합격하셨습니다.`;
@@ -33,9 +34,10 @@ const PassDormitory = () => {
             case 7:
                 resultDetail = `현재 합격자 발표 기간이 아닙ㄴ다.`;
                 break;
-
-            
+            default:
+                break;
         }
+        setResultDetail(resultDetail);
     }}, [ result ])
     return !result ? (
         <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
@@ -46,3 +48,5 @@ const PassDormitory = () => {
         <View><Text>{resultDetail}</Text></View>
     )
 }
+
+export default PassDormitory;

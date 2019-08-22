@@ -266,7 +266,7 @@ const isPassDormitory = async () => {
     } finally {
         if(!res) return {};
         return {
-            resultCode: parseInt(res['result_flag'], 10),
+            resultCode: parseInt(res['result_flag'], 10) || 0,
             collectTitle: res['collect_title'],
             appliedPlace: res['app_build_cd_nm'],
             allocatedPlace: res['alloc_build'],
@@ -278,4 +278,10 @@ const isPassDormitory = async () => {
         }
     }
 }
-export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory }
+
+const checkLogin = async () => {
+    const credentials = await Keychain.getGenericPassword();
+    return !!credentials;
+}
+
+export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin }

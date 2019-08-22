@@ -6,6 +6,7 @@ import DormCard from './card/DormCard';
 import HaksikCard from './card/HaksikCard';
 import Bustime from './card/BusTime';
 import SmartBlock from './card/SmartBlock';
+import { checkLogin } from '../../../service/jedaeroService';
 
 const Bus = ({navigation}) => (
     <ScrollView contentContainerStyle={mainScreen.busView} >
