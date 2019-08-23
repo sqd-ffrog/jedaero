@@ -79,34 +79,42 @@ const Dreamy = {
         return (await this.fetchData(uri, body)).json();
     },
     downloadLecurePostFile: async function (
-        account, 
-        userGb, 
-        departCode, 
-        classCode, 
-        professorCode, 
-        year, 
-        semester, 
-        lectureCode, 
-        lectureName, 
-        professorName, 
-        encoded, 
-        fileName, 
-        num,
-        root,
-        reply,
-        email,
-        title,
-        author,
-        date,
-        count
+        account = '', 
+        userGb = '', 
+        departCode = '', 
+        classCode = '', 
+        professorCode = '', 
+        year = 0, 
+        semester = 0, 
+        lectureCode = '', 
+        lectureName = '', 
+        professorName = '', 
+        encoded = '', 
+        fileName = '', 
+        num = 0,
+        root = 0,
+        reply = 0,
+        email = '',
+        title = '',
+        author = '',
+        date = '',
+        count = 0
     ) {
         const uri = 'https://dreamy.jejunu.ac.kr/frame/doumi_1020e.jejunu';
         const realPath = `/jnujeus/was/source/doumi/board/`;
         const body = `member_no=${account}&user_gb=${userGb}&init_dept_cd=${departCode}&mode=doDownLoadFile&common_ban_no=${classCode}&habgang_yn=&common_prof_no=${professorCode}&std_info=&search_student_no=&search_nm=&search_student_popup=&common_curri_year=${year}&common_term_gb=${semester}&cb_pagingMst=1&common_subject_cd=${lectureCode}&common_subject_nm=${encodeURIComponent(lectureName)}&common_prof_nm=${encodeURIComponent(professorName)}&smethod=1&sstring=&cb_pagingDtl=1&tempfilename=${encoded}&filename=${encodeURIComponent(fileName)}&file_path=${encodeURIComponent(realPath)}&curri_year=${year}&term_gb=${semester}&ban_no=${classCode}&num=${num}&root=${root}&reply=${reply}&email=${encodeURIComponent(email)}&file_root=${encodeURIComponent(`${realPath}${year}`)}&v_title=${encodeURIComponent(title)}&v_name=${encodeURIComponent(author)}&v_create_dt=${date}&v_count=${count}`;
         return RNFetchBlob.config({
-            path: `${Platform.OS === 'ios' ? RNFetchBlob.fs.dirs.DocumentDir : RNFetchBlob.fs.dirs.DownloadDir}/${fileName}`,
+            path: `${Platform.select({ios: RNFetchBlob.fs.dirs.DocumentDir, android: RNFetchBlob.fs.dirs.DownloadDir})}/${fileName}`,
             trusty: true, 
             fileCache: true,
+            // addAndroidDownloads: {
+            //     useDownloadManager: true,
+            //     title: fileName,
+            //     description: "제대로 가자",
+            //     mime:'application/octet-stream',
+            //     mediaScannable: true,
+            //     notification: true,
+            // }
         }).fetch('POST', uri, {
             "Content-Type": "application/x-www-form-urlencoded"
         }, body);

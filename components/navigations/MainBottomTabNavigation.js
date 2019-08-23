@@ -44,7 +44,7 @@ const TabNav = createMaterialBottomTabNavigator({
     },
 }, {
     ...jedaeroBottomTabNavigationConfig, 
-    initialRouteName: "Home"
+    initialRouteName: "Dreamy"
 })
 
 TabNav.navigationOptions = () => ({
