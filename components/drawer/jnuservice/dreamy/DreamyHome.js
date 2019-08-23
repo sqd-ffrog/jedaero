@@ -19,11 +19,11 @@ const totalMenu = [
         name: `생활관 ${'\n'}합격조회`,
         routeName: 'PassDormitory'
     },
-    // {
-    //     icon: 'book-open-outline',
-    //     name: `공결요청${'\n'}승인확인`,
-    //     routeName: null,
-    // },
+    {
+        icon: 'book-open-outline',
+        name: `교수계획서 ${'\n'}조회`,
+        routeName: "LecturePlan",
+    },
 ]
 
 

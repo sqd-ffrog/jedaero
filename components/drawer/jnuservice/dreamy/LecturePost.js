@@ -6,6 +6,7 @@ import { normalize } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { requestDownloadPermission } from '../../../../tool/requestPermission';
 import RNFetchBlob from 'rn-fetch-blob';
+import getMimeType from '../../../../tool/openFile';
 
 const PostHeader = ({title, author, date}) => (
     <View style={{...styles.card, ...styles.postHeader}}>
@@ -38,9 +39,12 @@ const PostFile = ({post: {author, count, date, email, title, file}, lectureDetai
         }
         try {
             const res = await downloadLecturePostFile(classCode, professorCode, year, semester, lectureCode, lectureName, professorName, encoded, fileName, num, root, reply, email, title, author, date, count);
-            console.log(res);
-            if(res) Alert.alert("다운로드가 완료되었습니다.");
+            !!res && Platform.select({
+                ios: () => RNFetchBlob.ios.openDocument(res.path()),
+                android: () => RNFetchBlob.android.actionViewIntent(res.path(), getMimeType(fileName))
+            })();
         } catch (err) {
+            console.warn(err);
             Alert.alert("다운로드에 실패하였습니다. 다시 시도해 주세요.");
         }
     }

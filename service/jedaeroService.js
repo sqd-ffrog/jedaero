@@ -296,12 +296,13 @@ const getLecturePlanList = async data => {
     try {
         res = await Dreamy.getLecturePlanList(data);
     } catch (err) {
+        console.warn(err);
         const { username: account, password: baseInfo } = await Keychain.getGenericPassword();
         const { password } = JSON.parse(baseInfo);
         await Dreamy._openSession(account, password);
         res = await Dreamy.getLecturePlanList(data);
     } finally {
-        if(!res) return {};
+        if(!res) return [];
         return res["GRID_DATA"].map(row => ({
             classCode: row["ban_no"],
             credit: row["credit"],
