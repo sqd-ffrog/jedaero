@@ -5,28 +5,7 @@ import colorPalette from '../../../styles/colorPalette';
 import { normalize } from 'react-native-elements';
 import Picker from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/Ionicons';
-const semesterData = [
-    {
-        label: "1학기",
-        value: 10,
-    },
-    {
-        label: "하기계절",
-        value: 11,
-    },
-    {
-        label: "2학기",
-        value: 20,
-    },
-    {
-        label: "동기계절",
-        value: 21,
-    },
-    {
-        label: "해당없음",
-        value: 0,
-    }
-]
+import semesterData from '../../../../jsons/semesterMap';
 
 const getSemester = (month) => {
     if(month === 0) return 21;
