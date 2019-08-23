@@ -1,6 +1,6 @@
 import React, {useEffect, useState, createRef} from 'react';
-import { View, Text, TextInput, StyleSheet, Button, Animated, Alert } from 'react-native';
-import { normalize } from 'react-native-elements';
+import { View, Text, TextInput, StyleSheet, Animated, Alert, ScrollView } from 'react-native';
+import { normalize, Button } from 'react-native-elements';
 import colorPalette from '../styles/colorPalette';
 import { Dreamy } from '../../tool/jedaero';
 import { getBaseInfo } from '../../service/jedaeroService';
@@ -73,7 +73,7 @@ const Login = ({navigation}) => {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.text}>학번</Text>
             <TextInput 
                 ref={accountRef}
@@ -99,13 +99,15 @@ const Login = ({navigation}) => {
             <Border width={focusPasswordValue.interpolate(interpolate)}/>
             <Button
                 onPress={submitToDreamy}
-                style={styles.button}
+                buttonStyle={styles.button}
+                titleStyle={styles.buttonText}
                 title="로그인"
                 disabled={isSubmitting}
                 color={colorPalette.mainColor}
                 accessibilityLabel="로그인 버튼"
+                type="solid"
             />
-        </View>
+        </ScrollView>
     )
 }
  
@@ -115,7 +117,8 @@ Login.navigationOptions = {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 32
+        padding: 32,
+        justifyContent: 'center',
     },
     text: {
         fontSize: normalize(16),
@@ -129,7 +132,12 @@ const styles = StyleSheet.create({
     },
     button: {
         marginVertical: 16,
-        paddingVertical: 16
+        paddingVertical: 16,
+        minHeight: 48,
+        backgroundColor: colorPalette.mainColor
+    },
+    buttonText: {
+        fontSize: normalize(18)
     },
     border: {
         borderWidth: 1,
