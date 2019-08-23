@@ -42,6 +42,6 @@ const DreamyStackNavigation = createStackNavigator({
     LecturePlan: {
         screen: LecturePlan,
     }
-}, {...stackNavigationConfig, initialRouteName: "DreamyHome"})
+}, {...stackNavigationConfig, initialRouteName: "LecturePlan"})
 
 export default DreamyStackNavigation

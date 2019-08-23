@@ -291,6 +291,11 @@ const isPassDormitory = async () => {
     }
 }
 
+/**
+ * 
+ * @param {object} data 
+ * @return { classCode, credit, professorName, takeName, lectureCode, lectureName, time }
+ */
 const getLecturePlanList = async data => {
     let res;
     try {
