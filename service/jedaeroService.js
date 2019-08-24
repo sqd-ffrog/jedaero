@@ -38,13 +38,12 @@ const getTimeTable = async (year,month,day) => {
     }
 }
 
-const getBaseInfo = async (account) => {
+const getBaseInfo = async (account, password) => {
     // 학적 조회. 여기서부터 단과대학코드, 제적코드 등만 파싱해서 저장. 기타 개인정보는 전부 배제.
     let res;
     try {
         res = await Dreamy._getBaseInfo(account);
     } catch(err) {
-        const { password } = await Keychain.getGenericPassword();
         await Dreamy._openSession(account, password);
         res = await Dreamy._getBaseInfo(account);
     } finally {

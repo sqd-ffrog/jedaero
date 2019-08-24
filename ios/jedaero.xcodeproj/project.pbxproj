@@ -5,18 +5,27 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* jedaeroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* jedaeroTests.m */; };
+		01084B259A714EEB85542EFC /* jedaero-splash-200x200.png in Resources */ = {isa = PBXBuildFile; fileRef = C09B0B723556427E8C175169 /* jedaero-splash-200x200.png */; };
 		0A58524AC88DDAAC082EE3A1 /* libPods-jedaero.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF8AF8C515A5A230DFAFFAB /* libPods-jedaero.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		16CC1BF2899A4F3C8A33E03D /* jedaero-180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = 35AEDE1AC0B84B4D914F5356 /* jedaero-180x180.png */; };
+		2ADBEC3716EC486AA40F0CAD /* jedaero.png in Resources */ = {isa = PBXBuildFile; fileRef = A9915086F1FA4B248E059E4B /* jedaero.png */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* jedaeroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* jedaeroTests.m */; };
 		6E8F0D0EAF27761195BB3561 /* libPods-jedaero-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35D259C9B9C69CB9F4155D78 /* libPods-jedaero-tvOSTests.a */; };
+		7909EBDF767740A982AEFB8E /* jedaero-87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = 129C409993274E2C8CE948CC /* jedaero-87x87.png */; };
+		8C7832EED95A4CABA878DA09 /* jedaero-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = D217C1F37251482A953AB48F /* jedaero-40x40.png */; };
+		ABBF3C96F21D4101A5A77802 /* jedaero-60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F9ADB9CBDB4B27A47DB781 /* jedaero-60x60.png */; };
+		AC09A61A9F1C47C4B84368CC /* jedaero-splash-600x600.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C15D34D0D84A288CC36D28 /* jedaero-splash-600x600.png */; };
+		C19FCC52406D4E128ED6F805 /* jedaero-120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = FE298A39169442B9BEFB7D03 /* jedaero-120x120.png */; };
 		C2E9CD722303A3A900B22690 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD622303A3A900B22690 /* Fontisto.ttf */; };
 		C2E9CD732303A3A900B22690 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD632303A3A900B22690 /* Octicons.ttf */; };
 		C2E9CD742303A3A900B22690 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD642303A3A900B22690 /* Feather.ttf */; };
@@ -34,18 +43,9 @@
 		C2E9CD802303A3A900B22690 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD702303A3A900B22690 /* SimpleLineIcons.ttf */; };
 		C2E9CD812303A3A900B22690 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD712303A3A900B22690 /* MaterialIcons.ttf */; };
 		C5F9623345F2CB2520CE944A /* libPods-jedaero-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF854C5246B6EF2648084CB /* libPods-jedaero-tvOS.a */; };
-		EA8DF155DB735F8B3EA82FCD /* libPods-jedaeroTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FC4A918DB3032A953445EC /* libPods-jedaeroTests.a */; };
-		ABBF3C96F21D4101A5A77802 /* jedaero-60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F9ADB9CBDB4B27A47DB781 /* jedaero-60x60.png */; };
-		CCA6A2A568004E2EB1A08E1D /* jedaero-58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B156210F38477CABA9A7E1 /* jedaero-58x58.png */; };
 		CB84D3766C204BEEA156813F /* jedaero-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B8285CBEDC14273839668A2 /* jedaero-80x80.png */; };
-		7909EBDF767740A982AEFB8E /* jedaero-87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = 129C409993274E2C8CE948CC /* jedaero-87x87.png */; };
-		C19FCC52406D4E128ED6F805 /* jedaero-120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = FE298A39169442B9BEFB7D03 /* jedaero-120x120.png */; };
-		16CC1BF2899A4F3C8A33E03D /* jedaero-180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = 35AEDE1AC0B84B4D914F5356 /* jedaero-180x180.png */; };
-		01084B259A714EEB85542EFC /* jedaero-splash-200x200.png in Resources */ = {isa = PBXBuildFile; fileRef = C09B0B723556427E8C175169 /* jedaero-splash-200x200.png */; };
+		CCA6A2A568004E2EB1A08E1D /* jedaero-58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B156210F38477CABA9A7E1 /* jedaero-58x58.png */; };
 		EB0250A2BFB04807B46A7DC3 /* jedaero-splash-400x400.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E43118BB1BC40C6888D8DB3 /* jedaero-splash-400x400.png */; };
-		AC09A61A9F1C47C4B84368CC /* jedaero-splash-600x600.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C15D34D0D84A288CC36D28 /* jedaero-splash-600x600.png */; };
-		2ADBEC3716EC486AA40F0CAD /* jedaero.png in Resources */ = {isa = PBXBuildFile; fileRef = A9915086F1FA4B248E059E4B /* jedaero.png */; };
-		8C7832EED95A4CABA878DA09 /* jedaero-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = D217C1F37251482A953AB48F /* jedaero-40x40.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +70,7 @@
 		00E356EE1AD99517003FC87E /* jedaeroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jedaeroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* jedaeroTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jedaeroTests.m; sourceTree = "<group>"; };
+		129C409993274E2C8CE948CC /* jedaero-87x87.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "jedaero-87x87.png"; path = "../images/jedaero-87x87.png"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* jedaero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jedaero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = jedaero/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = jedaero/AppDelegate.m; sourceTree = "<group>"; };
@@ -78,19 +79,27 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = jedaero/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = jedaero/main.m; sourceTree = "<group>"; };
 		1D815E890C07D4EEED863250 /* Pods-jedaero-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jedaero-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-jedaero-tvOSTests/Pods-jedaero-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		2B8285CBEDC14273839668A2 /* jedaero-80x80.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "jedaero-80x80.png"; path = "../images/jedaero-80x80.png"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* jedaero-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jedaero-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* jedaero-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "jedaero-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35AEDE1AC0B84B4D914F5356 /* jedaero-180x180.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "jedaero-180x180.png"; path = "../images/jedaero-180x180.png"; sourceTree = "<group>"; };
+		35C15D34D0D84A288CC36D28 /* jedaero-splash-600x600.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "jedaero-splash-600x600.png"; path = "../images/jedaero-splash-600x600.png"; sourceTree = "<group>"; };
 		35D259C9B9C69CB9F4155D78 /* libPods-jedaero-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jedaero-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37F9ADB9CBDB4B27A47DB781 /* jedaero-60x60.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "jedaero-60x60.png"; path = "../images/jedaero-60x60.png"; sourceTree = "<group>"; };
+		3E43118BB1BC40C6888D8DB3 /* jedaero-splash-400x400.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "jedaero-splash-400x400.png"; path = "../images/jedaero-splash-400x400.png"; sourceTree = "<group>"; };
 		3FF854C5246B6EF2648084CB /* libPods-jedaero-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jedaero-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D50E26288DFC1348E01CB3 /* Pods-jedaero-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jedaero-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-jedaero-tvOS/Pods-jedaero-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		58F982188F9DD4B8C0EBD7AF /* Pods-jedaero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jedaero.debug.xcconfig"; path = "Target Support Files/Pods-jedaero/Pods-jedaero.debug.xcconfig"; sourceTree = "<group>"; };
+		5EAB6CFF230F0C6100553CA9 /* libPods-jedaeroTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-jedaeroTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62FC4A918DB3032A953445EC /* libPods-jedaeroTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jedaeroTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		746E01098C86CCB1D40488DC /* Pods-jedaero-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jedaero-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-jedaero-tvOSTests/Pods-jedaero-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81601DADC4906CD73ECCFA3B /* Pods-jedaeroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jedaeroTests.debug.xcconfig"; path = "Target Support Files/Pods-jedaeroTests/Pods-jedaeroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		875C8BD18C2D1F313F6FC3F2 /* Pods-jedaero-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jedaero-tvOS.release.xcconfig"; path = "Target Support Files/Pods-jedaero-tvOS/Pods-jedaero-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		8AF8AF8C515A5A230DFAFFAB /* libPods-jedaero.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jedaero.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A100AB0BCA44BCBDE3B12D5F /* Pods-jedaeroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jedaeroTests.release.xcconfig"; path = "Target Support Files/Pods-jedaeroTests/Pods-jedaeroTests.release.xcconfig"; sourceTree = "<group>"; };
+		A9915086F1FA4B248E059E4B /* jedaero.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = jedaero.png; path = ../images/jedaero.png; sourceTree = "<group>"; };
 		B6C3DECDC3F533DAB6A7EEE8 /* Pods-jedaero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jedaero.release.xcconfig"; path = "Target Support Files/Pods-jedaero/Pods-jedaero.release.xcconfig"; sourceTree = "<group>"; };
+		C09B0B723556427E8C175169 /* jedaero-splash-200x200.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "jedaero-splash-200x200.png"; path = "../images/jedaero-splash-200x200.png"; sourceTree = "<group>"; };
 		C2422F26230D159E007CBFA1 /* jedaero.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = jedaero.entitlements; path = jedaero/jedaero.entitlements; sourceTree = "<group>"; };
 		C2E9CD622303A3A900B22690 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		C2E9CD632303A3A900B22690 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
@@ -108,19 +117,11 @@
 		C2E9CD6F2303A3A900B22690 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		C2E9CD702303A3A900B22690 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		C2E9CD712303A3A900B22690 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		D217C1F37251482A953AB48F /* jedaero-40x40.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "jedaero-40x40.png"; path = "../images/jedaero-40x40.png"; sourceTree = "<group>"; };
+		E9B156210F38477CABA9A7E1 /* jedaero-58x58.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "jedaero-58x58.png"; path = "../images/jedaero-58x58.png"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		37F9ADB9CBDB4B27A47DB781 /* jedaero-60x60.png */ = {isa = PBXFileReference; name = "jedaero-60x60.png"; path = "../images/jedaero-60x60.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E9B156210F38477CABA9A7E1 /* jedaero-58x58.png */ = {isa = PBXFileReference; name = "jedaero-58x58.png"; path = "../images/jedaero-58x58.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2B8285CBEDC14273839668A2 /* jedaero-80x80.png */ = {isa = PBXFileReference; name = "jedaero-80x80.png"; path = "../images/jedaero-80x80.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		129C409993274E2C8CE948CC /* jedaero-87x87.png */ = {isa = PBXFileReference; name = "jedaero-87x87.png"; path = "../images/jedaero-87x87.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		FE298A39169442B9BEFB7D03 /* jedaero-120x120.png */ = {isa = PBXFileReference; name = "jedaero-120x120.png"; path = "../images/jedaero-120x120.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		35AEDE1AC0B84B4D914F5356 /* jedaero-180x180.png */ = {isa = PBXFileReference; name = "jedaero-180x180.png"; path = "../images/jedaero-180x180.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C09B0B723556427E8C175169 /* jedaero-splash-200x200.png */ = {isa = PBXFileReference; name = "jedaero-splash-200x200.png"; path = "../images/jedaero-splash-200x200.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3E43118BB1BC40C6888D8DB3 /* jedaero-splash-400x400.png */ = {isa = PBXFileReference; name = "jedaero-splash-400x400.png"; path = "../images/jedaero-splash-400x400.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		35C15D34D0D84A288CC36D28 /* jedaero-splash-600x600.png */ = {isa = PBXFileReference; name = "jedaero-splash-600x600.png"; path = "../images/jedaero-splash-600x600.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A9915086F1FA4B248E059E4B /* jedaero.png */ = {isa = PBXFileReference; name = "jedaero.png"; path = "../images/jedaero.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D217C1F37251482A953AB48F /* jedaero-40x40.png */ = {isa = PBXFileReference; name = "jedaero-40x40.png"; path = "../images/jedaero-40x40.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FE298A39169442B9BEFB7D03 /* jedaero-120x120.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "jedaero-120x120.png"; path = "../images/jedaero-120x120.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +129,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA8DF155DB735F8B3EA82FCD /* libPods-jedaeroTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +194,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5EAB6CFF230F0C6100553CA9 /* libPods-jedaeroTests.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				8AF8AF8C515A5A230DFAFFAB /* libPods-jedaero.a */,
@@ -279,7 +280,7 @@
 			sourceTree = "<group>";
 		};
 		F5D9B0B2B83B4ADBBE27EFF4 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				37F9ADB9CBDB4B27A47DB781 /* jedaero-60x60.png */,
 				E9B156210F38477CABA9A7E1 /* jedaero-58x58.png */,
@@ -295,7 +296,6 @@
 			);
 			name = Resources;
 			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -772,7 +772,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = jedaeroTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -782,6 +782,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jedaero.app/jedaero";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -791,8 +792,9 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = jedaeroTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -802,6 +804,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jedaero.app/jedaero";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};
@@ -815,7 +818,7 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = H3DCZV74XM;
 				INFOPLIST_FILE = jedaero/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -824,6 +827,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jnuro.jedaero;
 				PRODUCT_NAME = jedaero;
+				VALID_ARCHS = "arm64 arm64e";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -835,9 +839,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = jedaero/jedaero.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = H3DCZV74XM;
 				INFOPLIST_FILE = jedaero/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -846,6 +851,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jnuro.jedaero;
 				PRODUCT_NAME = jedaero;
+				VALID_ARCHS = "arm64 arm64e";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1006,10 +1012,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -1052,10 +1059,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};

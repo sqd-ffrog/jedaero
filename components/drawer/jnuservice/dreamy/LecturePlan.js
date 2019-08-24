@@ -45,7 +45,7 @@ const LecturePlan = ({navigation}) => {
             <Text style={styles.lectureClassCode}>{classCode}</Text>
             <View style={styles.lectureContent}>
                 <Text style={styles.lectureName}>{lectureName}</Text>
-                <Text style={styles.lectureProfessor}>{professorName} {!/폐강/.exec(professorName) && "교수님"}</Text>
+                <Text style={styles.lectureProfessor}>{professorName}{!/폐강/.exec(professorName) && " 교수님"}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -53,16 +53,17 @@ const LecturePlan = ({navigation}) => {
     return (
         <Fragment>
             <View style={styles.header}>
-                <Text>년도 및 학기</Text>
+                <Text style={{fontSize: 14}}>수강학기</Text>
                 <Input 
                     value={year}
                     onChangeText={year => setYear(year)}
                     maxLength={4}
-                    inputStyle={{fontSize: 16, textAlign: 'right'}}
-                    inputContainerStyle={{borderBottomWidth: 0}}
-                    containerStyle={{flexBasis: 64}}
+                    inputStyle={{fontSize: 14, textAlign: 'center', minHeight: undefined}}
+                    inputContainerStyle={{borderBottomWidth: 0.5, borderBottomColor: colorPalette.mainColor, width: 56, backgroundColor: colorPalette.cardBackgroundColor}}
+                    containerStyle={{width: undefined}}
                     underlineColorAndroid={colorPalette.mainColor}
                 />
+                <Text>년</Text>
                 <Picker 
                     placeholder={{}}
                     items={semesterData}
@@ -105,7 +106,7 @@ LecturePlan.navigationOptions = {
 
 const styles = StyleSheet.create({
     header: {
-        marginHorizontal: 16,
+        paddingHorizontal: 16,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
@@ -175,14 +176,14 @@ const styles = StyleSheet.create({
 
 const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
-      fontSize: 16,
+      fontSize: 14,
       paddingVertical: 12,
       paddingHorizontal: 10,
       color: colorPalette.mainColor,
       paddingRight: 24, // to ensure the text is never behind the icon
     },
     inputAndroid: {
-      fontSize: 16,
+      fontSize: 14,
       paddingHorizontal: 10,
       paddingVertical: 8,
       color: colorPalette.mainColor,
