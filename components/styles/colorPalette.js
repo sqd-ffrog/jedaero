@@ -3,7 +3,7 @@ const colorPalette = {
     textColor: '#000000',
     cardBackgroundColor: '#ffffff',
     cardBorderColor: '#e7e7e7',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f7f7f7',
     subTextColor: '#7d7d7d',
     smartCheckColor: '#ff6659'
 }

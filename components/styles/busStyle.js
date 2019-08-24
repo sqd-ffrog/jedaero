@@ -113,10 +113,8 @@ const mainScreen = StyleSheet.create({
         borderBottomLeftRadius: 16,
         borderBottomRightRadius: 16,
         borderColor: '#e7e7e7',
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 15,
-        paddingBottom: 15,
+        paddingHorizontal: 12,
+        paddingVertical: 16,
         overflow: 'hidden',
     }
 })
