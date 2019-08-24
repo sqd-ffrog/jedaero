@@ -16,7 +16,6 @@ const getTimeTable = async (year,month,day) => {
     } finally {
         // undefined라면? 그 밖의 문제를 의미하므로 빈 오브젝트 반환.
         if(!res) return {};
-
         const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
         const data = {
             day: {
