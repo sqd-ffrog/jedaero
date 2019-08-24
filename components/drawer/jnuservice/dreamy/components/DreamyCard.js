@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import colorPalette from '../../../../styles/colorPalette';
 import { normalize } from 'react-native-elements';
+import elevationShadowStyle from '../../../../../tool/elevationShadow';
 
 const DreamyCard = ({title, children, onPress}) => {
     return (
@@ -19,16 +20,18 @@ const DreamyCard = ({title, children, onPress}) => {
 
 const styles = StyleSheet.create({
     container: {
-        overflow: 'hidden',
         marginHorizontal: 16,
         marginVertical: 12,
         borderColor: colorPalette.cardBorderColor,
         backgroundColor: colorPalette.cardBackgroundColor,
-        borderRadius: 4
+        borderRadius: 16,
+        ...elevationShadowStyle(24)
     },
     header: {
         paddingVertical: 8,
         paddingHorizontal: 16,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
         backgroundColor: colorPalette.mainColor,
         justifyContent: 'center',
         alignItems: 'center'
