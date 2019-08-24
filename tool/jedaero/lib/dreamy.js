@@ -141,11 +141,7 @@ const Dreamy = {
         const body = `mode=doGetListDetail&curri_year=${year}&term_gb=${semester}&ban_no=${classCode}&subject_cd=${lectureCode}&_=`
         return (await fetchData(uri, body)).json();
     },
-
-    /**
-     * @param {mode: string , year, semester, classCode} search
-     */
-    getLecturePlanDetail: async function({mode, year, semester, classCode}) {
+    getLecturePlanDetail: async function({year, semester, classCode}) {
         const uri = 'https://dreamy.jejunu.ac.kr/susj/su/sta_su_7012e.jejunu';
         const body = `mode=doSearch&curri_year=${year}&term_gb=${semester}&ban_no=${classCode}&_=`
         return (await fetchData(uri, body)).json();
