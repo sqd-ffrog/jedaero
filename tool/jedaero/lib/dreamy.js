@@ -73,7 +73,6 @@ const Dreamy = {
     getLectureBoard: async function(account, name, userGb, year, semester) {
         const uri = 'https://dreamy.jejunu.ac.kr/frame/doumi_1020e.jejunu';
         const body = `mode=doListSugangBanNo&common_curri_year=${year}&common_term_gb=${semester}&common_student_no=${account}&common_subject_nm=${name}&common_prof_no=${account}&common_prof_nm=${name}&common_user_gb=${userGb}&mng_dept_cd=&_=`;
-        console.log(body);
         return (await fetchData(uri, body)).json();
     },
     getLectureItemBoard: async function(year, semester, classCode) {
@@ -130,7 +129,6 @@ const Dreamy = {
     isPassDormitory: async function (account) {
         const uri = 'https://dreamy.jejunu.ac.kr/stsv/ht/sts_ht_0509e.jejunu';
         const body = `mode=doValue&campus_gb=A&student_no=${account}&_=`;
-        console.log(body);
         return (await fetchData(uri, body)).json();
     },
     getLecturePlanList: async function ({year, semester, search: {classCode = '', professorName = '', lectureName = ''}}) {
