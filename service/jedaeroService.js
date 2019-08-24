@@ -319,10 +319,8 @@ const getLecturePlanList = async data => {
         }));
     }
 }
-
 const checkLogin = async () => {
     const credentials = await Keychain.getGenericPassword();
     return !!credentials;
 }
-
 export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList }
