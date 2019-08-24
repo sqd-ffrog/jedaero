@@ -37,6 +37,7 @@ const TimeTable = ({navigation}) => {
         })();
     }, [day])
 
+    useEffect(() => { console.log(timeTable)}, [timeTable])
     const scheduleHeader = () => (
         <View style={styles.scheduleHeader}>
             <Text style={styles.rowHead} />

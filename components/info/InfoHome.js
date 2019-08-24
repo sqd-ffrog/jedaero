@@ -24,10 +24,6 @@ const Info = ({navigation, isFocused}) => {
             name: "오픈소스 라이선스",
             routeName: "License",
         },
-        {
-            name: isLogin ? '다른 사용자로 로그인' : '드리미 로그인',
-            routeName: "Login",
-        }
     ]
 
     const keyExtractor = item => item.routeName;

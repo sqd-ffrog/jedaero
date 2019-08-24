@@ -26,9 +26,6 @@ const MainStackNavigator = createStackNavigator({
     License: {
         screen: License
     },
-    Login: {
-        screen: Login
-    }
 }, stackNavigationConfig)
 
 export default createAppContainer(MainStackNavigator);

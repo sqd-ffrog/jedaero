@@ -7,7 +7,9 @@ const getTimeTable = async (year,month,day) => {
     let res;
     try {
         res = await Dreamy.getTimeTable(account, year, month, day);
+        console.log(res);
     } catch(err) {
+        console.log(err);
         // json형태에서 오류가 발생했으면 undefined이거나 <script> alert("세션이 종료되었습니다.") </script>. 그러므로 재 로그인 시도.
         await Dreamy._openSession(account, password);
         res = await Dreamy.getTimeTable(account, year, month, day);
@@ -44,13 +46,13 @@ const getBaseInfo = async (account, password) => {
     try {
         res = await Dreamy._getBaseInfo(account);
     } catch(err) {
+        console.log(err);
         await Dreamy._openSession(account, password);
         res = await Dreamy._getBaseInfo(account);
     } finally {
-        if(!res) return {};
+        if(!res) throw new Error("error on get BaseInfo");
         return {
             name: res["HJ_MST"]["nm"],
-            majorCode: res["HJ_MST"]["maj_cd"],
             departCode: res["HJ_MST"]["dept_cd"],
             userGb: res["HJ_MST"]["chkUserGb"],
         }
@@ -245,9 +247,11 @@ const downloadLecturePostFile = async (classCode, professorCode, year, semester,
 
 const logoutDreamy = async () => {
     try {
+        await Dreamy._logout();
         await Keychain.resetGenericPassword();
         return true;
     } catch (err) {
+        console.log(err);
         return false;
     }
 }
@@ -300,7 +304,6 @@ const getLecturePlanList = async data => {
     try {
         res = await Dreamy.getLecturePlanList(data);
     } catch (err) {
-        console.warn(err);
         const { username: account, password: baseInfo } = await Keychain.getGenericPassword();
         const { password } = JSON.parse(baseInfo);
         await Dreamy._openSession(account, password);

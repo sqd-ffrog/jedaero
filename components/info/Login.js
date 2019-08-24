@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, Animated, Alert, ScrollView } from '
 import { normalize, Button } from 'react-native-elements';
 import colorPalette from '../styles/colorPalette';
 import { Dreamy } from '../../tool/jedaero';
-import { getBaseInfo } from '../../service/jedaeroService';
+import { getBaseInfo, checkLogin, logoutDreamy } from '../../service/jedaeroService';
 import * as Keychain from 'react-native-keychain';
 
 const Border = ({width = '50%'}) => (
@@ -33,7 +33,7 @@ const Login = ({navigation}) => {
             await toggleSubmit(false);
         } else {
             const baseInfo = await getBaseInfo(account, password);
-            if(!!await Keychain.getGenericPassword()) await Keychain.resetGenericPassword();
+            console.log(baseInfo, '입니다.');
             await Keychain.setGenericPassword(account, JSON.stringify({password, ...baseInfo}));
             Alert.alert("로그인되었습니다.");
             await toggleSubmit(false);

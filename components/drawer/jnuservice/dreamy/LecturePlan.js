@@ -70,7 +70,7 @@ const LecturePlan = ({navigation}) => {
                     value={semester}
                     onValueChange={item => setSemester(item)}
                     style={pickerSelectStyles}
-                    useNativeAndroidPickerStyle={true}
+                    useNativeAndroidPickerStyle={false}
                     Icon={() => (<Icon name="md-arrow-dropdown" size={24} color={colorPalette.mainColor} style={{marginRight: 5}} />)}
                 />
             </View>

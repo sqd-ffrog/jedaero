@@ -36,8 +36,9 @@ const DreamyHome = ({navigation, isFocused}) => {
     const [isLogin, setLogin] = useState(true);
     const [numColumns, setNumColumns] = useState(3);
 
+    const getLogin = () => isLogin;
     const afterLogin = async (success) => {
-        if(!isLogin) {
+        if(!getLogin()) {
             Alert.alert("로그인을 먼저 해주세요.");
             return;
         }
@@ -73,7 +74,8 @@ const DreamyHome = ({navigation, isFocused}) => {
             <DreamyCard title="내 평점 확인" onPress={() => afterLogin(() => navigation.navigate("Credit"))}>
                 <Text>전체 성적을 조회하실 수 있습니다.</Text>
             </DreamyCard>
-            {isLogin && <FlatList
+            {/* {isLogin &&  */}
+            <FlatList
                 ListHeaderComponent={MenuHeader}
                 numColumns={numColumns}
                 data={totalMenu}
@@ -81,7 +83,8 @@ const DreamyHome = ({navigation, isFocused}) => {
                 keyExtractor={item => item.name}
                 renderItem={MenuItem}
                 contentContainerStyle={styles.totalMenuContainer}
-            />}
+            />
+            {/* } */}
         </ScrollView>
     )
 }
