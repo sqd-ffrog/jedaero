@@ -32,7 +32,8 @@ const Login = ({navigation}) => {
             Alert.alert("아이디나 비밀번호를 확인해주세요.");
             await toggleSubmit(false);
         } else {
-            const baseInfo = await getBaseInfo(account);
+            const baseInfo = await getBaseInfo(account, password);
+            if(!!await Keychain.getGenericPassword()) await Keychain.resetGenericPassword();
             await Keychain.setGenericPassword(account, JSON.stringify({password, ...baseInfo}));
             Alert.alert("로그인되었습니다.");
             await toggleSubmit(false);

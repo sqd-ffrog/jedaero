@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { View, TouchableOpacity, Text, FlatList, StyleSheet, ActivityIndicator, ScrollView, TextInput} from 'react-native';
 import { getLectureBoardData } from '../../../../service/jedaeroService';
 import colorPalette from '../../../styles/colorPalette';
-import { normalize } from 'react-native-elements';
+import { normalize, Input } from 'react-native-elements';
 import Picker from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/Ionicons';
 import semesterData from '../../../../jsons/semesterMap';
@@ -59,25 +59,30 @@ const LectureBoard = ({navigation}) => {
     ) : (
         <ScrollView>
             <View style={styles.header}>
-                <TextInput 
-                    style={styles.yearInput}
+                <Text style={{fontSize: 14}}>수강학기</Text>
+                <Input 
                     value={year}
                     onChangeText={year => setYear(year)}
                     maxLength={4}
+                    inputStyle={{fontSize: 14, textAlign: 'center', minHeight: undefined}}
+                    inputContainerStyle={{borderBottomWidth: 0.5, borderBottomColor: colorPalette.mainColor, width: 56, backgroundColor: colorPalette.cardBackgroundColor}}
+                    containerStyle={{width: undefined}}
                     underlineColorAndroid={colorPalette.mainColor}
                 />
+                <Text>년</Text>
                 <Picker 
                     placeholder={{}}
                     items={semesterData}
                     value={semester}
                     onValueChange={item => setSemester(item)}
                     style={pickerSelectStyles}
-                    useNativeAndroidPickerStyle={false}
+                    useNativeAndroidPickerStyle={true}
                     Icon={() => (<Icon name="md-arrow-dropdown" size={24} color={colorPalette.mainColor} style={{marginRight: 5}} />)}
                 />
-                <Icon.Button name="ios-search" backgroundColor={colorPalette.mainColor} size={24} style={styles.submitButton}onPress={() => getLectureBoard()}>조회</Icon.Button>
+                <TouchableOpacity style={{backgroundColor: colorPalette.mainColor, paddingVertical: 8, paddingHorizontal: 16, borderRadius: 4,}} onPress={() => getLectureBoard()}>
+                    <Text style={{fontSize: 14, color: colorPalette.cardBackgroundColor, fontWeight: 'bold'}}>조회</Text>
+                </TouchableOpacity>
             </View>
-            
             <FlatList
                 data={lectureBoard.lectures}
                 keyExtractor={item => item.classCode}
@@ -97,9 +102,12 @@ LectureBoard.navigationOptions = {
 
 const styles = StyleSheet.create({
     header: {
+        paddingHorizontal: 16,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        paddingHorizontal: 16,
+        alignItems: 'center',
+        borderBottomColor: colorPalette.cardBorderColor,
+        borderBottomWidth: 0.5,
     },
     yearInput: {
         fontSize: normalize(14),
@@ -148,14 +156,14 @@ const styles = StyleSheet.create({
 
 const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
-      fontSize: 16,
+      fontSize: 14,
       paddingVertical: 12,
       paddingHorizontal: 10,
       color: colorPalette.mainColor,
       paddingRight: 24, // to ensure the text is never behind the icon
     },
     inputAndroid: {
-      fontSize: 16,
+      fontSize: 14,
       paddingHorizontal: 10,
       paddingVertical: 8,
       color: colorPalette.mainColor,

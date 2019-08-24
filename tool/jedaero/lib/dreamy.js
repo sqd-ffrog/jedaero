@@ -9,7 +9,7 @@ const Dreamy = {
         const uri = 'https://dreamy.jejunu.ac.kr/frame/sysUser.do?next=';
         const body = `tmpu=${encode64(account)}&tmpw=${encode64(password)}&mobile=&app=&z=N&userid=&password=`
         // 세션 확보
-        return (await this.fetchData(uri, body)).json();
+        return this.fetchData(uri, body);
     },
 
     _getBaseInfo: async function (account) {
