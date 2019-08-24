@@ -46,7 +46,6 @@ const getBaseInfo = async (account, password) => {
     try {
         res = await Dreamy._getBaseInfo(account);
     } catch(err) {
-        console.log(err);
         await Dreamy._openSession(account, password);
         res = await Dreamy._getBaseInfo(account);
     } finally {

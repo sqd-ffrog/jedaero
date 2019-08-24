@@ -33,7 +33,6 @@ const Login = ({navigation}) => {
             await toggleSubmit(false);
         } else {
             const baseInfo = await getBaseInfo(account, password);
-            console.log(baseInfo, '입니다.');
             await Keychain.setGenericPassword(account, JSON.stringify({password, ...baseInfo}));
             Alert.alert("로그인되었습니다.");
             await toggleSubmit(false);

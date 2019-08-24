@@ -76,7 +76,7 @@ const LectureBoard = ({navigation}) => {
                     value={semester}
                     onValueChange={item => setSemester(item)}
                     style={pickerSelectStyles}
-                    useNativeAndroidPickerStyle={false}
+                    useNativeAndroidPickerStyle={true}
                     Icon={() => (<Icon name="md-arrow-dropdown" size={24} color={colorPalette.mainColor} style={{marginRight: 5}} />)}
                 />
                 <TouchableOpacity style={{backgroundColor: colorPalette.mainColor, paddingVertical: 8, paddingHorizontal: 16, borderRadius: 4,}} onPress={() => getLectureBoard()}>
