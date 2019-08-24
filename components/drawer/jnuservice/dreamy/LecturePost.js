@@ -76,15 +76,7 @@ const LecturePost = ({navigation: {state: {params: {year, semester, root, num, r
     const getPost = async () => {
         setPost(await getLecturePostData(year, semester, classCode, num, root));
     }
-
-    useEffect(() => {
-        getPost();
-    }, []);
-
-    useEffect(() => {
-        console.log(post);
-    }, [post]);
-
+    useEffect(() => {getPost()}, []);
     return !post ? (
         <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
             <ActivityIndicator size='large' color={colorPalette.mainColor}/>

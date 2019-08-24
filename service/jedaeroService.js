@@ -7,9 +7,7 @@ const getTimeTable = async (year,month,day) => {
     let res;
     try {
         res = await Dreamy.getTimeTable(account, year, month, day);
-        console.log(res);
     } catch(err) {
-        console.log(err);
         // json형태에서 오류가 발생했으면 undefined이거나 <script> alert("세션이 종료되었습니다.") </script>. 그러므로 재 로그인 시도.
         await Dreamy._openSession(account, password);
         res = await Dreamy.getTimeTable(account, year, month, day);
