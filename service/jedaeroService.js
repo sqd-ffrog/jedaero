@@ -7,16 +7,13 @@ const getTimeTable = async (year,month,day) => {
     let res;
     try {
         res = await Dreamy.getTimeTable(account, year, month, day);
-        console.log(res);
     } catch(err) {
-        console.log(err);
         // json형태에서 오류가 발생했으면 undefined이거나 <script> alert("세션이 종료되었습니다.") </script>. 그러므로 재 로그인 시도.
         await Dreamy._openSession(account, password);
         res = await Dreamy.getTimeTable(account, year, month, day);
     } finally {
         // undefined라면? 그 밖의 문제를 의미하므로 빈 오브젝트 반환.
         if(!res) return {};
-
         const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
         const data = {
             day: {
@@ -321,9 +318,104 @@ const getLecturePlanList = async data => {
     }
 }
 
+const getLecturePlanDetail = async ({year, semester, lecture: {classCode, lectureCode}}) => {
+    let res;
+    try {
+        res = {
+            ...await Dreamy.getLecturePlanSummary({year, semester, lecture: {classCode, lectureCode}})['CODE_DETAIL'],
+            ...await Dreamy.getLecturePlanList({year, semester, classCode}),
+            ...await Dreamy.getLecturePlanDetailWeekList({year, semester, classCode})['MST_LIST']
+        }
+    } catch(err) {
+        const { username: account, password: baseInfo } = await Keychain.getGenericPassword();
+        const { password } = JSON.parse(baseInfo);
+        await Dreamy._openSession(account, password);
+        res = {
+            ...await Dreamy.getLecturePlanSummary({year, semester, lecture: {classCode, lectureCode}})['CODE_DETAIL'],
+            ...await Dreamy.getLecturePlanDetail({year, semester, classCode}),
+            ...await Dreamy.getLecturePlanDetailWeekList({year, semester, classCode})
+        }
+    } finally {
+        if(!res) return {};
+        return Array.isArray(res['SINGLE_DATA']) && res['SINGLE_DATA'].length > 0 ? {
+            classCode: res['SINGLE_DATA'][0]['ban_no'],
+            credit: res['SINGLE_DATA'][0]['credit'],
+            professorName: res['SINGLE_DATA'][0]['disp_emp_nm'],
+            professorCode: res['SINGLE_DATA'][0]['emp_no'],
+            lectureName: res['SINGLE_DATA'][0]['subject_nm'],
+            lectureCode: res['SINGLE_DATA'][0]['subject_cd'],
+            evaluation: res['SINGLE_DATA'][0]['sj_val_gb'],
+            attendanceRate: res['SINGLE_DATA'][0]['eval_rate1'],
+            middleRate: res['SINGLE_DATA'][0]['eval_rate2'],
+            finalRate: res['SINGLE_DATA'][0]['eval_rate3'],
+            assignmentRate: res['SINGLE_DATA'][0]['eval_rate4'],
+            frequentRate: res['SINGLE_DATA'][0]['eval_rate5'],
+            etcetraRate: res['SINGLE_DATA'][0]['eval_rate6'],
+            email: res['SINGLE_DATA'][0]['inst_email'],
+            tel: res['SINGLE_DATA'][0]['inst_tel'],
+            lecturePlan: res['SINGLE_DATA'][0]['learn_mark'],
+            note: res['SINGLE_DATA'][0]['note'],
+            book: {
+                author: res['SINGLE_DATA'][0]['mater_author'],
+                publish: res['SINGLE_DATA'][0]['mater_com'],
+                name: res['SINGLE_DATA'][0]['mater_nm'],
+                year: res['SINGLE_DATA'][0]['mater_year'],
+            },
+            references: [
+                {
+                    author: res['SINGLE_DATA'][0]['ref1_author'],
+                    publish: res['SINGLE_DATA'][0]['ref1_com'],
+                    name: res['SINGLE_DATA'][0]['ref1_nm'],
+                    year: res['SINGLE_DATA'][0]['year'],
+                },
+                {
+                    author: res['SINGLE_DATA'][0]['ref1_author'],
+                    publish: res['SINGLE_DATA'][0]['ref1_com'],
+                    name: res['SINGLE_DATA'][0]['ref1_nm'],
+                    year: res['SINGLE_DATA'][0]['year'],
+                }
+            ].filter(reference => !!reference.name),
+            tasks: [
+                {
+                    name: res['SINGLE_DATA'][0]['task_nm'],
+                    description: res['SINGLE_DATA'][0]['task_desc'],
+                },
+                {
+                    name: res['SINGLE_DATA'][0]['task_nm2'],
+                    description: res['SINGLE_DATA'][0]['task_desc2'],
+                }
+            ].filter(task => !!task.name),
+            weekList: res['MST_LIST'].map(row => ({
+                week: row['week_cnt'],
+                title: row['week_title'],
+                book: row['task_exte'],
+                plan: row['learn_plan'],
+            })),
+            fileList: res['FILE_LIST'].map(row => ({
+                fileName: row['file_nm'],
+                encoded: row['down_file_nm'],
+                fileSize: row['file_size']
+            }))
+        } : {};
+    }
+}
+
+const downloadLecturePlanFile = async ({fileName, encoded, classCode, year, semester, lectureName}) => {
+    const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+    const { password, name } = JSON.parse(baseInfo);
+    let res;
+    try {
+        res = await Dreamy.downloadLecturePlan({account, name, encoded, fileName, classCode, year, semester, lectureName});
+    } catch (err) {
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.downloadLecturePlan({account, name, encoded, fileName, classCode, year, semester, lectureName});
+    } finally { 
+        return res;
+    }
+}
+
 const checkLogin = async () => {
     const credentials = await Keychain.getGenericPassword();
     return !!credentials;
 }
-
-export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList }
+export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList, getLecturePlanDetail, downloadLecturePlanFile }

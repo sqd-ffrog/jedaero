@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, FlatList } from 'react-native'
 import { normalize, ListItem } from 'react-native-elements';
 import {LibraryBookListAPI} from '../../../tool/jedaero';
 import colorPalette from '../../styles/colorPalette';
+import elevationShadowStyle from '../../../tool/elevationShadow';
 
 const LibrarySearchDetail = ({navigation}) => {
     const [list, setList] = useState([]);
@@ -32,6 +33,7 @@ const LibrarySearchDetail = ({navigation}) => {
             <ListItem
                 key={item.id}
                 title={item.titleStatement}
+                
                 subtitle={
                     <View>
                         <Text style={libdetailStyles.subtitleStyle}>{item.author}</Text>
@@ -40,7 +42,7 @@ const LibrarySearchDetail = ({navigation}) => {
                     </View>    
                 }
                 titleStyle={{fontSize:normalize(16), fontWeight:'bold'}}
-                containerStyle={{borderWidth: 0.5, borderColor:colorPalette.cardBorderColor, marginHorizontal: 10, marginBottom: 8, borderRadius: 4}}
+                containerStyle={{borderWidth: 0.5, borderColor:colorPalette.cardBorderColor, marginHorizontal: 10, marginBottom: 8, borderRadius: 16, ...elevationShadowStyle(5)}}
                 onPress={() => navigation.navigate('BookDetail', item)}
                 chevron
             />

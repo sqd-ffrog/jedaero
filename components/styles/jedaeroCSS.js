@@ -105,7 +105,6 @@ let foodTabNavStyles = StyleSheet.create({
 
 let libsearchStyles = StyleSheet.create({
     container: {
-      paddingHorizontal: 16,
       paddingBottom:32,
     },
     textContainer: {
