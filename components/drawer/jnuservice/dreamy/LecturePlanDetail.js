@@ -53,8 +53,6 @@ const LecturePlanDetail = ({navigation}) => {
     const {year, semester, classCode, lectureCode} = navigation.state.params;
     const getPlan = async () => setPlan(await getLecturePlanDetail({year, semester, lecture: {classCode, lectureCode}}));
     useEffect(() => {getPlan()}, []);
-    useEffect(() => {plan && console.log(plan), [plan]});
-
     const downloadFile = async ({fileName, encoded}) => {
         if(Platform.OS === 'android' && !(await requestDownloadPermission())) {
             Alert.alert("권한이 없어 다운로드가 불가능합니다.");
