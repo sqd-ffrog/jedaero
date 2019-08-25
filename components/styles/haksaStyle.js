@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { normalize } from 'react-native-elements';
 import colorPalette from './colorPalette';
+import elevationShadowStyle from '../../tool/elevationShadow';
 
 export default StyleSheet.create({
     container: {
@@ -25,13 +26,14 @@ export default StyleSheet.create({
         backgroundColor: colorPalette.cardBackgroundColor,
         borderWidth: 0.5,
         borderColor: colorPalette.cardBorderColor,
-        borderRadius: 4,
+        borderRadius: 16,
         justifyContent:'flex-start',
         alignItems:'center',
         flexDirection:'column',
         flexGrow: 0,
         flexShrink: 1,
-        flexBasis: '31.3%'
+        flexBasis: '31.3%',
+        ...elevationShadowStyle(5)
     },
     calendarMonth: {
         fontSize: normalize(24),
