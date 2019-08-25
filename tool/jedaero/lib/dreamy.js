@@ -114,14 +114,6 @@ const Dreamy = {
             path: `${Platform.select({ios: RNFetchBlob.fs.dirs.DocumentDir, android: RNFetchBlob.fs.dirs.DownloadDir})}/${fileName}`,
             trusty: true, 
             fileCache: true,
-            // addAndroidDownloads: {
-            //     useDownloadManager: true,
-            //     title: fileName,
-            //     description: "제대로 가자",
-            //     mime:'application/octet-stream',
-            //     mediaScannable: true,
-            //     notification: true,
-            // }
         }).fetch('POST', uri, {
             "Content-Type": "application/x-www-form-urlencoded"
         }, body);
@@ -150,6 +142,17 @@ const Dreamy = {
         const uri = 'https://dreamy.jejunu.ac.kr/susj/su/sta_su_7012e.jejunu';
         const body = `mode=doListMst&curri_year=${year}&term_gb=${semester}&ban_no=${classCode}&_=`
         return (await fetchData(uri, body)).json();
+    },
+    downloadLecturePlan: async function ({account, name, encoded, fileName, classCode, year, semester, lectureName}) {
+        const uri = 'https://dreamy.jejunu.ac.kr/susj/su/sta_su_7020q.jejunu';
+        const body = `mode=doDownLoadFile&init_user_id=${account}&init_user_nm=${encodeURIComponent(name)}&tempfilename=${encoded}_down&filename=${encodeURIComponent(fileName)}&seq=&select_ban_no=${classCode}&find_curri_year=${year}&find_term_gb=${semester}&find_ban_no=&find_emp_nm=&find_subject_nm=${lectureName}&cb_pagingMst=1`
+        return RNFetchBlob.config({
+            path: `${Platform.select({ios: RNFetchBlob.fs.dirs.DocumentDir, android: RNFetchBlob.fs.dirs.DownloadDir})}/${fileName}`,
+            trusty: true, 
+            fileCache: true,
+        }).fetch('POST', uri, {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, body);
     }
 };
 

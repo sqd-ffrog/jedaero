@@ -340,7 +340,6 @@ const getLecturePlanDetail = async ({year, semester, lecture: {classCode, lectur
         return Array.isArray(res['SINGLE_DATA']) && res['SINGLE_DATA'].length > 0 ? {
             classCode: res['SINGLE_DATA'][0]['ban_no'],
             credit: res['SINGLE_DATA'][0]['credit'],
-            year: res['SINGLE_DATA'][0]['curri_year'],
             professorName: res['SINGLE_DATA'][0]['disp_emp_nm'],
             professorCode: res['SINGLE_DATA'][0]['emp_no'],
             lectureName: res['SINGLE_DATA'][0]['subject_nm'],
@@ -388,7 +387,7 @@ const getLecturePlanDetail = async ({year, semester, lecture: {classCode, lectur
             ].filter(task => !!task.name),
             weekList: res['MST_LIST'].map(row => ({
                 week: row['week_cnt'],
-                title: row['title'],
+                title: row['week_title'],
                 book: row['task_exte'],
                 plan: row['learn_plan'],
             })),
@@ -400,8 +399,23 @@ const getLecturePlanDetail = async ({year, semester, lecture: {classCode, lectur
         } : {};
     }
 }
+
+const downloadLecturePlanFile = async ({fileName, encoded, classCode, year, semester, lectureName}) => {
+    const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+    const { password, name } = JSON.parse(baseInfo);
+    let res;
+    try {
+        res = await Dreamy.downloadLecturePlan({account, name, encoded, fileName, classCode, year, semester, lectureName});
+    } catch (err) {
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.downloadLecturePlan({account, name, encoded, fileName, classCode, year, semester, lectureName});
+    } finally { 
+        return res;
+    }
+}
+
 const checkLogin = async () => {
     const credentials = await Keychain.getGenericPassword();
     return !!credentials;
 }
-export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList, getLecturePlanDetail }
+export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList, getLecturePlanDetail, downloadLecturePlanFile }

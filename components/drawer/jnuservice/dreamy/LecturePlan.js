@@ -6,6 +6,7 @@ import colorPalette from '../../../styles/colorPalette';
 import Picker from 'react-native-picker-select';
 import semesterData from '../../../../jsons/semesterMap';
 import Icon from 'react-native-vector-icons/Ionicons';
+import elevationShadowStyle from '../../../../tool/elevationShadow';
 
 const LecturePlan = ({navigation}) => {
     const date = new Date();
@@ -13,7 +14,7 @@ const LecturePlan = ({navigation}) => {
     const [semester, setSemester] = useState([21, 10, 10, 10, 10, 10, 11, 20, 20, 20, 20, 20][date.getMonth()]);
     const [classCode, setClassCode] = useState('');
     const [professorName, setProfessorName] = useState('');
-    const [lectureName, setLectureName] = useState('기초공학수학');
+    const [lectureName, setLectureName] = useState('보안시스템개론');
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(false);
 
@@ -132,6 +133,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         backgroundColor: colorPalette.cardBackgroundColor,
         padding: 16,
+        ...elevationShadowStyle(5),
     },
     lectureHeader: {
         paddingBottom: 8,
@@ -170,8 +172,8 @@ const styles = StyleSheet.create({
         backgroundColor: colorPalette.cardBackgroundColor,
         borderColor: colorPalette.cardBorderColor,
         borderWidth: 0.5,
-        overflow: 'hidden',
         marginVertical: 4,
+        ...elevationShadowStyle(5),
     }
 });
 

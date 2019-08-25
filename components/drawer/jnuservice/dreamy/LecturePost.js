@@ -32,7 +32,6 @@ const PostFooter = ({count, email}) => (
 
 const PostFile = ({post: {author, count, date, email, title, file}, lectureDetail: {classCode, year, semester, root, num, reply, lectureCode, lectureName, professorCode, professorName }}) => {
     const downloadFile = async ({fileName, encoded}) => {
-        console.log({author, count, date, email, title, classCode, year, semester, root, num, reply, lectureCode, lectureName, professorCode, professorName });
         if(Platform.OS === 'android' && !(await requestDownloadPermission())) {
             Alert.alert("권한이 없어 다운로드가 불가능합니다.");
             return;
@@ -81,7 +80,7 @@ const LecturePost = ({navigation: {state: {params: {year, semester, root, num, r
         <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
             <ActivityIndicator size='large' color={colorPalette.mainColor}/>
         </View>
-    ) : (post === {} ? (
+    ) : (Object.keys(post).length === 0 ? (
         <View><Text>오류가 있어유</Text></View>
     ) : (
         <ScrollView>
