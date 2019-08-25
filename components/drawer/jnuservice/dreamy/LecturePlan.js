@@ -6,6 +6,7 @@ import colorPalette from '../../../styles/colorPalette';
 import Picker from 'react-native-picker-select';
 import semesterData from '../../../../jsons/semesterMap';
 import Icon from 'react-native-vector-icons/Ionicons';
+import elevationShadowStyle from '../../../../tool/elevationShadow';
 
 const LecturePlan = ({navigation}) => {
     const date = new Date();
@@ -13,7 +14,7 @@ const LecturePlan = ({navigation}) => {
     const [semester, setSemester] = useState([21, 10, 10, 10, 10, 10, 11, 20, 20, 20, 20, 20][date.getMonth()]);
     const [classCode, setClassCode] = useState('');
     const [professorName, setProfessorName] = useState('');
-    const [lectureName, setLectureName] = useState('보안시스템개론');
+    const [lectureName, setLectureName] = useState('');
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(false);
 
@@ -26,10 +27,6 @@ const LecturePlan = ({navigation}) => {
         await setData(await getLecturePlanList({year, semester, search:{classCode, professorName, lectureName}}));
         await setLoading(false);
     }
-
-    useEffect(() => {
-        getData()
-    } ,[]);
 
     const LectureItem = ({item: {classCode, credit, professorName, takeName, lectureCode, lectureName, time}}) => (
         <TouchableOpacity style={styles.lecture} onPress={() => navigation.navigate("LecturePlanDetail", { year, semester, classCode, lectureCode })}>
@@ -74,27 +71,28 @@ const LecturePlan = ({navigation}) => {
                     Icon={() => (<Icon name="md-arrow-dropdown" size={24} color={colorPalette.mainColor} style={{marginRight: 5}} />)}
                 />
             </View>
-            {
-                isLoading ? (
-                    <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
-                        <ActivityIndicator size='large' color={colorPalette.mainColor}/>
-                    </View>
-                ) : (<ScrollView>
-                        <View style={styles.searchHeader}>
-                            <Input label="수강반번호" value={classCode} onChangeText={classCode => setClassCode(classCode)} labelStyle={styles.label} containerStyle={styles.searchContainer} inputStyle={styles.searchInput}/>
-                            <Input label="교수이름" value={professorName} onChangeText={professorName => setProfessorName(professorName)} labelStyle={styles.label} containerStyle={styles.searchContainer} inputStyle={styles.searchInput}/>
-                            <Input label="강의명" value={lectureName} onChangeText={lectureName => setLectureName(lectureName)} labelStyle={styles.label} containerStyle={styles.searchContainer} inputStyle={styles.searchInput}/>
-                            <Button title="조회" type="solid" color={colorPalette.mainColor} buttonStyle={{backgroundColor: colorPalette.mainColor, margin: 8}} onPress={getData}/>
+            <ScrollView>
+                <View style={styles.searchHeader}>
+                    <Input label="수강반번호" value={classCode} onChangeText={classCode => setClassCode(classCode)} labelStyle={styles.label} containerStyle={styles.searchContainer} inputStyle={styles.searchInput}/>
+                    <Input label="교수이름" value={professorName} onChangeText={professorName => setProfessorName(professorName)} labelStyle={styles.label} containerStyle={styles.searchContainer} inputStyle={styles.searchInput}/>
+                    <Input label="강의명" value={lectureName} onChangeText={lectureName => setLectureName(lectureName)} labelStyle={styles.label} containerStyle={styles.searchContainer} inputStyle={styles.searchInput}/>
+                    <Button title="조회" type="solid" color={colorPalette.mainColor} buttonStyle={{backgroundColor: colorPalette.mainColor, margin: 8}} onPress={getData}/>
+                </View>
+                {
+                    isLoading ? (
+                        <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
+                            <ActivityIndicator size='large' color={colorPalette.mainColor}/>
                         </View>
+                    ) : (
                         <FlatList 
                             data={data}
                             renderItem = {LectureItem}
                             keyExtractor={item => item.classCode}
                             nestedScrollEnabled={true}
                         />
-                    </ScrollView>
-                )
-            }
+                    )
+                }
+            </ScrollView>            
         </Fragment>
         
     )
@@ -131,6 +129,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         backgroundColor: colorPalette.cardBackgroundColor,
         padding: 16,
+        ...elevationShadowStyle(5),
     },
     lectureHeader: {
         paddingBottom: 8,
@@ -169,8 +168,8 @@ const styles = StyleSheet.create({
         backgroundColor: colorPalette.cardBackgroundColor,
         borderColor: colorPalette.cardBorderColor,
         borderWidth: 0.5,
-        overflow: 'hidden',
         marginVertical: 4,
+        ...elevationShadowStyle(5),
     }
 });
 

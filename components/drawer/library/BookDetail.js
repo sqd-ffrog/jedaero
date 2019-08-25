@@ -72,9 +72,7 @@ const BookRow = ({left, right, style}) => (
 const bookdetailStyles = StyleSheet.create({
     container: {
         paddingTop:16,
-        paddingHorizontal:8,
-        paddingBottom: 56,
-        
+        paddingHorizontal:8,        
     },
     title: {
         fontSize:normalize(24),

@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { normalize } from 'react-native-elements';
 import colorPalette from './colorPalette';
+import elevationShadowStyle from '../../tool/elevationShadow';
 
 const mainScreen = StyleSheet.create({
     busView: {
@@ -11,14 +12,17 @@ const mainScreen = StyleSheet.create({
     },
     blockView: {
         height:"auto",
-        borderRadius: 4,
+        borderRadius: 16,
         borderColor: colorPalette.cardBorderColor,
         marginHorizontal: 16,
         marginVertical: 12,
         backgroundColor: colorPalette.cardBackgroundColor,
-        overflow: 'hidden',
+        // overflow: 'hidden',
+        ...elevationShadowStyle(5),
     },
     blockViewTitle: {
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
         paddingTop: 10,
         paddingBottom: 10,
         paddingLeft: 15,
@@ -44,8 +48,8 @@ const mainScreen = StyleSheet.create({
         borderLeftWidth: 0.5,
         borderRightWidth: 0.5,
         borderBottomWidth: 1,
-        borderBottomLeftRadius: 4,
-        borderBottomRightRadius: 4,
+        borderBottomLeftRadius: 16,
+        borderBottomRightRadius: 16,
         borderColor: '#e7e7e7',
         overflow: 'hidden',
     },
@@ -106,13 +110,11 @@ const mainScreen = StyleSheet.create({
         borderLeftWidth: 0.5,
         borderRightWidth: 0.5,
         borderBottomWidth: 0.5,
-        borderBottomLeftRadius: 4,
-        borderBottomRightRadius: 4,
+        borderBottomLeftRadius: 16,
+        borderBottomRightRadius: 16,
         borderColor: '#e7e7e7',
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 15,
-        paddingBottom: 15,
+        paddingHorizontal: 12,
+        paddingVertical: 16,
         overflow: 'hidden',
     }
 })
