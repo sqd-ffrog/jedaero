@@ -14,7 +14,7 @@ const LecturePlan = ({navigation}) => {
     const [semester, setSemester] = useState([21, 10, 10, 10, 10, 10, 11, 20, 20, 20, 20, 20][date.getMonth()]);
     const [classCode, setClassCode] = useState('');
     const [professorName, setProfessorName] = useState('');
-    const [lectureName, setLectureName] = useState('보안시스템개론');
+    const [lectureName, setLectureName] = useState('');
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(false);
 
@@ -27,10 +27,6 @@ const LecturePlan = ({navigation}) => {
         await setData(await getLecturePlanList({year, semester, search:{classCode, professorName, lectureName}}));
         await setLoading(false);
     }
-
-    useEffect(() => {
-        getData()
-    } ,[]);
 
     const LectureItem = ({item: {classCode, credit, professorName, takeName, lectureCode, lectureName, time}}) => (
         <TouchableOpacity style={styles.lecture} onPress={() => navigation.navigate("LecturePlanDetail", { year, semester, classCode, lectureCode })}>
