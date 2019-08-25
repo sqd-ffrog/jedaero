@@ -74,7 +74,7 @@ const DreamyHome = ({navigation, isFocused}) => {
             <DreamyCard title="내 평점 확인" onPress={() => afterLogin(() => navigation.navigate("Credit"))}>
                 <Text>전체 성적을 조회하실 수 있습니다.</Text>
             </DreamyCard>
-            {/* {isLogin &&  */}
+            {isLogin && 
             <FlatList
                 ListHeaderComponent={MenuHeader}
                 numColumns={numColumns}
@@ -84,7 +84,7 @@ const DreamyHome = ({navigation, isFocused}) => {
                 renderItem={MenuItem}
                 contentContainerStyle={styles.totalMenuContainer}
             />
-            {/* } */}
+            }
         </ScrollView>
     )
 }

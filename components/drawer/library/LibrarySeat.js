@@ -4,6 +4,7 @@ import { normalize } from 'react-native-elements';
 import { LibrarySeatAPI } from '../../../tool/jedaero';
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import colorPalette from '../../styles/colorPalette';
+import elevationShadowStyle from '../../../tool/elevationShadow';
 
 const LibrarySeat = () => {
     const [data, setData] = useState(null);
@@ -27,11 +28,14 @@ const LibrarySeat = () => {
                 flexDirection:'row',
                 justifyContent:'flex-end',
                 borderRadius:8,
+                marginHorizontal: 16,
                 paddingHorizontal:8,
                 paddingVertical:4,
+                marginBottom: 8,
                 borderWidth:0.5,
                 borderColor:colorPalette.cardBorderColor,
-                backgroundColor:colorPalette.cardBackgroundColor
+                backgroundColor:colorPalette.cardBackgroundColor,
+                ...elevationShadowStyle(5)
             }}
             onPress={getLibrarySeatData}
             >
@@ -71,34 +75,45 @@ class TableRow extends Component {
 
 const styles = StyleSheet.create({
     listContainer: {
-        borderRadius:8,
-        overflow:'hidden',
-        borderWidth: 0.5,
-        borderColor:'#d7d7d7',
-        borderBottomWidth:0,
-        marginVertical:8,
+        // borderRadius:8,
+        // borderWidth: 0.5,
+        // borderColor:'#d7d7d7',
+        // borderBottomWidth:0,
+        // marginVertical:8,
+        // marginHorizontal: 16,
+        // ...elevationShadowStyle(5)
     },
     titleText: {
         color:'#334955',
         fontSize:normalize(20),
         marginBottom: 16,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        marginHorizontal: 16,
     },
     rowUnit: {
         flexDirection:'row',
-        borderBottomWidth:0.5,
-        borderColor:'#d7d7d7',
+        borderRadius: 8,
+        // borderWidth: 0.5,
+        // borderColor: colorPalette.cardBorderColor,
+        // borderBottomWidth:0.5,
         backgroundColor: colorPalette.cardBackgroundColor,
+        marginHorizontal: 16,
+        marginVertical: 4,
+        ...elevationShadowStyle(5)
     },
     rowUnitLeft: {
         flex:2.5,
         paddingHorizontal:8,
         paddingVertical: 6,
-        justifyContent:'center'
+        borderTopLeftRadius: 8,
+        borderBottomLeftRadius: 8,
+        justifyContent:'center',
     },
     rowUnitRight: {
         paddingHorizontal:8,
         paddingVertical:4,
+        borderTopRightRadius: 8,
+        borderBottomRightRadius: 8,
         justifyContent:'center',
         flex: 1,
         backgroundColor:colorPalette.mainColor,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Platform } from 'react-native'
 import Picker from 'react-native-picker-select';
 import BusTb from '../../../../jsons/busschedule.json';
 import BusA from '../../../../tool/busA';
@@ -58,21 +58,29 @@ const BusTime = () => {
 
 const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
-      fontSize: 16,
-      paddingVertical: 12,
+      fontSize: 14,
+      paddingVertical: 4,
       paddingHorizontal: 10,
       color: '#ffffff',
       paddingRight: 24, // to ensure the text is never behind the icon
     },
     inputAndroid: {
-      fontSize: 16,
-      paddingHorizontal: 10,
-      paddingVertical: 8,
+      fontSize: 14,
+      paddingHorizontal: 12,
       color: '#ffffff',
       paddingRight: 24, // to ensure the text is never behind the icon
     },
+    inputAndroidContainer: {
+        height: null,
+    },
+    // headlessAndroidPicker: {
+    //     height: null,
+    // },
+    headlessAndroidContainer: {
+        height: '100%'
+    },
     iconContainer: {
-        top: 10,
+        top: Platform.select({ios: 0, android: 10})
     },
 });
 
