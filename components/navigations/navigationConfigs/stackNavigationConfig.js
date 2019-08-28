@@ -1,25 +1,29 @@
-import { normalize } from "react-native-elements";
-import { Easing, Animated } from 'react-native'
-import colorPalette from "../../styles/colorPalette";
+import { normalize } from 'react-native-elements';
+import { Easing, Animated } from 'react-native';
+import {
+    mainColor as headerTintColor,
+    backgroundColor,
+    textColor as color,
+} from '../../styles/colorPalette';
 
 const stackNavigationConfig = {
     mode: 'modal',
-    headerMode:'float',
+    headerMode: 'float',
     headerTransitionPreset: 'uikit',
-    defaultNavigationOptions : () => ({
-        headerTintColor: colorPalette.mainColor,
+    defaultNavigationOptions: () => ({
+        headerTintColor,
         headerStyle: {
-            backgroundColor: colorPalette.backgroundColor,
+            backgroundColor,
             elevation: 0,
             borderBottomWidth: 0,
         },
         headerTitleStyle: {
             fontSize: normalize(18),
             fontWeight: 'bold',
-            color: colorPalette.textColor
+            color,
         },
         gestureEnabled: true,
-        gestureDirection: "default"
+        gestureDirection: 'default',
     }),
     transitionConfig: () => ({
         transitionSpec: {
@@ -30,24 +34,24 @@ const stackNavigationConfig = {
         screenInterpolator: sceneProps => {
             const { layout, position, scene } = sceneProps;
             const { index } = scene;
-            
+
             const Width = layout.initWidth;
             const translateX = position.interpolate({
                 inputRange: [index - 1, index, index + 1],
-                outputRange: [Width, 0, 0]
+                outputRange: [Width, 0, 0],
             });
 
             const opacity = position.interpolate({
                 inputRange: [index - 1, index - 0.99, index],
                 outputRange: [0, 1, 1],
             });
-            
-            return { opacity, transform: [{ translateX }]}
+
+            return { opacity, transform: [{ translateX }] };
         },
     }),
     cardStyle: {
-        backgroundColor: colorPalette.backgroundColor
-    }
-}
+        backgroundColor,
+    },
+};
 
 export default stackNavigationConfig;

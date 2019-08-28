@@ -7,7 +7,7 @@ import { foodTabNavStyles } from '../../../styles/jedaeroCSS';
 import { foodTopTabNavigationConfig } from '../../../navigations/navigationConfigs';
 import getWeek from '../../../../tool/getWeek';
 import d_time from '../../../../jsons/d_time.json';
-import colorPalette from '../../../styles/colorPalette';
+import { mainColor } from '../../../styles/colorPalette';
 
 const Dorm = ({meal, onRefresh}) => {
   const [isRefresh, setRefresh] = useState(false);
@@ -29,10 +29,10 @@ const Dorm = ({meal, onRefresh}) => {
         />
       }
     >
-      <DormList title="조기" food={meal.dawn} time={d_time.dawn} color={colorPalette.mainColor}/>
-      <DormList title="아침" food={meal.breakfast} time={d_time.breakfast} color={colorPalette.mainColor}/>
-      <DormList title="점심" food={meal.lunch} time={d_time.lunch} color={colorPalette.mainColor} />
-      <DormList title="저녁" food={meal.dinner} time={d_time.dinner} color={colorPalette.mainColor}/>
+      <DormList title="조기" food={meal.dawn} time={d_time.dawn} color={mainColor}/>
+      <DormList title="아침" food={meal.breakfast} time={d_time.breakfast} color={mainColor}/>
+      <DormList title="점심" food={meal.lunch} time={d_time.lunch} color={mainColor} />
+      <DormList title="저녁" food={meal.dinner} time={d_time.dinner} color={mainColor}/>
     </ScrollView>
   )
 }
@@ -105,11 +105,11 @@ const DormitoryMain = ({navigation}) => {
   const getDormitoryFood = async (currentWeek = "-1") => {
     const storedWeek = await AsyncStorage.getItem('storedDormitoryWeek');
     if(currentWeek === "-1" || storedWeek == null || storedWeek !== currentWeek) {
-      await onRefresh(currentWeek);
-    } else {
+	  await onRefresh(currentWeek);
+	  return
+    }
       const data = await AsyncStorage.getItem('storedDormitory');
       setData(JSON.parse(data))
-    }
   }
 
   useEffect(() => {

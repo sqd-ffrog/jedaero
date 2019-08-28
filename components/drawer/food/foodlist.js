@@ -13,15 +13,15 @@ const FoodList = ({navigation}) => {
     return (
         <ScrollView>
             {
-                foodMenu.map((item, key) => (
+                foodMenu.map(({name, subtitle, _clickFood}, key) => (
                         <ListItem
                             key={key}
-                            title={item.name}
-                            subtitle={item.subtitle}
+                            title={name}
+                            subtitle={subtitle}
                             titleStyle={foodTabStyles.listTitleStyle}
                             subtitleStyle={foodTabStyles.listSubtitleStyle}
                             containerStyle={foodTabStyles.listContainerStyle}
-                            onPress={item._clickFood}
+                            onPress={_clickFood}
                             underlayColor="rgba(0,0,0,0)"
                             hideChevron={true}
                         />

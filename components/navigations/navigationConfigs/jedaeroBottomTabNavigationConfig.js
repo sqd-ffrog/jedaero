@@ -1,13 +1,13 @@
-import colorPalette from "../../styles/colorPalette";
+import { mainColor as activeColor, backgroundColor } from '../../styles/colorPalette';
 
 const jedaeroBottomTabNavigationConfig = {
     labeled: true,
     shifting: true,
-    activeColor: colorPalette.mainColor,
+    activeColor,
     backBehavior: 'none',
     barStyle: {
-      backgroundColor: colorPalette.backgroundColor,
-    }
-}
+        backgroundColor,
+    },
+};
 
 export default jedaeroBottomTabNavigationConfig;

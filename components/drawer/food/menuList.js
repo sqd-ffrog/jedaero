@@ -1,4 +1,4 @@
-let listText = (navigate) => [
+const listText = (navigate) => [
     {
         key: 'haksik',
         name: '신관',

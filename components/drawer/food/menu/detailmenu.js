@@ -3,10 +3,10 @@ import { View, Text,Image,TouchableOpacity } from 'react-native';
 import Comu from 'react-native-communications';
 import { normalize } from 'react-native-elements';
 import PinchZoom from 'react-native-pinch-zoom-view';
-import colorPalette from '../../../styles/colorPalette';
+import {backgroundColor} from '../../../styles/colorPalette';
 
 const CallBlock = ({tel}) => tel !== "" && (
-    <TouchableOpacity style = {{flex:1, opacity:0.7, backgroundColor:colorPalette.mainColor, justifyContent:'center', alignItems:'center'}}onPress={()=> Comu.phonecall(tel,true)}>
+    <TouchableOpacity style = {{flex:1, opacity:0.7, backgroundColor, justifyContent:'center', alignItems:'center'}}onPress={()=> Comu.phonecall(tel,true)}>
         <Text style={{color:'#ffffff', fontSize:normalize(20)}}>전화걸기</Text>
     </TouchableOpacity>
 )
