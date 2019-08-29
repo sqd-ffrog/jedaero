@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView, Alert, FlatList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
-import LoginBar from './card/LoginBar';
+import { LoginBar, LogonBar } from './card/LoginBar';
 import DreamyCard from './components/DreamyCard';
 import colorPalette from '../../../styles/colorPalette';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { normalize } from 'react-native-elements';
-import { checkLogin } from '../../../../service/jedaeroService';
+import { checkLogin, logoutDreamy } from '../../../../service/jedaeroService';
 import { withNavigationFocus } from 'react-navigation';
+import { getGenericPassword }from 'react-native-keychain';
 
 const totalMenu = [
     {
@@ -34,6 +35,7 @@ const MenuHeader = () => (
 )
 const DreamyHome = ({navigation, isFocused}) => {
     const [isLogin, setLogin] = useState(true);
+    const [name, setName] = useState('');
     const [numColumns, setNumColumns] = useState(3);
 
     const getLogin = () => isLogin;
@@ -61,13 +63,30 @@ const DreamyHome = ({navigation, isFocused}) => {
 
     useEffect(() => {
         isFocused && (async function() {
-            setLogin(await checkLogin());
+            const isLogin = await checkLogin();
+            setLogin(isLogin);
+            if(isLogin) {
+                const { password: baseInfo } = await getGenericPassword();
+                const { name } = JSON.parse(baseInfo);
+                console.log(name);
+                setName(name);
+            }
         })();
     }, [isFocused]);
 
+    const logout = async () => {
+        try {
+            await logoutDreamy();
+            Alert.alert("로그아웃에 성공하셨습니다.")
+            setLogin(false);
+        } catch(err) {
+            Alert.alert("로그아웃에 실패하셨습니다.")
+        }
+    }
+
     return (
         <ScrollView onLayout={onLayout}>
-            {!isLogin && <LoginBar onPress={() => {navigation.navigate("NestedLogin");}}/>}
+            {!isLogin ? <LoginBar onPress={() => {navigation.navigate("NestedLogin");}} /> : <LogonBar onPress={() => logout()} name={name} />}
             <DreamyCard title="지금 내 시간표는?" onPress={() => afterLogin(() => navigation.navigate("TimeTable"))}>
                 <Text>사간표를 확인하실 수 있습니다.</Text>
             </DreamyCard>
