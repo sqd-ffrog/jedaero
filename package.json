@@ -29,7 +29,7 @@
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^3.11.1",
     "react-navigation-material-bottom-tabs": "^1.0.0",
-    "rn-fetch-blob": "^0.10.16",
+    "rn-fetch-blob": "git://github.com/jnuro/rn-fetch-blob.git",
     "schedule": "^0.5.0",
     "util": "^0.12.1"
   },
