@@ -19,4 +19,4 @@ function dayCheck(bus) {
     };
 }
 
-export default { busIter, dayCheck };
+export { busIter, dayCheck };
