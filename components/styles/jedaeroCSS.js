@@ -116,5 +116,21 @@ let libsearchStyles = StyleSheet.create({
     }
   })
 
+  const licenseStyle = StyleSheet.create({
 
-export {jedaeroStyles, foodMenuListStyles, foodTabStyles, foodTabNavStyles, libsearchStyles}
+    list: {
+        paddingTop:24,
+        paddingBottom:16,
+        borderWidth: 0.5,
+        borderColor: colorPalette.cardBorderColor,
+        marginHorizontal:10,
+        marginBottom:16,
+        borderRadius:4,
+        overflow:'hidden'
+    },
+    name: {textAlign: 'center',fontSize: normalize(20), color: colorPalette.textColor},
+    license: { textAlign:'center', color: colorPalette.subTextColor, fontSize: normalize(10)}
+})
+
+
+export {jedaeroStyles, foodMenuListStyles, foodTabStyles, foodTabNavStyles, libsearchStyles, licenseStyle}
