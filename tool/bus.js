@@ -12,8 +12,14 @@ function* busIter(timeTable) {
 }
 
 function dayCheck(bus) {
-    return function(timeTable, route) {
+    return function(timeTable, route, Bus_holy) {
+        const month = new Date().getMonth();
+        const date = new Date().getDate();
+        if ( Bus_holy[(month+1).toString()].indexOf(date) != -1 ) {
+            return '휴일입니당'
+        }
         const day = new Date().getDay();
+        
         // 0:일요일 ~ 6:토요일 즉,주말일때 운행없음
         return day === 0 || day === 6 ? '운행없어요..' : bus(timeTable, route);
     };

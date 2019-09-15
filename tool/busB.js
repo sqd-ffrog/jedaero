@@ -5,7 +5,7 @@ import { busIter, dayCheck } from './bus';
 
 /* 버스 도착시간 계산 알고리즘  */
 
-function bus(timeTable, route) {
+function bus(timeTable, route, Bus_holy) {
     for (const { timetb_set_sec, this_time_sec, _hours } of busIter(timeTable)) {
         let hours = _hours,
             minutes;

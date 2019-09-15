@@ -25,7 +25,7 @@ import { busIter, dayCheck } from './bus';
 //     }
 //   };
 
-function bus(timeTable, route) {
+function bus(timeTable, route, Bus_holy) {
     for (const { timetb_set_sec, this_time_sec, _hours } of busIter(timeTable)) {
         let hours = _hours,
             minutes = parseInt(((timetb_set_sec - this_time_sec) % 3600) / 60) + route;
