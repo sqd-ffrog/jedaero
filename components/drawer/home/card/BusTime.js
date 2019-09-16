@@ -10,7 +10,7 @@ import { mainScreen } from '../../../styles/busStyle.js';
 import TodayCard from '../component/TodayCard.js';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const BusTime = () => {
+const BusTime = ({navigation}) => {
     const data = BusRoute.routeName.A;
     const [ selectedIndex, setSelectedIndex ] = useState(0);
     const [ A, setA ] = useState(BusA(BusTb.timeTable.A, 0,Bus_holy));
@@ -34,9 +34,9 @@ const BusTime = () => {
             Icon={() => (<Icon name="md-arrow-dropdown" size={24} color="#ffffff" />)}
         />
     )
-
+    const onPressContainer = () => {navigation.navigate('BusSchedule')}
     return (
-        <TodayCard name="버스 시간" headerRight={<BusPicker />} containerStyle={{flexDirection: 'row'}}>
+        <TodayCard name="버스 시간" headerRight={<BusPicker />} containerStyle={{flexDirection: 'row'}} onPressContainer={onPressContainer}>
         {/* A버스 시간 안내 */}
             <View style={mainScreen.blockViewContainerMain}>
                 <Text style={mainScreen.blockTitle}>A</Text>

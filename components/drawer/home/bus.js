@@ -11,7 +11,7 @@ import { checkLogin } from '../../../service/jedaeroService';
 const Bus = ({navigation}) => (
     <ScrollView contentContainerStyle={mainScreen.busView} >
         {/* <SmartBlock name="스마트 출첵" /> */}
-        <Bustime name="버스 시간" />
+        <Bustime name="버스 시간" navigation={navigation}/>
         <HaksikCard navigation={navigation}/>
         <DormCard navigation={navigation}/>
     </ScrollView>
