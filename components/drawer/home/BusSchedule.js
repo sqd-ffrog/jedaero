@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Platform, FlatList } from 'react-native'
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { mainScreen } from '../../styles/busStyle';
 import { foodMenuListStyles } from '../../styles/jedaeroCSS';
-import BusTb from '../../../jsons/busschedule.json';
+import BusTb from '../../../jsons/busscheduleDetail.json';
 import colorPalette from '../../styles/colorPalette';
 
 const entrie_B = BusTb.routeName.B
@@ -62,7 +62,7 @@ const _renderItem_A = ({item, index}) => {
             <Text style={mainScreen.blockTitle}>{item}</Text>
             <FlatList
                 contentContainerStyle={{flexDirection: 'column', justifyContent: 'space-between'}}
-                data={BusTb.timeTable.A}
+                data={BusTb.timeTable.A[item]}
                 renderItem={_busrender_a}
             />
         </View>
@@ -87,7 +87,7 @@ const _renderItem_B = ({item, index}) => {
             <Text style={mainScreen.blockTitle}> {item} </Text>
             <FlatList
                 contentContainerStyle={{flexDirection: 'column', justifyContent: 'space-between'}}
-                data={BusTb.timeTable.B}
+                data={BusTb.timeTable.B[index]}
                 renderItem={_busrender_b}
             />
         </View>
