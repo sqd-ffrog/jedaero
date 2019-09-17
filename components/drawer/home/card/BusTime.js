@@ -8,9 +8,10 @@ import Bus_holy from '../../../../jsons/bus_holy.json';
 import BusRoute from '../../../../jsons/bus_stop.json';
 import { mainScreen } from '../../../styles/busStyle.js';
 import TodayCard from '../component/TodayCard.js';
+import { withNavigationFocus } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const BusTime = ({navigation}) => {
+const BusTime = ({navigation, isFocused}) => {
     const data = BusRoute.routeName.A;
     const [ selectedIndex, setSelectedIndex ] = useState(0);
     const [ A, setA ] = useState(BusA(BusTb.timeTable.A, 0,Bus_holy));
@@ -19,9 +20,11 @@ const BusTime = ({navigation}) => {
         setSelectedIndex(item);
     }
     useEffect(() => {
+        isFocused && (async function(params) {
         setA(BusA(BusTb.timeTable.A, selectedIndex, Bus_holy));
-        setB(BusB(BusTb.timeTable.B, selectedIndex, Bus_holy));
-    }, [selectedIndex]);
+        setB(BusB(BusTb.timeTable.B, selectedIndex, Bus_holy)); 
+        })();
+    }, [selectedIndex, isFocused]);
     const BusPicker = () => (
         <Picker
             placeholder={{}}
@@ -85,4 +88,4 @@ const pickerSelectStyles = StyleSheet.create({
     },
 });
 
-export default BusTime;
+export default withNavigationFocus(BusTime);

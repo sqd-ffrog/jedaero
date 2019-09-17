@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { mainScreen } from '../../styles/busStyle';
 import DormCard from './card/DormCard';
 import HaksikCard from './card/HaksikCard';
+import { withNavigationFocus } from 'react-navigation';
 import Bustime from './card/BusTime';
 import SmartBlock from './card/SmartBlock';
 import { checkLogin } from '../../../service/jedaeroService';
