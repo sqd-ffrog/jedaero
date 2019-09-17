@@ -11,20 +11,19 @@ import TodayCard from '../component/TodayCard.js';
 import { withNavigationFocus } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const BusTime = ({navigation, isFocused}) => {
+const BusTime = ({navigation,isFocused}) => {
     const data = BusRoute.routeName.A;
-    const [ selectedIndex, setSelectedIndex ] = useState(0);
+    const [ selectedIndex, setSelectedIndex] = useState(0);
     const [ A, setA ] = useState(BusA(BusTb.timeTable.A, 0,Bus_holy));
     const [ B, setB ] = useState(BusB(BusTb.timeTable.B, 0,Bus_holy));
     const onChangeBusRoute = (item) => {
         setSelectedIndex(item);
     }
+
     useEffect(() => {
-        isFocused && (async function(params) {
         setA(BusA(BusTb.timeTable.A, selectedIndex, Bus_holy));
-        setB(BusB(BusTb.timeTable.B, selectedIndex, Bus_holy)); 
-        })();
-    }, [selectedIndex, isFocused]);
+        setB(BusB(BusTb.timeTable.B, selectedIndex, Bus_holy));
+    },[selectedIndex,isFocused]);
     const BusPicker = () => (
         <Picker
             placeholder={{}}
