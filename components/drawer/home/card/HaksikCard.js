@@ -15,8 +15,10 @@ const HaksikCard = ({navigation}) => {
 
     const getHaksik = async (isRefresh = false) => {
         let haksikItem = await AsyncStorage.getItem('storedHaksik');
-        const week = getWeek(new Date());
-        if(isRefresh || haksikItem === null) {
+        const date = new Date();
+        const week = getWeek(date);
+        const storedHaksikWeek = await AsyncStorage.getItem('storedHaksikWeek');
+        if(isRefresh || haksikItem === null || week !== storedHaksikWeek && date.getHours() >= 9) {
             const data = await HaksikAPI();
             await AsyncStorage.setItem('storedHaksikWeek', week.toString());
             await AsyncStorage.setItem('storedHaksik', JSON.stringify(data));

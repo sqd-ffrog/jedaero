@@ -9,7 +9,6 @@ import { StatusBar, Platform } from 'react-native';
 import JedaeroContainer from './components/JedaeroContainer';
 
 const App = () => {
-  console.log(global.HermesInternal)
   useEffect(() => {
     StatusBar.setBarStyle('dark-content')
     if(Platform.OS === 'android') {
