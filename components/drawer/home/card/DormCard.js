@@ -16,10 +16,12 @@ const DormCard = ({navigation}) => {
 
     const getDormitory = async (isRefresh = false) => {
         let dormitoryItem = await AsyncStorage.getItem('storedDormitory');
-        const week = getWeek(new Date());
-        if(isRefresh || dormitoryItem === null) {
+        const date = new Date();
+        const week = getWeek(date).toString();
+        const storedDormitoryWeek = await AsyncStorage.getItem('storedDormitoryWeek');
+        if(isRefresh || dormitoryItem === null || (week !== storedDormitoryWeek && date.getHours() >= 9)) {
             const data = await DormitoryAPI();
-            await AsyncStorage.setItem('storedDormitoryWeek', week.toString());
+            await AsyncStorage.setItem('storedDormitoryWeek', week);
             await AsyncStorage.setItem('storedDormitory', JSON.stringify(data));
             dormitoryItem = await AsyncStorage.getItem('storedDormitory');
         }
