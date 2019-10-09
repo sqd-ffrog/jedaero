@@ -4,7 +4,7 @@ import Picker from 'react-native-picker-select';
 import BusTb from '../../../../jsons/busschedule.json';
 import BusA from '../../../../tool/busA';
 import BusB from '../../../../tool/busB';
-import Bus_holy from '../../../../jsons/bus_holy.json';
+import BusHoly from '../../../../jsons/bus_holy.json';
 import BusRoute from '../../../../jsons/bus_stop.json';
 import { mainScreen } from '../../../styles/busStyle.js';
 import TodayCard from '../component/TodayCard.js';
@@ -14,15 +14,15 @@ import Icon from 'react-native-vector-icons/Ionicons'
 const BusTime = ({navigation,isFocused}) => {
     const data = BusRoute.routeName.A;
     const [ selectedIndex, setSelectedIndex] = useState(0);
-    const [ A, setA ] = useState(BusA(BusTb.timeTable.A, 0,Bus_holy));
-    const [ B, setB ] = useState(BusB(BusTb.timeTable.B, 0,Bus_holy));
+    let [ A, setA ] = useState(BusA(BusTb.timeTable.A, 0,BusHoly));
+    let [ B, setB ] = useState(BusB(BusTb.timeTable.B, 0,BusHoly));
     const onChangeBusRoute = (item) => {
         setSelectedIndex(item);
     }
 
     useEffect(() => {
-        setA(BusA(BusTb.timeTable.A, selectedIndex, Bus_holy));
-        setB(BusB(BusTb.timeTable.B, selectedIndex, Bus_holy));
+        setA(BusA(BusTb.timeTable.A, selectedIndex, BusHoly));
+        setB(BusB(BusTb.timeTable.B, selectedIndex, BusHoly));
     },[selectedIndex,isFocused]);
     const BusPicker = () => (
         <Picker
@@ -36,6 +36,7 @@ const BusTime = ({navigation,isFocused}) => {
             Icon={() => (<Icon name="md-arrow-dropdown" size={24} color="#ffffff" />)}
         />
     )
+    
     const onPressContainer = () => {navigation.navigate('BusSchedule')}
     return (
         <TodayCard name="버스 시간" headerRight={<BusPicker />} containerStyle={{flexDirection: 'row'}} onPressContainer={onPressContainer}>

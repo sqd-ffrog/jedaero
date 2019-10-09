@@ -25,15 +25,15 @@ import { busIter, dayCheck } from './bus';
 //     }
 //   };
 
-function bus(timeTable, route, Bus_holy) {
-    for (const { timetb_set_sec, this_time_sec, _hours } of busIter(timeTable)) {
+function bus(timeTable, route, BusHoly) {
+    for (const { timetbSetSec, thisTimeSec, _hours } of busIter(timeTable)) {
         let hours = _hours,
-            minutes = parseInt(((timetb_set_sec - this_time_sec) % 3600) / 60) + route;
+            minutes = parseInt(((timetbSetSec - thisTimeSec) % 3600) / 60) + route;
         if (minutes >= 60) {
             hours += parseInt(minutes / 60);
             minutes = parseInt(minutes % 60);
         }
-        if (timetb_set_sec > this_time_sec) {
+        if (timetbSetSec > thisTimeSec) {
             return `${hours}시간 ${minutes}분 전`;
         }
     }
@@ -79,7 +79,7 @@ function bus(timeTable, route, Bus_holy) {
 //     return "운행 종료"
 // }
 
-function result_time(params, im) {
+function resultTime(params, im) {
     const slicetime = params.split(':');
     const now = new Date(); //현재시간
     let hour = Number(slicetime[0]) - now.getHours();

@@ -2,12 +2,12 @@ function* busIter(timeTable) {
     const now = new Date();
     for (const time of timeTable) {
         const slice = time.split(':');
-        const timetb_set_sec =
+        const timetbSetSec =
             Number(slice[0] * 60 * 60) + Number(slice[1] * 60) + Number(slice[2]);
-        const this_time_sec = now.getHours() * 60 * 60 + now.getMinutes() * 60 + now.getSeconds();
-        const _hours = parseInt((timetb_set_sec - this_time_sec) / 3600);
+        const thisTimeSec = now.getHours() * 60 * 60 + now.getMinutes() * 60 + now.getSeconds();
+        const _hours = parseInt((timetbSetSec - thisTimeSec) / 3600);
 
-        yield { timetb_set_sec, this_time_sec, _hours };
+        yield { timetbSetSec, thisTimeSec, _hours };
     }
 }
 
