@@ -4,23 +4,26 @@ import Picker from 'react-native-picker-select';
 import BusTb from '../../../../jsons/busschedule.json';
 import BusA from '../../../../tool/busA';
 import BusB from '../../../../tool/busB';
+import BusHoly from '../../../../jsons/bus_holy.json';
 import BusRoute from '../../../../jsons/bus_stop.json';
 import { mainScreen } from '../../../styles/busStyle.js';
 import TodayCard from '../component/TodayCard.js';
+import { withNavigationFocus } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const BusTime = () => {
+const BusTime = ({navigation,isFocused}) => {
     const data = BusRoute.routeName.A;
-    const [ selectedIndex, setSelectedIndex ] = useState(0);
-    const [ A, setA ] = useState(BusA(BusTb.timeTable.A, 0));
-    const [ B, setB ] = useState(BusB(BusTb.timeTable.B, 0));
+    const [ selectedIndex, setSelectedIndex] = useState(0);
+    let [ A, setA ] = useState(BusA(BusTb.timeTable.A, 0,BusHoly));
+    let [ B, setB ] = useState(BusB(BusTb.timeTable.B, 0,BusHoly));
     const onChangeBusRoute = (item) => {
         setSelectedIndex(item);
     }
+
     useEffect(() => {
-        setA(BusA(BusTb.timeTable.A, selectedIndex));
-        setB(BusB(BusTb.timeTable.B, selectedIndex));
-    }, [selectedIndex]);
+        setA(BusA(BusTb.timeTable.A, selectedIndex, BusHoly));
+        setB(BusB(BusTb.timeTable.B, selectedIndex, BusHoly));
+    },[selectedIndex,isFocused]);
     const BusPicker = () => (
         <Picker
             placeholder={{}}
@@ -33,9 +36,10 @@ const BusTime = () => {
             Icon={() => (<Icon name="md-arrow-dropdown" size={24} color="#ffffff" />)}
         />
     )
-
+    
+    const onPressContainer = () => {navigation.navigate('BusSchedule')}
     return (
-        <TodayCard name="버스 시간" headerRight={<BusPicker />} containerStyle={{flexDirection: 'row'}}>
+        <TodayCard name="버스 시간" headerRight={<BusPicker />} containerStyle={{flexDirection: 'row'}} onPressContainer={onPressContainer}>
         {/* A버스 시간 안내 */}
             <View style={mainScreen.blockViewContainerMain}>
                 <Text style={mainScreen.blockTitle}>A</Text>
@@ -84,4 +88,4 @@ const pickerSelectStyles = StyleSheet.create({
     },
 });
 
-export default BusTime;
+export default withNavigationFocus(BusTime);
