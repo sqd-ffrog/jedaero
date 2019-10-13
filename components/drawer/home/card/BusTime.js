@@ -14,8 +14,8 @@ import Icon from 'react-native-vector-icons/Ionicons'
 const BusTime = ({navigation,isFocused}) => {
     const data = BusRoute.routeName.A;
     const [ selectedIndex, setSelectedIndex] = useState(0);
-    let [ A, setA ] = useState(BusA(BusTb.timeTable.A, 0,BusHoly));
-    let [ B, setB ] = useState(BusB(BusTb.timeTable.B, 0,BusHoly));
+    const [ A, setA ] = useState(BusA(BusTb.timeTable.A, 0,BusHoly));
+    const [ B, setB ] = useState(BusB(BusTb.timeTable.B, 0,BusHoly));
     const onChangeBusRoute = (item) => {
         setSelectedIndex(item);
     }
