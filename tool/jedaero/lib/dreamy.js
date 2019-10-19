@@ -1,8 +1,9 @@
-import encode64 from "./encode64";
 import { Platform } from 'react-native';
 import RNFetchBlob from "rn-fetch-blob";
 
 const fetchData = async (uri, body) => RNFetchBlob.config({trusty: true}).fetch('POST', uri, {"Content-Type": "application/x-www-form-urlencoded"}, body)
+
+const encode64 = (string) => Buffer.from(string).toString('base64')
 
 /**
  * Dreamy Connection with fetch API.
