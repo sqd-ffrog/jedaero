@@ -1,5 +1,6 @@
 import { Platform } from 'react-native';
 import RNFetchBlob from "rn-fetch-blob";
+import { Buffer } from 'buffer';
 
 const fetchData = async (uri, body) => RNFetchBlob.config({trusty: true}).fetch('POST', uri, {"Content-Type": "application/x-www-form-urlencoded"}, body)
 
