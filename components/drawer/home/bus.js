@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { mainScreen } from '../../styles/busStyle';
 import DormCard from './card/DormCard';
 import HaksikCard from './card/HaksikCard';
+import { withNavigationFocus } from 'react-navigation';
 import Bustime from './card/BusTime';
 import SmartBlock from './card/SmartBlock';
 import { checkLogin } from '../../../service/jedaeroService';
@@ -11,7 +12,7 @@ import { checkLogin } from '../../../service/jedaeroService';
 const Bus = ({navigation}) => (
     <ScrollView contentContainerStyle={mainScreen.busView} >
         {/* <SmartBlock name="스마트 출첵" /> */}
-        <Bustime name="버스 시간" />
+        <Bustime name="버스 시간" navigation={navigation}/>
         <HaksikCard navigation={navigation}/>
         <DormCard navigation={navigation}/>
     </ScrollView>
