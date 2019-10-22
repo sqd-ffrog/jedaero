@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import Bus from '../../drawer/home/bus';
 import HakSikMain from '../../drawer/food/menu/haksik';
 import DormitoryMain from '../../drawer/food/menu/dormitory';

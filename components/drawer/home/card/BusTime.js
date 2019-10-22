@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import Picker from 'react-native-picker-select';
 import BusTb from '../../../../jsons/busschedule.json';
@@ -11,19 +11,39 @@ import TodayCard from '../component/TodayCard.js';
 import { withNavigationFocus } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const BusTime = ({navigation,isFocused}) => {
+
+const BusFragment = ({title, description, routeFunction, selectedIndex}) => {
+    const [time, setTime] = useState(routeFunction(BusTb.timeTable[title], selectedIndex, BusHoly));
+
+    const refreshItem = () => {
+        console.log(selectedIndex)
+        setTime(routeFunction(BusTb.timeTable[title], selectedIndex, BusHoly));
+    }
+    return (
+        <Fragment>
+            <View style={mainScreen.blockViewContainerMain}>
+                <Text style={mainScreen.blockTitle}>{title}</Text>
+                <Text style={mainScreen.busWay}>{description}</Text>
+            </View>
+            <View style={mainScreen.blockViewContainerSub}>
+                <Text style={mainScreen.blockText}>{time}</Text>
+            </View>
+        </Fragment>
+    )
+}
+
+const BusTime = ({navigation}) => {
     const data = BusRoute.routeName.A;
-    const [ selectedIndex, setSelectedIndex] = useState(0);
-    let [ A, setA ] = useState(BusA(BusTb.timeTable.A, 0,BusHoly));
-    let [ B, setB ] = useState(BusB(BusTb.timeTable.B, 0,BusHoly));
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
+    useEffect(() => {
+        console.log(selectedIndex);
+        clearInterval(setSelectedIndex.bind(null, selectedIndex));
+        setInterval(setSelectedIndex.bind(null, selectedIndex), 1000);   
+    }, [selectedIndex]);
     const onChangeBusRoute = (item) => {
         setSelectedIndex(item);
     }
-
-    useEffect(() => {
-        setA(BusA(BusTb.timeTable.A, selectedIndex, BusHoly));
-        setB(BusB(BusTb.timeTable.B, selectedIndex, BusHoly));
-    },[selectedIndex,isFocused]);
     const BusPicker = () => (
         <Picker
             placeholder={{}}
@@ -41,21 +61,9 @@ const BusTime = ({navigation,isFocused}) => {
     return (
         <TodayCard name="버스 시간" headerRight={<BusPicker />} containerStyle={{flexDirection: 'row'}} onPressContainer={onPressContainer}>
         {/* A버스 시간 안내 */}
-            <View style={mainScreen.blockViewContainerMain}>
-                <Text style={mainScreen.blockTitle}>A</Text>
-                <Text style={mainScreen.busWay}>반시계방향</Text>
-            </View>
-            <View style={mainScreen.blockViewContainerSub}>
-                <Text style={mainScreen.blockText}>{A}</Text>
-            </View>
-        {/* B버스 시간 안내 */}     
-            <View style={mainScreen.blockViewContainerMain}>
-                <Text style={mainScreen.blockTitle}>B</Text>
-                <Text style={mainScreen.busWay}>시계방향</Text>
-            </View>
-            <View style={mainScreen.blockViewContainerSub}>
-                <Text style={mainScreen.blockText}>{B}</Text>
-            </View>
+            <BusFragment title="A" description="반시계 반향" routeFunction={BusA} selectedIndex={selectedIndex} />
+        {/* B버스 시간 안내 */}    
+            <BusFragment title="B" description="시계 반향" routeFunction={BusB} selectedIndex={selectedIndex} /> 
         </TodayCard>
     )
 }

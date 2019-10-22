@@ -2,7 +2,8 @@
  * Aerain
  */
 
-import { createAppContainer,createStackNavigator, } from 'react-navigation'
+import { createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack';
 import MainBottomTabNavigation from './navigations/MainBottomTabNavigation';
 import InfoHome from './info/InfoHome';
 import { stackNavigationConfig } from './navigations/navigationConfigs';
