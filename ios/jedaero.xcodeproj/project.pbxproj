@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* jedaeroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* jedaeroTests.m */; };
 		01084B259A714EEB85542EFC /* jedaero-splash-200x200.png in Resources */ = {isa = PBXBuildFile; fileRef = C09B0B723556427E8C175169 /* jedaero-splash-200x200.png */; };
+		01AD6C67BAF32E8D55C5222B /* libPods-jedaeroTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB6CFF230F0C6100553CA9 /* libPods-jedaeroTests.a */; };
 		0A58524AC88DDAAC082EE3A1 /* libPods-jedaero.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF8AF8C515A5A230DFAFFAB /* libPods-jedaero.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
@@ -26,22 +27,6 @@
 		ABBF3C96F21D4101A5A77802 /* jedaero-60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F9ADB9CBDB4B27A47DB781 /* jedaero-60x60.png */; };
 		AC09A61A9F1C47C4B84368CC /* jedaero-splash-600x600.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C15D34D0D84A288CC36D28 /* jedaero-splash-600x600.png */; };
 		C19FCC52406D4E128ED6F805 /* jedaero-120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = FE298A39169442B9BEFB7D03 /* jedaero-120x120.png */; };
-		C2E9CD722303A3A900B22690 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD622303A3A900B22690 /* Fontisto.ttf */; };
-		C2E9CD732303A3A900B22690 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD632303A3A900B22690 /* Octicons.ttf */; };
-		C2E9CD742303A3A900B22690 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD642303A3A900B22690 /* Feather.ttf */; };
-		C2E9CD752303A3A900B22690 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD652303A3A900B22690 /* Entypo.ttf */; };
-		C2E9CD762303A3A900B22690 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD662303A3A900B22690 /* FontAwesome5_Brands.ttf */; };
-		C2E9CD772303A3A900B22690 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD672303A3A900B22690 /* MaterialCommunityIcons.ttf */; };
-		C2E9CD782303A3A900B22690 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD682303A3A900B22690 /* AntDesign.ttf */; };
-		C2E9CD792303A3A900B22690 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD692303A3A900B22690 /* Foundation.ttf */; };
-		C2E9CD7A2303A3A900B22690 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD6A2303A3A900B22690 /* Ionicons.ttf */; };
-		C2E9CD7B2303A3A900B22690 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD6B2303A3A900B22690 /* FontAwesome5_Solid.ttf */; };
-		C2E9CD7C2303A3A900B22690 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD6C2303A3A900B22690 /* FontAwesome5_Regular.ttf */; };
-		C2E9CD7D2303A3A900B22690 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD6D2303A3A900B22690 /* FontAwesome.ttf */; };
-		C2E9CD7E2303A3A900B22690 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD6E2303A3A900B22690 /* Zocial.ttf */; };
-		C2E9CD7F2303A3A900B22690 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD6F2303A3A900B22690 /* EvilIcons.ttf */; };
-		C2E9CD802303A3A900B22690 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD702303A3A900B22690 /* SimpleLineIcons.ttf */; };
-		C2E9CD812303A3A900B22690 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9CD712303A3A900B22690 /* MaterialIcons.ttf */; };
 		C5F9623345F2CB2520CE944A /* libPods-jedaero-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF854C5246B6EF2648084CB /* libPods-jedaero-tvOS.a */; };
 		CB84D3766C204BEEA156813F /* jedaero-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B8285CBEDC14273839668A2 /* jedaero-80x80.png */; };
 		CCA6A2A568004E2EB1A08E1D /* jedaero-58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B156210F38477CABA9A7E1 /* jedaero-58x58.png */; };
@@ -129,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01AD6C67BAF32E8D55C5222B /* libPods-jedaeroTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,23 +431,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2E9CD722303A3A900B22690 /* Fontisto.ttf in Resources */,
-				C2E9CD7D2303A3A900B22690 /* FontAwesome.ttf in Resources */,
-				C2E9CD792303A3A900B22690 /* Foundation.ttf in Resources */,
-				C2E9CD7C2303A3A900B22690 /* FontAwesome5_Regular.ttf in Resources */,
-				C2E9CD7A2303A3A900B22690 /* Ionicons.ttf in Resources */,
-				C2E9CD7F2303A3A900B22690 /* EvilIcons.ttf in Resources */,
-				C2E9CD752303A3A900B22690 /* Entypo.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				C2E9CD7E2303A3A900B22690 /* Zocial.ttf in Resources */,
-				C2E9CD802303A3A900B22690 /* SimpleLineIcons.ttf in Resources */,
-				C2E9CD742303A3A900B22690 /* Feather.ttf in Resources */,
-				C2E9CD732303A3A900B22690 /* Octicons.ttf in Resources */,
-				C2E9CD762303A3A900B22690 /* FontAwesome5_Brands.ttf in Resources */,
-				C2E9CD782303A3A900B22690 /* AntDesign.ttf in Resources */,
-				C2E9CD812303A3A900B22690 /* MaterialIcons.ttf in Resources */,
-				C2E9CD7B2303A3A900B22690 /* FontAwesome5_Solid.ttf in Resources */,
-				C2E9CD772303A3A900B22690 /* MaterialCommunityIcons.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				ABBF3C96F21D4101A5A77802 /* jedaero-60x60.png in Resources */,
 				CCA6A2A568004E2EB1A08E1D /* jedaero-58x58.png in Resources */,
@@ -507,7 +477,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
