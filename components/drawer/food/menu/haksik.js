@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, RefreshControl } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { createMaterialTopTabNavigator } from 'react-navigation';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import { HaksikAPI } from '../../../../tool/jedaero';
 import { foodTabNavStyles } from '../../../styles/jedaeroCSS';
 import { foodTopTabNavigationConfig } from '../../../navigations/navigationConfigs'

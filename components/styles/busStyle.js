@@ -106,6 +106,21 @@ const mainScreen = StyleSheet.create({
         fontSize: normalize(12),
         lineHeight: normalize(16)
     },
+    busscheduleMain:{
+        flex:1,
+        flexDirection:'column'
+    },
+    busscheduleContainer:{
+        flex : 1,
+        flexDirection:'row',
+    },
+    busschedulename:{
+        flex:1,
+        marginLeft: 20,
+    },
+    busschedule:{
+        flex:9,
+    },
     foodViewBlockContainer: {
         borderLeftWidth: 0.5,
         borderRightWidth: 0.5,

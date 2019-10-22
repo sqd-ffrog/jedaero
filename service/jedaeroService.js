@@ -24,7 +24,7 @@ const getTimeTable = async (year,month,day) => {
                 fri: res['MST_DATE'].fri,
                 sat: res['MST_DATE'].sat,
             },
-            schedule: res['MST_LIST'].filter((item, index) => index % 6 === 1).map(rawRow => {
+            schedule: res['MST_LIST'].filter((item, index) => index % 6 === 3).map(rawRow => {
                 const row = { period: rawRow['gyosi'] === "0" ? "저녁 식사" : rawRow['gyosi'], time: rawRow['si'] };
                 week.map(item => {
                     const time = rawRow[item].split("<br>");
