@@ -79,7 +79,7 @@ PODS:
     - React-Core (= 0.60.5)
   - React-RCTWebSocket (0.60.5):
     - React-Core (= 0.60.5)
-  - rn-fetch-blob (0.10.16):
+  - rn-fetch-blob (0.11.2):
     - React-Core
   - RNCAsyncStorage (1.6.1):
     - React
@@ -126,7 +126,7 @@ DEPENDENCIES:
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - boost-for-react-native
 
 EXTERNAL SOURCES:
@@ -209,7 +209,7 @@ SPEC CHECKSUMS:
   React-RCTText: b074d89033583d4f2eb5faf7ea2db3a13c7553a2
   React-RCTVibration: 2105b2e0e2b66a6408fc69a46c8a7fb5b2fdade0
   React-RCTWebSocket: cd932a16b7214898b6b7f788c8bddb3637246ac4
-  rn-fetch-blob: 651b8d076b43d0d7aa294a3d9ec16c00aab8bef9
+  rn-fetch-blob: f525a73a78df9ed5d35e67ea65e79d53c15255bc
   RNCAsyncStorage: 621bad7a889b5bf1583a52547f2dcd3a4d1ff15e
   RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
   RNKeychain: 45dbd50d1ac4bd42c3740f76ffb135abf05746d0
@@ -218,6 +218,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 
-PODFILE CHECKSUM: 64fac87ece2a7e870c794142624ca34937fa71fe
+PODFILE CHECKSUM: 010c9d6fcd7d695c74ff27d06938c6101fc639a4
 
 COCOAPODS: 1.8.4

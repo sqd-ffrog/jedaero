@@ -18,7 +18,7 @@ const mainScreen = StyleSheet.create({
         marginVertical: 12,
         backgroundColor: colorPalette.cardBackgroundColor,
         // overflow: 'hidden',
-        ...elevationShadowStyle(5),
+        ...elevationShadowStyle(3),
     },
     blockViewTitle: {
         borderTopLeftRadius: 16,
