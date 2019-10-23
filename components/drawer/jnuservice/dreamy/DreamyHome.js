@@ -28,11 +28,6 @@ const totalMenu = [
                 name: `교수계획서 ${'\n'}조회`,
                 routeName: "LecturePlan",
             },
-            {
-                icon: 'book-open-outline',
-                name: `교수계획서 ${'\n'}조회`,
-                routeName: "LecturePlan",
-            },
         ]
     }
 ]

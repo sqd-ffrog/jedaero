@@ -6,6 +6,7 @@ import { normalize, Input } from 'react-native-elements';
 import Picker from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/Ionicons';
 import semesterData from '../../../../jsons/semesterMap';
+import elevationShadowStyle from '../../../../tool/elevationShadow';
 
 const getSemester = (month) => {
     if(month === 0) return 21;
@@ -84,28 +85,14 @@ const LectureBoard = ({navigation}) => {
     (lectureBoard === {} ? (
         <View><Text>오류가 있어유</Text></View>
     ) : (
-        <ScrollView>
-            
-            
-
-            <SectionList
-                sections={lectureBoard}
-                keyExtractor={item => item.classCode}
-                renderItem={renderLecture}
-                renderSectionHeader={renderLectureHeader}
-                ListHeaderComponent={ListHeaderComponent}
-                ListEmptyComponent={renderEmpty}
-            />
-
-            <FlatList
-                data={lectureBoard[0].data}
-                keyExtractor={item => item.classCode}
-                renderItem={renderLecture}
-                contentContainerStyle={styles.lectureListContainer}
-                ListHeaderComponent={renderLectureHeader}
-                ListEmptyComponent={renderEmpty}
-            />
-        </ScrollView>
+        <SectionList
+            sections={lectureBoard}
+            keyExtractor={item => item.classCode}
+            renderItem={renderLecture}
+            renderSectionHeader={renderLectureHeader}
+            ListHeaderComponent={ListHeaderComponent}
+            ListEmptyComponent={renderEmpty}
+        />
     ))
 }
 
@@ -133,28 +120,27 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },  
     lectureItemHeader: {
-        marginTop: 32, 
-        borderTopWidth: 0.5, 
-        borderLeftWidth: 0.5,
-        borderRightWidth: 0.5,
-        borderTopLeftRadius: 8,
+        marginTop: 32,
+        marginBottom: 8,
+        borderWidth: 0.5,
+        // borderColor: colorPalette.cardBorderColor,
+        
     },
     lectureListContainer: {
-        borderRadius: 8,
-        overflow: 'hidden',
         marginHorizontal: 16,
         marginTop: 32,
-        borderColor: colorPalette.cardBorderColor,
-        borderWidth: 0.5,
     },
     lectureItemContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: colorPalette.cardBackgroundColor,
-        borderBottomWidth: 0.5,
-        borderBottomColor: colorPalette.cardBorderColor,
         marginHorizontal: 16,
-        overflow: 'hidden',
+        marginVertical: 8,
+        borderRadius: 8,
+        borderColor:colorPalette.cardBorderColor,
+        borderWidth: 0.5,
+        backgroundColor: colorPalette.cardBackgroundColor,
+        ...elevationShadowStyle(3)
     },
     lectureItemText: {
         fontSize: normalize(14),
@@ -163,10 +149,14 @@ const styles = StyleSheet.create({
     itemLeftContainer: {
         flex: 1,
         backgroundColor: colorPalette.mainColor,
+        borderTopLeftRadius: 8,
+        borderBottomLeftRadius: 8,
         paddingVertical: 16,
     },
     itemRightContainer: {
         flex: 3,
+        borderTopRightRadius: 8,
+        borderBottomRightRadius: 8,
         paddingVertical: 16,
     },
     emptyItem: {
