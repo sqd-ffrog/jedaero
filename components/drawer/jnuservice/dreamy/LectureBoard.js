@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { View, TouchableOpacity, Text, FlatList, StyleSheet, ActivityIndicator, ScrollView, TextInput} from 'react-native';
+import { View, TouchableOpacity, Text, FlatList, StyleSheet, ActivityIndicator, ScrollView, SectionList, TextInput} from 'react-native';
 import { getLectureBoardData } from '../../../../service/jedaeroService';
 import colorPalette from '../../../styles/colorPalette';
 import { normalize, Input } from 'react-native-elements';
@@ -25,7 +25,7 @@ const LectureBoard = ({navigation}) => {
     }
     useEffect(() => { getLectureBoard(); }, []); 
     const renderLectureHeader = () => (
-        <View style={styles.lectureItemContainer}>
+        <View style={{...styles.lectureItemContainer, ...styles.lectureItemHeader}}>
            <View style={styles.itemLeftContainer}>
                 <Text style={{...styles.lectureItemText, color: colorPalette.cardBackgroundColor}}>수강반</Text>
             </View>
@@ -49,16 +49,8 @@ const LectureBoard = ({navigation}) => {
         <Text style={styles.emptyItem}>과목이 없어요</Text>
     )
 
-    return !lectureBoard ? (
-        <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
-            <ActivityIndicator size='large' color={colorPalette.mainColor}/>
-        </View>
-    ) :
-    (lectureBoard === {} ? (
-        <View><Text>오류가 있어유</Text></View>
-    ) : (
-        <ScrollView>
-            <View style={styles.header}>
+    const ListHeaderComponent = () => (
+        <View style={styles.header}>
                 <Text style={{fontSize: 14}}>수강학기</Text>
                 <Input 
                     value={year}
@@ -83,13 +75,34 @@ const LectureBoard = ({navigation}) => {
                     <Text style={{fontSize: 14, color: colorPalette.cardBackgroundColor, fontWeight: 'bold'}}>조회</Text>
                 </TouchableOpacity>
             </View>
+    )
+    return !lectureBoard ? (
+        <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
+            <ActivityIndicator size='large' color={colorPalette.mainColor}/>
+        </View>
+    ) :
+    (lectureBoard === {} ? (
+        <View><Text>오류가 있어유</Text></View>
+    ) : (
+        <ScrollView>
+            
+            
+
+            <SectionList
+                sections={lectureBoard}
+                keyExtractor={item => item.classCode}
+                renderItem={renderLecture}
+                renderSectionHeader={renderLectureHeader}
+                ListHeaderComponent={ListHeaderComponent}
+                ListEmptyComponent={renderEmpty}
+            />
+
             <FlatList
-                data={lectureBoard.lectures}
+                data={lectureBoard[0].data}
                 keyExtractor={item => item.classCode}
                 renderItem={renderLecture}
                 contentContainerStyle={styles.lectureListContainer}
                 ListHeaderComponent={renderLectureHeader}
-                nestedScrollEnabled={true}
                 ListEmptyComponent={renderEmpty}
             />
         </ScrollView>
@@ -119,6 +132,13 @@ const styles = StyleSheet.create({
         fontSize: normalize(14),
         fontWeight: 'bold',
     },  
+    lectureItemHeader: {
+        marginTop: 32, 
+        borderTopWidth: 0.5, 
+        borderLeftWidth: 0.5,
+        borderRightWidth: 0.5,
+        borderTopLeftRadius: 8,
+    },
     lectureListContainer: {
         borderRadius: 8,
         overflow: 'hidden',
@@ -133,6 +153,8 @@ const styles = StyleSheet.create({
         backgroundColor: colorPalette.cardBackgroundColor,
         borderBottomWidth: 0.5,
         borderBottomColor: colorPalette.cardBorderColor,
+        marginHorizontal: 16,
+        overflow: 'hidden',
     },
     lectureItemText: {
         fontSize: normalize(14),
