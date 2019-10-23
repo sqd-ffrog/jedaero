@@ -11,14 +11,17 @@ import TodayCard from '../component/TodayCard.js';
 import { withNavigationFocus } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-
 const BusFragment = ({title, description, routeFunction, selectedIndex}) => {
     const [time, setTime] = useState(routeFunction(BusTb.timeTable[title], selectedIndex, BusHoly));
+    const [cancelRefresh, setCancelRefresh] = useState();
 
-    const refreshItem = () => {
-        console.log(selectedIndex)
-        setTime(routeFunction(BusTb.timeTable[title], selectedIndex, BusHoly));
-    }
+    useEffect(() => {
+        if(cancelRefresh) cancelRefresh();
+        const id = setInterval(setTime.bind(null,routeFunction(BusTb.timeTable[title], selectedIndex, BusHoly)), 1000);
+        setCancelRefresh(() => clearInterval.bind(null, id));
+        return () => clearInterval(id);
+    }, [selectedIndex])
+
     return (
         <Fragment>
             <View style={mainScreen.blockViewContainerMain}>
@@ -36,11 +39,6 @@ const BusTime = ({navigation}) => {
     const data = BusRoute.routeName.A;
     const [selectedIndex, setSelectedIndex] = useState(0);
 
-    useEffect(() => {
-        console.log(selectedIndex);
-        clearInterval(setSelectedIndex.bind(null, selectedIndex));
-        setInterval(setSelectedIndex.bind(null, selectedIndex), 1000);   
-    }, [selectedIndex]);
     const onChangeBusRoute = (item) => {
         setSelectedIndex(item);
     }
