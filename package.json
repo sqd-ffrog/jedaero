@@ -14,8 +14,8 @@
     "iconv-lite": "^0.5.0",
     "link": "^0.1.5",
     "moment": "^2.24.0",
-    "react": "16.8.6",
-    "react-native": "0.60.5",
+    "react": "16.9.0",
+    "react-native": "0.61.2",
     "react-native-calendars": "^1.208.0",
     "react-native-cheerio": "^1.0.0-rc.4",
     "react-native-communications": "^2.2.1",
@@ -40,15 +40,15 @@
     "util": "^0.12.1"
   },
   "devDependencies": {
-    "@babel/core": "7.5.5",
-    "@babel/runtime": "7.5.5",
+    "@babel/core": "7.6.2",
+    "@babel/runtime": "7.6.2",
     "@react-native-community/eslint-config": "0.0.3",
-    "babel-jest": "24.8.0",
-    "eslint": "6.1.0",
-    "jest": "24.8.0",
+    "babel-jest": "24.9.0",
+    "eslint": "6.5.1",
+    "jest": "24.9.0",
     "jetifier": "^1.6.4",
     "metro-react-native-babel-preset": "0.54.1",
-    "react-test-renderer": "16.8.6"
+    "react-test-renderer": "16.9.0"
   },
   "jest": {
     "preset": "react-native"
