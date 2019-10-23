@@ -68,7 +68,6 @@ const DreamyHome = ({navigation, isFocused}) => {
             if(isLogin) {
                 const { password: baseInfo } = await getGenericPassword();
                 const { name } = JSON.parse(baseInfo);
-                console.log(name);
                 setName(name);
             }
         })();
