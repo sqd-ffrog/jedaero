@@ -145,19 +145,19 @@ const getLectureBoardData = async (year, semester) => {
         res = await Dreamy.getLectureBoard(account, encodeURIComponent(name), userGb, year, semester);
     } finally {
         if(!res) return {};
-        return {
+        return [{
             lectureBoardInfo: {
                 year: res["MST_ROW"]['common_curri_year'],
                 semester: res["MST_ROW"]['common_term_gb'],
             },
-            lectures: res["MST_LIST"].map(row => ({
+            data: res["MST_LIST"].map(row => ({
                 classCode: row['common_ban_no'],
                 professorName: row['common_prof_nm'],
                 professorCode: row['common_prof_no'],
                 lectureCode: row['common_subject_cd'],
                 lectureName: row['common_subject_nm'],
             }))
-        };
+        }];
     }
 }
 

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         borderColor: colorPalette.cardBorderColor,
         backgroundColor: colorPalette.cardBackgroundColor,
         borderRadius: 16,
-        ...elevationShadowStyle(5)
+        ...elevationShadowStyle(3)
     },
     header: {
         paddingVertical: 8,

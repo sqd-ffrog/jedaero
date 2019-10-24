@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         padding: 16,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     loginText: {
         fontSize: normalize(12),

@@ -5,6 +5,7 @@ const foodTopTabNavigationConfig = {
     backBehavior: 'none',
     tabBarPosition: 'top',
     lazy: false,
+    swipeEnabled: true,
     tabBarOptions: {
         showIcon:false,
         activeTintColor: "#000000",
