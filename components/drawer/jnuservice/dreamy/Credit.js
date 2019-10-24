@@ -4,6 +4,7 @@ import { getCreditData } from '../../../../service/jedaeroService';
 import colorPalette from '../../../styles/colorPalette';
 import { normalize } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import elevationShadowStyle from '../../../../tool/elevationShadow';
 
 const Credit = ({navigation}) => {
     const [credit, setCredit] = useState(null);
@@ -80,7 +81,9 @@ const styles = StyleSheet.create({
         padding: 16,
         marginHorizontal: 16,
         borderRadius: 8,
+        marginVertical: 8,
         backgroundColor: colorPalette.cardBackgroundColor,
+        ...elevationShadowStyle(3)
     },  
     summaryName: {
         fontSize: normalize(16),
@@ -96,6 +99,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-end',
         marginBottom: 16,
+        
     },
     summaryText: {
         fontSize: normalize(12),
@@ -128,6 +132,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        ...elevationShadowStyle(3)
     },
     itemTitleText: {
         fontSize: normalize(12),

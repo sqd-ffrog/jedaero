@@ -3,7 +3,7 @@ import Bus from '../../drawer/home/bus';
 import HakSikMain from '../../drawer/food/menu/haksik';
 import DormitoryMain from '../../drawer/food/menu/dormitory';
 import { stackNavigationConfig } from '../navigationConfigs';
-import BusSchedule from '../../drawer/home/BusSchedule'
+import BusSchedule from '../../drawer/home/BusTimeTable'
 
 const BusStackNavigation =  createStackNavigator({
     Bus: {

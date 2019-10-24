@@ -1,5 +1,5 @@
 import React, {useState, useEffect, Fragment} from 'react'
-import { View, Text, ScrollView, FlatList, ActivityIndicator, TouchableOpacity, StyleSheet, Alert} from 'react-native';
+import { View, Text, ScrollView, FlatList, ActivityIndicator, TouchableOpacity, StyleSheet, Alert, SectionList} from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { getLecturePlanList } from '../../../../service/jedaeroService';
 import colorPalette from '../../../styles/colorPalette';
@@ -47,6 +47,15 @@ const LecturePlan = ({navigation}) => {
         </TouchableOpacity>
     )
 
+    const ListHeaderComponent = (
+        <View style={styles.searchHeader}>
+            <Input label="수강반번호" value={classCode} onChangeText={classCode => setClassCode(classCode)} labelStyle={styles.label} containerStyle={styles.searchContainer} inputStyle={styles.searchInput}/>
+            <Input label="교수이름" value={professorName} onChangeText={professorName => setProfessorName(professorName)} labelStyle={styles.label} containerStyle={styles.searchContainer} inputStyle={styles.searchInput}/>
+            <Input label="강의명" value={lectureName} onChangeText={lectureName => setLectureName(lectureName)} labelStyle={styles.label} containerStyle={styles.searchContainer} inputStyle={styles.searchInput}/>
+            <Button title="조회" type="solid" color={colorPalette.mainColor} buttonStyle={{backgroundColor: colorPalette.mainColor, margin: 8}} onPress={getData}/>
+        </View>
+    )
+
     return (
         <Fragment>
             <View style={styles.header}>
@@ -71,7 +80,13 @@ const LecturePlan = ({navigation}) => {
                     Icon={() => (<Icon name="md-arrow-dropdown" size={24} color={colorPalette.mainColor} style={{marginRight: 5}} />)}
                 />
             </View>
-            <ScrollView>
+            <SectionList 
+                sections={[{data}]}
+                renderItem = {LectureItem}
+                keyExtractor={item => item.classCode}
+                ListHeaderComponent={ListHeaderComponent}
+            />
+            {/* <ScrollView>
                 <View style={styles.searchHeader}>
                     <Input label="수강반번호" value={classCode} onChangeText={classCode => setClassCode(classCode)} labelStyle={styles.label} containerStyle={styles.searchContainer} inputStyle={styles.searchInput}/>
                     <Input label="교수이름" value={professorName} onChangeText={professorName => setProfessorName(professorName)} labelStyle={styles.label} containerStyle={styles.searchContainer} inputStyle={styles.searchInput}/>
@@ -84,15 +99,15 @@ const LecturePlan = ({navigation}) => {
                             <ActivityIndicator size='large' color={colorPalette.mainColor}/>
                         </View>
                     ) : (
-                        <FlatList 
-                            data={data}
+                        <FlatList
+                            data={data} 
                             renderItem = {LectureItem}
                             keyExtractor={item => item.classCode}
                             nestedScrollEnabled={true}
                         />
                     )
                 }
-            </ScrollView>            
+            </ScrollView>             */}
         </Fragment>
         
     )
