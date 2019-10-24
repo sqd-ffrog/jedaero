@@ -67,7 +67,7 @@ const DreamyHome = ({navigation, isFocused}) => {
             if( i >= section.data.length) break;
             let {icon, name, routeName} = section.data[i];
             items.push((
-                <TouchableOpacity style={{...styles.totalMenuItem}} onPress={afterLogin.bind(null, () => navigation.navigate(routeName))}>
+                <TouchableOpacity key={name} style={{...styles.totalMenuItem}} onPress={afterLogin.bind(null, () => navigation.navigate(routeName))}>
                     <Icon name={icon} size={48} style={styles.menuItemIcon} />
                     <Text numberOfLines={2} style={styles.itemText}>{name}</Text>
                 </TouchableOpacity> 
