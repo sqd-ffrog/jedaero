@@ -10,6 +10,7 @@ const foodTopTabNavigationConfig = {
         showIcon:false,
         activeTintColor: "#000000",
         inactiveTintColor:'#d7d7d7',
+        scrollEnabled: false,
         tabStyle:{
             justifyContent:'center',
             alignItems:'center',
