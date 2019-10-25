@@ -7,11 +7,12 @@ const jedaeroBottomTabNavigationConfig = {
     resetOnBlur: true,
     tabBarOptions: {
       activeTintColor: colorPalette.mainColor,
-      showLabel: false,
-      tabStyle: {
+      showLabel: true,
+      showIcon: true,
+      style: {
         backgroundColor: colorPalette.backgroundColor,
-        ...elevationShadowStyle(5),
-        borderWidth: 0
+        ...elevationShadowStyle(12),
+        borderTopWidth: 0,
       },
     },
 }

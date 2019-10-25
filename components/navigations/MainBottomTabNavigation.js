@@ -4,7 +4,7 @@ import { jedaeroBottomTabNavigationConfig } from './navigationConfigs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { BusStackNavigation, FoodListStackNavigation, LibrarySearchStackNavigation, ScheduleStackNavigation, DreamyStackNavigation } from './stackNavigations';
 
-const iconSize = 24
+const iconSize = 26
 
 const TabNav = createBottomTabNavigator({
     Home: {
