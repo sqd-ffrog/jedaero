@@ -1,13 +1,19 @@
 import colorPalette from "../../styles/colorPalette";
+import elevationShadowStyle from "../../../tool/elevationShadow";
 
 const jedaeroBottomTabNavigationConfig = {
-    labeled: true,
-    shifting: true,
-    activeColor: colorPalette.mainColor,
     backBehavior: 'none',
-    barStyle: {
-      backgroundColor: colorPalette.backgroundColor,
-    }
+    lazy: true,
+    resetOnBlur: true,
+    tabBarOptions: {
+      activeTintColor: colorPalette.mainColor,
+      showLabel: false,
+      tabStyle: {
+        backgroundColor: colorPalette.backgroundColor,
+        ...elevationShadowStyle(5),
+        borderWidth: 0
+      },
+    },
 }
 
 export default jedaeroBottomTabNavigationConfig;
