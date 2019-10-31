@@ -78,6 +78,7 @@ const Login = ({navigation}) => {
             <TextInput 
                 ref={accountRef}
                 style={styles.textinput}
+                keyboardType='numeric'
                 placeholder="학번을 입력하세요"
                 value={account}
                 onChangeText={value => setAccount(value)}
