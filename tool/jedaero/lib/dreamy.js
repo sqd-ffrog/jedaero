@@ -1,14 +1,16 @@
-import encode64 from "./encode64";
 import { Platform } from 'react-native';
 import RNFetchBlob from "rn-fetch-blob";
+import { Buffer } from 'buffer';
 
-const fetchData = async (uri, body) => RNFetchBlob.config({trusty: true}).fetch('POST', uri, {"Content-Type": "application/x-www-form-urlencoded"}, body)
+const fetchData = (uri, body) => RNFetchBlob.config({trusty: true}).fetch('POST', uri, {"Content-Type": "application/x-www-form-urlencoded"}, body)
+
+const encode64 = (string) => Buffer.from(string).toString('base64')
 
 /**
  * Dreamy Connection with fetch API.
  */
 const Dreamy = {
-    _openSession: async function (account, password) {
+    _openSession: function (account, password) {
         const uri = 'https://dreamy.jejunu.ac.kr/frame/sysUser.do?next=';
         const body = `tmpu=${encode64(account)}&tmpw=${encode64(password)}&mobile=y&app=null&z=Y&userid=&password=`
         // 세션 확보

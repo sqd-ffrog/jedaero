@@ -12,6 +12,7 @@ const LibrarySearch = ({navigation}) => {
       <View style={{padding: 8, borderRadius: 8}}>
         <TextInput 
         placeholder="책 제목을 입력하세요"
+        placeholderTextColor="#aaaaaa"
         style={libsearchStyles.textContainer}
         onChangeText={search => setSearch(search)}
         />

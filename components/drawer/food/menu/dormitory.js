@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, RefreshControl } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { createMaterialTopTabNavigator } from 'react-navigation';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import { DormitoryAPI } from '../../../../tool/jedaero';
 import { foodTabNavStyles } from '../../../styles/jedaeroCSS';
 import { foodTopTabNavigationConfig } from '../../../navigations/navigationConfigs';

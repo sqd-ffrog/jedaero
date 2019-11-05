@@ -4,6 +4,7 @@ import { getCreditDetailData } from '../../../../service/jedaeroService';
 import colorPalette from '../../../styles/colorPalette';
 import { ScrollView } from 'react-native-gesture-handler';
 import { normalize } from 'react-native-elements';
+import elevationShadowStyle from '../../../../tool/elevationShadow';
 
 const CreditDetailHeader = ({name, creditDetail: {average, convertedAverage, applyCredit, getCredit, year, semester, markCredit, totalMark}}) => (
     <View style={styles.summary}>
@@ -88,8 +89,10 @@ const styles = StyleSheet.create({
     summary: {
         padding: 16,
         marginHorizontal: 16,
+        marginVertical: 8,
         borderRadius: 8,
         backgroundColor: colorPalette.cardBackgroundColor,
+        ...elevationShadowStyle(3)
     },    
     summaryName: {
         fontSize: normalize(16),

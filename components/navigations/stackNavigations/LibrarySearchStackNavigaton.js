@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import LibrarySearch from '../../drawer/library/LibrarySearch';
 import LibrarySearchDetail from '../../drawer/library/LibrarySearchDetail';

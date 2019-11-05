@@ -34,15 +34,15 @@ const stackNavigationConfig = {
             const Width = layout.initWidth;
             const translateX = position.interpolate({
                 inputRange: [index - 1, index, index + 1],
-                outputRange: [Width, 0, 0]
+                outputRange: [Width, 0.75, 0]
             });
 
-            const opacity = position.interpolate({
-                inputRange: [index - 1, index - 0.99, index],
-                outputRange: [0, 1, 1],
-            });
+            // const opacity = position.interpolate({
+            //     inputRange: [index - 1, index - 0.99, index],
+            //     outputRange: [0, 1, 1],
+            // });
             
-            return { opacity, transform: [{ translateX }]}
+            return { transform: [{ translateX }]}
         },
     }),
     cardStyle: {

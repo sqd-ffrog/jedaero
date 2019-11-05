@@ -35,7 +35,7 @@ const LibrarySeat = () => {
                 borderWidth:0.5,
                 borderColor:colorPalette.cardBorderColor,
                 backgroundColor:colorPalette.cardBackgroundColor,
-                ...elevationShadowStyle(5)
+                ...elevationShadowStyle(2)
             }}
             onPress={getLibrarySeatData}
             >
@@ -53,25 +53,36 @@ const LibrarySeat = () => {
     )
 }
 
-class TableRow extends Component {
-    constructor(props) {
-        super(props);
-        this.state={};
-    }
+const TableRow = ({left, right}) => (
+    <TouchableOpacity style={styles.rowUnit}>
+        <View style={styles.rowUnitLeft}>
+            <Text style={styles.rowUnitTextLeft}>{left}</Text>
+        </View>
+        <View style={styles.rowUnitRight}>
+            <Text style={styles.rowUnitTextRight}>{right}</Text>
+        </View>
+    </TouchableOpacity>
+) 
 
-    render () {
-        return (
-            <TouchableOpacity style={styles.rowUnit}>
-                <View style={styles.rowUnitLeft}>
-                    <Text style={styles.rowUnitTextLeft}>{this.props.left}</Text>
-                </View>
-                <View style={styles.rowUnitRight}>
-                    <Text style={styles.rowUnitTextRight}>{this.props.right}</Text>
-                </View>
-            </TouchableOpacity>
-        )
-    }
-}
+// class TableRow extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state={};
+//     }
+
+//     render () {
+//         return (
+//             <TouchableOpacity style={styles.rowUnit}>
+//                 <View style={styles.rowUnitLeft}>
+//                     <Text style={styles.rowUnitTextLeft}>{this.props.left}</Text>
+//                 </View>
+//                 <View style={styles.rowUnitRight}>
+//                     <Text style={styles.rowUnitTextRight}>{this.props.right}</Text>
+//                 </View>
+//             </TouchableOpacity>
+//         )
+//     }
+// }
 
 const styles = StyleSheet.create({
     listContainer: {
@@ -99,7 +110,7 @@ const styles = StyleSheet.create({
         backgroundColor: colorPalette.cardBackgroundColor,
         marginHorizontal: 16,
         marginVertical: 4,
-        ...elevationShadowStyle(5)
+        ...elevationShadowStyle(2)
     },
     rowUnitLeft: {
         flex:2.5,

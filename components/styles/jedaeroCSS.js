@@ -5,6 +5,7 @@
 import { StyleSheet, Animated, Easing } from 'react-native';
 import { normalize } from 'react-native-elements';
 import colorPalette from './colorPalette';
+import elevationShadowStyle from '../../tool/elevationShadow';
 
 let jedaeroStyles = StyleSheet.create({
 
@@ -47,9 +48,10 @@ let foodTabStyles = StyleSheet.create({
       borderWidth: 0.5,
       borderColor:'#e7e7e7',
       marginHorizontal:10,
-      marginBottom:16,
-      borderRadius:4,
-      overflow:'hidden'
+      marginVertical:8,
+      borderRadius:8,
+      // overflow:'hidden'
+      ...elevationShadowStyle(3)
     }
 })
 
@@ -108,7 +110,8 @@ let libsearchStyles = StyleSheet.create({
       paddingBottom:32,
     },
     textContainer: {
-      fontSize:normalize(24),  
+      fontSize:normalize(24), 
+      color: colorPalette.textColor, 
       paddingVertical:8, 
       textAlign:'center', 
       borderBottomWidth:0.5, 

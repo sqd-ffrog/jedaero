@@ -24,7 +24,7 @@ const getTimeTable = async (year,month,day) => {
                 fri: res['MST_DATE'].fri,
                 sat: res['MST_DATE'].sat,
             },
-            schedule: res['MST_LIST'].filter((item, index) => index % 6 === 1).map(rawRow => {
+            schedule: res['MST_LIST'].filter((item, index) => index % 6 === 3).map(rawRow => {
                 const row = { period: rawRow['gyosi'] === "0" ? "저녁 식사" : rawRow['gyosi'], time: rawRow['si'] };
                 week.map(item => {
                     const time = rawRow[item].split("<br>");
@@ -145,19 +145,19 @@ const getLectureBoardData = async (year, semester) => {
         res = await Dreamy.getLectureBoard(account, encodeURIComponent(name), userGb, year, semester);
     } finally {
         if(!res) return {};
-        return {
+        return [{
             lectureBoardInfo: {
                 year: res["MST_ROW"]['common_curri_year'],
                 semester: res["MST_ROW"]['common_term_gb'],
             },
-            lectures: res["MST_LIST"].map(row => ({
+            data: res["MST_LIST"].map(row => ({
                 classCode: row['common_ban_no'],
                 professorName: row['common_prof_nm'],
                 professorCode: row['common_prof_no'],
                 lectureCode: row['common_subject_cd'],
                 lectureName: row['common_subject_nm'],
             }))
-        };
+        }];
     }
 }
 

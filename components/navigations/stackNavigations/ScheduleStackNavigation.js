@@ -1,5 +1,5 @@
 import { stackNavigationConfig } from "../navigationConfigs";
-import { createStackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 import Schedule from "../../drawer/schedule/Schedule";
 import ScheduleDetail from '../../drawer/schedule/ScheduleDetail';
 
