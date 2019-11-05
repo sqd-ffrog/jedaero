@@ -9,13 +9,13 @@ import { StatusBar, Platform } from 'react-native';
 import JedaeroContainer from './components/JedaeroContainer';
 
 const App = () => {
-  useEffect(() => {
-    StatusBar.setBarStyle('dark-content')
-    if(Platform.OS === 'android') {
-      StatusBar.setBackgroundColor('#f7f7f7ff');
-      StatusBar.setTranslucent(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   StatusBar.setBarStyle('dark-content')
+  //   if(Platform.OS === 'android') {
+  //     StatusBar.setBackgroundColor('#f7f7f7ff');
+  //     StatusBar.setTranslucent(false);
+  //   }
+  // }, []);
   return <JedaeroContainer />
 }
 

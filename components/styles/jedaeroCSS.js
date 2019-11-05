@@ -110,7 +110,8 @@ let libsearchStyles = StyleSheet.create({
       paddingBottom:32,
     },
     textContainer: {
-      fontSize:normalize(24),  
+      fontSize:normalize(24), 
+      color: colorPalette.textColor, 
       paddingVertical:8, 
       textAlign:'center', 
       borderBottomWidth:0.5, 
