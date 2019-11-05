@@ -33,7 +33,7 @@ export default StyleSheet.create({
         flexGrow: 0,
         flexShrink: 1,
         flexBasis: '31.3%',
-        ...elevationShadowStyle(5)
+        ...elevationShadowStyle(3)
     },
     calendarMonth: {
         fontSize: normalize(24),
