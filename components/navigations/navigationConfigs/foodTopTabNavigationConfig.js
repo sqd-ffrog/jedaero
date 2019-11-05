@@ -5,10 +5,12 @@ const foodTopTabNavigationConfig = {
     backBehavior: 'none',
     tabBarPosition: 'top',
     lazy: false,
+    swipeEnabled: true,
     tabBarOptions: {
         showIcon:false,
         activeTintColor: "#000000",
         inactiveTintColor:'#d7d7d7',
+        scrollEnabled: false,
         tabStyle:{
             justifyContent:'center',
             alignItems:'center',

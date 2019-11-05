@@ -18,7 +18,7 @@ const mainScreen = StyleSheet.create({
         marginVertical: 12,
         backgroundColor: colorPalette.cardBackgroundColor,
         // overflow: 'hidden',
-        ...elevationShadowStyle(5),
+        ...elevationShadowStyle(3),
     },
     blockViewTitle: {
         borderTopLeftRadius: 16,
@@ -105,6 +105,29 @@ const mainScreen = StyleSheet.create({
     foodBlockContainerText: {
         fontSize: normalize(12),
         lineHeight: normalize(16)
+    },
+    busScheduleMain:{
+        flex:1,
+        flexDirection:'column'
+    },
+    busScheduleContainer:{
+        flex : 1,
+        flexDirection:'row',
+    },
+    busScheduleName:{
+        paddingLeft: 20,
+        paddingRight: 10,
+        paddingTop: 8,
+        backgroundColor: colorPalette.backgroundColor,
+        zIndex: 1,
+        alignItems: 'flex-end',
+        flexBasis: '30%',
+        borderRightWidth:4,
+        borderRightColor: colorPalette.cardBorderColor
+        
+    },
+    busSchedule:{
+        flex:9,
     },
     foodViewBlockContainer: {
         borderLeftWidth: 0.5,

@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import { View, TouchableOpacity, Text, FlatList, StyleSheet, ActivityIndicator, ScrollView, TextInput} from 'react-native';
+import { View, TouchableOpacity, Text, FlatList, StyleSheet, ActivityIndicator, ScrollView, SectionList, TextInput} from 'react-native';
 import { getLectureBoardData } from '../../../../service/jedaeroService';
 import colorPalette from '../../../styles/colorPalette';
 import { normalize, Input } from 'react-native-elements';
 import Picker from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/Ionicons';
 import semesterData from '../../../../jsons/semesterMap';
+import elevationShadowStyle from '../../../../tool/elevationShadow';
 
 const getSemester = (month) => {
     if(month === 0) return 21;
@@ -25,7 +26,7 @@ const LectureBoard = ({navigation}) => {
     }
     useEffect(() => { getLectureBoard(); }, []); 
     const renderLectureHeader = () => (
-        <View style={styles.lectureItemContainer}>
+        <View style={{...styles.lectureItemContainer, ...styles.lectureItemHeader}}>
            <View style={styles.itemLeftContainer}>
                 <Text style={{...styles.lectureItemText, color: colorPalette.cardBackgroundColor}}>수강반</Text>
             </View>
@@ -49,16 +50,8 @@ const LectureBoard = ({navigation}) => {
         <Text style={styles.emptyItem}>과목이 없어요</Text>
     )
 
-    return !lectureBoard ? (
-        <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
-            <ActivityIndicator size='large' color={colorPalette.mainColor}/>
-        </View>
-    ) :
-    (lectureBoard === {} ? (
-        <View><Text>오류가 있어유</Text></View>
-    ) : (
-        <ScrollView>
-            <View style={styles.header}>
+    const ListHeaderComponent = () => (
+        <View style={styles.header}>
                 <Text style={{fontSize: 14}}>수강학기</Text>
                 <Input 
                     value={year}
@@ -83,16 +76,23 @@ const LectureBoard = ({navigation}) => {
                     <Text style={{fontSize: 14, color: colorPalette.cardBackgroundColor, fontWeight: 'bold'}}>조회</Text>
                 </TouchableOpacity>
             </View>
-            <FlatList
-                data={lectureBoard.lectures}
-                keyExtractor={item => item.classCode}
-                renderItem={renderLecture}
-                contentContainerStyle={styles.lectureListContainer}
-                ListHeaderComponent={renderLectureHeader}
-                nestedScrollEnabled={true}
-                ListEmptyComponent={renderEmpty}
-            />
-        </ScrollView>
+    )
+    return !lectureBoard ? (
+        <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
+            <ActivityIndicator size='large' color={colorPalette.mainColor}/>
+        </View>
+    ) :
+    (lectureBoard === {} ? (
+        <View><Text>오류가 있어유</Text></View>
+    ) : (
+        <SectionList
+            sections={lectureBoard}
+            keyExtractor={item => item.classCode}
+            renderItem={renderLecture}
+            renderSectionHeader={renderLectureHeader}
+            ListHeaderComponent={ListHeaderComponent}
+            ListEmptyComponent={renderEmpty}
+        />
     ))
 }
 
@@ -119,20 +119,28 @@ const styles = StyleSheet.create({
         fontSize: normalize(14),
         fontWeight: 'bold',
     },  
+    lectureItemHeader: {
+        marginTop: 32,
+        marginBottom: 8,
+        borderWidth: 0.5,
+        // borderColor: colorPalette.cardBorderColor,
+        
+    },
     lectureListContainer: {
-        borderRadius: 8,
-        overflow: 'hidden',
         marginHorizontal: 16,
         marginTop: 32,
-        borderColor: colorPalette.cardBorderColor,
-        borderWidth: 0.5,
     },
     lectureItemContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: colorPalette.cardBackgroundColor,
-        borderBottomWidth: 0.5,
-        borderBottomColor: colorPalette.cardBorderColor,
+        marginHorizontal: 16,
+        marginVertical: 8,
+        borderRadius: 8,
+        borderColor:colorPalette.cardBorderColor,
+        borderWidth: 0.5,
+        backgroundColor: colorPalette.cardBackgroundColor,
+        ...elevationShadowStyle(3)
     },
     lectureItemText: {
         fontSize: normalize(14),
@@ -141,10 +149,14 @@ const styles = StyleSheet.create({
     itemLeftContainer: {
         flex: 1,
         backgroundColor: colorPalette.mainColor,
+        borderTopLeftRadius: 8,
+        borderBottomLeftRadius: 8,
         paddingVertical: 16,
     },
     itemRightContainer: {
         flex: 3,
+        borderTopRightRadius: 8,
+        borderBottomRightRadius: 8,
         paddingVertical: 16,
     },
     emptyItem: {

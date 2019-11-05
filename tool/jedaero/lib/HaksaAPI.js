@@ -2,12 +2,14 @@ import RNFetchBlob from 'rn-fetch-blob';
 import cheerio from 'react-native-cheerio';
 
 const uri = "http://www.jejunu.ac.kr/camp/sai/academyschedule/" + new Date().getFullYear();
-const haksa = {
-	title: '학사일정',
-	month: []
-};
+
 
 export default async function () {
+	const haksa = {
+		title: '학사일정',
+		month: []
+	};
+	
 	try {
 		const res = await (await fetch(uri)).text();
 		const $ = cheerio.load(res);
