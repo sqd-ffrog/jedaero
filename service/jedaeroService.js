@@ -133,6 +133,8 @@ const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
         };
     }
 }
+  
+
 
 const getLectureBoardData = async (year, semester) => {
     const {username: account, password: baseInfo} = await Keychain.getGenericPassword();

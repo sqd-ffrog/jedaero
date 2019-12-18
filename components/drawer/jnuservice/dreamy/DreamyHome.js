@@ -113,8 +113,8 @@ const DreamyHome = ({navigation, isFocused}) => {
             </DreamyCard>
             <DreamyCard title="내 평점 확인" onPress={() => afterLogin(() => navigation.navigate("Credit"))}>
                 <Text>전체 성적을 조회하실 수 있습니다.</Text>
-            </DreamyCard>
-            <DreamyCard title="2학기 성적 조회!" onPress={() => afterLogin(() => navigation.navigate("ScoreTable"))}>
+            </DreamyCard> 
+            <DreamyCard title="2학기 성적 조회!" onPress={() => afterLogin(() => navigation.navigate("CreditCurrent"))}>
                 <Text>현재 학기 성적을 조회하실 수 있습니다.</Text>
             </DreamyCard> 
         </Fragment>

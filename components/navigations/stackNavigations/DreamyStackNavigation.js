@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import TimeTable from '../../drawer/jnuservice/dreamy/TimeTable'
-import ScoreTable from '../../drawer/jnuservice/dreamy/ScoreTable'
+import CreditCurrent from '../../drawer/jnuservice/dreamy/CreditCurrent'
 import DreamyHome from '../../drawer/jnuservice/dreamy/DreamyHome';
 import Login from '../../info/Login'; 
 import { stackNavigationConfig } from '../navigationConfigs';
@@ -23,8 +23,8 @@ const DreamyStackNavigation = createStackNavigator({
     Credit: {
         screen: Credit,
     },
-    ScoreTable: {
-        screen: ScoreTable
+    CreditCurrent: {
+        screen: CreditCurrent
     },
     CreditDetail: {
         screen: CreditDetail,
