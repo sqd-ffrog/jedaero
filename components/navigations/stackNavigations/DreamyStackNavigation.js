@@ -1,9 +1,10 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import TimeTable from '../../drawer/jnuservice/dreamy/TimeTable'
+import ScoreTable from '../../drawer/jnuservice/dreamy/ScoreTable'
 import DreamyHome from '../../drawer/jnuservice/dreamy/DreamyHome';
-import Login from '../../info/Login';
+import Login from '../../info/Login'; 
 import { stackNavigationConfig } from '../navigationConfigs';
-import Credit from '../../drawer/jnuservice/dreamy/Credit';
+import Credit from '../../drawer/jnuservice/dreamy/Credit'; 
 import CreditDetail from '../../drawer/jnuservice/dreamy/CreditDetail';
 import LectureBoard from '../../drawer/jnuservice/dreamy/LectureBoard';
 import LectureItemBoard from '../../drawer/jnuservice/dreamy/LectureItemBoard';
@@ -11,7 +12,7 @@ import LecturePost from '../../drawer/jnuservice/dreamy/LecturePost';
 import PassDormitory from '../../drawer/jnuservice/dreamy/PassDormitory';
 import LecturePlan from '../../drawer/jnuservice/dreamy/LecturePlan';
 import LecturePlanDetail from '../../drawer/jnuservice/dreamy/LecturePlanDetail';
-
+ 
 const DreamyStackNavigation = createStackNavigator({
     DreamyHome: {
         screen: DreamyHome,
@@ -21,6 +22,9 @@ const DreamyStackNavigation = createStackNavigator({
     },
     Credit: {
         screen: Credit,
+    },
+    ScoreTable: {
+        screen: ScoreTable
     },
     CreditDetail: {
         screen: CreditDetail,
