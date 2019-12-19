@@ -1,12 +1,18 @@
 
-import React from 'react' 
+import React, { useState, useEffect } from 'react' 
 import { View, Text } from 'react-native'
-import CreditDetail from './CreditDetail'
+import { getCreditCurrentData } from '../../../../service/jedaeroService';
 
 const CreditCurrent = ({navigation}) => {
-    return ( 
-       <View>
-           <Text>성적조회란</Text>
+    const [CreditCurrent, setCreditCurrent] = useState(null);
+    const getCreditCurrent = async() => {
+        setCreditCurrent(await getCreditCurrentData());
+    }
+    useEffect(() => {getCreditCurrent()}, []);
+    console.log(CreditCurrent);     
+    return (  
+       <View>  
+           <Text>현재 학기 성적 조회</Text>
        </View>
     );  
 };  

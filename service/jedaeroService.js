@@ -133,8 +133,28 @@ const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
         };
     }
 }
-  
 
+const getCreditCurrentData = async () => {
+    const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+    const { password } = JSON.parse(baseInfo);
+    let res;
+    try {
+        res = await Dreamy.getCreditCurrent(account);
+    } catch(err) {
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.getCreditCurrent(account);
+    } finally {
+        if(!res) return {};
+        return {
+            userInfo: {
+                number: res['HJ_VALUE']['chkSessionId'],
+                major: res['HJ_VALUE']['maj_nm'],
+                name: res['HJ_VALUE']['nm'],
+                eName: res['HJ_VALUE']['nm_eng']
+            }
+        };
+    }
+}
 
 const getLectureBoardData = async (year, semester) => {
     const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
@@ -420,4 +440,4 @@ const checkLogin = async () => {
     const credentials = await Keychain.getGenericPassword();
     return !!credentials;
 }
-export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList, getLecturePlanDetail, downloadLecturePlanFile }
+export { getTimeTable, getCreditData, getCreditDetailData, getCreditCurrentData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList, getLecturePlanDetail, downloadLecturePlanFile }

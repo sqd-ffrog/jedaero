@@ -62,6 +62,8 @@ const Dreamy = {
         return !match;
     },
 
+    
+
     getCredit: async function (account) {
         const uri = 'https://dreamy.jejunu.ac.kr/susj/sj/sta_sj_3230q.jejunu';
         const body = `mode=doSearch&student_no=${account}&del_gb=&_=`;
@@ -70,6 +72,11 @@ const Dreamy = {
     getCreditDetail: async function (account, year, semester, outsideSeq, groupGb) {
         const uri = 'https://dreamy.jejunu.ac.kr/susj/sj/sta_sj_3220q.jejunu';
         const body = `mode=doList&year=${year}&term_gb=${semester}&group_gb=${groupGb}&student_no=${account}&outside_seq=${outsideSeq}&del_gb=AND%20SJ_DEL_GB%20IS%20NULL&_=`;
+        return (await fetchData(uri, body)).json();
+    },
+    getCreditCurrent: async function (account) {
+        const uri = 'https://dreamy.jejunu.ac.kr/susj/sj/sta_sj_3225q.jejunu';
+        const body = `mode=doValueHj&student_no=${account}&del_gb=&_=`;
         return (await fetchData(uri, body)).json();
     },
     getLectureBoard: async function(account, name, userGb, year, semester) {
