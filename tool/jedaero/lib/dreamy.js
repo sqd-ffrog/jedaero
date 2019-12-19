@@ -62,7 +62,11 @@ const Dreamy = {
         return !match;
     },
 
-    
+    getEvlState: async function(account) {
+        const uri = 'https://dreamy.jejunu.ac.kr/susj/com/com_su.jejunu'
+        const body = `mode=doSchd&job_id=${account}&_=`
+        return (await fetchData(uri , body)).json();
+    },
 
     getCredit: async function (account) {
         const uri = 'https://dreamy.jejunu.ac.kr/susj/sj/sta_sj_3230q.jejunu';

@@ -55,6 +55,23 @@ const getBaseInfo = async (account, password) => {
     }
 }
 
+const getEvlStateData = async () => {
+    let res;
+    const { username: account , password: baseInfo} = await Keychain.getGenericPassword();
+    const { password } = JSON.parse(baseInfo);
+    try {
+        res = await Dreamy.getEvlState(account);
+    } catch (err) {
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.getEvlState(account);
+    }finally{
+        if(!res) return {};
+        return {
+            evlState: res['SCHEDULE_VALUE']['evl_yn']
+        }
+    }
+}
+
 const getCreditData = async () => {
     const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
     const { password } = JSON.parse(baseInfo);
@@ -440,4 +457,9 @@ const checkLogin = async () => {
     const credentials = await Keychain.getGenericPassword();
     return !!credentials;
 }
-export { getTimeTable, getCreditData, getCreditDetailData, getCreditCurrentData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList, getLecturePlanDetail, downloadLecturePlanFile }
+export { 
+    getTimeTable, getEvlStateData
+    , getCreditData, getCreditDetailData, getCreditCurrentData
+    , getBaseInfo, logoutDreamy, checkLogin
+    , getLectureBoardData, getLectureItemBoardData, getLecturePostData , getLecturePlanList, getLecturePlanDetail, downloadLecturePlanFile
+    , downloadLecturePostFile, isPassDormitory }
