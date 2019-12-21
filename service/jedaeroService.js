@@ -55,19 +55,19 @@ const getBaseInfo = async (account, password) => {
     }
 }
 
-const getEvlStateData = async () => {
+const getEvlStateData = async (year , semester) => {
     let res;
     const { username: account , password: baseInfo} = await Keychain.getGenericPassword();
     const { password } = JSON.parse(baseInfo);
     try {
-        res = await Dreamy.getEvlState(account);
+        res = await Dreamy.getEvlState(account, year , semester);
     } catch (err) {
         await Dreamy._openSession(account, password);
-        res = await Dreamy.getEvlState(account);
+        res = await Dreamy.getEvlState(account, year , semester);
     }finally{
         if(!res) return {};
         return {
-            evlState: res['SCHEDULE_VALUE']['evl_yn']
+            evlState: res['CHK_VALUE']['evl_yn']
         }
     }
 }

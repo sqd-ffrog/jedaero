@@ -62,9 +62,9 @@ const Dreamy = {
         return !match;
     },
 
-    getEvlState: async function(account) {
+    getEvlState: async function(account, year , semester) {
         const uri = 'https://dreamy.jejunu.ac.kr/susj/com/com_su.jejunu'
-        const body = `mode=doSchd&job_id=${account}&_=`
+        const body = `mode=doCheckEvllec&year=${year}&term_gb=${semester}&student_no=${account}&_=`
         return (await fetchData(uri , body)).json();
     },
 

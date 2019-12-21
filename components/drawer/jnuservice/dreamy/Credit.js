@@ -14,6 +14,7 @@ const Credit = ({navigation}) => {
     useEffect(() => {getCredit()}, []);
     const accumulatedCredit = () => {
         const { personalData: {name}, summary: {average, convertedAverage, applyCredit, getCredit, markCredit, totalMark}} = credit;
+    
         return (
             <View style={styles.summary}>
                 <View style={styles.summaryNameContainer}>

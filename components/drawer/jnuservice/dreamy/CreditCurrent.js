@@ -1,38 +1,57 @@
 
 import React, { useState, useEffect } from 'react'; 
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, FlatList } from 'react-native';
 import colorPalette from '../../../styles/colorPalette';
 import { getCreditCurrentData, getEvlStateData } from '../../../../service/jedaeroService';
 
 const CreditCurrent = ({navigation}) => {
-    const [CreditCurrent, setCreditCurrent] = useState(null);
-    const [EvlState, setEvlState] = useState(null);
+    const [creditCurrent, setCreditCurrent] = useState(null);  
+    const [evlState, setEvlState] = useState(null); 
 
     const getCreditCurrent = async() => {
         setCreditCurrent(await getCreditCurrentData());
     }
+    //TODO year , semester 받아서 넘겨야함  
     const getEvlState = async () => {
         setEvlState(await getEvlStateData());
     }
    
-    useEffect(() => {getCreditCurrent(), getEvlState()}, []);
-    console.log(CreditCurrent); 
-    console.log(EvlState);
-    return (EvlState === 'Y') ? (  
-        <View>
-            <Text>강의평가 먼저 완료 해주세오!</Text>
-        </View>
-    ): ( 
-        CreditCurrent === { } ? (
-            <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
-                <ActivityIndicator size='large' color={colorPalette.mainColor}/>
-            </View>
-        ) : (  
+    useEffect(() => {getCreditCurrent() ,console.log(creditCurrent);}, []);
+    useEffect(() => {getEvlState(), console.log(evlState);}, []);
+     
+    
+    const creditHeader = () => {
+        const { userInfo: {name , major, eName, number} }  = creditCurrent;
+        return (
             <View>
-                <Text>성적나가유~</Text>
+                <Text>{name}</Text>
+                <Text>{major}</Text>
+                <Text>{eName}</Text> 
+                <Text>{number}</Text>
             </View>
-        )
-    ) 
+        );
+    }  
+    const renderCreditRow = ({item: {name, eName, major, number}}) => (
+        <View>
+            <Text>{name}</Text>
+            <Text>{major}</Text>
+            <Text>{eName}</Text>
+            <Text>{number}</Text> 
+        </View>
+    )
+ 
+   return !evlState && !creditCurrent ? (
+         <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
+            <ActivityIndicator size='large' color={colorPalette.mainColor}/>
+        </View>
+       ) : (   
+        <FlatList 
+        data={creditCurrent.userInfo}  
+        keyExtractor={item => `${item.name}${item.eName}`}
+        ListHeaderComponent={creditHeader}
+        renderItem={renderCreditRow} 
+        />   
+       )
 };  
  
 CreditCurrent.navigationOptions = {
