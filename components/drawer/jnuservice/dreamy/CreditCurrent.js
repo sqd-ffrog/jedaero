@@ -2,12 +2,16 @@
 import React, { useState, useEffect } from 'react'; 
 import { View, Text, ActivityIndicator, FlatList } from 'react-native';
 import colorPalette from '../../../styles/colorPalette';
-import { getCreditCurrentData, getEvlStateData } from '../../../../service/jedaeroService';
+import { getCreditData ,getCreditCurrentData, getEvlStateData } from '../../../../service/jedaeroService';
 
 const CreditCurrent = ({navigation}) => {
+    const [credit , setCredit] = useState(null);
     const [creditCurrent, setCreditCurrent] = useState(null);  
     const [evlState, setEvlState] = useState(null); 
-
+    
+    const getCredit = async() => {
+        setCredit(await getCreditData());
+    }
     const getCreditCurrent = async() => {
         setCreditCurrent(await getCreditCurrentData());
     }
@@ -15,11 +19,12 @@ const CreditCurrent = ({navigation}) => {
     const getEvlState = async () => {
         setEvlState(await getEvlStateData());
     }
-   
-    useEffect(() => {getCreditCurrent() ,console.log(creditCurrent);}, []);
-    useEffect(() => {getEvlState(), console.log(evlState);}, []);
-     
-    
+    useEffect(() => {getCredit()}, []);  
+    useEffect(() => {getCreditCurrent()}, []);
+    useEffect(() => {getEvlState()}, []); 
+    console.log(credit);
+    console.log(creditCurrent);  
+    console.log(evlState);  
     const creditHeader = () => {
         const { userInfo: {name , major, eName, number} }  = creditCurrent;
         return (
@@ -38,20 +43,22 @@ const CreditCurrent = ({navigation}) => {
             <Text>{eName}</Text>
             <Text>{number}</Text> 
         </View>
-    )
- 
-   return !evlState && !creditCurrent ? (
-         <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
-            <ActivityIndicator size='large' color={colorPalette.mainColor}/>
-        </View>
-       ) : (   
-        <FlatList 
-        data={creditCurrent.userInfo}  
-        keyExtractor={item => `${item.name}${item.eName}`}
-        ListHeaderComponent={creditHeader}
-        renderItem={renderCreditRow} 
-        />   
-       )
+    ) 
+    
+    if( !creditCurrent ) {
+        return  ( 
+            <View style={{alignItems: 'center', paddingTop:20, flex:1}}>
+                <ActivityIndicator size='large' color={colorPalette.mainColor}/>
+            </View> 
+           )
+    }else { 
+        return (
+            <View>
+                <Text>fd</Text>
+            </View>
+        )
+    }
+  
 };  
  
 CreditCurrent.navigationOptions = {

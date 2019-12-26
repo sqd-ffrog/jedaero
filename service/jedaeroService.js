@@ -55,7 +55,7 @@ const getBaseInfo = async (account, password) => {
     }
 }
 
-const getEvlStateData = async (year , semester) => {
+const getEvlStateData = async (year, semester) => {
     let res;
     const { username: account , password: baseInfo} = await Keychain.getGenericPassword();
     const { password } = JSON.parse(baseInfo);
@@ -67,10 +67,12 @@ const getEvlStateData = async (year , semester) => {
     }finally{
         if(!res) return {};
         return {
-            evlState: res['CHK_VALUE']['evl_yn']
+            evlState: res['CHK_VALUE']['evl_yn'],
+            year: res['CHK_VALUE']['year'],
+            semester: res['CHK_VALUE']['term_gb'],      
         }
     }
-}
+} 
 
 const getCreditData = async () => {
     const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
@@ -114,12 +116,12 @@ const getCreditData = async () => {
         };
     }
 }
-
+  
 const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
     const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
     const { password } = JSON.parse(baseInfo);
     let res;
-    try {
+    try {    
         res = await Dreamy.getCreditDetail(account, year, semester, outsideSeq, groupGb);
     } catch(err) {
         await Dreamy._openSession(account, password);
@@ -151,25 +153,34 @@ const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
     }
 }
 
-const getCreditCurrentData = async () => {
+const getCreditCurrentData = async (year, month, day) => {
     const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
     const { password } = JSON.parse(baseInfo);
     let res;
-    try {
-        res = await Dreamy.getCreditCurrent(account);
+    try { 
+        res = await Dreamy.getCreditCurrent(account, year, semester);
     } catch(err) {
         await Dreamy._openSession(account, password);
-        res = await Dreamy.getCreditCurrent(account);
+        res = await Dreamy.getCreditCurrent(account, year, semester);
     } finally {
-        if(!res) return {};
+        console.log(account , year, semester);
+        console.log(res['TOTAL_CREDIT']);
+        console.log(res['MST_LIST']); 
         return {
-            userInfo: {
-                number: res['HJ_VALUE']['chkSessionId'],
-                major: res['HJ_VALUE']['maj_nm'],
-                name: res['HJ_VALUE']['nm'],
-                eName: res['HJ_VALUE']['nm_eng']
-            }
-        };
+            mstList: res['MST_LIST'].map(row => {    
+                console.log("fdfd");
+                return {
+                    takeName: row['isu_nm'],  
+                    grade: row['dg_gb'], 
+                    credit: row['credit'],
+                    mark: row['mark'],
+                    subjectId: row['subject_cd'],
+                    subjectName: row['subject_nm'],
+                    semester: row['term_gb'], 
+                    year: row['year'] 
+                }
+            }), 
+        }; 
     }
 }
 
@@ -261,7 +272,6 @@ const getLecturePostData = async (year, semester, classCode, num, root) => {
                     encoded: res["BORAD_CONTENT"]['temp_file_nm2'],
                 }
             ].filter(item => item.fileName !== 'N'),
-
         }
     }
 }
