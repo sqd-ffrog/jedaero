@@ -57,7 +57,7 @@ const BusTime = ({navigation}) => {
     
     const onPressContainer = () => {navigation.navigate('BusSchedule')}
     return (
-        <TodayCard name="버스 시간" headerRight={<BusPicker />} containerStyle={{flexDirection: 'row'}} onPressContainer={onPressContainer}>
+        <TodayCard name="버스 시간" headerRight={<BusPicker />} containerStyle={{flexDirection: 'row'}} onPressContainer={onPressContainer} description={`* 버스 시간 카드를 터치하면 버스 시간표가 나옵니다!\n* 표시되는 시간은 버스시간표를 기준으로 안내중이며 시간대 별로 상이할 수 있습니다.`}>
         {/* A버스 시간 안내 */}
             <BusFragment title="A" description="반시계 반향" routeFunction={BusA} selectedIndex={selectedIndex} />
         {/* B버스 시간 안내 */}    

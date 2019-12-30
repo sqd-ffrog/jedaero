@@ -129,12 +129,20 @@ const mainScreen = StyleSheet.create({
     busSchedule:{
         flex:9,
     },
+    foodViewDescription: {
+        paddingHorizontal: 12,
+        paddingVertical: 4,
+    },
+    foodViewDescriptionText: {
+        fontSize: normalize(9),
+        color: "#777777"
+    },
     foodViewBlockContainer: {
-        borderLeftWidth: 0.5,
-        borderRightWidth: 0.5,
-        borderBottomWidth: 0.5,
-        borderBottomLeftRadius: 16,
-        borderBottomRightRadius: 16,
+        // borderLeftWidth: 0.5,
+        // borderRightWidth: 0.5,
+        // borderBottomWidth: 0.5,
+        // borderBottomLeftRadius: 16,
+        // borderBottomRightRadius: 16,
         borderColor: '#e7e7e7',
         paddingHorizontal: 12,
         paddingVertical: 16,
