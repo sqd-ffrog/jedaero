@@ -4,6 +4,7 @@
         <!-- For React Native Hot-reloading system -->
         <!-- If you are running on a device insert your computer IP -->
         <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">10.0.2.2</domain>
         <domain includeSubdomains="true">117.17.102.226</domain>
 
         <domain includeSubdomains="true">dreamy.jejunu.ac.kr</domain>
