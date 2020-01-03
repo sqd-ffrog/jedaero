@@ -81,7 +81,7 @@ const mainScreen = StyleSheet.create({
         borderColor:"#e7e7e7",
     },
     blockText: {
-        fontSize: normalize(11),
+        fontSize: normalize(10),
         color: '#000000',
         
     },

@@ -20,7 +20,7 @@ const Bus = ({navigation}) => (
 
 Bus.navigationOptions = ({ navigation }) => ({
     headerTitle: '홈',
-    headerRight: (
+    headerRight: () => (
         <Icon.Button 
             name="settings"
             onPress={() => navigation.navigate("Info")}
