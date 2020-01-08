@@ -17,7 +17,6 @@ const BusFragment = ({title, description, routeFunction, selectedIndex}) => {
 
     const setTimeRepeatedly = () => {
         routeFunction(BusTb.timeTable[title], selectedIndex, BusHoly, (res) => {
-            console.log(res);
             setTime(res);
         })
     }

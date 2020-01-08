@@ -1,21 +1,39 @@
-import React, {  } from 'react';
-import { ScrollView} from 'react-native';
+import React, { Fragment } from 'react';
+import { ScrollView, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { mainScreen } from '../../styles/busStyle';
 import DormCard from './card/DormCard';
 import HaksikCard from './card/HaksikCard';
-import { withNavigationFocus } from 'react-navigation';
 import Bustime from './card/BusTime';
-import SmartBlock from './card/SmartBlock';
-import { checkLogin } from '../../../service/jedaeroService';
+import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
 const Bus = ({navigation}) => (
-    <ScrollView contentContainerStyle={mainScreen.busView} >
-        {/* <SmartBlock name="스마트 출첵" /> */}
-        <Bustime name="버스 시간" navigation={navigation}/>
-        <HaksikCard navigation={navigation}/>
-        <DormCard navigation={navigation}/>
-    </ScrollView>
+    <Fragment>
+        <ScrollView contentContainerStyle={mainScreen.busView} >
+            {/* <SmartBlock name="스마트 출첵" /> */}
+            <Bustime name="버스 시간" navigation={navigation}/>
+            <HaksikCard navigation={navigation}/>
+            <DormCard navigation={navigation}/>
+        </ScrollView>
+        <BannerAd
+                unitId={TestIds.BANNER}
+                // unitId={Platform.select({
+                //     ios: 'ca-app-pub-7776918773440986/1968606849',
+                //     android: 'ca-app-pub-7776918773440986/8729198188'
+                // })}
+                size={BannerAdSize.FULL_BANNER}
+                requestOptions={{
+                    requestNonPersonalizedAdsOnly: true,
+                }}
+                onAdLoaded={() => {
+                    console.log('Advert loaded');
+                }}
+                onAdFailedToLoad={(error) => {
+                    console.error('Advert failed to load: ', error);
+                }}
+        />
+    </Fragment>
+    
 )
 
 Bus.navigationOptions = ({ navigation }) => ({
