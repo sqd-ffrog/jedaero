@@ -1,5 +1,6 @@
 import * as Keychain from 'react-native-keychain';
 import { Dreamy } from '../tool/jedaero';
+import RNFetchBlob from 'rn-fetch-blob';
 
 const getTimeTable = async (year,month,day) => {
     const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
@@ -418,4 +419,8 @@ const checkLogin = async () => {
     const credentials = await Keychain.getGenericPassword();
     return !!credentials;
 }
-export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList, getLecturePlanDetail, downloadLecturePlanFile }
+
+const getCronSchedule = async () => {
+    return (await RNFetchBlob.fetch('GET', 'https://raw.githubusercontent.com/jnuro/database/master/cron.json')).json();
+}
+export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList, getLecturePlanDetail, downloadLecturePlanFile, getCronSchedule}

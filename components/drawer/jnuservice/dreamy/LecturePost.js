@@ -92,6 +92,10 @@ const LecturePost = ({navigation: {state: {params: {year, semester, root, num, r
     ))
 }
 
+LecturePost.navigationOptions = {
+    headerTitle: ""
+}
+
 const styles = StyleSheet.create({
     
     card: {
