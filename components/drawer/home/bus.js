@@ -1,39 +1,25 @@
-import React, { Fragment } from 'react';
-import { ScrollView, Platform } from 'react-native';
+import React, { useEffect } from 'react';
+import { ScrollView, Platform, Dimensions, PixelRatio } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { mainScreen } from '../../styles/busStyle';
 import DormCard from './card/DormCard';
 import HaksikCard from './card/HaksikCard';
 import Bustime from './card/BusTime';
-import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+import TodayCard from './component/TodayCard'
+import { InterstitialAd, BannerAd, BannerAdSize, TestIds, AdEventType } from '@react-native-firebase/admob';
+import Banner from '../../banner/Banner';
 
 const Bus = ({navigation}) => (
-    <Fragment>
-        <ScrollView contentContainerStyle={mainScreen.busView} >
-            {/* <SmartBlock name="스마트 출첵" /> */}
-            <Bustime name="버스 시간" navigation={navigation}/>
-            <HaksikCard navigation={navigation}/>
-            <DormCard navigation={navigation}/>
-        </ScrollView>
-        <BannerAd
-                unitId={TestIds.BANNER}
-                // unitId={Platform.select({
-                //     ios: 'ca-app-pub-7776918773440986/1968606849',
-                //     android: 'ca-app-pub-7776918773440986/8729198188'
-                // })}
-                size={BannerAdSize.FULL_BANNER}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-                onAdLoaded={() => {
-                    console.log('Advert loaded');
-                }}
-                onAdFailedToLoad={(error) => {
-                    console.error('Advert failed to load: ', error);
-                }}
-        />
-    </Fragment>
-    
+    <ScrollView contentContainerStyle={mainScreen.busView} >
+        {/* <SmartBlock name="스마트 출첵" /> */}
+        <TodayCard name="개발자에게 힘이 되는 광고" containerStyle={{flexDirection: 'column', paddingHorizontal: 0, paddingVertical: 0, alignItems: 'center'}}>
+            <Banner />
+        </TodayCard>
+        <Bustime name="버스 시간" navigation={navigation}/>
+        <HaksikCard navigation={navigation}/>
+        
+        <DormCard navigation={navigation}/>
+    </ScrollView>
 )
 
 Bus.navigationOptions = ({ navigation }) => ({
