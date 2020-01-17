@@ -50,7 +50,6 @@ const Dreamy = {
       
     getTimeTable: async function (account, year, month, day) {
         let semester = this.getSemester(month);
-    
         const uri = 'https://dreamy.jejunu.ac.kr/susj/su/sta_su_6170q.jejunu';
         const body = `mode=doListTimetable&curri_year=${year}&term_gb=${semester}&su_dt=${year}${month <= 9 ? `0${month}` : month}${day <= 9 ? `0${day}` : day}&student_no=${account}&_=`;
         return (await fetchData(uri, body)).json()
@@ -68,13 +67,11 @@ const Dreamy = {
         const match = /loginerror=([0-9])*/g.exec(url);
         return !match;
     },
-    getMoment: async function(account) {
-        const uri = 'https://dreamy.jejunu.ac.kr/susj/com/com_su.jejunu'
-        const body = ``
-    },
 
     getEvlState: async function(account) {
-        let semester = this.getSemester();
+        let year = new Date().getFullYear();
+        let month = new Date().getMonth() + 1;
+        let semester = this.getSemester(month);
 
         const uri = 'https://dreamy.jejunu.ac.kr/susj/com/com_su.jejunu'
         const body = `mode=doCheckEvllec&year=${year}&term_gb=${semester}&student_no=${account}&_=`
@@ -91,9 +88,15 @@ const Dreamy = {
         const body = `mode=doList&year=${year}&term_gb=${semester}&group_gb=${groupGb}&student_no=${account}&outside_seq=${outsideSeq}&del_gb=AND%20SJ_DEL_GB%20IS%20NULL&_=`;
         return (await fetchData(uri, body)).json();
     }, 
-    getCreditCurrent: async function (account, year, semester ) {    
+    getCreditCurrent: async function (account) {    
+        let year = 2019;
+        //new Date().getFullYear();   
+        let month = new Date().getMonth() + 1;
+        let semester = 20;  
+        //this.getSemester(month);
         const uri = 'https://dreamy.jejunu.ac.kr/susj/sj/sta_sj_3225q.jejunu';
         const body = `mode=doListMst&curri_year=${year}&term_gb=${semester}&student_no=${account}&_=`;
+        console.log("body: " + body);
         return (await fetchData(uri, body)).json();  
     },
     getLectureBoard: async function(account, name, userGb, year, semester) {

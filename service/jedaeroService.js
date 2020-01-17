@@ -55,17 +55,17 @@ const getBaseInfo = async (account, password) => {
     }
 }
 
-const getEvlStateData = async (year, semester) => {
+const getEvlStateData = async () => {
     let res;
     const { username: account , password: baseInfo} = await Keychain.getGenericPassword();
     const { password } = JSON.parse(baseInfo);
     try {
-        res = await Dreamy.getEvlState(account, year , semester);
+        res = await Dreamy.getEvlState(account);
     } catch (err) {
         await Dreamy._openSession(account, password);
-        res = await Dreamy.getEvlState(account, year , semester);
+        res = await Dreamy.getEvlState(account);
     }finally{
-        if(!res) return {};
+        if(!res) return {}; 
         return {
             evlState: res['CHK_VALUE']['evl_yn'],
             year: res['CHK_VALUE']['year'],
@@ -153,33 +153,33 @@ const getCreditDetailData = async (year, semester, outsideSeq, groupGb) => {
     }
 }
 
-const getCreditCurrentData = async (year, month, day) => {
+const getCreditCurrentData = async () => {
     const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
     const { password } = JSON.parse(baseInfo);
     let res;
     try { 
-        res = await Dreamy.getCreditCurrent(account, year, semester);
+        res = await Dreamy.getCreditCurrent(account);
     } catch(err) {
         await Dreamy._openSession(account, password);
-        res = await Dreamy.getCreditCurrent(account, year, semester);
-    } finally {
-        console.log(account , year, semester);
-        console.log(res['TOTAL_CREDIT']);
-        console.log(res['MST_LIST']); 
+        res = await Dreamy.getCreditCurrent(account);
+    } finally {  
         return {
-            mstList: res['MST_LIST'].map(row => {    
-                console.log("fdfd");
-                return {
+            totalCredit: {  
+                applyCnt: res['TOTAL_CREDIT']['aply_cnt'],
+                applyCredit: res['TOTAL_CREDIT']['aply_credit'],
+                year: res['TOTAL_CREDIT']['curri_year'],
+                getCredit: res['TOTAL_CREDIT']['get_credit'],
+                semester: res['TOTAL_CREDIT']['term_gb'],
+                average: res['TOTAL_CREDIT']['tot_avg']
+            },
+            mstList: res['MST_LIST'].map(row => ({
                     takeName: row['isu_nm'],  
                     grade: row['dg_gb'], 
                     credit: row['credit'],
-                    mark: row['mark'],
+                    mark: row['mark'],  
                     subjectId: row['subject_cd'],
                     subjectName: row['subject_nm'],
-                    semester: row['term_gb'], 
-                    year: row['year'] 
-                }
-            }), 
+                })), 
         }; 
     }
 }
