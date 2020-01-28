@@ -79,6 +79,7 @@ const Login = ({navigation}) => {
                 ref={accountRef}
                 style={styles.textinput}
                 placeholder="학번을 입력하세요"
+                placeholderTextColor="#777777"
                 value={account}
                 onChangeText={value => setAccount(value)}
                 autoFocus
@@ -90,6 +91,7 @@ const Login = ({navigation}) => {
             <TextInput
                 ref={passwordRef}
                 style={styles.textinput}
+                placeholderTextColor="#777777"
                 secureTextEntry={true}
                 placeholder="비밀번호를 입력하세요"
                 value={password}
@@ -128,6 +130,7 @@ const styles = StyleSheet.create({
     }, 
     textinput: {
         fontSize: normalize(20),
+        color: colorPalette.textColor,
         paddingVertical: 8,
     },
     button: {
