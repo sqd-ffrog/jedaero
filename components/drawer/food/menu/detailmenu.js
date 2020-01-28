@@ -4,6 +4,7 @@ import Comu from 'react-native-communications';
 import { normalize } from 'react-native-elements';
 import PinchZoom from 'react-native-pinch-zoom-view';
 import colorPalette from '../../../styles/colorPalette';
+import Banner from '../../../banner/Banner';
 
 const CallBlock = ({tel}) => tel !== "" && (
     <TouchableOpacity style = {{flex:1, opacity:0.7, backgroundColor:colorPalette.mainColor, justifyContent:'center', alignItems:'center'}}onPress={()=> Comu.phonecall(tel,true)}>
@@ -20,8 +21,8 @@ const DetailMenu = ({navigation}) => {
                     style={{width:'100%', height:'100%', resizeMode: 'contain'}}
                     source={{uri:item.images}}/>
                 </PinchZoom>
-                   <CallBlock tel={item.tel} />
-                
+                <Banner />
+                <CallBlock tel={item.tel} />
         </View>
     )
 }

@@ -1,26 +1,30 @@
-import React, {  } from 'react';
-import { ScrollView} from 'react-native';
+import React, { useEffect } from 'react';
+import { ScrollView, Platform, Dimensions, PixelRatio } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { mainScreen } from '../../styles/busStyle';
 import DormCard from './card/DormCard';
 import HaksikCard from './card/HaksikCard';
-import { withNavigationFocus } from 'react-navigation';
 import Bustime from './card/BusTime';
-import SmartBlock from './card/SmartBlock';
-import { checkLogin } from '../../../service/jedaeroService';
+import TodayCard from './component/TodayCard'
+import { InterstitialAd, BannerAd, BannerAdSize, TestIds, AdEventType } from '@react-native-firebase/admob';
+import Banner from '../../banner/Banner';
 
 const Bus = ({navigation}) => (
     <ScrollView contentContainerStyle={mainScreen.busView} >
         {/* <SmartBlock name="스마트 출첵" /> */}
+        <TodayCard name="개발자에게 힘이 되는 광고" containerStyle={{flexDirection: 'column', paddingHorizontal: 0, paddingVertical: 0, alignItems: 'center'}}>
+            <Banner />
+        </TodayCard>
         <Bustime name="버스 시간" navigation={navigation}/>
         <HaksikCard navigation={navigation}/>
+        
         <DormCard navigation={navigation}/>
     </ScrollView>
 )
 
 Bus.navigationOptions = ({ navigation }) => ({
     headerTitle: '홈',
-    headerRight: (
+    headerRight: () => (
         <Icon.Button 
             name="settings"
             onPress={() => navigation.navigate("Info")}

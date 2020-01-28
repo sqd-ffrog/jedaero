@@ -15,7 +15,7 @@ const MainStackNavigator = createStackNavigator({
     Jedaero: {
         screen: MainBottomTabNavigation,
         navigationOptions: () => ({
-            header: null,
+            headerShown: false
         })
     },
     Info: {

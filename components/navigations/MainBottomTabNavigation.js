@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createMaterialBottomTabNavigator }from 'react-navigation-material-bottom-tabs';
 import { jedaeroBottomTabNavigationConfig } from './navigationConfigs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { BusStackNavigation, FoodListStackNavigation, LibrarySearchStackNavigation, ScheduleStackNavigation, DreamyStackNavigation } from './stackNavigations';

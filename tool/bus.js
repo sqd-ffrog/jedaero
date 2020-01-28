@@ -1,3 +1,6 @@
+import { getCronSchedule } from "../service/jedaeroService";
+import { callbackify } from "util";
+
 function* busIter(timeTable) {
     const now = new Date();
     for (const time of timeTable) {
@@ -12,7 +15,7 @@ function* busIter(timeTable) {
 }
 
 function dayCheck(bus) {
-    return function(timeTable, route, Bus_holy) {
+    return async function(timeTable, route, Bus_holy, callback = (res) => {}) {
         const month = new Date().getMonth();
         const date = new Date().getDate();
         if ( Bus_holy[(month+1).toString()].indexOf(date) != -1 ) {
@@ -21,6 +24,7 @@ function dayCheck(bus) {
         const day = new Date().getDay();
         
         // 0:일요일 ~ 6:토요일 즉,주말일때 운행없음
+        callback(day === 0 || day === 6 ? '운행없어요..' : bus(timeTable, route))
         return day === 0 || day === 6 ? '운행없어요..' : bus(timeTable, route);
     };
 }
