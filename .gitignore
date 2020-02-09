@@ -64,3 +64,5 @@ android/app/bin
 
 google-services.json
 GoogleService-Info.plist
+
+Podfile.lock
