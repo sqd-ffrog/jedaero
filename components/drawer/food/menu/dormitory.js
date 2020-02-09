@@ -54,37 +54,37 @@ const DormList = ({title, food, time, color}) => (
 const DormTap = createMaterialTopTabNavigator(
   {
     dormMon: {
-      screen: (props) => <Dorm DoW="mon" navigation={props.navigation} meal={props.screenProps.meal.mealMon} onRefresh={props.screenProps.onRefresh}/>,
+      screen: (props) => <Dorm DoW="mon" navigation={props.navigation} meal={props.screenProps.meal[0]} onRefresh={props.screenProps.onRefresh}/>,
       navigationOptions: {
         title: "월"
       }
     },
     dormTue: {
-      screen: (props) => <Dorm DoW="tue" navigation={props.navigation} meal={props.screenProps.meal.mealTue} onRefresh={props.screenProps.onRefresh}/>,
+      screen: (props) => <Dorm DoW="tue" navigation={props.navigation} meal={props.screenProps.meal[1]} onRefresh={props.screenProps.onRefresh}/>,
       navigationOptions: {
         title: "화"
       }
     },
     dormWed: {
-      screen: (props) => <Dorm DoW="wed" navigation={props.navigation} meal={props.screenProps.meal.mealWed} onRefresh={props.screenProps.onRefresh}/>,
+      screen: (props) => <Dorm DoW="wed" navigation={props.navigation} meal={props.screenProps.meal[2]} onRefresh={props.screenProps.onRefresh}/>,
       navigationOptions: {
         title: "수"
       }
     },
     dormThu: {
-      screen: (props) => <Dorm DoW="thu" navigation={props.navigation} meal={props.screenProps.meal.mealThu} onRefresh={props.screenProps.onRefresh}/>,
+      screen: (props) => <Dorm DoW="thu" navigation={props.navigation} meal={props.screenProps.meal[3]} onRefresh={props.screenProps.onRefresh}/>,
       navigationOptions: {
         title: "목"
       }
     },
     dormFri: {
-      screen: (props) => <Dorm DoW="fri" navigation={props.navigation} meal={props.screenProps.meal.mealFri} onRefresh={props.screenProps.onRefresh}/>,
+      screen: (props) => <Dorm DoW="fri" navigation={props.navigation} meal={props.screenProps.meal[4]} onRefresh={props.screenProps.onRefresh}/>,
       navigationOptions: {
         title: "금"
       }
     },
     dormSat: {
-      screen: (props) => <Dorm DoW="sat" navigation={props.navigation} meal={props.screenProps.meal.mealSat} onRefresh={props.screenProps.onRefresh}/>,
+      screen: (props) => <Dorm DoW="sat" navigation={props.navigation} meal={props.screenProps.meal[5]} onRefresh={props.screenProps.onRefresh}/>,
       navigationOptions: {
         title: "토"
       }

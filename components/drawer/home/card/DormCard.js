@@ -32,16 +32,15 @@ const DormCard = ({navigation}) => {
         if(meal) {
             let currentDate = new Date().getDay();
             let food;
-
             switch(currentDate) {
-                case 1: food = meal.mealMon; break;
-                case 2: food = meal.mealTue; break;
-                case 3: food = meal.mealWed; break;
-                case 4: food = meal.mealThu; break;
-                case 5: food = meal.mealFri; break;
-                case 6: food = meal.mealSat ? meal.mealSat : meal.mealMon; break;
-                case 0: food = meal.mealSun ? meal.mealSun : meal.mealMon; break;
-                default: food = meal.mealMon; break;
+                case 1: food = meal[0]; break;
+                case 2: food = meal[1]; break;
+                case 3: food = meal[2]; break;
+                case 4: food = meal[3]; break;
+                case 5: food = meal[4]; break;
+                case 6: food = meal[5] ? meal[5] : meal[0]; break;
+                case 0: food = meal[6] ? meal[6] : meal[0]; break;
+                default: food = meal[0]; break;
             }
 
             let dawn = food.dawn.split('\n');
