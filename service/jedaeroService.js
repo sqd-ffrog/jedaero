@@ -415,6 +415,73 @@ const downloadLecturePlanFile = async ({fileName, encoded, classCode, year, seme
     }
 }
 
+const getNonMeetingLecturesModelList = async({year, semester}) => {
+    const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+    const { password } = JSON.parse(baseInfo);
+    let res;
+    try {
+        res = await Dreamy.getNonMeetingLecturesModelList({year, semester, classCode});
+    } catch (err) {
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.getNonMeetingLecturesModelList({year, semester, classCode});
+    } finally {
+        if(!res || res['RESULT'] !== 'SUCCESS') {
+            return {size: 0, data: []}
+        }
+        return {
+            size: res['TOTAL'],
+            data: res['DATA'].map(item => ({
+                openDepartmentName: item['open_dept_nm'],
+                classCode: item['ban_no'],
+                professorName: item['emp_nm'],
+                professorCode: item['emp_no'],
+                subjectName: item['subject_nm']
+            }))
+        };
+    }
+}
+
+const getNonMeetingLectureModelDetail = async({}) => {
+    const {username: account, password: baseInfo} = await Keychain.getGenericPassword();
+    const { password } = JSON.parse(baseInfo);
+    let res;
+    try {
+        res = await Dreamy.getNonMeetingLecturesModelList({year, semester, classCode});
+    } catch (err) {
+        await Dreamy._openSession(account, password);
+        res = await Dreamy.getNonMeetingLecturesModelList({year, semester, classCode});
+    } finally {
+        if(!res || res['RESULT'] !== 'SUCCESS') {
+            return {size: 0, data: []}
+        }
+        return {
+            size: res['TOTAL'],
+            data: res['DATA'].map(item => ({
+                coronaDeal: function (code) {
+                    return [
+                        {"key":"1","text":"(LMS)동영상·토론(과제)"},
+                        {"key":"2","text":"(LMS)강의교안·토론(과제)"},
+                        {"key":"3","text":"(수업도우미)강의교안·과제"},
+                        {"key":"4","text":"(LMS)실시간강의(Webex)"},
+                        {"key":"5","text":"기타(구글클래스, 유투브 등)"},
+                        {"key":"","text":"사용안함"}
+                    ].find(deal => deal.key === code).text;
+                }(item['corona_deal_gb']),
+                lectureDate: item['su_dt'],
+                lessonTime: item['lesson_time_gb_nm'],
+                dayOfWeek: item['su_day_gb_nm'],
+                week: item['week'],
+                lectureName: item['subject_nm'],
+                professorName: item['emp_nm'],
+                professorCode: item['emp_no'],
+                startTime: item['start_time'],
+                endTime: item['end_time'],
+                subjectName: item['subject_nm']
+            }))
+        };
+    }
+}
+
 const checkLogin = async () => {
     const credentials = await Keychain.getGenericPassword();
     return !!credentials;
@@ -423,4 +490,4 @@ const checkLogin = async () => {
 const getCronSchedule = async () => {
     return (await RNFetchBlob.fetch('GET', 'https://raw.githubusercontent.com/jnuro/database/master/cron.json')).json();
 }
-export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList, getLecturePlanDetail, downloadLecturePlanFile, getCronSchedule}
+export { getTimeTable, getCreditData, getCreditDetailData, getBaseInfo, getLectureBoardData, getLectureItemBoardData, getLecturePostData, downloadLecturePostFile, logoutDreamy, isPassDormitory, checkLogin, getLecturePlanList, getLecturePlanDetail, downloadLecturePlanFile, getCronSchedule, getNonMeetingLecturesModelList}

@@ -7,16 +7,14 @@
 import React, { useEffect } from 'react';
 import { StatusBar, Platform } from 'react-native';
 import JedaeroContainer from './components/JedaeroContainer';
-
+import { Provider } from 'react-redux'; 
+import store from './reducer/store';
 const App = () => {
-  // useEffect(() => {
-  //   StatusBar.setBarStyle('dark-content')
-  //   if(Platform.OS === 'android') {
-  //     StatusBar.setBackgroundColor('#f7f7f7ff');
-  //     StatusBar.setTranslucent(false);
-  //   }
-  // }, []);
-  return <JedaeroContainer />
+  return (
+    <Provider store={store}>
+      <JedaeroContainer />
+    </Provider>
+  )
 }
 
 export default App;

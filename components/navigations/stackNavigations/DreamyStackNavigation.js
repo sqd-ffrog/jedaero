@@ -11,6 +11,7 @@ import LecturePost from '../../drawer/jnuservice/dreamy/LecturePost';
 import PassDormitory from '../../drawer/jnuservice/dreamy/PassDormitory';
 import LecturePlan from '../../drawer/jnuservice/dreamy/LecturePlan';
 import LecturePlanDetail from '../../drawer/jnuservice/dreamy/LecturePlanDetail';
+import NonMeetingLectureModel from '../../drawer/jnuservice/dreamy/NonMeetingLectureModel';
 
 const DreamyStackNavigation = createStackNavigator({
     DreamyHome: {
@@ -45,6 +46,9 @@ const DreamyStackNavigation = createStackNavigator({
     },
     LecturePlanDetail: {
         screen: LecturePlanDetail
+    },
+    NonMeetingLectureModel: {
+        screen: NonMeetingLectureModel
     }
 }, {...stackNavigationConfig, initialRouteName: "DreamyHome"})
 
