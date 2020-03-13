@@ -20,6 +20,16 @@ const mainScreen = StyleSheet.create({
         // overflow: 'hidden',
         ...elevationShadowStyle(3),
     },
+    adMobBox:{
+        flexDirection: 'column',
+        paddingHorizontal: 0,
+        paddingVertical: 0,
+        alignItems: 'center',
+    },
+    adMobStyle:{
+        alignContent:'flex-start',
+        marginBottom:16
+    },
     blockViewTitle: {
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
