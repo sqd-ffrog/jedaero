@@ -164,6 +164,7 @@ const Dreamy = {
     getNonMeetingLecturesModelDetailList: async function ({year, semester, classCode = ''}) {
         const uri = 'https://dreamy.jejunu.ac.kr/susj/su/sta_su_6518e.jejunu';
         const body = `mode=doListDtl&curri_year=${year}&term_gb=${semester}&ban_no=${classCode}`
+        return (await fetchData(uri, body)).json();
     }
 };
 

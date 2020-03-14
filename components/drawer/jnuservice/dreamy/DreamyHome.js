@@ -33,7 +33,7 @@ const totalMenu = [
     }
 ]
 
-const DreamyHome = ({navigation, isFocused, config}) => {
+const DreamyHome = ({navigation, isFocused, config: { isNonMeetingLectureOpened = false}}) => {
     const [isLogin, setLogin] = useState(true);
     const [name, setName] = useState('');
     const [numColumns, setNumColumns] = useState(3);
@@ -116,7 +116,7 @@ const DreamyHome = ({navigation, isFocused, config}) => {
                 <Text>전체 성적을 조회하실 수 있습니다.</Text>
             </DreamyCard>
             {
-                config.isNonMeetingLectureOpened && (
+                isNonMeetingLectureOpened && (
                     <DreamyCard title="비대면 강의모델" onPress={() => afterLogin(() => navigation.navigate("NonMeetingLectureModel"))}>
                         <Text>코로나 모두 조심하세요 !</Text>
                     </DreamyCard>
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
 export default connect(
     store => ({
         config: {
-            isNonMeetingLectureOpened: store.config.isNonMeetingLectureOpened
+            isNonMeetingLectureOpened: store?.config?.isNonMeetingLectureOpened || false
         }
     }) 
 )(withNavigationFocus(DreamyHome));

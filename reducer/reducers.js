@@ -1,5 +1,7 @@
 const initialState = {
-    config: {},
+    config: {
+        isNonMeetingLectureOpened: false
+    },
 }
 
 export default function reducer(state = initialState, action) {
