@@ -66,3 +66,4 @@ google-services.json
 GoogleService-Info.plist
 
 Podfile.lock
+.vscode/
