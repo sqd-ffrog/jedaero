@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "module": "es2015",
+        "noEmit": true,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "jsx": "react-native",
+        "lib": ["dom", "es2015", "es2016"],
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "noEmitHelpers": true,
+        "importHelpers": true,
+        "strict": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "resolveJsonModule": true,
+        "typeRoots": ["./types"], // 보통 types 폴더를 만들어 타입 정의
+        "declaration": true, // lib 만들 때 .d.ts 파일을 자동으로
+        "declarationDir": "./types" // 이 폴더에 만들어주는 옵션
+    }
+}
