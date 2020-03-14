@@ -155,6 +155,16 @@ const Dreamy = {
         }).fetch('POST', uri, {
             "Content-Type": "application/x-www-form-urlencoded"
         }, body);
+    },
+    getNonMeetingLecturesModelList: async function ({year, semester}) {
+        const uri = 'https://dreamy.jejunu.ac.kr/susj/su/sta_su_6518e.jejunu';
+        const body = `mode=doList&curri_year=${year}&term_gb=${semester}&ban_no=`
+        return (await fetchData(uri, body)).json();
+    },
+    getNonMeetingLecturesModelDetailList: async function ({year, semester, classCode = ''}) {
+        const uri = 'https://dreamy.jejunu.ac.kr/susj/su/sta_su_6518e.jejunu';
+        const body = `mode=doListDtl&curri_year=${year}&term_gb=${semester}&ban_no=${classCode}`
+        return (await fetchData(uri, body)).json();
     }
 };
 

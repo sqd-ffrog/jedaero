@@ -8,6 +8,7 @@ import { normalize } from 'react-native-elements';
 import { checkLogin, logoutDreamy } from '../../../../service/jedaeroService';
 import { withNavigationFocus } from 'react-navigation';
 import { getGenericPassword }from 'react-native-keychain';
+import { connect } from 'react-redux';
 
 const totalMenu = [
     {
@@ -32,7 +33,7 @@ const totalMenu = [
     }
 ]
 
-const DreamyHome = ({navigation, isFocused}) => {
+const DreamyHome = ({navigation, isFocused, config: { isNonMeetingLectureOpened = false}}) => {
     const [isLogin, setLogin] = useState(true);
     const [name, setName] = useState('');
     const [numColumns, setNumColumns] = useState(3);
@@ -114,6 +115,14 @@ const DreamyHome = ({navigation, isFocused}) => {
             <DreamyCard title="내 평점 확인" onPress={() => afterLogin(() => navigation.navigate("Credit"))}>
                 <Text>전체 성적을 조회하실 수 있습니다.</Text>
             </DreamyCard>
+            {
+                isNonMeetingLectureOpened && (
+                    <DreamyCard title="비대면 강의모델" onPress={() => afterLogin(() => navigation.navigate("NonMeetingLectureModel"))}>
+                        <Text>코로나 모두 조심하세요 !</Text>
+                    </DreamyCard>
+                )
+            }
+            
         </Fragment>
     )
 
@@ -167,4 +176,10 @@ const styles = StyleSheet.create({
     menuItemIcon: { flex: 1, justifyContent: 'center', alignItems: 'center' }
 })
 
-export default withNavigationFocus(DreamyHome);
+export default connect(
+    store => ({
+        config: {
+            isNonMeetingLectureOpened: store?.config?.isNonMeetingLectureOpened || false
+        }
+    }) 
+)(withNavigationFocus(DreamyHome));
