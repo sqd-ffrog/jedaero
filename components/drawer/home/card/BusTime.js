@@ -12,14 +12,22 @@ import { withNavigationFocus } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const BusFragment = ({title, description, routeFunction, selectedIndex}) => {
-    const [time, setTime] = useState(routeFunction(BusTb.timeTable[title], selectedIndex, BusHoly));
-    const [cancelRefresh, setCancelRefresh] = useState();
+    const [time, setTime] = useState("");
+    const [intervalId, setIntervalId] = useState(null);
 
+    const setTimeRepeatedly = () => {
+        routeFunction(BusTb.timeTable[title], selectedIndex, BusHoly, (res) => {
+            setTime(res);
+        })
+    }
     useEffect(() => {
-        if(cancelRefresh) cancelRefresh();
-        const id = setInterval(setTime.bind(null,routeFunction(BusTb.timeTable[title], selectedIndex, BusHoly)), 1000);
-        setCancelRefresh(() => clearInterval.bind(null, id));
-        return () => clearInterval(id);
+        if(!!intervalId) clearInterval(intervalId);
+        routeFunction(BusTb.timeTable[title], selectedIndex, BusHoly, (res) => {
+            setTime(res)
+            setIntervalId(setInterval(setTimeRepeatedly, 5000));
+            // setCancelRefresh(() => clearInterval.bind(null, intervalId))
+        })
+        return () => clearInterval.bind(null, intervalId);
     }, [selectedIndex])
 
     return (
@@ -57,7 +65,7 @@ const BusTime = ({navigation}) => {
     
     const onPressContainer = () => {navigation.navigate('BusSchedule')}
     return (
-        <TodayCard name="버스 시간" headerRight={<BusPicker />} containerStyle={{flexDirection: 'row'}} onPressContainer={onPressContainer}>
+        <TodayCard name="버스 시간" headerRight={<BusPicker />} containerStyle={{flexDirection: 'row'}} onPressContainer={onPressContainer} description={`* 버스 시간 카드를 터치하면 버스 시간표가 나옵니다!\n* 표시되는 시간은 버스시간표를 기준으로 안내중이며 시간대 별로 상이할 수 있습니다.`}>
         {/* A버스 시간 안내 */}
             <BusFragment title="A" description="반시계 반향" routeFunction={BusA} selectedIndex={selectedIndex} />
         {/* B버스 시간 안내 */}    
@@ -77,17 +85,24 @@ const pickerSelectStyles = StyleSheet.create({
     inputAndroid: {
       fontSize: 14,
       paddingHorizontal: 12,
-      color: '#ffffff',
+      height: '100%',
+      color: '#d7d7d7',
       paddingRight: 24, // to ensure the text is never behind the icon
     },
     inputAndroidContainer: {
-        height: null,
+
     },
     // headlessAndroidPicker: {
     //     height: null,
     // },
     headlessAndroidContainer: {
-        height: '100%'
+        position: 'absolute',
+        right: 12,
+    },
+    viewContainer: {
+        position: 'absolute',
+        right: 12,    
+        top: 8,
     },
     iconContainer: {
         top: Platform.select({ios: 0, android: 10})

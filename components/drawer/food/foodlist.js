@@ -7,6 +7,7 @@ import { ListItem, normalize } from 'react-native-elements';
 import menuList from './menuList';
 import { foodTabStyles } from '../../styles/jedaeroCSS';
 import colorPalette from '../../styles/colorPalette';
+import Banner from '../../banner/Banner';
 
 const FoodList = ({navigation}) => {
     const foodMenu = menuList(destination => navigation.navigate(destination));

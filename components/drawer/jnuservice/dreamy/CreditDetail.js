@@ -85,6 +85,14 @@ const CreditDetail = ({navigation: { state: { params: {name, data: { year, semes
     )
 }
 
+CreditDetail.navigationOptions = ({navigation}) => {
+    const {year, semester: semesterInteger} = navigation.state.params.data;
+    
+    return {
+        headerTitle: null
+    }
+}
+
 const styles = StyleSheet.create({
     summary: {
         padding: 16,

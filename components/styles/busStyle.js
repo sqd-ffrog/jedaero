@@ -20,6 +20,16 @@ const mainScreen = StyleSheet.create({
         // overflow: 'hidden',
         ...elevationShadowStyle(3),
     },
+    adMobBox:{
+        flexDirection: 'column',
+        paddingHorizontal: 0,
+        paddingVertical: 0,
+        alignItems: 'center',
+    },
+    adMobStyle:{
+        alignContent:'flex-start',
+        marginBottom:16
+    },
     blockViewTitle: {
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
@@ -64,8 +74,8 @@ const mainScreen = StyleSheet.create({
     },
     blockViewContainerMain: {
         textAlign: 'center',
-        marginVertical: 20,
-        paddingHorizontal: 10,
+        marginVertical: 4,
+        paddingHorizontal: 8,
         borderRightWidth: 0.5,
         justifyContent:'center',
         alignItems:'center',
@@ -81,7 +91,7 @@ const mainScreen = StyleSheet.create({
         borderColor:"#e7e7e7",
     },
     blockText: {
-        fontSize: normalize(13),
+        fontSize: normalize(10),
         color: '#000000',
         
     },
@@ -129,12 +139,24 @@ const mainScreen = StyleSheet.create({
     busSchedule:{
         flex:9,
     },
+    foodViewDescription: {
+        paddingHorizontal: 4,
+        marginHorizontal: 12,
+        paddingTop: 12,
+        paddingBottom: 8,
+        borderTopWidth: 0.5,
+        borderTopColor: colorPalette.cardBorderColor,
+    },
+    foodViewDescriptionText: {
+        fontSize: normalize(9),
+        color: "#777777"
+    },
     foodViewBlockContainer: {
-        borderLeftWidth: 0.5,
-        borderRightWidth: 0.5,
-        borderBottomWidth: 0.5,
-        borderBottomLeftRadius: 16,
-        borderBottomRightRadius: 16,
+        // borderLeftWidth: 0.5,
+        // borderRightWidth: 0.5,
+        // borderBottomWidth: 0.5,
+        // borderBottomLeftRadius: 16,
+        // borderBottomRightRadius: 16,
         borderColor: '#e7e7e7',
         paddingHorizontal: 12,
         paddingVertical: 16,
