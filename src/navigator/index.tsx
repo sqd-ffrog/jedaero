@@ -1,2 +1,3 @@
 import JedaeroStackNavigator from "./JedaeroStackNavigator";
-export { JedaeroStackNavigator };
+import rootScreenOptions from "./ScreenOptions/rootScreenOptions";
+export { JedaeroStackNavigator, rootScreenOptions };

@@ -1,8 +1,16 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, ViewProps, ScrollViewProps } from "react-native";
 import { HeaderHeightContext } from "@react-navigation/stack";
+import { Title } from "@sqd-ffrog/components";
 
-function JedaeroScrollView(props: any) {
+interface JedaeroScrollViewProps {
+  title: string;
+  children?: React.ReactNode;
+}
+
+function JedaeroScrollView(
+  props: ViewProps & ScrollViewProps & JedaeroScrollViewProps
+) {
   return (
     <HeaderHeightContext.Consumer>
       {headerHeight => (
@@ -12,7 +20,10 @@ function JedaeroScrollView(props: any) {
             props.contentContainerStyle,
             { marginTop: headerHeight }
           ]}
-        />
+        >
+          <Title>{props.title}</Title>
+          {props.children}
+        </ScrollView>
       )}
     </HeaderHeightContext.Consumer>
   );
