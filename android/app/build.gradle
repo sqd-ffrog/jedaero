@@ -131,7 +131,7 @@ android {
         applicationId "com.jedaeroreactnative"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 9
+        versionCode 10
         versionName "1.0.7"
     }
     splits {
@@ -193,6 +193,12 @@ android {
         pickFirst '**/x86/libjsc.so'
         pickFirst '**/armeabi-v7a/libjsc.so'
         exclude "**/libjsc.so"
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "com.facebook.soloader:soloader:0.8.0"
     }
 }
 
