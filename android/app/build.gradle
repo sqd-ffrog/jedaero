@@ -131,8 +131,8 @@ android {
         applicationId "com.jedaeroreactnative"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 8
-        versionName "1.0.6"
+        versionCode 9
+        versionName "1.0.7"
     }
     splits {
         abi {
