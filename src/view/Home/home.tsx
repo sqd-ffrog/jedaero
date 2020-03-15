@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native";
-
+import { Text } from "react-native";
+import { ScrollView } from "@sqd-ffrog/components";
 function Home() {
   return (
-    <View>
+    <ScrollView>
       <Text>hihihi</Text>
-    </View>
+    </ScrollView>
   );
 }
 

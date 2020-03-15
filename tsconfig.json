@@ -15,8 +15,6 @@
         "noImplicitReturns": true,
         "noUnusedLocals": true,
         "resolveJsonModule": true,
-        "typeRoots": ["./types"], // 보통 types 폴더를 만들어 타입 정의
-        "declaration": true, // lib 만들 때 .d.ts 파일을 자동으로
-        "declarationDir": "./types" // 이 폴더에 만들어주는 옵션
+        "alwaysStrict": true
     }
 }
