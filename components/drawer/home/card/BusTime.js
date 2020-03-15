@@ -85,19 +85,12 @@ const pickerSelectStyles = StyleSheet.create({
     inputAndroid: {
       fontSize: 14,
       paddingHorizontal: 12,
-      height: '100%',
+    //   height: '100%',
       color: '#d7d7d7',
       paddingRight: 24, // to ensure the text is never behind the icon
     },
     inputAndroidContainer: {
 
-    },
-    // headlessAndroidPicker: {
-    //     height: null,
-    // },
-    headlessAndroidContainer: {
-        position: 'absolute',
-        right: 12,
     },
     viewContainer: {
         position: 'absolute',

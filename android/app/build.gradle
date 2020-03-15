@@ -131,8 +131,8 @@ android {
         applicationId "com.jedaeroreactnative"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 8
-        versionName "1.0.6"
+        versionCode 10
+        versionName "1.0.7"
         renderscriptTargetApi 23
         renderscriptSupportModeEnabled true
     }
@@ -198,6 +198,12 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force "com.facebook.soloader:soloader:0.8.0"
+    }
+}
+
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
@@ -210,10 +216,10 @@ dependencies {
         implementation jscFlavor
     }
 
-    implementation project(':@react-native-community_viewpager')
+    // implementation project(':@react-native-community_viewpager')
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03'
-    implementation 'com.google.firebase:firebase-analytics:17.2.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-beta01'
+    implementation 'com.google.firebase:firebase-analytics:17.2.3'
     implementation 'com.android.support:support-v4:28.0.3'
 }
 
