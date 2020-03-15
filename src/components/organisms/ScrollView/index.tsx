@@ -18,7 +18,7 @@ function JedaeroScrollView(
           {...props}
           contentContainerStyle={[
             props.contentContainerStyle,
-            { marginTop: headerHeight }
+            { marginTop: headerHeight, paddingBottom: 56 }
           ]}
         >
           <Title>{props.title}</Title>

@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { elevationShadow } from "@sqd-ffrog/tools";
-import { LightColor } from "@sqd-ffrog/components";
+import { LightColor } from "../colors";
 
 const styles = StyleSheet.create({
   cardStyle: {
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
     backgroundColor: LightColor.backgroundColor,
-    ...elevationShadow(24)
+    ...elevationShadow(16)
   }
 });
 
