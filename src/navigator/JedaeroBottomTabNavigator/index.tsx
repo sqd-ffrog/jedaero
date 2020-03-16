@@ -1,6 +1,12 @@
 import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { Home, Food } from "@sqd-ffrog/view";
+import {
+  HomeStackNavigator,
+  FoodStackNavigator,
+  DreamyStackNavigator,
+  LibraryStackNavigator,
+  AcademyScheduleStackNavigator
+} from "@sqd-ffrog/jedaero-navigator";
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -14,13 +20,15 @@ function JedaeroBottomTabNavigator() {
       backBehavior="none"
       shifting={true}
       labeled={true}
-      style={{ backgroundColor: 'tomato' }}
     >
-      <BottomTab.Screen name="Home" component={Home} />
-      <BottomTab.Screen name="Food" component={Food} />
-      <BottomTab.Screen name="Dreamy" component={Home} />
-      <BottomTab.Screen name="Library" component={Home} />
-      <BottomTab.Screen name="AcademySchedule" component={Home} />
+      <BottomTab.Screen name="_Home" component={HomeStackNavigator} />
+      <BottomTab.Screen name="_Food" component={FoodStackNavigator} />
+      <BottomTab.Screen name="_Dreamy" component={DreamyStackNavigator} />
+      <BottomTab.Screen name="_Library" component={LibraryStackNavigator} />
+      <BottomTab.Screen
+        name="_AcademySchedule"
+        component={AcademyScheduleStackNavigator}
+      />
     </BottomTab.Navigator>
   );
 }

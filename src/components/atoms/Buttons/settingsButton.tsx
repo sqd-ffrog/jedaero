@@ -11,7 +11,7 @@ interface SettingsButtonProps {
 function SettingsButton({ onPress, color }: SettingsButtonProps) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.buttonStyle}>
-      <Icon size={30} name="setting" color={color}/>
+      <Icon size={30} name="setting" color={color} />
     </TouchableOpacity>
   );
 }

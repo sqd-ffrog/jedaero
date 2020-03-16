@@ -1,8 +1,6 @@
-import BackButton from "./atoms/BackButton";
-import SettingsButton from "./atoms/SettingsButton";
-import UserButton from "./atoms/UserButton";
+import { BackButton, SettingsButton, UserButton } from "./atoms/Buttons";
 import H1 from "./atoms/H1";
-import Card from "./atoms/Card";
+import { Card, ImageCard } from "./atoms/Cards";
 import { LightColor } from "./atoms/colors";
 import HeaderBlurView from "./atoms/HeaderBlurView";
 import Title from "./molecules/Title";
@@ -15,6 +13,7 @@ export {
   UserButton,
   H1,
   Card,
+  ImageCard,
   LightColor,
   HeaderBlurView,
   Title,

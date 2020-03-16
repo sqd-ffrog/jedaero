@@ -8,7 +8,11 @@ const Stack = createStackNavigator();
 function JedaeroStackNavigator() {
   return (
     <Stack.Navigator screenOptions={rootScreenOptions}>
-      <Stack.Screen name="Main" component={JedaeroBottomTabNavigator} />
+      <Stack.Screen
+        name="Main"
+        component={JedaeroBottomTabNavigator}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
