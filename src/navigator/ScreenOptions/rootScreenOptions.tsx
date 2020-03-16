@@ -1,11 +1,13 @@
-import { HeaderBlurView } from "@sqd-ffrog/components";
+import React from "react";
+import { HeaderBlurView, MainRightHeaderTitle } from "@sqd-ffrog/components";
 
 const screenOptions = {
-  title: null,
+  headerTitle: "",
   headerTransparent: true,
   headerBackground: HeaderBlurView,
+  headerRight: () => <MainRightHeaderTitle />,
   cardStyle: {
-    backgroundColor: "#ffffff"
+    backgroundColor: "#ff0000"
   }
 };
 

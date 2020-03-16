@@ -3,17 +3,17 @@ import { TouchableOpacity, GestureResponderEvent } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import styles from "./styles";
 
-interface SettingsButtonProps {
+interface UserButtonProps {
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
   color?: string | undefined;
 }
 
-function SettingsButton({ onPress, color }: SettingsButtonProps) {
+function UserButton({ onPress, color }: UserButtonProps) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.buttonStyle}>
-      <Icon size={30} name="setting" color={color}/>
+      <Icon size={30} name="user" color={color} />
     </TouchableOpacity>
   );
 }
 
-export default SettingsButton;
+export default UserButton;

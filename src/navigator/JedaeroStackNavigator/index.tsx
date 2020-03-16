@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Home } from "@sqd-ffrog/view";
+import { JedaeroBottomTabNavigator } from "@sqd-ffrog/jedaero-navigator";
 import { rootScreenOptions } from "@sqd-ffrog/jedaero-navigator";
 
 const Stack = createStackNavigator();
@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 function JedaeroStackNavigator() {
   return (
     <Stack.Navigator screenOptions={rootScreenOptions}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Main" component={JedaeroBottomTabNavigator} />
     </Stack.Navigator>
   );
 }
