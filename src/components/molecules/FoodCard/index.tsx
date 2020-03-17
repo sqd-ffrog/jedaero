@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { TouchableOpacity, GestureResponderEvent } from "react-native";
-import { ImageCard, H4 } from "@sqd-ffrog/components";
-import styles from "./styles";
+import { TouchableHighlight, GestureResponderEvent } from "react-native";
+import { ImageCard, H4, LightColor } from "@sqd-ffrog/components";
 import { Source } from "react-native-fast-image";
+import styles from "./styles";
 
 interface FoodCardProps {
   source: Source;
@@ -22,7 +22,11 @@ function FoodCard({ source, onPress, children }: FoodCardProps) {
   };
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableHighlight
+      onPress={onPress}
+      activeOpacity={0.7}
+      underlayColor={LightColor.backgroundColor}
+    >
       <ImageCard
         source={source}
         style={styles.style}
@@ -35,7 +39,7 @@ function FoodCard({ source, onPress, children }: FoodCardProps) {
           {children}
         </H4>
       </ImageCard>
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 }
 

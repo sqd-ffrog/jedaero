@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
+import { normalize } from "@sqd-ffrog/tools";
 
 const styles = StyleSheet.create({
-  wrapper: {
-    height: 216,
-    marginVertical: 8
+  textStyle: {
+    fontSize: normalize(12)
   }
 });
 

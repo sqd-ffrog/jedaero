@@ -1,12 +1,14 @@
 import React from "react";
 import Swiper from "react-native-swiper";
 import { FoodCard, LightColor } from "@sqd-ffrog/components";
-import { ImageSourcePropType } from "react-native";
+import { Source } from "react-native-fast-image";
 import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 interface FoodCardDataProps {
   title: string;
-  source: ImageSourcePropType;
+  source: Source;
+  routeName: string;
 }
 
 const data: FoodCardDataProps[] = [
@@ -15,26 +17,33 @@ const data: FoodCardDataProps[] = [
     source: {
       uri:
         "https://github.com/sqd-ffrog/database/blob/master/foodbg/baekdu.jpg?raw=true"
-    }
+    },
+    routeName: "Baekdu"
   },
   {
     title: "기숙사 식당",
     source: {
       uri:
         "https://github.com/sqd-ffrog/database/blob/master/foodbg/dormImage.jpg?raw=true"
-    }
+    },
+    routeName: "Dormitory"
   }
 ];
 
 function FoodCardCarousel() {
+  const navigation = useNavigation();
   return (
     <Swiper
       style={styles.wrapper}
       showsButtons={false}
       activeDotColor={LightColor.mainColor}
     >
-      {data.map(({ title, source }) => (
-        <FoodCard key={title} source={source}>
+      {data.map(({ title, source, routeName }) => (
+        <FoodCard
+          key={title}
+          source={source}
+          onPress={() => navigation.navigate(routeName)}
+        >
           {title}
         </FoodCard>
       ))}

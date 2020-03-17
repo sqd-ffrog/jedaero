@@ -7,7 +7,7 @@ function elevationShadowStyle(elevation: number) {
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 0.2 * elevation },
     shadowOpacity: 0.3,
-    shadowRadius: 0.5 * elevation
+    shadowRadius: 0.8 * elevation
   };
 }
 

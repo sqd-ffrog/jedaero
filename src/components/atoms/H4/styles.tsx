@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { normalize } from "react-native-elements";
+import { normalize } from "@sqd-ffrog/tools";
 
 const styles = StyleSheet.create({
   textStyle: {

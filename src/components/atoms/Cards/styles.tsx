@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
     backgroundColor: LightColor.backgroundColor,
-    ...elevationShadow(16)
+    ...elevationShadow(12)
   },
   imageCardInnerStyle: {
     borderRadius: 16

@@ -1,8 +1,9 @@
 enum LightColor {
-  mainColor = "#334955",
+  mainColor = "#ff8361",
   backgroundColor = "#ffffff",
   textColor = "#000000",
-  accentColor = "#334955"
+  accentColor = "#71bd72",
+  disabledColor = "#d6d5ba",
 }
 
 export default LightColor;
