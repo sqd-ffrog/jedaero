@@ -133,8 +133,6 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 10
         versionName "1.0.7"
-        renderscriptTargetApi 23
-        renderscriptSupportModeEnabled true
     }
     splits {
         abi {

@@ -1,6 +1,7 @@
 import { HeaderBlurView, LightColor } from "@sqd-ffrog/components";
+import { StackNavigationOptions } from "@react-navigation/stack";
 
-const screenOptions = {
+const screenOptions: StackNavigationOptions = {
   headerTitle: "",
   headerTransparent: true,
   headerBackground: HeaderBlurView,

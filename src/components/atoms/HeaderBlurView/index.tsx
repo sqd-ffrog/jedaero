@@ -1,11 +1,9 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { BlurView } from "@react-native-community/blur";
+import { View, StyleSheet } from "react-native";
+import styles from "./styles";
 
 function HeaderBlurView() {
-  return (
-    <BlurView blurType="light" viewRef={null} style={StyleSheet.absoluteFill} />
-  );
+  return <View style={[StyleSheet.absoluteFill, styles.backgroundStyle]} />;
 }
 
 export default HeaderBlurView;

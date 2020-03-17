@@ -5,7 +5,7 @@ import { Title } from "@sqd-ffrog/components";
 
 interface JedaeroScrollViewProps {
   title: string;
-  children?: React.ReactNode;
+  children?: React.ReactNode | undefined;
 }
 
 function JedaeroScrollView(

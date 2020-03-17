@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: LightColor.backgroundColor,
     ...elevationShadow(16)
+  },
+  imageCardInnerStyle: {
+    borderRadius: 16
   }
 });
 

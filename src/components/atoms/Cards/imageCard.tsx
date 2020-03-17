@@ -1,17 +1,34 @@
 import React from "react";
-import { ImageBackground, ImageSourcePropType } from "react-native";
+import { View, StyleProp, ViewStyle, StyleSheet } from "react-native";
 import styles from "./styles";
 
+import FastImage, { Source } from "react-native-fast-image";
+
 interface ImageCardProps {
-  source: ImageSourcePropType;
+  source: Source;
   children?: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
+  onLoadStart?: () => void;
+  onLoadEnd?: () => void;
 }
 
-function ImageCard({ source, children }: ImageCardProps) {
+function ImageCard({
+  source,
+  children,
+  style,
+  onLoadStart,
+  onLoadEnd
+}: ImageCardProps) {
   return (
-    <ImageBackground source={source} style={styles.cardStyle}>
+    <View style={[styles.cardStyle, style]}>
+      <FastImage
+        style={[StyleSheet.absoluteFill, styles.imageCardInnerStyle]}
+        source={source}
+        onLoadStart={onLoadStart}
+        onLoadEnd={onLoadEnd}
+      />
       {children}
-    </ImageBackground>
+    </View>
   );
 }
 
