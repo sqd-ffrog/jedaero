@@ -8,7 +8,11 @@ interface Props {
 }
 
 function H4({ children, style }: Props) {
-  return <Text style={[styles.textStyle, style]}>{children}</Text>;
+  return (
+    <Text style={[styles.textStyle, style]} numberOfLines={1}>
+      {children}
+    </Text>
+  );
 }
 
 export default H4;

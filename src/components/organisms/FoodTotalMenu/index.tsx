@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
-import { FlatList } from "react-native";
-import { FoodTotalMenuItem } from "@sqd-ffrog/components";
+import { ItemCard } from "@sqd-ffrog/components";
 
 interface ItemProps {
   imageUri: string;
@@ -30,7 +29,7 @@ const data: ItemProps[] = [
 ];
 
 function FoodTotalMenu() {
-  return <Fragment>{data.map(FoodTotalMenuItem)}</Fragment>;
+  return <Fragment>{data.map(ItemCard)}</Fragment>;
 }
 
 export default FoodTotalMenu;

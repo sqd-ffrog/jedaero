@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { TouchableHighlight, GestureResponderEvent } from "react-native";
-import { ImageCard, H4, LightColor } from "@sqd-ffrog/components";
+import { ImageCard, H4, LightColor, H6 } from "@sqd-ffrog/components";
 import { Source } from "react-native-fast-image";
 import styles from "./styles";
 
 interface FoodCardProps {
   source: Source;
   onPress?: (event: GestureResponderEvent) => void;
-  children: string;
+  cardTitle: string;
+  subtitle: string;
 }
 
-function FoodCard({ source, onPress, children }: FoodCardProps) {
+function FoodCard({ source, onPress, cardTitle, subtitle }: FoodCardProps) {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const onLoadStart = () => {
@@ -22,24 +23,26 @@ function FoodCard({ source, onPress, children }: FoodCardProps) {
   };
 
   return (
-    <TouchableHighlight
+    <ImageCard
+      source={source}
+      style={styles.style}
+      onLoadStart={onLoadStart}
+      onLoadEnd={onLoadEnd}
       onPress={onPress}
-      activeOpacity={0.7}
-      underlayColor={LightColor.backgroundColor}
     >
-      <ImageCard
-        source={source}
-        style={styles.style}
-        onLoadStart={onLoadStart}
-        onLoadEnd={onLoadEnd}
+      <H4
+        style={isLoading ? styles.loadingTitleStyle : styles.loadedtitleStyle}
       >
-        <H4
-          style={isLoading ? styles.loadingTitleStyle : styles.loadedtitleStyle}
-        >
-          {children}
-        </H4>
-      </ImageCard>
-    </TouchableHighlight>
+        {cardTitle}
+      </H4>
+      <H6
+        style={
+          isLoading ? styles.loadingSubtitleStyle : styles.loadedSubtitleStyle
+        }
+      >
+        {subtitle}
+      </H6>
+    </ImageCard>
   );
 }
 

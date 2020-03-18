@@ -1,22 +1,19 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View, GestureResponderEvent } from "react-native";
 import { Card, H4, H6 } from "@sqd-ffrog/components";
 import styles from "./styles";
 import FastImage from "react-native-fast-image";
 
-interface FoodTotalMenuItemProps {
+interface ItemCardProps {
   imageUri: string;
   title: string;
   subtitle?: string;
+  onPress?: (event: GestureResponderEvent) => void;
 }
 
-function FoodTotalMenuItem({
-  imageUri,
-  title,
-  subtitle
-}: FoodTotalMenuItemProps) {
+function ItemCard({ imageUri, title, subtitle, onPress }: ItemCardProps) {
   return (
-    <Card key={title} style={styles.cardStyle}>
+    <Card key={title} style={styles.cardStyle} onPress={onPress} >
       <FastImage source={{ uri: imageUri }} style={styles.cardImageStyle} />
       <View>
         <H4>{title}</H4>
@@ -26,4 +23,4 @@ function FoodTotalMenuItem({
   );
 }
 
-export default FoodTotalMenuItem;
+export default ItemCard;

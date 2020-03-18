@@ -1,12 +1,15 @@
 import { StyleSheet } from "react-native";
-import { LightColor } from '@sqd-ffrog/components';
+import { LightColor } from "@sqd-ffrog/components";
 
 const styles = StyleSheet.create({
   cardStyle: {
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center"
   },
   cardImageStyle: {
-    width: 50,
+    width: 45,
+    height: 45,
     marginRight: 16
   },
   subtitleStyle: {

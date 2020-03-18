@@ -6,27 +6,30 @@ import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
 interface FoodCardDataProps {
-  title: string;
+  cardTitle: string;
   source: Source;
   routeName: string;
+  subtitle: string;
 }
 
 const data: FoodCardDataProps[] = [
   {
-    title: "백두관 식당",
+    cardTitle: "백두관 식당",
     source: {
       uri:
         "https://github.com/sqd-ffrog/database/blob/master/foodbg/baekdu.jpg?raw=true"
     },
-    routeName: "Baekdu"
+    routeName: "Baekdu",
+    subtitle: "역시 밥은 학식이지"
   },
   {
-    title: "기숙사 식당",
+    cardTitle: "기숙사 식당",
     source: {
       uri:
         "https://github.com/sqd-ffrog/database/blob/master/foodbg/dormImage.jpg?raw=true"
     },
-    routeName: "Dormitory"
+    routeName: "Dormitory",
+    subtitle: "기숙사 밥을 알아보자구요"
   }
 ];
 
@@ -38,14 +41,14 @@ function FoodCardCarousel() {
       showsButtons={false}
       activeDotColor={LightColor.mainColor}
     >
-      {data.map(({ title, source, routeName }) => (
+      {data.map(({ cardTitle, source, routeName, subtitle }) => (
         <FoodCard
-          key={title}
+          key={cardTitle}
           source={source}
           onPress={() => navigation.navigate(routeName)}
-        >
-          {title}
-        </FoodCard>
+          cardTitle={cardTitle}
+          subtitle={subtitle}
+        />
       ))}
     </Swiper>
   );

@@ -1,10 +1,10 @@
-import { HeaderBlurView, LightColor } from "@sqd-ffrog/components";
+import { HeaderView, LightColor } from "@sqd-ffrog/components";
 import { StackNavigationOptions } from "@react-navigation/stack";
 
 const screenOptions: StackNavigationOptions = {
   headerTitle: "",
   headerTransparent: true,
-  headerBackground: HeaderBlurView,
+  headerBackground: HeaderView,
   cardStyle: {
     backgroundColor: LightColor.backgroundColor
   }

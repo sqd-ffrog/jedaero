@@ -4,11 +4,12 @@ import { LightColor } from "../colors";
 
 const styles = StyleSheet.create({
   cardStyle: {
-    margin: 16,
+    marginHorizontal: 16,
+    marginVertical: 8,
     borderRadius: 16,
     padding: 16,
     backgroundColor: LightColor.backgroundColor,
-    ...elevationShadow(12)
+    ...elevationShadow(8)
   },
   imageCardInnerStyle: {
     borderRadius: 16

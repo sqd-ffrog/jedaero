@@ -1,10 +1,9 @@
 import { StyleSheet } from "react-native";
+import { normalize } from "@sqd-ffrog/tools";
 
 const styles = StyleSheet.create({
-  titleStyle: {
-    marginHorizontal: 16,
-    marginVertical: 8,
-    fontWeight: "700"
+  textStyle: {
+    fontSize: normalize(8)
   }
 });
 

@@ -7,7 +7,7 @@ interface Props {
   style?: StyleProp<TextStyle>;
 }
 
-function H1({ children, style }: Props) {
+function H8({ children, style }: Props) {
   return (
     <Text style={[styles.textStyle, style]} numberOfLines={1}>
       {children}
@@ -15,4 +15,4 @@ function H1({ children, style }: Props) {
   );
 }
 
-export default H1;
+export default H8;

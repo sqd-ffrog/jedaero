@@ -16,10 +16,14 @@ import HeaderView from "./atoms/HeaderView";
 import Title from "./molecules/Title";
 import MainRightHeaderTitle from "./molecules/MainRightHeaderTitle";
 import FoodCard from "./molecules/FoodCard";
-import FoodTotalMenuItem from "./molecules/FoodTotalMenuItem";
+import ItemCard from "./molecules/ItemCard";
+import DreamyTile from "./molecules/DreamyTile";
 import ScrollView from "./organisms/ScrollView";
 import FoodCardCarousel from "./organisms/FoodCardCarousel";
 import FoodTotalMenu from "./organisms/FoodTotalMenu";
+import DreamyMainMenu from "./organisms/DreamyMainMenu";
+import DreamyTotalMenu from "./organisms/DreamyTotalMenu";
+import H8 from './atoms/H8';
 
 export {
   BackButton,
@@ -29,6 +33,7 @@ export {
   H2,
   H4,
   H6,
+  H8,
   HomeIcon,
   DreamyIcon,
   FoodIcon,
@@ -41,8 +46,11 @@ export {
   Title,
   MainRightHeaderTitle,
   FoodCard,
-  FoodTotalMenuItem,
+  ItemCard,
+  DreamyTile,
   ScrollView,
   FoodCardCarousel,
-  FoodTotalMenu
+  FoodTotalMenu,
+  DreamyMainMenu,
+  DreamyTotalMenu
 };
