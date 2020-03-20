@@ -12,7 +12,7 @@ import FastImage, { Source } from "react-native-fast-image";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { LightColor } from "@sqd-ffrog/components";
 
-interface ImageCardProps {
+interface ImageBackgroundCardProps {
   source: Source;
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
@@ -21,14 +21,14 @@ interface ImageCardProps {
   onPress?: (event: GestureResponderEvent) => void;
 }
 
-function ImageCard({
+function ImageBackgroundCard({
   source,
   children,
   style,
   onLoadStart,
   onLoadEnd,
   onPress
-}: ImageCardProps) {
+}: ImageBackgroundCardProps) {
   const _children = () => (
     <Fragment>
       <FastImage
@@ -54,4 +54,4 @@ function ImageCard({
   );
 }
 
-export default ImageCard;
+export default ImageBackgroundCard;

@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
-import { H2, DreamyTile } from "@sqd-ffrog/components";
+import H2 from "../../atoms/H2";
+import DreamyTile from "../../molecules/DreamyTile";
 import styles from "./styles";
-import { View } from 'react-native';
+import { View } from "react-native";
 
 interface MenuItemProps {
   name: string;
@@ -10,24 +11,16 @@ interface MenuItemProps {
 
 const data: MenuItemProps[] = [
   {
-    name: "home",
+    name: "paperclip",
     title: "강의 게시판"
   },
   {
-    name: "home",
-    title: "강의 게시판"
+    name: "carryout",
+    title: "생활관 합격조회"
   },
   {
-    name: "home",
-    title: "강의 게시판"
-  },
-  {
-    name: "home",
-    title: "강의 게시판"
-  },
-  {
-    name: "home",
-    title: "강의 게시판"
+    name: "solution1",
+    title: "교수계획서 조회"
   }
 ];
 

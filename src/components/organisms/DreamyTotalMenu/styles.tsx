@@ -5,10 +5,7 @@ const styles = StyleSheet.create({
     marginTop: 24
   },
   tileContainerStyle: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    alignItems: "center"
+    flexDirection: "column"
   }
 });
 

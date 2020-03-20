@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { TouchableHighlight, GestureResponderEvent } from "react-native";
-import { ImageCard, H4, LightColor, H6 } from "@sqd-ffrog/components";
+import { GestureResponderEvent } from "react-native";
+import { ImageBackgroundCard, H4, H6 } from "@sqd-ffrog/components";
 import { Source } from "react-native-fast-image";
 import styles from "./styles";
 
@@ -23,7 +23,7 @@ function FoodCard({ source, onPress, cardTitle, subtitle }: FoodCardProps) {
   };
 
   return (
-    <ImageCard
+    <ImageBackgroundCard
       source={source}
       style={styles.style}
       onLoadStart={onLoadStart}
@@ -42,7 +42,7 @@ function FoodCard({ source, onPress, cardTitle, subtitle }: FoodCardProps) {
       >
         {subtitle}
       </H6>
-    </ImageCard>
+    </ImageBackgroundCard>
   );
 }
 

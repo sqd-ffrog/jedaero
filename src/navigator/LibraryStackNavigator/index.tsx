@@ -4,7 +4,7 @@ import {
   StackNavigationOptions
 } from "@react-navigation/stack";
 import { rootScreenOptions } from "@sqd-ffrog/jedaero-navigator";
-import { Home } from "@sqd-ffrog/view";
+import { Library, LibrarySearchResult } from "@sqd-ffrog/view";
 import { MainRightHeaderTitle } from "@sqd-ffrog/components";
 
 const Stack = createStackNavigator();
@@ -15,8 +15,12 @@ const homeOptions: StackNavigationOptions = {
 
 function LibraryStackNavigator() {
   return (
-    <Stack.Navigator screenOptions={rootScreenOptions}>
-      <Stack.Screen name="Home" component={Home} options={homeOptions} />
+    <Stack.Navigator screenOptions={rootScreenOptions} mode="modal" >
+      <Stack.Screen name="Library" component={Library} options={homeOptions} />
+      <Stack.Screen
+        name="LibrarySearchResult"
+        component={LibrarySearchResult}
+      />
     </Stack.Navigator>
   );
 }

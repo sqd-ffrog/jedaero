@@ -13,7 +13,7 @@ interface ItemCardProps {
 
 function ItemCard({ imageUri, title, subtitle, onPress }: ItemCardProps) {
   return (
-    <Card key={title} style={styles.cardStyle} onPress={onPress} >
+    <Card key={title} style={styles.cardStyle} onPress={onPress}>
       <FastImage source={{ uri: imageUri }} style={styles.cardImageStyle} />
       <View>
         <H4>{title}</H4>

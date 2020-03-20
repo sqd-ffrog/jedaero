@@ -16,7 +16,9 @@ interface CardProps {
 
 function Card({ children, style, onPress }: CardProps) {
   return onPress ? (
-    <TouchableHighlight style={[styles.cardStyle, style]} onPress={onPress}>{children}</TouchableHighlight>
+    <TouchableHighlight style={[styles.cardStyle, style]} onPress={onPress}>
+      {children}
+    </TouchableHighlight>
   ) : (
     <View style={[styles.cardStyle, style]}>{children}</View>
   );

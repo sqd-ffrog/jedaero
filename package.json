@@ -21,6 +21,7 @@
     "@react-navigation/native": "^5.0.9",
     "@react-navigation/stack": "^5.1.1",
     "@sqd-ffrog/components": "file:src/components",
+    "@sqd-ffrog/contexts": "file:src/contexts",
     "@sqd-ffrog/jedaero-navigator": "file:src/navigator",
     "@sqd-ffrog/tools": "file:src/tools",
     "@sqd-ffrog/view": "file:src/view",
@@ -79,5 +80,8 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "husky": {
+    "pre-commit": "npm run lint && npm run typescript"
   }
 }

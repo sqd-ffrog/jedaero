@@ -10,8 +10,14 @@ import {
   LibraryStackNavigator,
   AcademyScheduleStackNavigator
 } from "@sqd-ffrog/jedaero-navigator";
-
-import { LightColor, HomeIcon, FoodIcon, DreamyIcon, LibraryIcon, AcademyScheduleIcon } from "@sqd-ffrog/components";
+import {
+  LightColor,
+  HomeIcon,
+  FoodIcon,
+  DreamyIcon,
+  LibraryIcon,
+  AcademyScheduleIcon
+} from "@sqd-ffrog/components";
 import styles from "./styles";
 
 const BottomTab = createMaterialBottomTabNavigator();

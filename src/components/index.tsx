@@ -10,7 +10,7 @@ import {
   LibraryIcon,
   AcademyScheduleIcon
 } from "./atoms/BottomTabIcons";
-import { Card, ImageCard } from "./atoms/Cards";
+import { Card, ImageBackgroundCard } from "./atoms/Cards";
 import { LightColor } from "./atoms/colors";
 import HeaderView from "./atoms/HeaderView";
 import Title from "./molecules/Title";
@@ -18,12 +18,13 @@ import MainRightHeaderTitle from "./molecules/MainRightHeaderTitle";
 import FoodCard from "./molecules/FoodCard";
 import ItemCard from "./molecules/ItemCard";
 import DreamyTile from "./molecules/DreamyTile";
-import ScrollView from "./organisms/ScrollView";
+import { ScrollView, SimpleList } from "./organisms/ScrollViews"; 
 import FoodCardCarousel from "./organisms/FoodCardCarousel";
 import FoodTotalMenu from "./organisms/FoodTotalMenu";
 import DreamyMainMenu from "./organisms/DreamyMainMenu";
 import DreamyTotalMenu from "./organisms/DreamyTotalMenu";
-import H8 from './atoms/H8';
+import H8 from "./atoms/H8";
+import LibrarySearchBar from "./organisms/LibrarySearchBar";
 
 export {
   BackButton,
@@ -40,7 +41,7 @@ export {
   LibraryIcon,
   AcademyScheduleIcon,
   Card,
-  ImageCard,
+  ImageBackgroundCard,
   LightColor,
   HeaderView,
   Title,
@@ -52,5 +53,7 @@ export {
   FoodCardCarousel,
   FoodTotalMenu,
   DreamyMainMenu,
-  DreamyTotalMenu
+  DreamyTotalMenu,
+  LibrarySearchBar,
+  SimpleList
 };
