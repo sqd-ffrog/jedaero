@@ -25,6 +25,7 @@
     "react-native-calendars": "^1.208.0",
     "react-native-cheerio": "^1.0.0-rc.4",
     "react-native-communications": "^2.2.1",
+    "react-native-config": "^1.0.0",
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.5.2",
     "react-native-keychain": "^4.0.5",
