@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   cardStyle: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    marginBottom: 16
   },
   inputStyle: {
     flex: 1

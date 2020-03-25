@@ -16,15 +16,16 @@ function SearchBar({ onPress, tintColor }: SearchBarProps) {
   const [value, setValue] = useState<string>("");
 
   const onChange = (text: string) => {
-    console.log("text : ", text)
     setValue(text);
   };
 
-  const onPressButton = () => onPress(value);
+  const onSubmit = () => onPress(value);
+
   const onPressCloseButton = () => {
     inputRef?.current?.clear();
     setValue("");
   };
+
   return (
     <Card style={styles.cardStyle}>
       <Input
@@ -33,6 +34,8 @@ function SearchBar({ onPress, tintColor }: SearchBarProps) {
         onChangeText={onChange}
         style={styles.inputStyle}
         placeholder="도서를 검색하세요"
+        onSubmitEditing={onSubmit}
+        returnKeyLabel="search"
       />
       {!!value && (
         <CloseButton
@@ -41,7 +44,7 @@ function SearchBar({ onPress, tintColor }: SearchBarProps) {
           onPress={onPressCloseButton}
         />
       )}
-      <SearchButton color={tintColor} onPress={onPressButton} />
+      <SearchButton color={tintColor} onPress={onSubmit} />
     </Card>
   );
 }

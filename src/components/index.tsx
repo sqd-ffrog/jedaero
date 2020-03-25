@@ -18,13 +18,15 @@ import MainRightHeaderTitle from "./molecules/MainRightHeaderTitle";
 import FoodCard from "./molecules/FoodCard";
 import ItemCard from "./molecules/ItemCard";
 import DreamyTile from "./molecules/DreamyTile";
-import { ScrollView, SimpleList } from "./organisms/ScrollViews"; 
+import { ScrollView, SimpleList } from "./organisms/ScrollViews";
 import FoodCardCarousel from "./organisms/FoodCardCarousel";
 import FoodTotalMenu from "./organisms/FoodTotalMenu";
 import DreamyMainMenu from "./organisms/DreamyMainMenu";
 import DreamyTotalMenu from "./organisms/DreamyTotalMenu";
 import H8 from "./atoms/H8";
 import LibrarySearchBar from "./organisms/LibrarySearchBar";
+import LibraryNewBook from "./organisms/LibraryNewBook";
+import LibrarySeat from "./organisms/LibrarySeat";
 
 export {
   BackButton,
@@ -55,5 +57,7 @@ export {
   DreamyMainMenu,
   DreamyTotalMenu,
   LibrarySearchBar,
-  SimpleList
+  SimpleList,
+  LibraryNewBook,
+  LibrarySeat
 };

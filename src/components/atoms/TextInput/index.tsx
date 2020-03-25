@@ -6,8 +6,10 @@ interface InputProps {
   style?: StyleProp<TextStyle>;
 }
 
-const Input = forwardRef((props: TextInputProps & InputProps, ref: React.Ref<TextInput>) => (
-  <TextInput {...props} style={[styles.inputStyle, props.style]} ref={ref} />
-));
+const Input = forwardRef(
+  (props: TextInputProps & InputProps, ref: React.Ref<TextInput>) => (
+    <TextInput {...props} style={[styles.inputStyle, props.style]} ref={ref} />
+  )
+);
 
 export default Input;
