@@ -1,3 +1,17 @@
-import { getNewBooks, NewBooksApiResponse } from "./src/library";
+import {
+  BooksApiResponse,
+  getNewBooks,
+  getThumbnailUriByIsbn,
+  LibrarySeatsApiResponse,
+  getLibrarySeats,
+  getCollectedBooksByKeyword
+} from "./src/library";
 
-export { getNewBooks, NewBooksApiResponse };
+export {
+  getNewBooks,
+  BooksApiResponse,
+  getThumbnailUriByIsbn,
+  LibrarySeatsApiResponse,
+  getLibrarySeats,
+  getCollectedBooksByKeyword
+};

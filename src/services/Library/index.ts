@@ -1,33 +1,108 @@
-import { NewBooksApiResponse, getNewBooks } from "@sqd-ffrog/react-native-jnu";
 import {
+  BooksApiResponse,
+  getNewBooks,
   getThumbnailUriByIsbn,
   LibrarySeatsApiResponse,
-  getLibrarySeats
-} from "@sqd-ffrog/react-native-jnu/src/library";
+  getLibrarySeats,
+  getCollectedBooksByKeyword
+} from "@sqd-ffrog/react-native-jnu";
 
-export interface NewBook {
+export interface BranchVolume {
+  id: number;
+  location: string;
+  hasItem: boolean;
+  state: string;
+  isSubscribed: boolean;
+  volume: BranchVolume;
+}
+
+export interface Book {
   thumbnailUri: string;
   id: number;
   isbn: string;
   author: string;
   publisher: string;
   title: string;
+  branchVolumes: BranchVolume[];
 }
 
 export interface BookResponse<DataT> {
   success: boolean;
   data?: DataT[];
+  totalCount?: number;
 }
 
-export async function getNewBooksApi(
-  max: number
-): Promise<BookResponse<NewBook>> {
-  const INITIAL_RESULT: BookResponse<NewBook> = {
+export async function getCollectedBooksByKeywordApi(
+  keyword: string,
+  page: number,
+  size: number
+): Promise<BookResponse<Book>> {
+  const INITIAL_RESULT: BookResponse<Book> = {
     success: false
   };
 
   try {
-    const newBooksApiResponse: NewBooksApiResponse = await getNewBooks(max);
+    const collectedBooksByKeywordApiResponse: BooksApiResponse = await getCollectedBooksByKeyword(
+      keyword,
+      page,
+      size
+    );
+    return {
+      success: true,
+      totalCount: collectedBooksByKeywordApiResponse.totalCount,
+      data: await Promise.all(
+        collectedBooksByKeywordApiResponse.list.map(
+          async ({
+            id,
+            isbn,
+            author,
+            titleStatement: title,
+            publication: publisher,
+            branchVolumes
+          }): Promise<Book> => {
+            return {
+              author,
+              title,
+              isbn,
+              id,
+              publisher,
+              thumbnailUri: await getThumbnailUriByIsbn(isbn),
+              branchVolumes: branchVolumes.map(
+                ({
+                  id,
+                  isSubscribed,
+                  hasItem,
+                  name,
+                  volume,
+                  cState
+                }) => ({
+                  id,
+                  location: name,
+                  hasItem,
+                  state: cState,
+                  isSubscribed
+                })
+              )
+            };
+          }
+        )
+      )
+    };
+  } catch (err) {
+    console.warn(err);
+    return INITIAL_RESULT;
+  }
+}
+
+export async function getNewBooksApi(
+  max: number = 20
+): Promise<BookResponse<Book>> {
+  const INITIAL_RESULT: BookResponse<Book> = {
+    success: false
+  };
+
+  try {
+    const newBooksApiResponse: BooksApiResponse = await getNewBooks(max);
     return {
       success: true,
       data: await Promise.all(
@@ -38,7 +113,7 @@ export async function getNewBooksApi(
             author,
             titleStatement: title,
             publication: publisher
-          }): Promise<NewBook> => {
+          }): Promise<Book> => {
             return {
               author,
               title,
@@ -59,4 +134,16 @@ export async function getNewBooksApi(
 
 export async function getLibrarySeatsApi(): Promise<LibrarySeatsApiResponse> {
   return getLibrarySeats();
+}
+
+export async function getLibraryBooksApi(
+  query: string
+): Promise<BookResponse<Book>> {
+  const INITIAL_RESULT = { success: false };
+
+  if (!query.trim()) {
+    return INITIAL_RESULT;
+  }
+
+  return { success: true, data: [] };
 }

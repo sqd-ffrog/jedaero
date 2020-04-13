@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react";
 import H2 from "../../atoms/H2";
-import { BookResponse, NewBook, getNewBooksApi } from "@sqd-ffrog/services";
+import { BookResponse, Book, getNewBooksApi } from "@sqd-ffrog/services";
 import { FlatList } from "react-native";
 import NewBookItem from "../../molecules/NewBooksItem";
 import styles from "./styles";
+import NewBookEmpty from "../../molecules/NewBookEmpty";
 
 function LibraryNewBook() {
-  const [data, setData] = useState<BookResponse<NewBook>>();
+  const [data, setData] = useState<BookResponse<Book>>();
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,8 +15,8 @@ function LibraryNewBook() {
     const getData = function() {
       (async function() {
         // 기본 20개 콜하는 걸로 놓고 본다.
-        if(isLoading) {
-          await setData(await getNewBooksApi(20));
+        if (isLoading) {
+          await setData(await getNewBooksApi());
           await setLoading(true);
         }
       })();
@@ -32,11 +33,12 @@ function LibraryNewBook() {
     <Fragment>
       <H2>신간도서</H2>
       <FlatList
-        data={data?.data ?? []}
+        data={data?.data}
         renderItem={NewBookItem}
         keyExtractor={item => item.id.toString()}
         horizontal
         contentContainerStyle={styles.contentContainerStyle}
+        ListEmptyComponent={NewBookEmpty}
       />
     </Fragment>
   );

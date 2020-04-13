@@ -1,12 +1,12 @@
 import React from "react";
 import FastImage from "react-native-fast-image";
-import { NewBook } from "@sqd-ffrog/services";
+import { Book } from "@sqd-ffrog/services";
 import styles from "./styles";
 import { TouchableOpacity } from "react-native";
 import H6 from "../../atoms/H6";
 
 interface NewBookItemProps {
-  item: NewBook;
+  item: Book;
   index: number;
 }
 

@@ -5,11 +5,12 @@ import styles from "./styles";
 interface Props {
   children: string;
   style?: StyleProp<TextStyle>;
+  numberOfLines: number;
 }
 
-function H4({ children, style }: Props) {
+function H4({ children, style, numberOfLines = 1 }: Props) {
   return (
-    <Text style={[styles.textStyle, style]} numberOfLines={1}>
+    <Text style={[styles.textStyle, style]} numberOfLines={numberOfLines}>
       {children}
     </Text>
   );

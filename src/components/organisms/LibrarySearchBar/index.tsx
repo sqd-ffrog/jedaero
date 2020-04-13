@@ -4,9 +4,11 @@ import { useNavigation } from "@react-navigation/native";
 import SearchTopTab from "../../molecules/SearchTopTab";
 import { LightColor } from "../../atoms/colors";
 
-enum LibrarySearchType {
-  ALL,
-  COLLECTION
+export enum LibrarySearchType {
+  COLLECTION,
+  ARTICLES,
+  EJOURNAL,
+  KCI
 }
 
 interface TabProps {
@@ -17,11 +19,6 @@ interface TabProps {
 
 const tabs: TabProps[] = [
   {
-    title: "전체검색",
-    value: LibrarySearchType.ALL,
-    tintColor: LightColor.mainColor
-  },
-  {
     title: "소장도서",
     value: LibrarySearchType.COLLECTION,
     tintColor: LightColor.accentColor
@@ -30,7 +27,9 @@ const tabs: TabProps[] = [
 
 function LibrarySearchBar() {
   const navigation = useNavigation();
-  const [type, setType] = useState<LibrarySearchType>(LibrarySearchType.ALL);
+  const [type, setType] = useState<LibrarySearchType>(
+    LibrarySearchType.COLLECTION
+  );
   const [tintColor, setTintColor] = useState<string>(LightColor.mainColor);
 
   const onPress = (value: string) => {
@@ -41,7 +40,7 @@ function LibrarySearchBar() {
     console.debug("Library tab: ", tab);
 
     const { value, tintColor } = tabs.find(tabs => tabs.title === tab) ?? {
-      value: LibrarySearchType.ALL,
+      value: LibrarySearchType.COLLECTION,
       tintColor: LightColor.mainColor
     };
 
