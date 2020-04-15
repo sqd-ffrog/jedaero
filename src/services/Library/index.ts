@@ -13,7 +13,7 @@ export interface BranchVolume {
   hasItem: boolean;
   state: string;
   isSubscribed: boolean;
-  volume: BranchVolume;
+  volume: string;
 }
 
 export interface Book {
@@ -24,6 +24,15 @@ export interface Book {
   publisher: string;
   title: string;
   branchVolumes: BranchVolume[];
+}
+
+export interface NewBook {
+  thumbnailUri: string;
+  id: number;
+  isbn: string;
+  author: string;
+  publisher: string;
+  title: string;
 }
 
 export interface BookResponse<DataT> {
@@ -68,19 +77,13 @@ export async function getCollectedBooksByKeywordApi(
               publisher,
               thumbnailUri: await getThumbnailUriByIsbn(isbn),
               branchVolumes: branchVolumes.map(
-                ({
-                  id,
-                  isSubscribed,
-                  hasItem,
-                  name,
-                  volume,
-                  cState
-                }) => ({
+                ({ id, isSubscribed, hasItem, name, volume, cState }) => ({
                   id,
                   location: name,
                   hasItem,
                   state: cState,
-                  isSubscribed
+                  isSubscribed,
+                  volume
                 })
               )
             };
@@ -96,8 +99,8 @@ export async function getCollectedBooksByKeywordApi(
 
 export async function getNewBooksApi(
   max: number = 20
-): Promise<BookResponse<Book>> {
-  const INITIAL_RESULT: BookResponse<Book> = {
+): Promise<BookResponse<NewBook>> {
+  const INITIAL_RESULT: BookResponse<NewBook> = {
     success: false
   };
 
@@ -113,7 +116,7 @@ export async function getNewBooksApi(
             author,
             titleStatement: title,
             publication: publisher
-          }): Promise<Book> => {
+          }): Promise<NewBook> => {
             return {
               author,
               title,

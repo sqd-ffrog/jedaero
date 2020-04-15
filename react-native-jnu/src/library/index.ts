@@ -17,7 +17,7 @@ interface BranchVolumesType {
   hasItem: boolean;
   id: number;
   isCr: boolean;
-  isSubscribed: false;
+  isSubscribed: boolean;
   name: string;
   volume: string;
 }

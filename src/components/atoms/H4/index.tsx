@@ -5,7 +5,7 @@ import styles from "./styles";
 interface Props {
   children: string;
   style?: StyleProp<TextStyle>;
-  numberOfLines: number;
+  numberOfLines?: number;
 }
 
 function H4({ children, style, numberOfLines = 1 }: Props) {

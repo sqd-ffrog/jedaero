@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
+import { StyleSheet } from "react-native";
 import { Card } from "../../atoms/Cards";
-import styles from "./styles";
 import { SearchButton, CloseButton } from "../../atoms/Buttons";
 import { LightColor } from "../../atoms/colors";
 import Input from "../../atoms/TextInput";
@@ -48,5 +48,19 @@ function SearchBar({ onPress, tintColor }: SearchBarProps) {
     </Card>
   );
 }
+
+const styles = StyleSheet.create({
+  cardStyle: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16
+  },
+  inputStyle: {
+    flex: 1
+  },
+  closeStyle: {
+    marginHorizontal: 4
+  }
+});
 
 export default SearchBar;

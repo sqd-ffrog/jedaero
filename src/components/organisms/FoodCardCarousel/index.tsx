@@ -1,8 +1,8 @@
 import React from "react";
+import { StyleSheet } from "react-native";
 import Swiper from "react-native-swiper";
 import { FoodCard, LightColor } from "@sqd-ffrog/components";
 import { Source } from "react-native-fast-image";
-import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
 interface FoodCardDataProps {
@@ -53,5 +53,11 @@ function FoodCardCarousel() {
     </Swiper>
   );
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    height: 240
+  }
+});
 
 export default FoodCardCarousel;

@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
 import H2 from "../../atoms/H2";
 import DreamyTile from "../../molecules/DreamyTile";
-import styles from "./styles";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 interface MenuItemProps {
   name: string;
@@ -32,5 +31,14 @@ function DreamyTotalMenu() {
     </Fragment>
   );
 }
+
+const styles = StyleSheet.create({
+  titleStyle: {
+    marginTop: 24
+  },
+  tileContainerStyle: {
+    flexDirection: "column"
+  }
+});
 
 export default DreamyTotalMenu;

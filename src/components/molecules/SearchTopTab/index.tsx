@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, TouchableOpacity } from "react-native";
+import { FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import { LightColor } from "../../atoms/colors";
-import styles from "./styles";
 import H4 from "../../atoms/H4";
 
 interface SearchTopTabProps {
@@ -44,5 +43,17 @@ function SearchTopTab({ tabs, callback }: SearchTopTabProps) {
     />
   );
 }
+
+const styles = StyleSheet.create({
+  contentContainerStyle: {
+    marginHorizontal: 16,
+    marginVertical: 8
+  },
+  tabTextStyle: {
+    fontWeight: "700",
+    marginHorizontal: 8,
+    marginVertical: 4
+  }
+});
 
 export default SearchTopTab;

@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { StyleSheet } from "react-native";
 import H2 from "../../atoms/H2";
 import { BookResponse, Book, getNewBooksApi } from "@sqd-ffrog/services";
 import { FlatList } from "react-native";
 import NewBookItem from "../../molecules/NewBooksItem";
-import styles from "./styles";
 import NewBookEmpty from "../../molecules/NewBookEmpty";
 
 function LibraryNewBook() {
@@ -43,5 +43,12 @@ function LibraryNewBook() {
     </Fragment>
   );
 }
+
+const styles = StyleSheet.create({
+  contentContainerStyle: {
+    marginHorizontal: 16,
+    marginBottom: 24
+  }
+});
 
 export default LibraryNewBook;

@@ -1,7 +1,7 @@
 import React from "react";
+import { StyleSheet } from "react-native";
 import FastImage from "react-native-fast-image";
 import { Book } from "@sqd-ffrog/services";
-import styles from "./styles";
 import { TouchableOpacity } from "react-native";
 import H6 from "../../atoms/H6";
 
@@ -23,5 +23,20 @@ function NewBookItem({
     </TouchableOpacity>
   );
 }
+
+const styles = StyleSheet.create({
+  containerStyle: {
+    maxWidth: 90,
+    marginHorizontal: 8
+  },
+  imageStyle: {
+    width: 90,
+    height: 120
+  },
+  titleStyle: {
+    fontWeight: "700",
+    marginVertical: 4
+  }
+});
 
 export default NewBookItem;
