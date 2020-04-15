@@ -1,13 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import H2 from "../../atoms/H2";
-import { BookResponse, Book, getNewBooksApi } from "@sqd-ffrog/services";
+import { BookResponse, NewBook, getNewBooksApi } from "@sqd-ffrog/services";
 import { FlatList } from "react-native";
 import NewBookItem from "../../molecules/NewBooksItem";
 import NewBookEmpty from "../../molecules/NewBookEmpty";
+import { useNavigation } from "@react-navigation/native";
 
 function LibraryNewBook() {
-  const [data, setData] = useState<BookResponse<Book>>();
+  const navigation = useNavigation();
+  const [data, setData] = useState<BookResponse<NewBook>>();
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,7 +36,12 @@ function LibraryNewBook() {
       <H2>신간도서</H2>
       <FlatList
         data={data?.data}
-        renderItem={NewBookItem}
+        renderItem={props => (
+          <NewBookItem
+            {...props}
+            onPressItem={id => navigation.navigate("LibraryBook", { id })}
+          />
+        )}
         keyExtractor={item => item.id.toString()}
         horizontal
         contentContainerStyle={styles.contentContainerStyle}

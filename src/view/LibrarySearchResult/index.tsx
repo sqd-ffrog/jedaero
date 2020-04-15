@@ -3,6 +3,7 @@ import { SimpleList } from "@sqd-ffrog/components";
 import { LibrarySearchType } from "@sqd-ffrog/components/organisms/LibrarySearchBar";
 import BookItem from "@sqd-ffrog/components/molecules/BookItem";
 import { getCollectedBooksByKeywordApi, Book } from "@sqd-ffrog/services";
+import { useNavigation } from "@react-navigation/native";
 
 interface LibrarySearchResultProps {
   route: {
@@ -16,6 +17,7 @@ interface LibrarySearchResultProps {
 function LibrarySearchResult({ route }: LibrarySearchResultProps) {
   const SIZE = 20;
 
+  const navigation = useNavigation();
   const [data, setData] = useState<Book[]>([]);
   const [totalCount, setTotalCount] = useState<number>(-1); // 초기 세팅은 -1로 잡게 하자.
   const [loading, setLoading] = useState<boolean>(true);
@@ -53,7 +55,7 @@ function LibrarySearchResult({ route }: LibrarySearchResultProps) {
     const getData = () => {
       getCollectedBooksByKeyword();
     };
-    loading && getData();
+    loading && getCollectedBooksByKeyword();
     return getData;
   }, [loading]);
 
@@ -61,7 +63,12 @@ function LibrarySearchResult({ route }: LibrarySearchResultProps) {
     <SimpleList
       title={keyword}
       data={data}
-      renderItem={BookItem}
+      renderItem={props => (
+        <BookItem
+          {...props}
+          onPressItem={id => navigation.navigate("LibraryBook", { id })}
+        />
+      )}
       onEndReached={() => setLoading(true)}
     />
   );

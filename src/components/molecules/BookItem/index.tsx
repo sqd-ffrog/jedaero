@@ -8,13 +8,25 @@ import { LightColor } from "../../atoms/colors";
 
 interface BookItemProps {
   item: Book;
+  index: number;
+  onPressItem: (id: number) => void;
 }
 
 function BookItem({
-  item: { title, thumbnailUri, author, isbn, publisher, branchVolumes }
+  item: { title, thumbnailUri, author, isbn, publisher, branchVolumes, id },
+  onPressItem
 }: BookItemProps) {
+  const onPressBookItem = () => {
+    console.debug(`onPressBookItem. item was cliked. id: ${id}`);
+    onPressItem(id);
+  };
+
   return (
-    <TouchableOpacity key={isbn} style={styles.containerStyle}>
+    <TouchableOpacity
+      key={isbn}
+      style={styles.containerStyle}
+      onPress={onPressBookItem}
+    >
       <FastImage source={{ uri: thumbnailUri }} style={styles.imageStyle} />
       <View style={styles.innerContainerStyle}>
         <H4 style={styles.titleStyle} numberOfLines={1}>
@@ -61,7 +73,8 @@ const styles = StyleSheet.create({
     height: 100
   },
   titleStyle: {
-    fontWeight: "700"
+    fontWeight: "700",
+    marginBottom: 4,
   },
   branchVolumeStyle: {
     flexDirection: "row",

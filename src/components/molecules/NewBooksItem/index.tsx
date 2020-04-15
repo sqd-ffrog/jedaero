@@ -1,20 +1,30 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import FastImage from "react-native-fast-image";
-import { Book } from "@sqd-ffrog/services";
+import { NewBook } from "@sqd-ffrog/services";
 import { TouchableOpacity } from "react-native";
 import H6 from "../../atoms/H6";
 
 interface NewBookItemProps {
-  item: Book;
+  item: NewBook;
   index: number;
+  onPressItem: (id: number) => void;
 }
 
 function NewBookItem({
-  item: { thumbnailUri, title, author }
+  item: { thumbnailUri, title, author, id },
+  onPressItem
 }: NewBookItemProps) {
+  const onPressNewBookItem = () => {
+    console.debug(`onPressNewBook, item was clicked. id: ${id}`);
+    onPressItem(id);
+  };
+
   return (
-    <TouchableOpacity style={styles.containerStyle}>
+    <TouchableOpacity
+      style={styles.containerStyle}
+      onPress={onPressNewBookItem}
+    >
       <FastImage source={{ uri: thumbnailUri }} style={styles.imageStyle} />
       <H6 style={styles.titleStyle} numberOfLines={2}>
         {title}
