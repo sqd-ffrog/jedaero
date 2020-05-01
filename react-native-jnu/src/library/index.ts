@@ -289,8 +289,9 @@ export async function getBookStateById(id: number) {
         `Couldn't connect to getBookStateById(). status: ${res.info().status}`
       );
     }
+  } catch (err) {
+    console.warn(err);
   }
-
 }
 
 interface BookDetail {
