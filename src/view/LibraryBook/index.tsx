@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import { ScrollView } from "@sqd-ffrog/components";
+import { ScrollView, Card, H1 } from "@sqd-ffrog/components";
 
 function LibraryBook() {
-  return <ScrollView title="도서상세"></ScrollView>;
+  const [loading, setLoading] = useState();
+  return (
+    <ScrollView title="도서상세">
+      <Card>
+        <H1>hihi</H1>
+      </Card>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({});

@@ -139,14 +139,6 @@ export async function getLibrarySeatsApi(): Promise<LibrarySeatsApiResponse> {
   return getLibrarySeats();
 }
 
-export async function getLibraryBooksApi(
-  query: string
-): Promise<BookResponse<Book>> {
-  const INITIAL_RESULT = { success: false };
-
-  if (!query.trim()) {
-    return INITIAL_RESULT;
-  }
-
-  return { success: true, data: [] };
+export async function getBooksByBookIdApi() {
+  
 }

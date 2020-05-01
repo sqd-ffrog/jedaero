@@ -4,7 +4,11 @@ import {
   getThumbnailUriByIsbn,
   LibrarySeatsApiResponse,
   getLibrarySeats,
-  getCollectedBooksByKeyword
+  getCollectedBooksByKeyword,
+  BookIntroductionRow,
+  BranchVolumeDetailType,
+  getBookById,
+  BookIntroductionDetail
 } from "./src/library";
 
 export {
@@ -13,5 +17,9 @@ export {
   getThumbnailUriByIsbn,
   LibrarySeatsApiResponse,
   getLibrarySeats,
-  getCollectedBooksByKeyword
+  getCollectedBooksByKeyword,
+  BookIntroductionRow,
+  BookIntroductionDetail,
+  BranchVolumeDetailType,
+  getBookById
 };
