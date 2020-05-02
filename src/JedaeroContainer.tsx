@@ -1,6 +1,6 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { JedaeroStackNavigator } from "@sqd-ffrog/jedaero-navigator";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { JedaeroStackNavigator } from '@sqd-ffrog/jedaero-navigator';
 
 function JedaeroContainer() {
   return (

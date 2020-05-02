@@ -1,5 +1,5 @@
-import React from "react";
-import Icon from "react-native-vector-icons/AntDesign";
+import React from 'react';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 interface IconProps {
   color: string;

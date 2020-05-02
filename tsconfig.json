@@ -12,7 +12,7 @@
         "noEmitHelpers": true,
         "importHelpers": true,
         "strict": true,
-        "noImplicitReturns": true,
+        "noImplicitReturns": false,
         "noUnusedLocals": true,
         "resolveJsonModule": true,
         "alwaysStrict": true

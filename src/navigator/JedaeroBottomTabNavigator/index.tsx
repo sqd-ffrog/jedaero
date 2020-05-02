@@ -1,29 +1,29 @@
-import React from "react";
+import React from 'react';
 import {
   createMaterialBottomTabNavigator,
-  MaterialBottomTabNavigationOptions
-} from "@react-navigation/material-bottom-tabs";
+  MaterialBottomTabNavigationOptions,
+} from '@react-navigation/material-bottom-tabs';
 import {
   HomeStackNavigator,
   FoodStackNavigator,
   DreamyStackNavigator,
   LibraryStackNavigator,
-  AcademyScheduleStackNavigator
-} from "@sqd-ffrog/jedaero-navigator";
+  AcademyScheduleStackNavigator,
+} from '@sqd-ffrog/jedaero-navigator';
 import {
   LightColor,
   HomeIcon,
   FoodIcon,
   DreamyIcon,
   LibraryIcon,
-  AcademyScheduleIcon
-} from "@sqd-ffrog/components";
-import styles from "./styles";
+  AcademyScheduleIcon,
+} from '@sqd-ffrog/components';
+import styles from './styles';
 
 const BottomTab = createMaterialBottomTabNavigator();
 
 const screenOptions: MaterialBottomTabNavigationOptions = {
-  tabBarColor: LightColor.backgroundColor
+  tabBarColor: LightColor.backgroundColor,
 };
 
 function JedaeroBottomTabNavigator() {
@@ -42,40 +42,40 @@ function JedaeroBottomTabNavigator() {
         name="_Home"
         component={HomeStackNavigator}
         options={{
-          tabBarLabel: "홈",
-          tabBarIcon: HomeIcon
+          tabBarLabel: '홈',
+          tabBarIcon: HomeIcon,
         }}
       />
       <BottomTab.Screen
         name="_Food"
         component={FoodStackNavigator}
         options={{
-          tabBarLabel: "뭐먹을까",
-          tabBarIcon: FoodIcon
+          tabBarLabel: '뭐먹을까',
+          tabBarIcon: FoodIcon,
         }}
       />
       <BottomTab.Screen
         name="_Dreamy"
         component={DreamyStackNavigator}
         options={{
-          tabBarLabel: "하영드리미",
-          tabBarIcon: DreamyIcon
+          tabBarLabel: '하영드리미',
+          tabBarIcon: DreamyIcon,
         }}
       />
       <BottomTab.Screen
         name="_Library"
         component={LibraryStackNavigator}
         options={{
-          tabBarLabel: "도서관",
-          tabBarIcon: LibraryIcon
+          tabBarLabel: '도서관',
+          tabBarIcon: LibraryIcon,
         }}
       />
       <BottomTab.Screen
         name="_AcademySchedule"
         component={AcademyScheduleStackNavigator}
         options={{
-          tabBarLabel: "학사일정",
-          tabBarIcon: AcademyScheduleIcon
+          tabBarLabel: '학사일정',
+          tabBarIcon: AcademyScheduleIcon,
         }}
       />
     </BottomTab.Navigator>

@@ -7,7 +7,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "test": "jest",
-    "lint": "tslint -p tsconfig.json",
+    "prettier": "prettier -c 'src/**/*.tsx'",
+    "lint": "eslint 'src/**/*.tsx'",
     "typescript": "typescript",
     "postinstall": "jetifier",
     "storybook": "start-storybook -p 7007"
@@ -78,8 +79,11 @@
     "babel-jest": "24.9.0",
     "babel-loader": "^8.1.0",
     "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react-hooks": "^3.0.0",
     "husky": "^4.2.3",
     "jest": "^24.9.0",
     "jetifier": "^1.6.4",
@@ -100,6 +104,6 @@
     "preset": "react-native"
   },
   "husky": {
-    "pre-commit": "npm run lint && npm run typescript"
+    "pre-commit": "npm run prettier && npm run lint"
   }
 }

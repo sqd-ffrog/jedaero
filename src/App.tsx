@@ -5,9 +5,10 @@
  */
 
 // TODO: 여기에 redux 연결시키기
-import "react-native-gesture-handler";
-import React from "react";
-import JedaeroContainer from "./JedaeroContainer";
+import 'react-native-gesture-handler';
+import React from 'react';
+import JedaeroContainer from './JedaeroContainer';
+
 const App = () => {
   return <JedaeroContainer />;
 };

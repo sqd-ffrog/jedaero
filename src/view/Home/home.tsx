@@ -1,7 +1,7 @@
-import React from "react";
-import { Text } from "react-native";
-import { ScrollView, Card } from "@sqd-ffrog/components";
-import { SafeAreaConsumer } from "react-native-safe-area-context";
+import React from 'react';
+import { Text } from 'react-native';
+import { ScrollView, Card } from '@sqd-ffrog/components';
+import { SafeAreaConsumer } from 'react-native-safe-area-context';
 
 function Home() {
   return (

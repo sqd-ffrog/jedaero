@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { SimpleList } from "@sqd-ffrog/components";
-import { LibrarySearchType } from "@sqd-ffrog/components/organisms/LibrarySearchBar";
-import BookItem from "@sqd-ffrog/components/molecules/BookItem";
-import { getCollectedBooksByKeywordApi, Book } from "@sqd-ffrog/services";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState, useEffect } from 'react';
+import { SimpleList } from '@sqd-ffrog/components';
+import { LibrarySearchType } from '@sqd-ffrog/components/organisms/LibrarySearchBar';
+import BookItem from '@sqd-ffrog/components/molecules/BookItem';
+import { getCollectedBooksByKeywordApi, Book } from '@sqd-ffrog/services';
+import { useNavigation } from '@react-navigation/native';
 
 interface LibrarySearchResultProps {
   route: {
@@ -32,7 +32,7 @@ function LibrarySearchResult({ route }: LibrarySearchResultProps) {
         const searchedData = await getCollectedBooksByKeywordApi(
           keyword,
           page,
-          SIZE
+          SIZE,
         );
         if (totalCount === -1) {
           setTotalCount(searchedData.totalCount!!);
@@ -43,7 +43,7 @@ function LibrarySearchResult({ route }: LibrarySearchResultProps) {
       } else {
         // just debugging.
         console.debug(
-          `Calling getCollectedBooksByKeywordApi was ignored. totalCount: ${totalCount}, page: ${page}, size: ${SIZE}`
+          `Calling getCollectedBooksByKeywordApi was ignored. totalCount: ${totalCount}, page: ${page}, size: ${SIZE}`,
         );
       }
     } catch (err) {
@@ -66,7 +66,7 @@ function LibrarySearchResult({ route }: LibrarySearchResultProps) {
       renderItem={props => (
         <BookItem
           {...props}
-          onPressItem={id => navigation.navigate("LibraryBook", { id })}
+          onPressItem={id => navigation.navigate('LibraryBook', { id })}
         />
       )}
       onEndReached={() => setLoading(true)}

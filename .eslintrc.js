@@ -12,31 +12,36 @@ https://github.com/typescript-eslint/tslint-to-eslint-config/blob/master/docs/FA
 Happy linting! 💖
 */
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "extends": [
-        "plugin:eslint-config-prettier",
-        "plugin:eslint-config-prettier/@typescript-eslint"
+  env: {
+    browser: true,
+    es6: true,
+  },
+  extends: [
+    'airbnb-base',
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'prettier/react',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: 'tsconfig.json',
+    sourceType: 'module',
+  },
+  plugins: ['prettier', 'react', '@typescript-eslint', 'react-hooks'],
+  rules: {
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    'import/extensions': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'import/no-unresolved': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    'prettier/prettier': [
+      'error',
+      {},
+      {
+        usePrettierrc: true,
+      },
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "project": "tsconfig.json",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "@typescript-eslint/tslint"
-    ],
-    "rules": {
-        "@typescript-eslint/tslint/config": [
-            "error",
-            {
-                "rules": {
-                    "prettier": true
-                }
-            }
-        ]
-    }
+  },
 };
