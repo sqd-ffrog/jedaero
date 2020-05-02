@@ -1,13 +1,8 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
+import React from 'react';
 import { Card } from '../../atoms/Cards';
 
 function BookIntroduction() {
-  return (
-    <Card>
-      
-    </Card>
-  )
-};
+  return <Card></Card>;
+}
 
 export default BookIntroduction;

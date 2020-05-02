@@ -1,4 +1,4 @@
-import Card from "./card";
-import ImageBackgroundCard from "./imageCard";
+import Card from './card';
+import ImageBackgroundCard from './imageCard';
 
 export { Card, ImageBackgroundCard };

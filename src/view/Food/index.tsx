@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
   ScrollView,
   FoodCardCarousel,
   H2,
-  FoodTotalMenu
-} from "@sqd-ffrog/components";
+  FoodTotalMenu,
+} from '@sqd-ffrog/components';
 
 function Food() {
   return (

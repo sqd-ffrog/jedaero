@@ -1,9 +1,8 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import FastImage from "react-native-fast-image";
-import { NewBook } from "@sqd-ffrog/services";
-import { TouchableOpacity } from "react-native";
-import H6 from "../../atoms/H6";
+import React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import FastImage from 'react-native-fast-image';
+import { NewBook } from '@sqd-ffrog/services';
+import H6 from '../../atoms/H6';
 
 interface NewBookItemProps {
   item: NewBook;
@@ -13,7 +12,7 @@ interface NewBookItemProps {
 
 function NewBookItem({
   item: { thumbnailUri, title, author, id },
-  onPressItem
+  onPressItem,
 }: NewBookItemProps) {
   const onPressNewBookItem = () => {
     console.debug(`onPressNewBook, item was clicked. id: ${id}`);
@@ -37,16 +36,16 @@ function NewBookItem({
 const styles = StyleSheet.create({
   containerStyle: {
     maxWidth: 90,
-    marginHorizontal: 8
+    marginHorizontal: 8,
   },
   imageStyle: {
     width: 90,
-    height: 120
+    height: 120,
   },
   titleStyle: {
-    fontWeight: "700",
-    marginVertical: 4
-  }
+    fontWeight: '700',
+    marginVertical: 4,
+  },
 });
 
 export default NewBookItem;

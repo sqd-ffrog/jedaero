@@ -1,3 +1,3 @@
-import LightColor from "./lightColor";
+import LightColor from './lightColor';
 
 export { LightColor };

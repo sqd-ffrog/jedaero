@@ -1,9 +1,9 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import Swiper from "react-native-swiper";
-import { FoodCard, LightColor } from "@sqd-ffrog/components";
-import { Source } from "react-native-fast-image";
-import { useNavigation } from "@react-navigation/native";
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import Swiper from 'react-native-swiper';
+import { FoodCard, LightColor } from '@sqd-ffrog/components';
+import { Source } from 'react-native-fast-image';
+import { useNavigation } from '@react-navigation/native';
 
 interface FoodCardDataProps {
   cardTitle: string;
@@ -14,23 +14,23 @@ interface FoodCardDataProps {
 
 const data: FoodCardDataProps[] = [
   {
-    cardTitle: "백두관 식당",
+    cardTitle: '백두관 식당',
     source: {
       uri:
-        "https://github.com/sqd-ffrog/database/blob/master/foodbg/baekdu.jpg?raw=true"
+        'https://github.com/sqd-ffrog/database/blob/master/foodbg/baekdu.jpg?raw=true',
     },
-    routeName: "Baekdu",
-    subtitle: "역시 밥은 학식이지"
+    routeName: 'Baekdu',
+    subtitle: '역시 밥은 학식이지',
   },
   {
-    cardTitle: "기숙사 식당",
+    cardTitle: '기숙사 식당',
     source: {
       uri:
-        "https://github.com/sqd-ffrog/database/blob/master/foodbg/dormImage.jpg?raw=true"
+        'https://github.com/sqd-ffrog/database/blob/master/foodbg/dormImage.jpg?raw=true',
     },
-    routeName: "Dormitory",
-    subtitle: "기숙사 밥을 알아보자구요"
-  }
+    routeName: 'Dormitory',
+    subtitle: '기숙사 밥을 알아보자구요',
+  },
 ];
 
 function FoodCardCarousel() {
@@ -56,8 +56,8 @@ function FoodCardCarousel() {
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: 240
-  }
+    height: 240,
+  },
 });
 
 export default FoodCardCarousel;

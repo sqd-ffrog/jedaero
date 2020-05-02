@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { GestureResponderEvent } from "react-native";
-import { ImageBackgroundCard, H4, H6 } from "@sqd-ffrog/components";
-import { Source } from "react-native-fast-image";
-import styles from "./styles";
+import React, { useState } from 'react';
+import { GestureResponderEvent } from 'react-native';
+import { ImageBackgroundCard, H4, H6 } from '@sqd-ffrog/components';
+import { Source } from 'react-native-fast-image';
+import styles from './styles';
 
 interface FoodCardProps {
   source: Source;

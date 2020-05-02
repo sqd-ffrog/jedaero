@@ -1,8 +1,8 @@
-import React from "react";
-import { TouchableOpacity, GestureResponderEvent } from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
-import styles from "./styles";
+import React from 'react';
+import { TouchableOpacity, GestureResponderEvent } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 import { normalize } from '@sqd-ffrog/tools';
+import styles from './styles';
 
 interface SearchButtonProps {
   onPress?: ((event: GestureResponderEvent) => void) | undefined;

@@ -1,6 +1,6 @@
-import React from "react";
-import { Text, TextStyle, StyleProp } from "react-native";
-import styles from "./styles";
+import React from 'react';
+import { Text, TextStyle, StyleProp } from 'react-native';
+import styles from './styles';
 
 interface Props {
   children: string;

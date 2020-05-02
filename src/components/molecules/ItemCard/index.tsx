@@ -1,8 +1,8 @@
-import React from "react";
-import { View, GestureResponderEvent } from "react-native";
-import { Card, H4, H6 } from "@sqd-ffrog/components";
-import styles from "./styles";
-import FastImage from "react-native-fast-image";
+import React from 'react';
+import { View, GestureResponderEvent } from 'react-native';
+import { Card, H4, H6 } from '@sqd-ffrog/components';
+import FastImage from 'react-native-fast-image';
+import styles from './styles';
 
 interface ItemCardProps {
   imageUri: string;

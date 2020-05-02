@@ -1,10 +1,10 @@
-import React from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
-import H4 from "../../atoms/H4";
-import FastImage from "react-native-fast-image";
-import { Book } from "@sqd-ffrog/services";
-import H6 from "../../atoms/H6";
-import { LightColor } from "../../atoms/colors";
+import React from 'react';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import FastImage from 'react-native-fast-image';
+import { Book } from '@sqd-ffrog/services';
+import H4 from '../../atoms/H4';
+import H6 from '../../atoms/H6';
+import { LightColor } from '../../atoms/colors';
 
 interface BookItemProps {
   item: Book;
@@ -14,7 +14,7 @@ interface BookItemProps {
 
 function BookItem({
   item: { title, thumbnailUri, author, isbn, publisher, branchVolumes, id },
-  onPressItem
+  onPressItem,
 }: BookItemProps) {
   const onPressBookItem = () => {
     console.debug(`onPressBookItem. item was cliked. id: ${id}`);
@@ -45,7 +45,7 @@ function BookItem({
                 color: /가능/.exec(branchVolumes[0].state)
                   ? LightColor.accentColor
                   : LightColor.mainColor,
-                ...styles.volumeStateTextStyle
+                ...styles.volumeStateTextStyle,
               }}
             >
               {branchVolumes[0].state}
@@ -61,32 +61,32 @@ const styles = StyleSheet.create({
   containerStyle: {
     marginHorizontal: 8,
     marginVertical: 4,
-    flexDirection: "row",
-    alignItems: "center",
-    overflow: "hidden"
+    flexDirection: 'row',
+    alignItems: 'center',
+    overflow: 'hidden',
   },
   innerContainerStyle: {
-    flex: 1
+    flex: 1,
   },
   imageStyle: {
     width: 75,
-    height: 100
+    height: 100,
   },
   titleStyle: {
-    fontWeight: "700",
+    fontWeight: '700',
     marginBottom: 4,
   },
   branchVolumeStyle: {
-    flexDirection: "row",
-    justifyContent: "space-between"
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   volumeTextStyle: {
-    flex: 1
+    flex: 1,
   },
   volumeStateTextStyle: {
-    fontWeight: "700",
-    marginHorizontal: 8
-  }
+    fontWeight: '700',
+    marginHorizontal: 8,
+  },
 });
 
 export default BookItem;

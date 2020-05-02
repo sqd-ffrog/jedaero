@@ -1,10 +1,9 @@
-import React, { useState, useRef } from "react";
-import { StyleSheet } from "react-native";
-import { Card } from "../../atoms/Cards";
-import { SearchButton, CloseButton } from "../../atoms/Buttons";
-import { LightColor } from "../../atoms/colors";
-import Input from "../../atoms/TextInput";
-import { TextInput } from "react-native";
+import React, { useState, useRef } from 'react';
+import { StyleSheet, TextInput } from 'react-native';
+import { Card } from '../../atoms/Cards';
+import { SearchButton, CloseButton } from '../../atoms/Buttons';
+import { LightColor } from '../../atoms/colors';
+import Input from '../../atoms/TextInput';
 
 interface SearchBarProps {
   onPress: (arg0: string) => void;
@@ -13,7 +12,7 @@ interface SearchBarProps {
 
 function SearchBar({ onPress, tintColor }: SearchBarProps) {
   const inputRef = useRef<TextInput>(null);
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>('');
 
   const onChange = (text: string) => {
     setValue(text);
@@ -23,7 +22,7 @@ function SearchBar({ onPress, tintColor }: SearchBarProps) {
 
   const onPressCloseButton = () => {
     inputRef?.current?.clear();
-    setValue("");
+    setValue('');
   };
 
   return (
@@ -51,16 +50,16 @@ function SearchBar({ onPress, tintColor }: SearchBarProps) {
 
 const styles = StyleSheet.create({
   cardStyle: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 16
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
   },
   inputStyle: {
-    flex: 1
+    flex: 1,
   },
   closeStyle: {
-    marginHorizontal: 4
-  }
+    marginHorizontal: 4,
+  },
 });
 
 export default SearchBar;

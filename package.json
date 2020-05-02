@@ -7,8 +7,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "test": "jest",
-    "prettier": "prettier -c 'src/**/*.tsx'",
-    "lint": "eslint 'src/**/*.tsx'",
+    "eslint": "eslint 'src/**/*.tsx'",
+    "stylelint": "stylelint 'src/**/*.tsx'",
     "typescript": "typescript",
     "postinstall": "jetifier",
     "storybook": "start-storybook -p 7007"
@@ -104,6 +104,8 @@
     "preset": "react-native"
   },
   "husky": {
-    "pre-commit": "npm run prettier && npm run lint"
+    "hooks": {
+      "pre-commit": "npm run eslint"
+    }
   }
 }

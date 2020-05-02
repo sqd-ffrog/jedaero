@@ -1,9 +1,8 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
-import { H6, LightColor } from "@sqd-ffrog/components";
-import { TouchableOpacity } from "react-native";
-import { normalize } from "@sqd-ffrog/tools";
+import React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
+import { H6, LightColor } from '@sqd-ffrog/components';
+import { normalize } from '@sqd-ffrog/tools';
 
 interface DreamyTileProps {
   name: string;
@@ -26,17 +25,17 @@ function DreamyTile({ name, title }: DreamyTileProps) {
 
 const styles = StyleSheet.create({
   containerStyle: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginHorizontal: 16,
-    marginVertical: 12
+    marginVertical: 12,
   },
   iconStyle: {
-    marginRight: 12
+    marginRight: 12,
   },
   titleStyle: {
-    fontWeight: "700"
-  }
+    fontWeight: '700',
+  },
 });
 
 export default DreamyTile;

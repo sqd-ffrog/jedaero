@@ -1,7 +1,9 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { JedaeroBottomTabNavigator } from "@sqd-ffrog/jedaero-navigator";
-import { rootScreenOptions } from "@sqd-ffrog/jedaero-navigator";
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import {
+  JedaeroBottomTabNavigator,
+  rootScreenOptions,
+} from '@sqd-ffrog/jedaero-navigator';
 
 const Stack = createStackNavigator();
 

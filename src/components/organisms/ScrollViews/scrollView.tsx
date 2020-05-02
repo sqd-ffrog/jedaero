@@ -1,7 +1,7 @@
-import React from "react";
-import { ScrollView, ScrollViewProps } from "react-native";
-import { HeaderHeightContext } from "@react-navigation/stack";
-import Title from "../../molecules/Title";
+import React from 'react';
+import { ScrollView, ScrollViewProps } from 'react-native';
+import { HeaderHeightContext } from '@react-navigation/stack';
+import Title from '../../molecules/Title';
 
 interface JedaeroScrollViewProps {
   title: string;
@@ -16,7 +16,7 @@ function JedaeroScrollView(props: ScrollViewProps & JedaeroScrollViewProps) {
           {...props}
           contentContainerStyle={[
             props.contentContainerStyle,
-            { marginTop: headerHeight, paddingBottom: 56 }
+            { marginTop: headerHeight, paddingBottom: 56 },
           ]}
         >
           <Title>{props.title}</Title>

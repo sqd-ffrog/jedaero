@@ -1,11 +1,12 @@
-import JedaeroStackNavigator from "./JedaeroStackNavigator";
-import JedaeroBottomTabNavigator from "./JedaeroBottomTabNavigator";
-import HomeStackNavigator from "./HomeStackNavigator";
-import FoodStackNavigator from "./FoodStackNavigator";
-import DreamyStackNavigator from "./DreamyStackNavigator";
-import LibraryStackNavigator from "./LibraryStackNavigator";
-import AcademyScheduleStackNavigator from "./AcademyScheduleStackNavigator";
-import rootScreenOptions from "./ScreenOptions/rootScreenOptions";
+import JedaeroStackNavigator from './JedaeroStackNavigator';
+import JedaeroBottomTabNavigator from './JedaeroBottomTabNavigator';
+import HomeStackNavigator from './HomeStackNavigator';
+import FoodStackNavigator from './FoodStackNavigator';
+import DreamyStackNavigator from './DreamyStackNavigator';
+import LibraryStackNavigator from './LibraryStackNavigator';
+import AcademyScheduleStackNavigator from './AcademyScheduleStackNavigator';
+import rootScreenOptions from './ScreenOptions/rootScreenOptions';
+
 export {
   JedaeroStackNavigator,
   JedaeroBottomTabNavigator,
@@ -14,5 +15,5 @@ export {
   DreamyStackNavigator,
   LibraryStackNavigator,
   AcademyScheduleStackNavigator,
-  rootScreenOptions
+  rootScreenOptions,
 };

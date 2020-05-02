@@ -1,9 +1,9 @@
-import React from "react";
-import { TouchableOpacity, GestureResponderEvent } from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
+import React from 'react';
+import { TouchableOpacity, GestureResponderEvent } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 import { normalize } from '@sqd-ffrog/tools';
 
-interface BackButtonProps {
+export interface BackButtonProps {
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
   color?: string;
 }
@@ -16,5 +16,4 @@ function BackButton({ onPress, color }: BackButtonProps) {
   );
 }
 
-export { BackButtonProps };
 export default BackButton;

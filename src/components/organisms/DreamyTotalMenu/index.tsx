@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import H2 from "../../atoms/H2";
-import DreamyTile from "../../molecules/DreamyTile";
-import { View, StyleSheet } from "react-native";
+import React, { Fragment } from 'react';
+import { View, StyleSheet } from 'react-native';
+import H2 from '../../atoms/H2';
+import DreamyTile from '../../molecules/DreamyTile';
 
 interface MenuItemProps {
   name: string;
@@ -10,17 +10,17 @@ interface MenuItemProps {
 
 const data: MenuItemProps[] = [
   {
-    name: "paperclip",
-    title: "강의 게시판"
+    name: 'paperclip',
+    title: '강의 게시판',
   },
   {
-    name: "carryout",
-    title: "생활관 합격조회"
+    name: 'carryout',
+    title: '생활관 합격조회',
   },
   {
-    name: "solution1",
-    title: "교수계획서 조회"
-  }
+    name: 'solution1',
+    title: '교수계획서 조회',
+  },
 ];
 
 function DreamyTotalMenu() {
@@ -34,11 +34,11 @@ function DreamyTotalMenu() {
 
 const styles = StyleSheet.create({
   titleStyle: {
-    marginTop: 24
+    marginTop: 24,
   },
   tileContainerStyle: {
-    flexDirection: "column"
-  }
+    flexDirection: 'column',
+  },
 });
 
 export default DreamyTotalMenu;

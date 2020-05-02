@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   StyleProp,
   ViewStyle,
   GestureResponderEvent,
-  TouchableHighlight
-} from "react-native";
-import styles from "./styles";
+  TouchableHighlight,
+} from 'react-native';
+import styles from './styles';
 
 interface CardProps {
   children?: React.ReactNode;

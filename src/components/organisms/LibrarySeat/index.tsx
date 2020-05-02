@@ -1,12 +1,12 @@
-import React, { Fragment, useState, useEffect } from "react";
-import H2 from "../../atoms/H2";
-import { LibrarySeatsApiResponse } from "@sqd-ffrog/react-native-jnu/src/library";
-import { getLibrarySeatsApi } from "@sqd-ffrog/services";
-import LibrarySeatItem from "../../molecules/LibrarySeatItem";
+import React, { Fragment, useState, useEffect } from 'react';
+import { LibrarySeatsApiResponse } from '@sqd-ffrog/react-native-jnu/src/library';
+import { getLibrarySeatsApi } from '@sqd-ffrog/services';
+import H2 from '../../atoms/H2';
+import LibrarySeatItem from '../../molecules/LibrarySeatItem';
 
 function LibrarySeat() {
   const [data, setData] = useState<LibrarySeatsApiResponse>();
-  const [isLoading, setLoading] = useState<Boolean>(true);
+  const [isLoading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const getData = () => {

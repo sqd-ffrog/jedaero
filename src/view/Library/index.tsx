@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
   ScrollView,
   LibrarySearchBar,
   LibraryNewBook,
-  LibrarySeat
-} from "@sqd-ffrog/components";
+  LibrarySeat,
+} from '@sqd-ffrog/components';
 
 function Library() {
   return (

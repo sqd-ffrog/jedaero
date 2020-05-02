@@ -36,6 +36,13 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/no-unresolved': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-unused-expressions': 'warn',
+    'no-unused-expressions': 'off',
+    'no-console': 'off',
+    'import/prefer-default-export': 'warn',
+    'react/prop-types': 'off',
+    'no-shadow': 'warn',
     'prettier/prettier': [
       'error',
       {},

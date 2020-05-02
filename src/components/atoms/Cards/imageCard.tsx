@@ -1,16 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 import {
   View,
   StyleProp,
   ViewStyle,
   StyleSheet,
-  GestureResponderEvent
-} from "react-native";
-import styles from "./styles";
+  GestureResponderEvent,
+} from 'react-native';
 
-import FastImage, { Source } from "react-native-fast-image";
-import { TouchableHighlight } from "react-native-gesture-handler";
-import { LightColor } from "@sqd-ffrog/components";
+import FastImage, { Source } from 'react-native-fast-image';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+import { LightColor } from '@sqd-ffrog/components';
+import styles from './styles';
 
 interface ImageBackgroundCardProps {
   source: Source;
@@ -27,9 +27,9 @@ function ImageBackgroundCard({
   style,
   onLoadStart,
   onLoadEnd,
-  onPress
+  onPress,
 }: ImageBackgroundCardProps) {
-  const _children = () => (
+  const childrenItem = () => (
     <Fragment>
       <FastImage
         style={[StyleSheet.absoluteFill, styles.imageCardInnerStyle]}
@@ -47,10 +47,10 @@ function ImageBackgroundCard({
       underlayColor={LightColor.backgroundColor}
       onPress={onPress}
     >
-      {_children()}
+      {childrenItem()}
     </TouchableHighlight>
   ) : (
-    <View style={[styles.cardStyle, style]}>{_children()}</View>
+    <View style={[styles.cardStyle, style]}>{childrenItem()}</View>
   );
 }
 

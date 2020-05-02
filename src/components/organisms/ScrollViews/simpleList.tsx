@@ -1,14 +1,14 @@
-import React from "react";
-import { FlatList, FlatListProps } from "react-native";
-import { HeaderHeightContext } from "@react-navigation/stack";
-import Title from "../../molecules/Title";
+import React from 'react';
+import { FlatList, FlatListProps } from 'react-native';
+import { HeaderHeightContext } from '@react-navigation/stack';
+import Title from '../../molecules/Title';
 
 interface SimpleListProps {
   title: string;
 }
 
 function SimpleList<ItemT = any>(
-  props: FlatListProps<ItemT> & SimpleListProps
+  props: FlatListProps<ItemT> & SimpleListProps,
 ) {
   const ListHeaderComponent = () => <Title>{props.title}</Title>;
 
@@ -20,7 +20,7 @@ function SimpleList<ItemT = any>(
           ListHeaderComponent={ListHeaderComponent}
           contentContainerStyle={[
             props.contentContainerStyle,
-            { marginTop: headerHeight, paddingBottom: 56 }
+            { marginTop: headerHeight, paddingBottom: 56 },
           ]}
         />
       )}

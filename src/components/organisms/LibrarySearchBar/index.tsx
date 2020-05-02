@@ -1,14 +1,14 @@
-import React, { useState, Fragment } from "react";
-import SearchBar from "../../molecules/SearchBar";
-import { useNavigation } from "@react-navigation/native";
-import SearchTopTab from "../../molecules/SearchTopTab";
-import { LightColor } from "../../atoms/colors";
+import React, { useState, Fragment } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import SearchBar from '../../molecules/SearchBar';
+import SearchTopTab from '../../molecules/SearchTopTab';
+import { LightColor } from '../../atoms/colors';
 
 export enum LibrarySearchType {
   COLLECTION,
   ARTICLES,
   EJOURNAL,
-  KCI
+  KCI,
 }
 
 interface TabProps {
@@ -19,29 +19,29 @@ interface TabProps {
 
 const tabs: TabProps[] = [
   {
-    title: "소장도서",
+    title: '소장도서',
     value: LibrarySearchType.COLLECTION,
-    tintColor: LightColor.accentColor
-  }
+    tintColor: LightColor.accentColor,
+  },
 ];
 
 function LibrarySearchBar() {
   const navigation = useNavigation();
   const [type, setType] = useState<LibrarySearchType>(
-    LibrarySearchType.COLLECTION
+    LibrarySearchType.COLLECTION,
   );
   const [tintColor, setTintColor] = useState<string>(LightColor.mainColor);
 
   const onPress = (value: string) => {
-    navigation.navigate("LibrarySearchResult", { type, value });
+    navigation.navigate('LibrarySearchResult', { type, value });
   };
 
   const callback = (tab: string) => {
-    console.debug("Library tab: ", tab);
+    console.debug('Library tab: ', tab);
 
     const { value, tintColor } = tabs.find(tabs => tabs.title === tab) ?? {
       value: LibrarySearchType.COLLECTION,
-      tintColor: LightColor.mainColor
+      tintColor: LightColor.mainColor,
     };
 
     console.debug(`value: ${value}, tintColor: ${tintColor}`);

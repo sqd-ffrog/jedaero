@@ -1,15 +1,15 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { LibrarySeatProps } from "@sqd-ffrog/react-native-jnu/src/library";
-import { View } from "react-native";
-import H6 from "../../atoms/H6";
-import { LightColor } from "../../atoms/colors";
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { LibrarySeatProps } from '@sqd-ffrog/react-native-jnu/src/library';
+
+import H6 from '../../atoms/H6';
+import { LightColor } from '../../atoms/colors';
 
 function LibrarySeatItem({
   id,
   capacity,
   available,
-  sectionName
+  sectionName,
 }: LibrarySeatProps) {
   const seat = `${capacity - available}/${capacity}`;
   return (
@@ -24,15 +24,15 @@ const styles = StyleSheet.create({
   containerStyle: {
     marginHorizontal: 16,
     marginVertical: 8,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   seatTextStyle: {
-    fontWeight: "700",
+    fontWeight: '700',
     color: LightColor.mainColor,
-    textAlign: "center"
-  }
+    textAlign: 'center',
+  },
 });
 
 export default LibrarySeatItem;
