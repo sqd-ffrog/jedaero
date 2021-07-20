@@ -21,7 +21,7 @@
     "link": "^0.1.5",
     "moment": "^2.24.0",
     "react": "16.9.0",
-    "react-native": "0.61.5",
+    "react-native": "0.62.3",
     "react-native-calendars": "^1.208.0",
     "react-native-cheerio": "^1.0.0-rc.4",
     "react-native-communications": "^2.2.1",
